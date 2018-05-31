@@ -38,7 +38,7 @@ public class MySQLRaavareDAO implements RaavareDAO {
 
     @Override
     public void createRaavare(RaavareDTO raavare) throws DALException {
-        if(Connector.doUpdate("call createRaavare('"+raavare.getRaavareNavn()+"','"+raavare.getLeverandoer()+"')")==0) {
+        if(Connector.doUpdate("call createRaavare('"+raavare.getRaavareId()+"','"+raavare.getRaavareNavn()+"','"+raavare.getLeverandoer()+"')")==0) {
         	throw new DALException("Couldn't add tuple to \"Raavare\".");
         }
     }
