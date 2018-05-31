@@ -16,7 +16,10 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 		try {
 			if (!rs.first()) throw new DALException("Operatoeren " + oprId + " findes ikke.");
 			
-			return new OperatoerDTO (rs.getInt("opr_id"), rs.getString("fornavn"), rs.getString("efternavn"), rs.getString("cpr"), rs.getString("password"), rs.getString("roller"), rs.getString("aktiv"));
+			return new OperatoerDTO (rs.getInt("opr_id"), rs.getString("fornavn"),
+					rs.getString("efternavn"), rs.getString("cpr"),
+					rs.getString("password"), rs.getString("roller"),
+					rs.getString("aktiv"));
 		}
 		catch (SQLException e) {
 			throw new DALException(e); 
@@ -25,13 +28,15 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 	}
 
 	public void createOperatoer(OperatoerDTO opr) throws DALException {
-		if(Connector.doUpdate("CALL createOperator('"+opr.getCpr()+"','"+opr.getPassword()+"','"+opr.getRoles()+"','"+opr.getForNavn()+"','"+opr.getEfterNavn()+"','aktiv')")==0) {
+		if(Connector.doUpdate("CALL createOperator('"+opr.getCpr()+"','"+opr.getPassword()+"','"+opr.getRoles()+
+				"','"+opr.getForNavn()+"','"+opr.getEfterNavn()+"','aktiv')")==0) {
 			throw new DALException("Couldn't add tuple to \"Operatoer\".");
 		}
 	}	
 	
 	public void updateOperatoer(OperatoerDTO opr) throws DALException {
-		if(Connector.doUpdate("CALL updateOperator("+opr.getOprId()+",'"+opr.getCpr()+"','"+opr.getPassword()+"','"+opr.getRoles()+"','"+opr.getForNavn()+"','"+opr.getEfterNavn()+"','"+opr.getAktiv()+"')")==0) {
+		if(Connector.doUpdate("CALL updateOperator("+opr.getOprId()+",'"+opr.getCpr()+"','"+opr.getPassword()+
+				"','"+opr.getRoles()+"','"+opr.getForNavn()+"','"+opr.getEfterNavn()+"','"+opr.getAktiv()+"')")==0) {
 			throw new DALException("No rows updated in \"Operatoer\".");
 		}
 	}
@@ -41,7 +46,10 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer");
 		try {
 			while (rs.next()) {
-				list.add(new OperatoerDTO(rs.getInt("opr_id"), rs.getString("fornavn"), rs.getString("efternavn"), rs.getString("cpr"), rs.getString("password"), rs.getString("roller"), rs.getString("aktiv")));
+				list.add(new OperatoerDTO(rs.getInt("opr_id"), rs.getString("fornavn"),
+						rs.getString("efternavn"), rs.getString("cpr"),
+						rs.getString("password"), rs.getString("roller"),
+						rs.getString("aktiv")));
 			}
 		}
 		catch (SQLException e) { 
