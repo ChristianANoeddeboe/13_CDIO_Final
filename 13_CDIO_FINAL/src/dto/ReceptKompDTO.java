@@ -17,19 +17,12 @@ public class ReceptKompDTO
 	}
 
 	private boolean isValid() {
-		if (receptId < 1 || receptId > 99999999) {
-			return false;
-		}
-		if (raavareId < 1 || raavareId > 99999999) {
-			return false;
-		}
-		if (nomNetto < 0.05 || nomNetto > 20) {
-			return false;
-		}
-		if (tolerance < 0.1 || tolerance > 10) {
-			return false;
-		}
-		return true;
+		return (
+					ErrorChecking.checkIntSize(receptId) &&
+					ErrorChecking.checkIntSize(raavareId) &&
+					ErrorChecking.checkNomNetto(nomNetto) &&
+					ErrorChecking.checkTolerance(tolerance)
+				);
 	}
 
 	public int getReceptId() { return receptId; }

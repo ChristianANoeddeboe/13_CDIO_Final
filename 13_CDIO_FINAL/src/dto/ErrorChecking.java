@@ -32,4 +32,20 @@ public class ErrorChecking {
 			return true;
 		}
 	}
+
+	public static boolean checkNomNetto(double nomNetto) {
+		if (nomNetto < 0.05 || nomNetto > 20) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	public static boolean checkTolerance(double tolerance) {
+		if (tolerance < 0.1 || tolerance > 10) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
