@@ -1,0 +1,82 @@
+body {
+    overflow: hidden;
+}
+
+.brugeradmin {
+    overflow: auto;
+}
+
+.brugeradmin table {
+    border-collapse: collapse;
+    border-radius: 6px;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0 2% 0 2%;
+    width: 96%;
+}
+
+.brugeradmin th {
+    background: #637383;
+    border-bottom: 4px solid #9ea7af;
+    border-right: 1px solid #C1C3D1;
+    color: white;
+    font-size: 18px;
+    font-weight: 100;
+    padding: 10px 15px 10px 15px;
+    text-align: left;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    vertical-align: middle;
+}
+
+.brugeradmin th:first-child {
+    border-top-left-radius: 4px;
+}
+
+.brugeradmin th:last-child {
+    border-right: none;
+    border-top-right-radius: 4px;
+}
+
+.brugeradmin th:only-child {
+    border-radius: 4px 4px 0 0;
+}
+
+.brugeradmin td {
+    border-right: 1px solid #C1C3D1;
+    padding: 5px;
+    text-align: left;
+}
+
+.brugeradmin td:last-child {
+    border-right: none;
+}
+
+.brugeradmin tr:last-child td:first-child {
+    border-bottom-left-radius: 4px;
+}
+
+.brugeradmin tr:last-child td:last-child {
+    border-bottom-right-radius: 4px;
+}
+
+.brugeradmin tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.brugeradmin tr:hover td {
+    background: #4E5066;
+    color: #FFFFFF;
+}
+
+button {
+    border: none;
+    background-color: inherit;
+}
+
+button:focus {
+    outline: none;
+}
+
+tr:hover button {
+    border: none;
+    color: #c51137;
+}

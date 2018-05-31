@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Opret bruger</title>
+<link rel="stylesheet" type="text/css" href="opretbruger.css">
+<link href="https://fonts.googleapis.com/css?family=Bitter"
+	rel="stylesheet">
+<script src="jquery-3.3.1.js"></script>
+<script type = "text/javascript" src = "jquery.serialize-object.js"></script>
+<script src="./operator.js"></script>
+
+</head>
+
+<body>
+	<div class="opretbruger">
+		<br>
+		<div class="opretbrugerbody">
+			<form id="brugerAdmin">
+				<div class="opretbrugerform">
+					<table class="opretbrugertable">
+						<tr class="opretuserid">
+							<td>UserID</td>
+							<td><input type="text" name="userId" id="userId"></td>
+						</tr>
+						<tr class="opretbrugernavn">
+							<td>Brugernavn</td>
+							<td><input type="text" name="userName" id="userName"></td>
+						</tr>
+						<tr class="opretcpr">
+							<td>CPR</td>
+							<td><input type="text" name="cpr" id = "cpr"></td>
+						</tr>
+						<tr class="opretpassword">
+							<td>Password</td>
+							<td><input type="text" name="password" id = "password"></td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="roller">
+					<table>
+						<td class="admin">
+                            <input type="radio" id="adminradio" name="roles" class ="roles" value = "admin" >
+							<label for="adminradio">Admin</label>
+
+							<div class="check"></div>
+						</td>
+						
+						<td class="pharmacist">
+                            <input type="radio" id="pharmacistradio" name="roles" class ="roles" value = "pharmacist" >
+							<label for="pharmacistradio">Pharamacist</label>
+							<div class="check"></div>
+						</td>
+						
+						<td class="produktionsleder">
+                            <input type="radio" id="produktionslederradio" name="roles" class = "roles" value = "produktionsleder">
+							<label for="produktionslederradio">Produktionsleder</label>
+							<div class="check"><div class="inside"></div></div>
+						</td>
+						
+						<td class="laborant">
+                            <input type="radio" id="laborantradio" name="roles" class = "roles" value = "laborant">
+							<label for="laborantradio">Laborant</label>
+							<div class="check"><div class="inside"></div></div>
+						</td>
+						
+					</table>
+
+				</div>
+			</form>
+			<div class="emptyline"></div>
+			<button id="updatebtn">Gem</button>
+		</div>
+	</div>
+</body>
+</html>
