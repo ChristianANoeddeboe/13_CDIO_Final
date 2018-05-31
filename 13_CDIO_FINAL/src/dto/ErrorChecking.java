@@ -1,4 +1,4 @@
-package dao;
+package dto;
 
 public class ErrorChecking {
 	public static boolean checkStrSize(String str) {
