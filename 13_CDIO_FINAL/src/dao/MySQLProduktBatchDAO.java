@@ -39,6 +39,9 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO{
 
 	@Override
 	public void createProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
+		if(!produktbatch.isValid()) {
+			throw new DALException("2 Invalid data.");
+		}
 		if(Connector.doUpdate("call createProductBatch("+produktbatch.getStatus()+","+produktbatch.getReceptId()+")")==0) {
 			throw new DALException("Couldn't add tuple to \"Produkt batch\".");
 		}
@@ -46,6 +49,9 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO{
 
 	@Override
 	public void updateProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
+		if(!produktbatch.isValid()) {
+			throw new DALException("2 Invalid data.");
+		}
 		if(Connector.doUpdate("call updateProductBatch("+produktbatch.getPbId()+","+produktbatch.getStatus()+","+produktbatch.getReceptId()+")")==0) {
 			throw new DALException("No rows updated in \"Produkt batch\".");
 		}
@@ -58,5 +64,4 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO{
 		}
 		
 	}
-
 }
