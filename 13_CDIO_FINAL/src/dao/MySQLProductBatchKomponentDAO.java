@@ -14,8 +14,8 @@ public class MySQLProductBatchKomponentDAO implements ProduktBatchKompDAO {
 
 	@Override
 	public ProduktBatchKompDTO getProduktBatchKomp(int pbId, int rbId) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM produktbatchkomp WHERE pb_id ="+pbId+" AND rb_id ="+rbId);
 		try {
+			ResultSet rs = Connector.doQuery("SELECT * FROM produktbatchkomp WHERE pb_id ="+pbId+" AND rb_id ="+rbId);
 			if(!rs.first()) throw new DALException("Produktbatch komponentet med produkt batch id: "+pbId + " og raavare batch id: "+rbId+ " blev ikke fundet");
 			return new ProduktBatchKompDTO(rs.getInt("pb_id"), rs.getInt("rb_id"), rs.getDouble("tara"), rs.getDouble("netto"), rs.getInt("opr_id"));
 		}
@@ -78,5 +78,4 @@ public class MySQLProductBatchKomponentDAO implements ProduktBatchKompDAO {
 			throw new DALException("No rows updated in \"Produkt batch komponent\".");
 		}
 	}
-
 }

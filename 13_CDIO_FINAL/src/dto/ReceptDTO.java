@@ -15,6 +15,10 @@ public class ReceptDTO
         this.receptNavn = receptNavn;
     }
 
+    private boolean isValid() {
+		return (ErrorChecking.checkIntSize(receptId) && ErrorChecking.checkStrSize(receptNavn));
+	}
+
     public int getReceptId() { return receptId; }
 	public void setReceptId(int receptId) { this.receptId = receptId; }
 	public String getReceptNavn() { return receptNavn; }

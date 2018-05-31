@@ -16,6 +16,15 @@ public class ReceptKompDTO
 		this.tolerance = tolerance;
 	}
 
+	private boolean isValid() {
+		return (
+					ErrorChecking.checkIntSize(receptId) &&
+					ErrorChecking.checkIntSize(raavareId) &&
+					ErrorChecking.checkNomNetto(nomNetto) &&
+					ErrorChecking.checkTolerance(tolerance)
+				);
+	}
+
 	public int getReceptId() { return receptId; }
 	public void setReceptId(int receptId) { this.receptId = receptId; }
 	public int getRaavareId() { return raavareId; }
