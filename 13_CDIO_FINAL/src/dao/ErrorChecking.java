@@ -33,7 +33,7 @@ public class ErrorChecking {
 		}
 	}
 	
-	public static boolean checkId(int input) {
+	public static boolean checkStatus(int input) {
 		if(Integer.toString(input).length() > 3 || input < 1) {
 			return false;
 		}else {

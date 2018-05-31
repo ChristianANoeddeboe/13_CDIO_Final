@@ -51,7 +51,7 @@ public class OperatoerDTO
 	}
 	
 	public boolean isValid() {
-		if(ErrorChecking.checkId(getOprId()) &&
+		if(ErrorChecking.checkIntSize(getOprId()) &&
 				ErrorChecking.checkStrSize(fornavn) &&
 				ErrorChecking.checkStrSize(efternavn) &&
 				ErrorChecking.checkCPR(cpr) &&
