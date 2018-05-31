@@ -1,9 +1,9 @@
-package daoimpl01917;
+package dao;
 
-import connector01917.Connector;
+import connector.Connector;
 import daointerfaces01917.DALException;
-import daointerfaces01917.RaavareBatchDAO;
-import dto01917.RaavareBatchDTO;
+import interfaces.RaavareBatchDAO;
+import dto.RaavareBatchDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

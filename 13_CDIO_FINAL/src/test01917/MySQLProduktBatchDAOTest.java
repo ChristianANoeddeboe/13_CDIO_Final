@@ -12,10 +12,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import connector01917.Connector;
-import daoimpl01917.MySQLProduktBatchDAO;
+import connector.Connector;
+import dao.MySQLProduktBatchDAO;
 import daointerfaces01917.DALException;
-import dto01917.ProduktBatchDTO;
+import dto.ProduktBatchDTO;
 
 class MySQLProduktBatchDAOTest {
 	static MySQLProduktBatchDAO prodBatch;

@@ -1,13 +1,13 @@
-package daoimpl01917;
+package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
-import connector01917.Connector;
+import connector.Connector;
 import exception.DALException;
-import daointerfaces01917.OperatoerDAO;
-import dto01917.OperatoerDTO;
+import interfaces.OperatoerDAO;
+import dto.OperatoerDTO;
 
 public class MySQLOperatoerDAO implements OperatoerDAO {
 	//Get operator with specific ID

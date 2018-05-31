@@ -1,9 +1,9 @@
 package test01917;
 
-import connector01917.Connector;
-import daoimpl01917.MySQLRaavareBatchDAO;
+import connector.Connector;
+import dao.MySQLRaavareBatchDAO;
 import daointerfaces01917.DALException;
-import dto01917.RaavareBatchDTO;
+import dto.RaavareBatchDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

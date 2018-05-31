@@ -1,14 +1,13 @@
 package test01917;
 
-import connector01917.Connector;
-import daoimpl01917.MySQLReceptKompDAO;
+import connector.Connector;
+import dao.MySQLReceptKompDAO;
 import daointerfaces01917.DALException;
-import dto01917.ReceptKompDTO;
+import dto.ReceptKompDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

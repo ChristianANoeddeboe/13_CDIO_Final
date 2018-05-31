@@ -1,4 +1,4 @@
-package connector01917;
+package connector;
 
 
 // erstat konstanterne nedenfor

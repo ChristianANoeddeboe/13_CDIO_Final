@@ -1,4 +1,4 @@
-package dto01917;
+package dto;
 
 public class ReceptDTO 
 {

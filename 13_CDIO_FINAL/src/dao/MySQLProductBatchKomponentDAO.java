@@ -1,14 +1,14 @@
-package daoimpl01917;
+package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import connector01917.Connector;
-import daointerfaces01917.DALException;
-import daointerfaces01917.ProduktBatchKompDAO;
-import dto01917.ProduktBatchKompDTO;
+import connector.Connector;
+import exception.DALException;
+import interfaces.ProduktBatchKompDAO;
+import dto.ProduktBatchKompDTO;
 
 public class MySQLProductBatchKomponentDAO implements ProduktBatchKompDAO {
 

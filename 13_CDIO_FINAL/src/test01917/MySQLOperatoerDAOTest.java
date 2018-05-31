@@ -8,10 +8,10 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import connector01917.Connector;
-import daoimpl01917.MySQLOperatoerDAO;
+import connector.Connector;
+import dao.MySQLOperatoerDAO;
 import daointerfaces01917.DALException;
-import dto01917.OperatoerDTO;
+import dto.OperatoerDTO;
 
 class MySQLOperatoerDAOTest {
 	static MySQLOperatoerDAO operatoer;

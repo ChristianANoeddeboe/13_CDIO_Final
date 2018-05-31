@@ -8,10 +8,10 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import connector01917.Connector;
-import daoimpl01917.MySQLReceptDAO;
+import connector.Connector;
+import dao.MySQLReceptDAO;
 import daointerfaces01917.DALException;
-import dto01917.ReceptDTO;
+import dto.ReceptDTO;
 
 class MySQLReceptDAOTest {
 	MySQLReceptDAO receptDAO = new MySQLReceptDAO();

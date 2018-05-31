@@ -8,10 +8,10 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import connector01917.Connector;
-import daoimpl01917.MySQLProductBatchKomponentDAO;
+import connector.Connector;
+import dao.MySQLProductBatchKomponentDAO;
 import daointerfaces01917.DALException;
-import dto01917.ProduktBatchKompDTO;
+import dto.ProduktBatchKompDTO;
 
 class MySQLProduktBatchKomponentDAOTest {
 	static MySQLProductBatchKomponentDAO prodBatchKomp;

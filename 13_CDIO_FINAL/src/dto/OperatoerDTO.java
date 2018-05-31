@@ -1,4 +1,4 @@
-package dto01917;
+package dto;
 
 /**
  * Operatoer Data Access Objekt
