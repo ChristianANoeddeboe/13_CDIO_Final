@@ -16,13 +16,7 @@ public class ReceptDTO
     }
 
     private boolean isValid() {
-		if (receptId < 1 || receptId > 99999999) {
-			return false;
-		}
-		if (receptNavn.length() < 2 || receptNavn.length() > 20) {
-			return false;
-		}
-		return true;
+		return (ErrorChecking.checkIntSize(receptId) && ErrorChecking.checkStrSize(receptNavn));
 	}
 
     public int getReceptId() { return receptId; }
