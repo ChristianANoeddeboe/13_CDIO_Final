@@ -24,4 +24,12 @@ public class ErrorChecking {
 			return true;
 		}
 	}
+	
+	public static boolean checkCPR(String input) {
+		if(input.length() != 10) {
+			return false;
+		}else {
+			return true;
+		}
+	}
 }
