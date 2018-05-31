@@ -27,7 +27,6 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 	}
 
 	public void createOperatoer(OperatoerDTO opr) throws DALException {
-		if(ErrorChecking.checkStrSize())
 		if(Connector.doUpdate("CALL createOperator('"+opr.getCpr()+"','"+opr.getPassword()+"','"+opr.getRoles()+
 				"','"+opr.getForNavn()+"','"+opr.getEfterNavn()+"','aktiv')")==0) {
 			throw new DALException("Couldn't add tuple to \"Operatoer\".");
