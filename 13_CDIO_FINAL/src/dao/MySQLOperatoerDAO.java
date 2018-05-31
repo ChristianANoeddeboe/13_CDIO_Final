@@ -8,14 +8,13 @@ import connector.Connector;
 import exception.DALException;
 import interfaces.OperatoerDAO;
 import dto.OperatoerDTO;
-
+import dao.ErrorChecking;
 public class MySQLOperatoerDAO implements OperatoerDAO {
 	//Get operator with specific ID
 	public OperatoerDTO getOperatoer(int oprId) throws DALException {
 		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId); // View
 		try {
 			if (!rs.first()) throw new DALException("Operatoeren " + oprId + " findes ikke.");
-			
 			return new OperatoerDTO (rs.getInt("opr_id"), rs.getString("fornavn"),
 					rs.getString("efternavn"), rs.getString("cpr"),
 					rs.getString("password"), rs.getString("roller"),
@@ -28,6 +27,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 	}
 
 	public void createOperatoer(OperatoerDTO opr) throws DALException {
+		if(ErrorChecking.checkStrSize())
 		if(Connector.doUpdate("CALL createOperator('"+opr.getCpr()+"','"+opr.getPassword()+"','"+opr.getRoles()+
 				"','"+opr.getForNavn()+"','"+opr.getEfterNavn()+"','aktiv')")==0) {
 			throw new DALException("Couldn't add tuple to \"Operatoer\".");
