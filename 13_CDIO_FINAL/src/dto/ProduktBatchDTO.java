@@ -29,6 +29,13 @@ public class ProduktBatchDTO
 		this.receptId = receptId;
 	}
 	
+	public boolean isValid() {
+		if(ErrorChecking.checkIntSize(pbId) || ErrorChecking.checkIntSize(status) || ErrorChecking.checkIntSize(receptId)) {
+			return false;
+		}
+		return true;
+	}
+	
 	public int getPbId() { return pbId; }
 	public void setPbId(int pbId) { this.pbId = pbId; }
 	public int getStatus() { return status; }

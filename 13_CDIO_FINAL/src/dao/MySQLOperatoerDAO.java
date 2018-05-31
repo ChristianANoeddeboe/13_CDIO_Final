@@ -8,7 +8,6 @@ import connector.Connector;
 import exception.DALException;
 import interfaces.OperatoerDAO;
 import dto.OperatoerDTO;
-import dao.ErrorChecking;
 public class MySQLOperatoerDAO implements OperatoerDAO {
 	//Get operator with specific ID
 	public OperatoerDTO getOperatoer(int oprId) throws DALException {
