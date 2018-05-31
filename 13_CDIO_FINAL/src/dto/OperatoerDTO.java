@@ -1,7 +1,5 @@
 package dto;
 
-import dao.ErrorChecking;
-
 /**
  * Operatoer Data Access Objekt
  * 

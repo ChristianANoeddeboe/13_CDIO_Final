@@ -33,6 +33,14 @@ public class ErrorChecking {
 		}
 	}
 
+    public static boolean checkId(int input) {
+        if(Integer.toString(input).length() > 3 || input < 1) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
 	public static boolean checkNomNetto(double nomNetto) {
 		if (nomNetto < 0.05 || nomNetto > 20) {
 			return false;
