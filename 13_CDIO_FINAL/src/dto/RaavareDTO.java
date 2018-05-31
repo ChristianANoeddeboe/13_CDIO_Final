@@ -10,12 +10,16 @@ package dto;
 public class RaavareDTO 
 {
     /** i omraadet 1-99999999 vaelges af brugerne */
-    int raavareId;                     
+    private int raavareId;                     
+    
     /** min. 2 max. 20 karakterer */
-    String raavareNavn;                
+    private String raavareNavn;                
+   
     /** min. 2 max. 20 karakterer */
-    String leverandoer;         
-	
+    private String leverandoer;   
+    
+    public RaavareDTO() {}
+    
     public RaavareDTO(String raavareNavn, String leverandoer){
 		this.raavareNavn = raavareNavn;
 		this.leverandoer = leverandoer;
@@ -27,7 +31,7 @@ public class RaavareDTO
 		this.leverandoer = leverandoer;
 	}
 	
-    public int getRaavareId() { return raavareId; }
+	public int getRaavareId() { return raavareId; }
     public void setRaavareId(int raavareId) { this.raavareId = raavareId; }
     public String getRaavareNavn() { return raavareNavn; }
     public void setRaavareNavn(String raavareNavn) { this.raavareNavn = raavareNavn; }
@@ -36,4 +40,5 @@ public class RaavareDTO
     public String toString() { 
 		return raavareId + "\t" + raavareNavn +"\t" + leverandoer; 
 	}
+    
 }

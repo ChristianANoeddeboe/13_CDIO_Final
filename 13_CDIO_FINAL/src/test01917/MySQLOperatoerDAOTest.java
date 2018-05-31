@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import connector.Connector;
 import dao.MySQLOperatoerDAO;
-import daointerfaces01917.DALException;
 import dto.OperatoerDTO;
+import exception.DALException;
 
 class MySQLOperatoerDAOTest {
 	static MySQLOperatoerDAO operatoer;
