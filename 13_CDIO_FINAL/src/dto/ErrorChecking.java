@@ -1,4 +1,4 @@
-package dao;
+package dto;
 
 public class ErrorChecking {
 	public static boolean checkStrSize(String str) {
@@ -32,13 +32,4 @@ public class ErrorChecking {
 			return true;
 		}
 	}
-	
-	public static boolean checkId(int input) {
-		if(Integer.toString(input).length() > 3 || input < 1) {
-			return false;
-		}else {
-			return true;
-		}
-	}
-	
 }
