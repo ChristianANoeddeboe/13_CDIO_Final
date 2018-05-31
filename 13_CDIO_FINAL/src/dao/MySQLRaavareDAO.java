@@ -1,7 +1,7 @@
 package dao;
 
 import connector.Connector;
-import daointerfaces01917.DALException;
+import exception.DALException;
 import interfaces.RaavareDAO;
 import dto.RaavareDTO;
 
