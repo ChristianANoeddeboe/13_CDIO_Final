@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connector.Connector;
-import daointerfaces01917.DALException;
+import exception.DALException;
 import interfaces.ReceptDAO;
 import dto.ReceptDTO;
 

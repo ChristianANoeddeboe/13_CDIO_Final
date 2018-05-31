@@ -1,7 +1,14 @@
 package exception;
 
+import java.sql.SQLException;
+
 public class DALException extends Exception {
-	  public DALException(String message) {
-	    super(message); 
+	  public DALException(SQLException e) {
+	    super(e); 
 	  }
+
+	public DALException(String string) {
+		super(string);
+	}
+
 }
