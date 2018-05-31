@@ -27,6 +27,8 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 	}
 
 	public void createOperatoer(OperatoerDTO opr) throws DALException {
+		if(!opr.isValid()) {throw new DALException("Couldn't add tuple to \"Operatoer\".");}
+		opr.formatCPR();
 		if(Connector.doUpdate("CALL createOperator('"+opr.getCpr()+"','"+opr.getPassword()+"','"+opr.getRoles()+
 				"','"+opr.getForNavn()+"','"+opr.getEfterNavn()+"','aktiv')")==0) {
 			throw new DALException("Couldn't add tuple to \"Operatoer\".");
@@ -34,6 +36,8 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 	}	
 	
 	public void updateOperatoer(OperatoerDTO opr) throws DALException {
+		if(!opr.isValid()) {throw new DALException("Error updating \"Operatoer\".");}
+		opr.formatCPR();
 		if(Connector.doUpdate("CALL updateOperator("+opr.getOprId()+",'"+opr.getCpr()+"','"+opr.getPassword()+
 				"','"+opr.getRoles()+"','"+opr.getForNavn()+"','"+opr.getEfterNavn()+"','"+opr.getAktiv()+"')")==0) {
 			throw new DALException("No rows updated in \"Operatoer\".");
