@@ -18,6 +18,10 @@ public class ProduktBatchKompDTO
 		this.oprId = oprId;
 	}
 	
+	public boolean isValid() {
+		if(ErrorChecking.checkIntSize(pbId))||ErrorChecking.checkIntSize(rbId));
+	}
+	
 	public int getPbId() { return pbId; }
 	public void setPbId(int pbId) { this.pbId = pbId; }
 	public int getRbId() { return rbId; }
