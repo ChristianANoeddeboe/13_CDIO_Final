@@ -24,7 +24,9 @@ public class OperatoerDTO
 	/** Operatoer aktiv*/
 	String aktiv;
 
-	
+	public OperatoerDTO() {
+		// TODO Auto-generated constructor stub
+	}
 	public OperatoerDTO(String fornavn, String efternavn, String cpr, String password, String roles, String aktiv){
 		this.fornavn = fornavn;
 		this.efternavn = efternavn;
@@ -62,5 +64,9 @@ public class OperatoerDTO
 	public void setRoles(String roles) {this.roles = roles;}
 	public void setAktiv(String aktiv) {this.aktiv = aktiv;}
 	public String getAktiv() {return aktiv;}
-	public String toString() { return oprId + "\t" + fornavn + "\t" + efternavn + "\t" + cpr + "\t" + password + "\t" + roles; }
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "{\"userId\":"+"\""+this.getOprId()+"\",\"userName\": \"" + this.getForNavn()+" "+this.getEfterNavn() + "\", \"cpr\": \""+this.getCpr()+ "\", \"password\": \"" + this.getPassword() + "\", \"roles\":\""+this.getRoles()+"\"}";
+	}
 }
