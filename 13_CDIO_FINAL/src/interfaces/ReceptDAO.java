@@ -2,7 +2,7 @@ package interfaces;
 
 import java.util.List;
 
-import daointerfaces01917.DALException;
+import exception.DALException;
 import dto.ReceptDTO;
 
 public interface ReceptDAO {
