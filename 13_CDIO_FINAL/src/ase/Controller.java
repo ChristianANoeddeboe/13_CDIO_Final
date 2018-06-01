@@ -1,19 +1,25 @@
 package ase;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import connector.MySQLConnector;
 import dao.MySQLOperatoerDAO;
 import dao.MySQLProduktBatchDAO;
+import dao.MySQLRaavareBatchDAO;
+import dao.MySQLRaavareDAO;
 import dao.MySQLReceptDAO;
+import dao.MySQLReceptKompDAO;
 import dto.OperatoerDTO;
 import dto.ProduktBatchDTO;
 import dto.ReceptDTO;
+import dto.ReceptKompDTO;
 import dto.ProduktBatchDTO.Status;
+import dto.RaavareBatchDTO;
+import dto.RaavareDTO;
 import exception.DALException;
-import interfaces.OperatoerDAO;
 
 public class Controller {
 	WeightSocket socket;
@@ -22,7 +28,7 @@ public class Controller {
 	MySQLProduktBatchDAO MySQLproductBatch;
 	OperatoerDTO operatoer;
 	ProduktBatchDTO produktBatch;
-
+	List<ReceptKompDTO> receptKompList = new ArrayList<ReceptKompDTO>();
 
 
 	public Controller(WeightSocket socket) {
@@ -33,7 +39,7 @@ public class Controller {
 		this.operatoer = new OperatoerDTO();
 		this.produktBatch = null;
 	}
-	
+
 
 	public double readWeight() throws IOException{
 		//Send cmd.
@@ -48,7 +54,7 @@ public class Controller {
 		System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
 		return Double.parseDouble(strArr[6]);
 	}
-	
+
 	public double tarare() throws IOException {
 		String str;
 		//Send cmd.
@@ -72,8 +78,8 @@ public class Controller {
 			try {new MySQLConnector();} catch (InstantiationException e1) {
 				e1.printStackTrace();} catch (IllegalAccessException e1) {
 					e1.printStackTrace();} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();} catch (SQLException e1) {
-					e1.printStackTrace();}
+						e1.printStackTrace();} catch (SQLException e1) {
+							e1.printStackTrace();}
 			// Find User
 			boolean userOK = false;
 			do {
@@ -94,28 +100,48 @@ public class Controller {
 					logger.writeToLog("Batch does not exist or bad input.");
 				}
 			} while (produktBatch == null || !batchOK);
-			// Request empty weight
-			do {
-				requestInput("Toem Vaegt","","");
-			} while (readWeight() >= 0.01);
-			
+
 			produktBatch.setStatus(Status.Igang);
 			MySQLproductBatch.updateProduktBatch(produktBatch);
+
+			MySQLReceptKompDAO tempreceptkomp = new MySQLReceptKompDAO();
+			MySQLRaavareBatchDAO mysqlraavareBatch = new MySQLRaavareBatchDAO();
+			MySQLRaavareDAO mysqlraavare = new MySQLRaavareDAO();
+			RaavareDTO raavare;
+			receptKompList = tempreceptkomp.getReceptKompList(produktBatch.getReceptId());
+			for (ReceptKompDTO receptKompDTO : receptKompList) {
+				// Request empty weight
+				RaavareBatchDTO tempraavarebatch = mysqlraavareBatch.getRaavareBatch(receptKompDTO.getRaavareId());
+				if(!(receptKompDTO.getNomNetto() + receptKompDTO.getTolerance() <= tempraavarebatch.getMaengde())){
+					requestInput("Ikke nok materiale","","");
+					throw new DALException("Ikke nok materiale");
+				}
+			}
+			double netto, tara, result;
+			for (ReceptKompDTO receptKompDTO : receptKompList) {
+				do {
+					requestInput("Toem Vaegt","","");
+				} while (readWeight() >= 0.01);
+				raavare = mysqlraavare.getRaavare(receptKompDTO.getRaavareId());
+				requestInput(raavare.getRaavareId()+":"+raavare.getRaavareNavn().substring(0, 19-Integer.toString(raavare.getRaavareId()).length()),"", "");
+				// Request tara.
+				requestInput("Placer tara","","");
+				tar1 = tarare();
+
+				// Request netto.
+				requestInput("Placer netto","","");
+				netto1 = readWeight();
+				tarare();
+
+				// Request empty weight
+				do {
+					requestInput("Fjern netto", "","");
+					netto2 = readWeight();
+				} while (netto2 == tar1);
+			}
 			
-			// Request tara.
-			requestInput("Placer tara","","");
-			tar1 = tarare();
 
-			// Request netto.
-			requestInput("Placer netto","","");
-			netto1 = readWeight();
-			tarare();
 
-			// Request empty weight
-			do {
-				requestInput("Fjern netto", "","");
-				netto2 = readWeight();
-			} while (netto2 == tar1);
 
 			// Inform
 			requestInput("Kasser","","");
@@ -151,7 +177,7 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		socket.write(msg);
 		//wait until we actually get the return msg.
 		while (!(str = socket.read()).contains("RM20 A")) {
@@ -184,7 +210,7 @@ public class Controller {
 			logger.writeToLog(str);
 			return false;
 		}
-		
+
 		String[] strArr = str.split(" ");
 		//strArr = strArr[2].split("\"");
 		if(Integer.parseInt(strArr[0]) == 1){
@@ -194,7 +220,7 @@ public class Controller {
 			return false;
 		}
 	}
-	
+
 	public boolean productBatchCheck(ProduktBatchDTO batch) {
 		String str = null;
 		//Request 1 for right name or 0 for wrong name.
@@ -217,7 +243,7 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		String[] strArr = str.split(" ");
 		//strArr = strArr[2].split("\"");
 		if(Integer.parseInt(strArr[0]) == 1){
