@@ -1,6 +1,6 @@
 package test01917;
 
-import connector.Connector;
+import connector.MySQLConnector;
 import dao.MySQLRaavareDAO;
 import daointerfaces01917.DALException;
 import dto.RaavareDTO;
@@ -20,7 +20,7 @@ class MySQLRaavareDAOTest {
 
     @BeforeAll
     static void setUp() {
-        try { new Connector(); }
+        try { new MySQLConnector(); }
         catch (InstantiationException e) { e.printStackTrace(); }
         catch (IllegalAccessException e) { e.printStackTrace(); }
         catch (ClassNotFoundException e) { e.printStackTrace(); }
