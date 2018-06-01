@@ -12,29 +12,28 @@
     <title>Login</title>
 </head>
 <body>
-<div class="container">
+<div class="container" id="dtulogin">
 
-    <div class="row">
-        <div class="col">
-            <picture>
-                <img src="pictures/DTULogo.svg" class="mx-auto d-block" id="dtulogo" alt="pictures/DTUlogo.jpg">
-            </picture>
-        </div>
-        <div class="w-100"></div>
-        <div class="col-3"></div>
-        <div class="col-6">
-            <form>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <input type="text" class="form-control-plaintext" name="firstname" placeholder="Brugernavn">
-                    </li>
-                    <li class="list-group-item">
-                        <input type="password" class="form-control-plaintext" name="lastname" placeholder="Kodeord">
-                    </li>
-                </ul>
-            </form>
-        </div>
+    <div class="col">
+        <picture>
+            <img src="pictures/DTULogo.svg" class="mx-auto d-block" id="dtulogo" alt="pictures/DTUlogo.jpg">
+        </picture>
     </div>
+    <div class="w-100"></div>
+    <div class="col-2"></div>
+    <div class="col">
+        <form>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <input type="text" class="form-control-plaintext" name="firstname" placeholder="Brugernavn">
+                </li>
+                <li class="list-group-item">
+                    <input type="password" class="form-control-plaintext" name="lastname" placeholder="Kodeord">
+                </li>
+            </ul>
+        </form>
+    <button class="btn btn-lg btn-danger btn-block" type="submit">Login</button>
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
