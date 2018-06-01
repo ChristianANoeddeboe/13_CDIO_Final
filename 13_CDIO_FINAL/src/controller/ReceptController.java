@@ -1,9 +1,7 @@
 package controller;
 
-import dao.ErrorChecking;
 import dao.MySQLReceptDAO;
 import dto.ReceptDTO;
-import dto.ReceptKompDTO;
 import exception.DALException;
 import lombok.extern.java.Log;
 

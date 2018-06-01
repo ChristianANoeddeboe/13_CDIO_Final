@@ -2,7 +2,6 @@ package controller;
 
 import java.util.List;
 
-import dao.ErrorChecking;
 import dao.MySQLReceptKompDAO;
 import dto.ReceptKompDTO;
 import exception.DALException;
