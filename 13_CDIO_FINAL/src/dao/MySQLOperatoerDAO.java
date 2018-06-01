@@ -8,6 +8,7 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.OperatoerDAO;
 import dto.OperatoerDTO;
+import dto.OperatoerDTO.Aktiv;
 public class MySQLOperatoerDAO implements OperatoerDAO {
 	//Get operator with specific ID
 	public OperatoerDTO getOperatoer(int oprId) throws DALException {
@@ -17,7 +18,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 			return new OperatoerDTO (rs.getInt("opr_id"), rs.getString("fornavn"),
 					rs.getString("efternavn"), rs.getString("cpr"),
 					rs.getString("password"), rs.getString("roller"),
-					rs.getString("aktiv"));
+					Aktiv.valueOf(rs.getString("aktiv")));
 		}
 		catch (SQLException e) {
 			throw new DALException(e); 
