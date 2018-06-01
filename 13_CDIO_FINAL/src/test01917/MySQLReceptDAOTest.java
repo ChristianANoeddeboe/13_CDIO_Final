@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
 import dao.MySQLReceptDAO;
-import daointerfaces01917.DALException;
+import exception.DALException;
 import dto.ReceptDTO;
 
 class MySQLReceptDAOTest {

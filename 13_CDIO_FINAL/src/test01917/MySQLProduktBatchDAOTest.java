@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
 import dao.MySQLProduktBatchDAO;
-import daointerfaces01917.DALException;
+import exception.DALException;
 import dto.ProduktBatchDTO;
 
 class MySQLProduktBatchDAOTest {
