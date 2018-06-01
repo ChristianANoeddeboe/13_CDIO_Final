@@ -1,12 +1,5 @@
 package dto;
 
-/**
- * Raavare Data Objekt
- * 
- * @author mn/sh/tb
- * @version 1.2
- */
-
 public class RaavareDTO 
 {
     /** i omraadet 1-99999999 vaelges af brugerne */
