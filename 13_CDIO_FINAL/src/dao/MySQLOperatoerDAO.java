@@ -52,7 +52,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 				list.add(new OperatoerDTO(rs.getInt("opr_id"), rs.getString("fornavn"),
 						rs.getString("efternavn"), rs.getString("cpr"),
 						rs.getString("password"), rs.getString("roller"),
-						rs.getString("aktiv")));
+						Aktiv.valueOf(rs.getString("aktiv"))));
 			}
 		}
 		catch (SQLException e) { 

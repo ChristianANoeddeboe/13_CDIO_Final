@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import connector.MySQLConnector;
 import dao.MySQLOperatoerDAO;
 import dto.OperatoerDTO;
+import dto.OperatoerDTO.Aktiv;
 import exception.DALException;
 
 class MySQLOperatoerDAOTest {
@@ -73,7 +74,7 @@ class MySQLOperatoerDAOTest {
 	@Test
 	void testCreateOperatoer() {
 		try {
-			operatoer.createOperatoer(new OperatoerDTO("test", "testEfternavn", "123456-1210", "password", "Administrator", "aktiv"));
+			operatoer.createOperatoer(new OperatoerDTO("test", "testEfternavn", "123456-1210", "password", "Administrator", Aktiv.aktiv));
 		}catch (Exception e) {
 			fail("Something went wrong creating an operator");
 		}	}
@@ -82,7 +83,7 @@ class MySQLOperatoerDAOTest {
 	void testUpdateOperatoerValid() {
 		boolean valid = true;
 		try {
-			operatoer.updateOperatoer(new OperatoerDTO(1,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", "aktiv"));
+			operatoer.updateOperatoer(new OperatoerDTO(1,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 			fail("Invalid parameters");
@@ -97,7 +98,7 @@ class MySQLOperatoerDAOTest {
 	void testUpdateOperatoerInvalid() {
 		boolean valid = true;
 		try {
-			operatoer.updateOperatoer(new OperatoerDTO(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", "aktiv"));
+			operatoer.updateOperatoer(new OperatoerDTO(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 		}catch (Exception e) {
