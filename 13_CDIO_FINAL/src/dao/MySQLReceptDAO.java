@@ -44,7 +44,10 @@ public class MySQLReceptDAO implements ReceptDAO {
 	
 	@Override
 	public void createRecept(ReceptDTO recept) throws DALException {
-		if(Connector.doUpdate("CALL createRecept('"+recept.getReceptNavn()+"');")==0) {
+		if(!recept.isValid()) {
+			throw new DALException("2 Invalid data.");
+		}
+		if(Connector.doUpdate("CALL createRecept('"+recept.getReceptNavn()+"');") == 0) {
 			throw new DALException("Couldn't add tuple to \"Recept\".");
 		}
 	}
