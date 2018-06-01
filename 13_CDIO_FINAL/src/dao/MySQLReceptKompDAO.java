@@ -9,7 +9,9 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.ReceptKompDAO;
 import dto.ReceptKompDTO;
+import lombok.extern.java.Log;
 
+@Log
 public class MySQLReceptKompDAO implements ReceptKompDAO {
 
     @Override
