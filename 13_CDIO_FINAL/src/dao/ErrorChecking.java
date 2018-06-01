@@ -1,7 +1,5 @@
 package dao;
 
-import exception.DALException;
-
 public class ErrorChecking {
 	public static String checkStrSize(String str){
 		if(str.length() > 20) {
