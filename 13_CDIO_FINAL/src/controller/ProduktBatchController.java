@@ -1,55 +1,52 @@
 package controller;
 
-import java.util.List;
-
 import dao.MySQLProduktBatchDAO;
 import dto.ProduktBatchDTO;
 import exception.DALException;
 import lombok.extern.java.Log;
 
+import java.util.List;
+
 @Log
 public class ProduktBatchController {
-MySQLProduktBatchDAO dao = new MySQLProduktBatchDAO();
- 
- public ProduktBatchDTO getProduktBatch(int pbId) throws DALException {
-	return dao.getProduktBatch(pbId);
- }
-	
- public List<ProduktBatchDTO> getProduktBatchList() throws DALException {
-	return dao.getProduktBatchList();	
- }
+    MySQLProduktBatchDAO dao = new MySQLProduktBatchDAO();
 
- public void createProduktBatch(ProduktBatchDTO produktbatch) throws DALException {			
- 	validateData(produktbatch);		 
-	dao.createProduktBatch(produktbatch);			
- }
-
- public void updateProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
-	validateData(produktbatch);
-	dao.updateProduktBatch(produktbatch);
- }
-
-public void deleteProduktBatch(int pbID) throws DALException {
-	dao.deleteProduktBatch(pbID);			
-}
-	
-private void validateData(ProduktBatchDTO produktBatchDTO) throws DALException {
-    String errMsg;
-    errMsg = ErrorChecking.checkIntSize( produktBatchDTO.getPbId() );
-    throwException(errMsg);
-    errMsg = ErrorChecking.checkIntSize( produktBatchDTO.getReceptId() );
-    throwException(errMsg);
-    
-    //possible enum check here
-    //errMsg = ErrorChecking.checkEnum( produktBatchDTO.getStatus() );
-    //throwException(errMsg);
-}
-
-private void throwException(String errMsg) throws DALException {
-    if(errMsg != null){
-       log.severe(errMsg);
-       throw new DALException(errMsg);
+    public ProduktBatchDTO getProductBatch(int pbID) throws DALException{
+        return dao.getProduktBatch(pbID);
     }
-}
 
+    public List<ProduktBatchDTO> getProductBatchList() throws DALException{
+        return dao.getProduktBatchList();
+    }
+
+    public void createProductBatch(ProduktBatchDTO produktBatch) throws DALException{
+        validateData(produktBatch);
+        dao.createProduktBatch(produktBatch);
+    }
+
+    public void updateProductBatch(ProduktBatchDTO produktBatch) throws DALException{
+        validateData(produktBatch);
+        dao.updateProduktBatch(produktBatch);
+    }
+
+    public void delteProductBatch(int pbID) throws DALException{
+        dao.deleteProduktBatch(pbID);
+    }
+
+    private void validateData(ProduktBatchDTO produktBatch) throws DALException {
+        String errMsg;
+        errMsg = ErrorChecking.checkIntSize(produktBatch.getPbId());
+        throwException(errMsg);
+        errMsg = ErrorChecking.checkIntSize(produktBatch.getReceptId());
+        throwException(errMsg);
+        //errMsg = ErrorChecking.checkStatus(produktBatch.getStatus());
+        //throwException(errMsg);
+    }
+
+    private void throwException(String errMsg) throws DALException {
+        if (errMsg != null) {
+            log.severe(errMsg);
+            throw new DALException(errMsg);
+        }
+    }
 }
