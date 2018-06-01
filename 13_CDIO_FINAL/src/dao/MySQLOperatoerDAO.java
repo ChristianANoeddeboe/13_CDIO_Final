@@ -30,7 +30,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 		if(!opr.isValid()) {throw new DALException("2 Invalid data.");}
 		opr.formatCPR();
 		if(MySQLConnector.doUpdate("CALL createOperator('"+opr.getCpr()+"','"+opr.getPassword()+"','"+opr.getRoles()+
-				"','"+opr.getForNavn()+"','"+opr.getEfterNavn()+"','aktiv')")==0) {
+				"','"+opr.getFornavn()+"','"+opr.getEfternavn()+"','aktiv')")==0) {
 			throw new DALException("Couldn't add tuple to \"Operatoer\".");
 		}
 	}	
@@ -39,7 +39,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 		if(!opr.isValid()) {throw new DALException("2 Invalid data.");}
 		opr.formatCPR();
 		if(MySQLConnector.doUpdate("CALL updateOperator("+opr.getOprId()+",'"+opr.getCpr()+"','"+opr.getPassword()+
-				"','"+opr.getRoles()+"','"+opr.getForNavn()+"','"+opr.getEfterNavn()+"','"+opr.getAktiv()+"')")==0) {
+				"','"+opr.getRoles()+"','"+opr.getFornavn()+"','"+opr.getEfternavn()+"','"+opr.getAktiv()+"')")==0) {
 			throw new DALException("No rows updated in \"Operatoer\".");
 		}
 	}
@@ -52,7 +52,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 				list.add(new OperatoerDTO(rs.getInt("opr_id"), rs.getString("fornavn"),
 						rs.getString("efternavn"), rs.getString("cpr"),
 						rs.getString("password"), rs.getString("roller"),
-						rs.getString("aktiv")));
+						Aktiv.valueOf(rs.getString("aktiv"))));
 			}
 		}
 		catch (SQLException e) { 

@@ -16,6 +16,7 @@ import connector.MySQLConnector;
 import dao.MySQLProduktBatchDAO;
 import exception.DALException;
 import dto.ProduktBatchDTO;
+import dto.ProduktBatchDTO.Status;
 
 class MySQLProduktBatchDAOTest {
 	static MySQLProduktBatchDAO prodBatch;
@@ -88,11 +89,12 @@ class MySQLProduktBatchDAOTest {
 	@Test
 	void testCreateProduktBatch() {
 		try {
-			prodBatch.createProduktBatch(new ProduktBatchDTO(1, 1));
+			prodBatch.createProduktBatch(new ProduktBatchDTO(Status.Igang, 1));
 		}catch (Exception e) {
 			fail("Something went wrong creating a product batch");
 		}
 	}
+	
 	/**
 	 * Updating a valid product batch
 	 */
@@ -100,7 +102,7 @@ class MySQLProduktBatchDAOTest {
 	void testUpdateProduktBatchValid() {
 		boolean valid = true;
 		try {
-			prodBatch.updateProduktBatch(new ProduktBatchDTO(1, 1, 1));
+			prodBatch.updateProduktBatch(new ProduktBatchDTO(1, Status.Igang, 1));
 		}catch (DALException e) {
 			valid = false;
 			fail("Invalid pb id");
@@ -118,7 +120,7 @@ class MySQLProduktBatchDAOTest {
 	void testUpdateProduktBatchInValid() {
 		boolean valid = true;
 		try {
-			prodBatch.updateProduktBatch(new ProduktBatchDTO(9999, 1, 1));
+			prodBatch.updateProduktBatch(new ProduktBatchDTO(9999, Status.Igang, 1));
 		}catch (DALException e) {
 			valid = false;
 		}catch (Exception e) {

@@ -70,11 +70,12 @@ public class MySQLReceptDAO implements ReceptDAO {
     private void validateData(ReceptDTO recept) throws DALException {
         String errMsg;
         errMsg = ErrorChecking.checkStrSize(recept.getReceptNavn());
-        if(errMsg != null){
-            log.severe(errMsg);
-            throw new DALException(errMsg);
-        }
+        throwException(errMsg);
         errMsg = ErrorChecking.checkIntSize(recept.getReceptId());
+        throwException(errMsg);
+    }
+
+    private void throwException(String errMsg) throws DALException {
         if(errMsg != null){
             log.severe(errMsg);
             throw new DALException(errMsg);

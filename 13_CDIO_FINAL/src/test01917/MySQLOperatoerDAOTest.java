@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import connector.MySQLConnector;
 import dao.MySQLOperatoerDAO;
 import dto.OperatoerDTO;
+import dto.OperatoerDTO.Aktiv;
 import exception.DALException;
 
 class MySQLOperatoerDAOTest {
@@ -34,8 +35,8 @@ class MySQLOperatoerDAOTest {
 			OperatoerDTO operatoerReturn = operatoer.getOperatoer(1);
 			if(!operatoerReturn.getAktiv().equals(initialOperatoer.getAktiv())) { valid = false;}
 			if(!operatoerReturn.getCpr().equals(initialOperatoer.getCpr())) {valid = false;}
-			if(!operatoerReturn.getEfterNavn().equals(initialOperatoer.getEfterNavn())) {valid = false;}
-			if(!operatoerReturn.getForNavn().equals(initialOperatoer.getForNavn())) {valid = false;}
+			if(!operatoerReturn.getEfternavn().equals(initialOperatoer.getEfternavn())) {valid = false;}
+			if(!operatoerReturn.getFornavn().equals(initialOperatoer.getFornavn())) {valid = false;}
 			if(operatoerReturn.getOprId() != initialOperatoer.getOprId()) {valid = false;}
 			if(!operatoerReturn.getPassword().equals(initialOperatoer.getPassword())) {valid = false;}
 			if(!operatoerReturn.getRoles().equals(initialOperatoer.getRoles())) {valid = false;}
@@ -56,8 +57,8 @@ class MySQLOperatoerDAOTest {
 			OperatoerDTO operatoerReturn = operatoer.getOperatoer(Integer.MAX_VALUE);
 			if(!operatoerReturn.getAktiv().equals(initialOperatoer.getAktiv())) { valid = false;}
 			if(!operatoerReturn.getCpr().equals(initialOperatoer.getCpr())) {valid = false;}
-			if(!operatoerReturn.getEfterNavn().equals(initialOperatoer.getEfterNavn())) {valid = false;}
-			if(!operatoerReturn.getForNavn().equals(initialOperatoer.getForNavn())) {valid = false;}
+			if(!operatoerReturn.getEfternavn().equals(initialOperatoer.getEfternavn())) {valid = false;}
+			if(!operatoerReturn.getFornavn().equals(initialOperatoer.getFornavn())) {valid = false;}
 			if(operatoerReturn.getOprId() != initialOperatoer.getOprId()) {valid = false;}
 			if(!operatoerReturn.getPassword().equals(initialOperatoer.getPassword())) {valid = false;}
 			if(!operatoerReturn.getRoles().equals(initialOperatoer.getRoles())) {valid = false;}
@@ -73,7 +74,7 @@ class MySQLOperatoerDAOTest {
 	@Test
 	void testCreateOperatoer() {
 		try {
-			operatoer.createOperatoer(new OperatoerDTO("test", "testEfternavn", "123456-1210", "password", "Administrator", "aktiv"));
+			operatoer.createOperatoer(new OperatoerDTO("test", "testEfternavn", "123456-1210", "password", "Administrator", Aktiv.aktiv));
 		}catch (Exception e) {
 			fail("Something went wrong creating an operator");
 		}	}
@@ -82,7 +83,7 @@ class MySQLOperatoerDAOTest {
 	void testUpdateOperatoerValid() {
 		boolean valid = true;
 		try {
-			operatoer.updateOperatoer(new OperatoerDTO(1,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", "aktiv"));
+			operatoer.updateOperatoer(new OperatoerDTO(1,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 			fail("Invalid parameters");
@@ -97,7 +98,7 @@ class MySQLOperatoerDAOTest {
 	void testUpdateOperatoerInvalid() {
 		boolean valid = true;
 		try {
-			operatoer.updateOperatoer(new OperatoerDTO(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", "aktiv"));
+			operatoer.updateOperatoer(new OperatoerDTO(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 		}catch (Exception e) {
