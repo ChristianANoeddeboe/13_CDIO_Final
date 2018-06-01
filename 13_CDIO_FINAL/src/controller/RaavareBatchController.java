@@ -19,7 +19,7 @@ public class RaavareBatchController {
         return dao.getRaavareBatchList();
     }
 
-    public void createRaavareBatch(RaavareBatchDTO raavareBatch) throws DALException{
+    public void createRaavsareBatch(RaavareBatchDTO raavareBatch) throws DALException{
         validateData(raavareBatch);
         dao.createRaavareBatch(raavareBatch);
     }
@@ -42,7 +42,6 @@ public class RaavareBatchController {
         errMsg = ErrorChecking.checkNomNetto(raavareBatch.getMaengde());
         throwException(errMsg);
     }
-
 
     private void throwException(String errMsg) throws DALException {
         if (errMsg != null) {
