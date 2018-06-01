@@ -2,9 +2,7 @@ package dto;
 
 
 import lombok.*;
-import lombok.extern.java.Log;
 
-import java.util.logging.Logger;
 
 /**
  * Operatoer Data Access Objekt
@@ -12,7 +10,6 @@ import java.util.logging.Logger;
  * @author mn/tb
  * @version 1.2
  */
-@Log
 @Data
 @Builder
 @NoArgsConstructor
