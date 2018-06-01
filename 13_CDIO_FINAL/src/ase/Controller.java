@@ -94,7 +94,6 @@ public class Controller {
 					logger.writeToLog("Batch does not exist or bad input.");
 				}
 			} while (produktBatch == null || !batchOK);
-
 			// Request empty weight
 			do {
 				requestInput("Toem Vaegt","","");
