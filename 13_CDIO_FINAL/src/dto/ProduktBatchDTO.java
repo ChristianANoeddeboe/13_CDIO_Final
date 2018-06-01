@@ -3,9 +3,7 @@ package dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.extern.java.Log;
 
-@Log
 @Data
 @Builder
 @AllArgsConstructor
