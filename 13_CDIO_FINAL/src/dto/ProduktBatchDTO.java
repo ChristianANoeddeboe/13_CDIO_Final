@@ -9,21 +9,18 @@ import lombok.Data;
 @AllArgsConstructor
 public class ProduktBatchDTO {
     int pbId;                     // i omraadet 1-99999999
-    Enum<Status> status;                    // 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
+    String status;                    // 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
     int receptId;
+
     /**
      * Used for creating
      *
      * @param status
      * @param receptId
      */
-    public ProduktBatchDTO(Enum<Status> status, int receptId) {
+    public ProduktBatchDTO(String status, int receptId) {
         this.status = status;
         this.receptId = receptId;
-    }
-    
-    public enum Status{
-    	Igang,Klar,Afsluttet
     }
 }
 

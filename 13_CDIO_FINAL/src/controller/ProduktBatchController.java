@@ -39,8 +39,8 @@ public class ProduktBatchController {
         throwException(errMsg);
         errMsg = ErrorChecking.checkIntSize(produktBatch.getReceptId());
         throwException(errMsg);
-        //errMsg = ErrorChecking.checkStatus(produktBatch.getStatus());
-        //throwException(errMsg);
+        errMsg = ErrorChecking.checkStatus(produktBatch.getStatus());
+        throwException(errMsg);
     }
 
     private void throwException(String errMsg) throws DALException {
