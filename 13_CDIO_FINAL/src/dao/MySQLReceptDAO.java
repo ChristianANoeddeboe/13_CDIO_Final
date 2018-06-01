@@ -47,13 +47,16 @@ public class MySQLReceptDAO implements ReceptDAO {
 		if(!recept.isValid()) {
 			throw new DALException("2 Invalid data.");
 		}
-		if(Connector.doUpdate("CALL createRecept('"+recept.getReceptNavn()+"');") == 0) {
+		if(Connector.doUpdate("CALL createRecept('"+recept.getReceptNavn()+"');")==0) {
 			throw new DALException("Couldn't add tuple to \"Recept\".");
 		}
 	}
 	
 	@Override
 	public void updateRecept(ReceptDTO recept) throws DALException {
+		if(!recept.isValid()) {
+			throw new DALException("2 Invalid data.");
+		}
 		if(Connector.doUpdate("CALL updateRecept("+recept.getReceptId()+", '"+recept.getReceptNavn()+"');")==0) {
 			throw new DALException("No rows updated in \"Recept\".");
 		}

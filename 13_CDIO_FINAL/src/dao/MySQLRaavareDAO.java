@@ -38,6 +38,9 @@ public class MySQLRaavareDAO implements RaavareDAO {
 
     @Override
     public void createRaavare(RaavareDTO raavare) throws DALException {
+    	if(!raavare.isValid()) {
+			throw new DALException("2 Invalid data.");
+		}
         if(Connector.doUpdate("call createRaavare('"+raavare.getRaavareNavn()+"','"+raavare.getLeverandoer()+"','"+raavare.getRaavareId()+"')")==0) {
         	throw new DALException("Couldn't add tuple to \"Raavare\".");
         }
@@ -45,6 +48,9 @@ public class MySQLRaavareDAO implements RaavareDAO {
 
     @Override
     public void updateRaavare(RaavareDTO raavare) throws DALException {
+    	if(!raavare.isValid()) {
+			throw new DALException("2 Invalid data.");
+		}
         if(Connector.doUpdate("call updateRaavare('"+raavare.getRaavareId()+"','"+raavare.getRaavareNavn()+"','"+raavare.getLeverandoer()+"')")==0) {
         	throw new DALException("No rows updated in \"Raavare\".");
         }

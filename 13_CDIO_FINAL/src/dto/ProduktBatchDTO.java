@@ -5,7 +5,7 @@ public class ProduktBatchDTO
 	int pbId;                     // i omraadet 1-99999999
 	int status;					// 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
 	int receptId;
-		
+
 	/**
 	 * Used for creating
 	 * @param status
@@ -28,14 +28,12 @@ public class ProduktBatchDTO
 		this.status = status;
 		this.receptId = receptId;
 	}
-	
+
 	public boolean isValid() {
-		if(ErrorChecking.checkIntSize(pbId) || ErrorChecking.checkIntSize(status) || ErrorChecking.checkIntSize(receptId)) {
-			return false;
-		}
-		return true;
+		return ErrorChecking.checkIntSize(pbId) && ErrorChecking.checkIntSize(status) && ErrorChecking.checkIntSize(receptId);
+
 	}
-	
+
 	public int getPbId() { return pbId; }
 	public void setPbId(int pbId) { this.pbId = pbId; }
 	public int getStatus() { return status; }

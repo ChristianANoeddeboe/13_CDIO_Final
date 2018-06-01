@@ -51,6 +51,9 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
 
     @Override
     public void createRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
+    	if(!raavarebatch.isValid()) {
+			throw new DALException("2 Invalid data.");
+		}
         if(Connector.doUpdate("call createRaavareBatch("+raavarebatch.getRaavareId()+","+raavarebatch.getMaengde()+")")==0){
         	throw new DALException("Couldn't add tuple to \"Raavare batch\".");
         }
@@ -58,6 +61,9 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
 
     @Override
     public void updateRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
+    	if(!raavarebatch.isValid()) {
+			throw new DALException("2 Invalid data.");
+		}
         if(Connector.doUpdate("call updateRaavareBatch("+raavarebatch.getRbId()+","+raavarebatch.getRaavareId()+","+raavarebatch.getMaengde()+")")==0) {
         	throw new DALException("No rows updated in \"Raavare batch\".");
         }

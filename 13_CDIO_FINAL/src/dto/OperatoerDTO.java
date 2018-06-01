@@ -35,9 +35,9 @@ public class OperatoerDTO
 		this.roles = roles;
 		this.aktiv = aktiv;
 	}
-	
-	
-	
+
+
+
 	public OperatoerDTO(int oprId, String fornavn, String efternavn, String cpr, String password, String roles, String aktiv){
 		this.oprId = oprId;
 		this.fornavn = fornavn;
@@ -47,26 +47,19 @@ public class OperatoerDTO
 		this.roles = roles;
 		this.aktiv = aktiv;
 	}
-	
+
 	public boolean isValid() {
-		if(ErrorChecking.checkId(getOprId()) &&
-				ErrorChecking.checkStrSize(fornavn) &&
-				ErrorChecking.checkStrSize(efternavn) &&
-				ErrorChecking.checkCPR(cpr) &&
-				ErrorChecking.checkStrSize(password)) {
-			return true;	
-		}else {
-			return false;
-		}
-		
+		return ErrorChecking.checkId(getOprId()) && ErrorChecking.checkStrSize(fornavn) && ErrorChecking.checkStrSize(efternavn) && ErrorChecking.checkCPR(cpr) && ErrorChecking.checkStrSize(password);
 	}
+
+
 	public void formatCPR() {
 		String temp = cpr.substring(0, 5);
 		temp.concat("-");
 		temp.concat(cpr.substring(6));
 	}
-    
-    public int getOprId() { return oprId; }
+
+	public int getOprId() { return oprId; }
 	public void setOprId(int oprId) { this.oprId = oprId; }
 	public String getForNavn() { return fornavn; }
 	public void setForNavn(String ForNavn) { this.fornavn = ForNavn; }
