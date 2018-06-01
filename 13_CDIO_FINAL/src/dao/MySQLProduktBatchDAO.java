@@ -15,54 +15,70 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO{
 
 	@Override
 	public ProduktBatchDTO getProduktBatch(int pbId) throws DALException {
-		ResultSet rs = MySQLConnector.doQuery("SELECT * FROM produktbatchview WHERE pb_id = " + pbId); // View
+		ResultSet rs = MySQLConnector.doQuery( createProduktbatchViewQueryString(pbId) ); 
 		try {
-			if (!rs.first()) throw new DALException("Produktbatchet " + pbId + " findes ikke");
-			return new ProduktBatchDTO(rs.getInt("pb_id"), Status.valueOf(rs.getString("status")), rs.getInt("recept_id"));
+			if (!rs.first()) 
+				throw new DALException("Produktbatchet " + pbId + " findes ikke");
+			else{
+				return new ProduktBatchDTO( rs.getInt("pb_id"), 
+										    Status.valueOf(rs.getString("status")), 
+										    rs.getInt("recept_id"));				
+			}
+
 		}
 		catch (SQLException e) {throw new DALException(e);} 
+	}
+
+	private String createProduktbatchViewQueryString(int pbId) {
+		return "SELECT * FROM produktbatchview WHERE pb_id = " + pbId;
 	}
 	
 	@Override
 	public List<ProduktBatchDTO> getProduktBatchList() throws DALException {
 		List<ProduktBatchDTO> list = new ArrayList<ProduktBatchDTO>();
 		ResultSet rs = MySQLConnector.doQuery("SELECT * FROM produktbatchview");
-		try
-		{
-			while (rs.next()) 
-			{
-				list.add(new ProduktBatchDTO(rs.getInt("pb_id"), Status.valueOf(rs.getString("status")), rs.getInt("recept_id")));
+		try {
+			while (rs.next()) {
+				list.add(new ProduktBatchDTO( rs.getInt("pb_id"), 
+											  Status.valueOf(rs.getString("status")), 
+											  rs.getInt("recept_id")));							
 			}
 		}
-		catch (SQLException e) { throw new DALException(e); }
+		catch (SQLException e) { 
+			throw new DALException(e);
+		}
 		return list;
 	}
 
 	@Override
 	public void createProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
-		if(!produktbatch.isValid()) {
-			throw new DALException("2 Invalid data.");
-		}
-		if(MySQLConnector.doUpdate("call createProductBatch("+produktbatch.getStatus()+","+produktbatch.getReceptId()+")")==0) {
-			throw new DALException("Couldn't add tuple to \"Produkt batch\".");
-		}
+		//if(!produktbatch.isValid()) {
+			//throw new DALException("2 Invalid data.");
+		//}
+		if( MySQLConnector.doUpdate(
+				"call createProductBatch("
+				+ produktbatch.getStatus() + "," 
+				+ produktbatch.getReceptId() + ")") == 0 ) 
+			throw new DALException("Couldn't add tuple to \"Produkt batch\".");		
 	}
 
 	@Override
 	public void updateProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
-//		if(!produktbatch.isValid()) {
-	//		throw new DALException("2 Invalid data.");
+  		//if(!produktbatch.isValid()) {
+	  	  //throw new DALException("2 Invalid data.");
 		//}
-		if(MySQLConnector.doUpdate("call updateProductBatch("+produktbatch.getPbId()+",'"+produktbatch.getStatus().toString()+"',"+produktbatch.getReceptId()+")")==0) {
-			throw new DALException("No rows updated in \"Produkt batch\".");
-		}
+		if( MySQLConnector.doUpdate(
+				"call updateProductBatch(" 
+				+ produktbatch.getPbId() + ",'" 
+				+ produktbatch.getStatus().toString() + "',"
+				+ produktbatch.getReceptId() + ")") == 0 ) 
+			throw new DALException("No rows updated in \"Produkt batch\".");		
 	}
 
 	@Override
 	public void deleteProduktBatch(int pbID) throws DALException {
-		if(MySQLConnector.doUpdate("call deleteProductBatch("+pbID+")")==0) {
+		if( MySQLConnector.doUpdate("call deleteProductBatch("+pbID+")" ) == 0 ) 
 			throw new DALException("No rows updated in \"Produkt batch\".");
-		}
-		
+				
 	}
 }
