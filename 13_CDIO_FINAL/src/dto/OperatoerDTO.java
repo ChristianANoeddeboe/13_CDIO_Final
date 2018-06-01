@@ -32,10 +32,6 @@ public class OperatoerDTO {
      */
     private String cpr;
     /**
-     * Operatoer password min. 7 max. 8 karakterer
-     */
-    private String password;
-    /**
      * Operatoer rolle
      */
     private String roles;
@@ -45,11 +41,10 @@ public class OperatoerDTO {
     private Enum<Aktiv> aktiv;
 
     
-    public OperatoerDTO(String fornavn, String efternavn, String cpr, String password, String roles, Enum<Aktiv> aktiv) {
+    public OperatoerDTO(String fornavn, String efternavn, String cpr, String roles, Enum<Aktiv> aktiv) {
         this.fornavn = fornavn;
         this.efternavn = efternavn;
         this.cpr = cpr;
-        this.password = password;
         this.roles = roles;
         this.aktiv = aktiv;
     }
@@ -88,7 +83,6 @@ public class OperatoerDTO {
 
     /**
      * Method for trimming strings.
-     *
      * @param str
      * @return
      */
