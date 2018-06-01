@@ -9,7 +9,9 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.ReceptKompDAO;
 import dto.ReceptKompDTO;
+import lombok.extern.java.Log;
 
+@Log
 public class MySQLReceptKompDAO implements ReceptKompDAO {
 
     @Override
@@ -58,9 +60,7 @@ public class MySQLReceptKompDAO implements ReceptKompDAO {
 
     @Override
     public void createReceptKomp(ReceptKompDTO receptkomponent) throws DALException {
-        if (!receptkomponent.isValid()) {
-            throw new DALException("2 Invalid data.");
-        }
+        validateData(receptkomponent);
         if (receptkomponent.getNomNetto() <= 0 || receptkomponent.getTolerance() <= 0) {
             throw new DALException("Netto or tolerance was less than or equal to 0");
         }
@@ -71,9 +71,7 @@ public class MySQLReceptKompDAO implements ReceptKompDAO {
 
     @Override
     public void updateReceptKomp(ReceptKompDTO receptkomponent) throws DALException {
-        if (!receptkomponent.isValid()) {
-            throw new DALException("2 Invalid data.");
-        }
+        validateData(receptkomponent);
         if (MySQLConnector.doUpdate("CALL updateReceptkomponent(" + receptkomponent.getReceptId() + ", " + receptkomponent.getRaavareId() + ", " + receptkomponent.getNomNetto() + ", " + receptkomponent.getTolerance() + ");") == 0) {
             throw new DALException("No rows updated in \"Recept komponent\".");
         }
@@ -86,4 +84,17 @@ public class MySQLReceptKompDAO implements ReceptKompDAO {
         }
     }
 
+    private void validateData(ReceptKompDTO receptkomponent) throws DALException {
+        String errMsg;
+        errMsg = ErrorChecking.checkIntSize(receptkomponent.getRaavareId());
+        if(errMsg != null){
+            log.severe(errMsg);
+            throw new DALException(errMsg);
+        }
+        errMsg = ErrorChecking.checkIntSize(receptkomponent.getReceptId());
+        if(errMsg != null){
+            log.severe(errMsg);
+            throw new DALException(errMsg);
+        }
+    }
 }
