@@ -1,5 +1,6 @@
 package dto;
 
+
 /**
  * Operatoer Data Access Objekt
  * 
@@ -77,5 +78,47 @@ public class OperatoerDTO
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "{\"userId\":"+"\""+this.getOprId()+"\",\"userName\": \"" + this.getForNavn()+" "+this.getEfterNavn() + "\", \"cpr\": \""+this.getCpr()+ "\", \"password\": \"" + this.getPassword() + "\", \"roles\":\""+this.getRoles()+"\"}";
+	}
+	
+	/**
+	 * Returns initials
+	 * @param name the name
+	 * @return the initials
+	 * @throws DALException
+	 */
+	public String initials(String name) {
+		String[] name_array = name.split(" ");
+		String ini = "";
+		for (int i = 0; i < name_array.length; i++) {
+			if(name_array[i].equals("")) {
+				//Do nothing
+			}
+			else {
+				ini = ini + name_array[i].charAt(0) + "";
+			}
+		}
+		ini = ini.toUpperCase();
+		return ini;
+	}
+
+	/**
+	 * Method for trimming strings.
+	 * @param str
+	 * @return
+	 */
+	public String trimmer(String str) {
+		String[] str_array = str.split(" ");
+		String trimmed = null;
+
+		for(int i = 0; i<str_array.length; i++) {
+			if(str_array[i].equals("")) {
+				//Throw this part out.
+			}
+			else if(trimmed==null)
+				trimmed = str_array[i];
+			else
+				trimmed += " "+str_array[i];
+		}
+		return trimmed;
 	}
 }
