@@ -111,7 +111,7 @@ public class Controller {
 			receptKompList = tempreceptkomp.getReceptKompList(produktBatch.getReceptId());
 			for (ReceptKompDTO receptKompDTO : receptKompList) {
 				// Request empty weight
-				RaavareBatchDTO tempraavarebatch = mysqlraavareBatch.getRaavareBatch(receptKompDTO.getRaavareId());
+				RaavareBatchDTO tempraavarebatch = mysqlraavareBatch.getRaavareBatchRaavare(receptKompDTO.getRaavareId());
 				if(!(receptKompDTO.getNomNetto() + receptKompDTO.getTolerance() <= tempraavarebatch.getMaengde())){
 					requestInput("Ikke nok materiale","","");
 					throw new DALException("Ikke nok materiale");
@@ -123,7 +123,7 @@ public class Controller {
 					requestInput("Toem Vaegt","","");
 				} while (readWeight() >= 0.01);
 				raavare = mysqlraavare.getRaavare(receptKompDTO.getRaavareId());
-				requestInput(raavare.getRaavareId()+":"+raavare.getRaavareNavn().substring(0, 19-Integer.toString(raavare.getRaavareId()).length()),"", "");
+				requestInput(raavare.getRaavareId()+":"+raavare.getRaavareNavn(),"", "");
 				// Request tara.
 				requestInput("Placer tara","","");
 				tar1 = tarare();

@@ -20,6 +20,7 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
             return new RaavareBatchDTO(rs.getInt("rb_id"), rs.getInt("raavare_id"), rs.getDouble("maengde"));
         } catch (SQLException e) {throw new DALException(e);}
     }
+    
 
     @Override
     public List<RaavareBatchDTO> getRaavareBatchList() throws DALException {
@@ -75,5 +76,15 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
         	throw new DALException("No rows updated in \"Raavare batch\".");
         }
 		
+	}
+
+
+	@Override
+	public RaavareBatchDTO getRaavareBatchRaavare(int raavareID) throws DALException {
+		 ResultSet rs = MySQLConnector.doQuery("SELECT * FROM raavarebatchview WHERE raavare_id = " + raavareID);
+	        try {
+	            if (!rs.first()) throw new DALException("Raavaren " + raavareID + " findes ikke.");
+	            return new RaavareBatchDTO(rs.getInt("rb_id"), rs.getInt("raavare_id"), rs.getDouble("maengde"));
+	        } catch (SQLException e) {throw new DALException(e);}
 	}
 }
