@@ -17,7 +17,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 			if (!rs.first()) throw new DALException("Operatoeren " + oprId + " findes ikke.");
 			return new OperatoerDTO (rs.getInt("opr_id"), rs.getString("fornavn"),
 					rs.getString("efternavn"), rs.getString("cpr"),
-					rs.getString("password"), rs.getString("roller"),
+					rs.getString("roller"),
 					Aktiv.valueOf(rs.getString("aktiv")));
 		}
 		catch (SQLException e) {
@@ -27,19 +27,16 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 	}
 
 	public void createOperatoer(OperatoerDTO opr) throws DALException {
-		if(!opr.isValid()) {throw new DALException("2 Invalid data.");}
 		opr.formatCPR();
-		if(MySQLConnector.doUpdate("CALL createOperator('"+opr.getCpr()+"','"+opr.getPassword()+"','"+opr.getRoles()+
+		if(MySQLConnector.doUpdate("CALL createOperator('"+opr.getCpr()+"','"+opr.getRoles()+
 				"','"+opr.getFornavn()+"','"+opr.getEfternavn()+"','aktiv')")==0) {
 			throw new DALException("Couldn't add tuple to \"Operatoer\".");
 		}
 	}	
 	
 	public void updateOperatoer(OperatoerDTO opr) throws DALException {
-		if(!opr.isValid()) {throw new DALException("2 Invalid data.");}
 		opr.formatCPR();
-		if(MySQLConnector.doUpdate("CALL updateOperator("+opr.getOprId()+",'"+opr.getCpr()+"','"+opr.getPassword()+
-				"','"+opr.getRoles()+"','"+opr.getFornavn()+"','"+opr.getEfternavn()+"','"+opr.getAktiv()+"')")==0) {
+		if(MySQLConnector.doUpdate("CALL updateOperator("+opr.getOprId()+",'"+opr.getCpr()+"','"+opr.getRoles()+"','"+opr.getFornavn()+"','"+opr.getEfternavn()+"','"+opr.getAktiv()+"')")==0) {
 			throw new DALException("No rows updated in \"Operatoer\".");
 		}
 	}
@@ -51,7 +48,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 			while (rs.next()) {
 				list.add(new OperatoerDTO(rs.getInt("opr_id"), rs.getString("fornavn"),
 						rs.getString("efternavn"), rs.getString("cpr"),
-						rs.getString("password"), rs.getString("roller"),
+						 rs.getString("roller"),
 						Aktiv.valueOf(rs.getString("aktiv"))));
 			}
 		}
