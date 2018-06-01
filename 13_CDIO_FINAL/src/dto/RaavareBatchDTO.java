@@ -26,4 +26,8 @@ public class RaavareBatchDTO
 	public String toString() { 
 		return rbId + "\t" + raavareId +"\t" + maengde; 
 	}
+	
+	public boolean isValid() {
+		return ErrorChecking.checkIntSize(rbId) && ErrorChecking.checkIntSize(raavareId);
+	}
 }

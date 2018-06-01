@@ -58,6 +58,7 @@ public class MySQLProductBatchKomponentDAO implements ProduktBatchKompDAO {
 
 	@Override
 	public void createProduktBatchKomp(ProduktBatchKompDTO produktbatchkomponent) throws DALException {
+		if(!produktbatchkomponent.isValid()) {throw new DALException("2 Invalid data.");}
 		if(Connector.doUpdate("CALL createProduktBatchKomp("+produktbatchkomponent.getPbId()+","+produktbatchkomponent.getRbId()+","+produktbatchkomponent.getTara()+""
 				+ ","+produktbatchkomponent.getNetto()+","+produktbatchkomponent.getOprId()+")")==0) {
 			throw new DALException("Couldn't add tuple to \"Produkt batch komponent\".");
@@ -66,6 +67,7 @@ public class MySQLProductBatchKomponentDAO implements ProduktBatchKompDAO {
 
 	@Override
 	public void updateProduktBatchKomp(ProduktBatchKompDTO produktbatchkomponent) throws DALException {
+		if(!produktbatchkomponent.isValid()) {throw new DALException("2 Invalid data.");}
 		if(Connector.doUpdate("CALL updateProduktBatchKomp("+produktbatchkomponent.getPbId()+","+produktbatchkomponent.getRbId()+","
 				+ ""+produktbatchkomponent.getTara()+","+produktbatchkomponent.getNetto()+","+produktbatchkomponent.getOprId()+")")==0) {
 			throw new DALException("No rows updated in \"Produkt batch komponent\".");

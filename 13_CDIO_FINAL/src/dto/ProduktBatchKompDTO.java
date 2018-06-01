@@ -19,7 +19,7 @@ public class ProduktBatchKompDTO
 	}
 	
 	public boolean isValid() {
-		if(ErrorChecking.checkIntSize(pbId))||ErrorChecking.checkIntSize(rbId));
+		return ErrorChecking.checkIntSize(pbId) && ErrorChecking.checkIntSize(rbId) && ErrorChecking.checkId(oprId);
 	}
 	
 	public int getPbId() { return pbId; }

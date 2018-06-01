@@ -16,7 +16,7 @@ public class ReceptKompDTO
 		this.tolerance = tolerance;
 	}
 
-	private boolean isValid() {
+	public boolean isValid() {
 		return (
 					ErrorChecking.checkIntSize(receptId) &&
 					ErrorChecking.checkIntSize(raavareId) &&

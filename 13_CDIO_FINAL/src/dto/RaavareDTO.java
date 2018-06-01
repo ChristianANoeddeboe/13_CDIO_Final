@@ -41,4 +41,7 @@ public class RaavareDTO
 		return raavareId + "\t" + raavareNavn +"\t" + leverandoer; 
 	}
     
+    public boolean isValid() {
+    	return ErrorChecking.checkIntSize(raavareId) && ErrorChecking.checkStrSize(raavareNavn) && ErrorChecking.checkStrSize(leverandoer);
+    }
 }
