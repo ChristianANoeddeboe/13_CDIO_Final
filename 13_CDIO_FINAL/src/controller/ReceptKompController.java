@@ -34,6 +34,10 @@ public class ReceptKompController {
         dao.updateReceptKomp(receptKompDTO);
     }
 
+    public void deleteReceptKomp(int receptKompID, int raavareID) throws DALException{
+        dao.deleteReceptKomp(receptKompID, raavareID);
+    }
+
     private void validateData(ReceptKompDTO receptkomponent) throws DALException {
         String errMsg;
         errMsg = ErrorChecking.checkIntSize(receptkomponent.getRaavareId());

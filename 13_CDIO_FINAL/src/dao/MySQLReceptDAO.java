@@ -9,9 +9,7 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.ReceptDAO;
 import dto.ReceptDTO;
-import lombok.extern.java.Log;
 
-@Log
 public class MySQLReceptDAO implements ReceptDAO {
 
     /*Return a single recept based on the recept ID.*/
@@ -46,7 +44,6 @@ public class MySQLReceptDAO implements ReceptDAO {
 
     @Override
     public void createRecept(ReceptDTO recept) throws DALException {
-        validateData(recept);
         if (MySQLConnector.doUpdate("CALL createRecept('" + recept.getReceptNavn() + "');") == 0) {
             throw new DALException("Couldn't add tuple to \"Recept\".");
         }
@@ -54,7 +51,6 @@ public class MySQLReceptDAO implements ReceptDAO {
 
     @Override
     public void updateRecept(ReceptDTO recept) throws DALException {
-        validateData(recept);
         if (MySQLConnector.doUpdate("CALL updateRecept(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "');") == 0) {
             throw new DALException("No rows updated in \"Recept\".");
         }
@@ -64,21 +60,6 @@ public class MySQLReceptDAO implements ReceptDAO {
     public void deleteRecept(int receptID) throws DALException {
         if (MySQLConnector.doUpdate("CALL deleteRecept(" + receptID + "');") == 0) {
             throw new DALException("No rows deleted in \"Recept\".");
-        }
-    }
-
-    private void validateData(ReceptDTO recept) throws DALException {
-        String errMsg;
-        errMsg = ErrorChecking.checkStrSize(recept.getReceptNavn());
-        throwException(errMsg);
-        errMsg = ErrorChecking.checkIntSize(recept.getReceptId());
-        throwException(errMsg);
-    }
-
-    private void throwException(String errMsg) throws DALException {
-        if(errMsg != null){
-            log.severe(errMsg);
-            throw new DALException(errMsg);
         }
     }
 }
