@@ -46,7 +46,7 @@ public class Controller {
 		System.out.println(str);
 		String[] strArr = str.split(" ");
 		System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
-		return Double.parseDouble(strArr[7].substring(0, strArr[7].length()-2));
+		return Double.parseDouble(strArr[6]);
 	}
 	
 	public double tarare() throws IOException {
@@ -59,7 +59,7 @@ public class Controller {
 		logger.writeToLog("Server: "+str);
 		String[] strArr = str.split(" ");
 		System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
-		return Double.parseDouble(strArr[7].substring(0, strArr[7].length()-2));
+		return Double.parseDouble(strArr[6]);
 	}
 
 	public void run() {
@@ -100,7 +100,7 @@ public class Controller {
 				requestInput("Toem Vaegt","","");
 			} while (readWeight() >= 0.01);
 			
-			produktBatch.setStatus(Status.Klar);
+			produktBatch.setStatus(Status.Igang);
 			MySQLproductBatch.updateProduktBatch(produktBatch);
 			
 			// Request tara.
