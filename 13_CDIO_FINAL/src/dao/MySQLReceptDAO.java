@@ -54,7 +54,7 @@ public class MySQLReceptDAO implements ReceptDAO {
 	
 	@Override
 	public void updateRecept(ReceptDTO recept) throws DALException {
-		if(!recept.isValid()) {
+		if() {
 			throw new DALException("2 Invalid data.");
 		}
 		if(MySQLConnector.doUpdate("CALL updateRecept("+recept.getReceptId()+", '"+recept.getReceptNavn()+"');")==0) {
@@ -67,6 +67,9 @@ public class MySQLReceptDAO implements ReceptDAO {
 		if(MySQLConnector.doUpdate("CALL deleteRecept("+receptID+"');")==0) {
 			throw new DALException("No rows deleted in \"Recept\".");
 		}
+	}
+
+	private validateData(ReceptDTO recept){
 		
 	}
 }
