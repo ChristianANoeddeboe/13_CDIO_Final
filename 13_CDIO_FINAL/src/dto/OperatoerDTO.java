@@ -42,10 +42,10 @@ public class OperatoerDTO {
     /**
      * Operatoer aktiv
      */
-    private String aktiv;
+    private Enum<Aktiv> aktiv;
 
     
-    public OperatoerDTO(String fornavn, String efternavn, String cpr, String password, String roles, String aktiv) {
+    public OperatoerDTO(String fornavn, String efternavn, String cpr, String password, String roles, Enum<Aktiv> aktiv) {
         this.fornavn = fornavn;
         this.efternavn = efternavn;
         this.cpr = cpr;
@@ -54,6 +54,9 @@ public class OperatoerDTO {
         this.aktiv = aktiv;
     }
 
+    public enum Aktiv{
+    	aktiv,inaktiv
+    }
     
 
 	public void formatCPR() {

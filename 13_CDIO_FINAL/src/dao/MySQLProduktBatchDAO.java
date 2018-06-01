@@ -9,6 +9,7 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.ProduktBatchDAO;
 import dto.ProduktBatchDTO;
+import dto.ProduktBatchDTO.Status;
 
 public class MySQLProduktBatchDAO implements ProduktBatchDAO{
 
@@ -17,7 +18,7 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO{
 		ResultSet rs = MySQLConnector.doQuery("SELECT * FROM produktbatchview WHERE pb_id = " + pbId); // View
 		try {
 			if (!rs.first()) throw new DALException("Produktbatchet " + pbId + " findes ikke");
-			return new ProduktBatchDTO(rs.getInt("pb_id"), rs.getString("status"), rs.getInt("recept_id"));
+			return new ProduktBatchDTO(rs.getInt("pb_id"), Status.valueOf(rs.getString("status")), rs.getInt("recept_id"));
 		}
 		catch (SQLException e) {throw new DALException(e);} 
 	}
@@ -30,7 +31,7 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO{
 		{
 			while (rs.next()) 
 			{
-				list.add(new ProduktBatchDTO(rs.getInt("pb_id"), rs.getString("status"), rs.getInt("recept_id")));
+				list.add(new ProduktBatchDTO(rs.getInt("pb_id"), Status.valueOf(rs.getString("status")), rs.getInt("recept_id")));
 			}
 		}
 		catch (SQLException e) { throw new DALException(e); }
