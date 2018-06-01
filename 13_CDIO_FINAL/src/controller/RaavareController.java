@@ -3,13 +3,16 @@ package controller;
 import dao.MySQLRaavareDAO;
 import dto.RaavareDTO;
 import exception.DALException;
+import interfaces.RaavareDAO;
+import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 import java.util.List;
 
 @Log
+@AllArgsConstructor
 public class RaavareController {
-    MySQLRaavareDAO dao = new MySQLRaavareDAO();
+    private RaavareDAO dao;
 
     public RaavareDTO getRaavare(int raavareID) throws DALException {
         return dao.getRaavare(raavareID);

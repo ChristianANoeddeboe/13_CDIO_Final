@@ -3,13 +3,16 @@ package controller;
 import dao.MySQLProduktBatchDAO;
 import dto.ProduktBatchDTO;
 import exception.DALException;
+import interfaces.ProduktBatchDAO;
+import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 import java.util.List;
 
 @Log
+@AllArgsConstructor
 public class ProduktBatchController {
-    MySQLProduktBatchDAO dao = new MySQLProduktBatchDAO();
+    private ProduktBatchDAO dao;
 
     public ProduktBatchDTO getProductBatch(int pbID) throws DALException{
         return dao.getProduktBatch(pbID);

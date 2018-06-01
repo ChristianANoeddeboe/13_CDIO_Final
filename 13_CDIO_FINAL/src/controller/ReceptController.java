@@ -3,13 +3,16 @@ package controller;
 import dao.MySQLReceptDAO;
 import dto.ReceptDTO;
 import exception.DALException;
+import interfaces.ReceptDAO;
+import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 import java.util.List;
 
 @Log
+@AllArgsConstructor
 public class ReceptController {
-    MySQLReceptDAO dao = new MySQLReceptDAO();
+    private ReceptDAO dao;
 
     public ReceptDTO getRecept(int receptID) throws DALException {
         return dao.getRecept(receptID);

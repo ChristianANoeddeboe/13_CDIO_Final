@@ -5,11 +5,14 @@ import java.util.List;
 import dao.MySQLReceptKompDAO;
 import dto.ReceptKompDTO;
 import exception.DALException;
+import interfaces.ReceptKompDAO;
+import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
+@AllArgsConstructor
 public class ReceptKompController {
-    MySQLReceptKompDAO dao = new MySQLReceptKompDAO();
+    private ReceptKompDAO dao;
 
     public ReceptKompDTO getReceptKomp(int receptID, int raavarID) throws  DALException{
         return  dao.getReceptKomp(receptID, raavarID);

@@ -5,11 +5,14 @@ import java.util.List;
 import dao.MySQLProductBatchKomponentDAO;
 import dto.ProduktBatchKompDTO;
 import exception.DALException;
+import interfaces.ProduktBatchKompDAO;
+import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
+@AllArgsConstructor
 public class ProduktBatchKompController {
-	MySQLProductBatchKomponentDAO dao = new MySQLProductBatchKomponentDAO();
+	private ProduktBatchKompDAO dao;
 	
 	public ProduktBatchKompDTO getProduktBatchKomp(int pbId, int rbId) throws DALException{
 		return dao.getProduktBatchKomp(pbId, rbId);

@@ -3,13 +3,17 @@ package controller;
 import dao.MySQLRaavareBatchDAO;
 import dto.RaavareBatchDTO;
 import exception.DALException;
+import interfaces.ProduktBatchDAO;
+import interfaces.RaavareBatchDAO;
+import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 import java.util.List;
 
 @Log
+@AllArgsConstructor
 public class RaavareBatchController {
-    MySQLRaavareBatchDAO dao = new MySQLRaavareBatchDAO();
+    private RaavareBatchDAO dao;
 
     public RaavareBatchDTO getRaavareBatch(int rbID) throws DALException {
         return dao.getRaavareBatch(rbID);

@@ -1,5 +1,6 @@
 package controller;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 import java.util.List;
@@ -7,10 +8,12 @@ import java.util.List;
 import dao.MySQLOperatoerDAO;
 import dto.OperatoerDTO;
 import exception.DALException;
+import interfaces.OperatoerDAO;
 
 @Log
+@AllArgsConstructor
 public class OperatoerController {
-	MySQLOperatoerDAO dao = new MySQLOperatoerDAO();
+	private OperatoerDAO dao;
 	
 	public OperatoerDTO getOperatoer(int oprId) throws DALException {
 		return dao.getOperatoer(oprId);
