@@ -9,7 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ProduktBatchDTO {
     int pbId;                     // i omraadet 1-99999999
-    String status;                    // 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
+    String status;                // Dette er af string format.
     int receptId;
 
     /**
