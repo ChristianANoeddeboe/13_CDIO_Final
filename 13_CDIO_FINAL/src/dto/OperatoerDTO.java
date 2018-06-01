@@ -47,7 +47,7 @@ public class OperatoerDTO {
      */
     private String aktiv;
 
-
+    
     public OperatoerDTO(String fornavn, String efternavn, String cpr, String password, String roles, String aktiv) {
         this.fornavn = fornavn;
         this.efternavn = efternavn;
@@ -57,7 +57,9 @@ public class OperatoerDTO {
         this.aktiv = aktiv;
     }
 
-    public void formatCPR() {
+    
+
+	public void formatCPR() {
         String temp = cpr.substring(0, 5);
         temp.concat("-");
         temp.concat(cpr.substring(6));

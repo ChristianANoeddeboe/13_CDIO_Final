@@ -30,7 +30,7 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO{
 		{
 			while (rs.next()) 
 			{
-				list.add(new ProduktBatchDTO(rs.getInt("pb_id"), rs.getInt("status"), rs.getInt("recept_id")));
+				list.add(new ProduktBatchDTO(rs.getInt("pb_id"), rs.getString("status"), rs.getInt("recept_id")));
 			}
 		}
 		catch (SQLException e) { throw new DALException(e); }

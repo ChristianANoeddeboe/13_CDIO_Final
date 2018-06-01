@@ -11,6 +11,7 @@ import dao.MySQLReceptDAO;
 import dto.OperatoerDTO;
 import dto.ProduktBatchDTO;
 import dto.ReceptDTO;
+import dto.ProduktBatchDTO.Status;
 import exception.DALException;
 import interfaces.OperatoerDAO;
 
@@ -68,26 +69,15 @@ public class Controller {
 		try {
 			// Connect to weight
 			socket.connect();
-			try {
-				new MySQLConnector();
-			} catch (InstantiationException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IllegalAccessException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			try {new MySQLConnector();} catch (InstantiationException e1) {
+				e1.printStackTrace();} catch (IllegalAccessException e1) {
+					e1.printStackTrace();} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();} catch (SQLException e1) {
+					e1.printStackTrace();}
 			// Find User
 			boolean userOK = false;
 			do {
 				String answer = requestInput("Input operator ID","ID","");
-				System.out.println(answer);
 				operatoer = MySQLoperatoer.getOperatoer(Integer.parseInt(answer));
 				userOK = userCheck(operatoer);
 			} while (operatoer == null || !userOK);
@@ -98,7 +88,6 @@ public class Controller {
 			do {
 				try {
 					String batchID = requestInput("Input batch ID","1-9999999","");
-					System.out.println(batchID);
 					produktBatch = MySQLproductBatch.getProduktBatch(Integer.parseInt(batchID));
 					batchOK = productBatchCheck(produktBatch);
 				} catch(NullPointerException e) {
@@ -110,7 +99,10 @@ public class Controller {
 			do {
 				requestInput("Toem Vaegt","","");
 			} while (readWeight() >= 0.01);
-
+			
+			produktBatch.setStatus(Status.Klar);
+			MySQLproductBatch.updateProduktBatch(produktBatch);
+			
 			// Request tara.
 			requestInput("Placer tara","","");
 			tar1 = tarare();
@@ -183,7 +175,7 @@ public class Controller {
 		String str = null;
 		//Request 1 for right name or 0 for wrong name.
 		try {
-			str = requestInput(user.initials(user.trimmer(user.getForNavn()+" "+user.getEfterNavn())+ user.getEfterNavn())+"? 1:0","","");
+			str = requestInput(user.initials(user.trimmer(user.getFornavn()+" "+user.getEfternavn()))+"? 1:0","","");
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
