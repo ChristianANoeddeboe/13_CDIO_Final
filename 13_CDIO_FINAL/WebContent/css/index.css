@@ -1,0 +1,21 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+}
+
+#dtulogo {
+    min-width: 10em;
+    width: 40%;
+    max-width: 15em;
+    user-select: none;
+    margin-bottom: 4em;
+    margin-top: -10%;
+}
+
+.form-control-plaintext {
+    outline: none;
+}
