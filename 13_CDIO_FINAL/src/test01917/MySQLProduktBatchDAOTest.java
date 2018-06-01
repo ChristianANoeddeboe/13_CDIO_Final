@@ -94,6 +94,7 @@ class MySQLProduktBatchDAOTest {
 			fail("Something went wrong creating a product batch");
 		}
 	}
+	
 	/**
 	 * Updating a valid product batch
 	 */
