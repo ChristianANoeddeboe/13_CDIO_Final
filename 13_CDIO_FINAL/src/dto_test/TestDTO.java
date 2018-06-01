@@ -1,5 +1,6 @@
 package dto_test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -8,18 +9,18 @@ import org.junit.Test;
 import dto.RaavareDTO;
 
 public class TestDTO {
-	private RaavareDTO raavareDTO;
+	private RaavareDTO raavareDTO = new RaavareDTO();
 	
 	@Test
 	public void createEmptyRaavareDTO() {
-		raavareDTO = new RaavareDTO();
+		
 		assertNotNull(raavareDTO);
 		
 		assertTrue(isLaverandoerNull());
 		
 		assertTrue(isRaavareNavnNull());
 		
-		assertTrue(isRaavareIdZero());
+		assertTrue(isRaavareIdZero());		
 	}
 
 	private boolean isLaverandoerNull() {		
@@ -33,8 +34,4 @@ public class TestDTO {
 	private boolean isRaavareIdZero() {
 		return 0 == raavareDTO.getRaavareId();
 	}
-
-	
-	
-
 }
