@@ -1,31 +1,36 @@
 package ase;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
+import connector.MySQLConnector;
 import dao.MySQLOperatoerDAO;
+import dao.MySQLProduktBatchDAO;
+import dao.MySQLReceptDAO;
 import dto.OperatoerDTO;
+import dto.ProduktBatchDTO;
+import dto.ReceptDTO;
 import exception.DALException;
 import interfaces.OperatoerDAO;
 
 public class Controller {
 	WeightSocket socket;
-	BatchDAO batchs;
 	Logger logger;
 	MySQLOperatoerDAO MySQLoperatoer;
+	MySQLProduktBatchDAO MySQLproductBatch;
 	OperatoerDTO operatoer;
+	ProduktBatchDTO produktBatch;
 
-	/**
-	 * Constructor takes IP and port as arg
-	 * @param ip
-	 * @param users
-	 */
-	public void SocketController(WeightSocket socket) {
+
+
+	public Controller(WeightSocket socket) {
 		this.socket = socket;
-		this.batchs = new BatchDAO();
 		this.logger = new Logger();
 		this.MySQLoperatoer = new MySQLOperatoerDAO();
+		this.MySQLproductBatch = new MySQLProduktBatchDAO();
 		this.operatoer = new OperatoerDTO();
+		this.produktBatch = null;
 	}
 	
 
@@ -63,26 +68,43 @@ public class Controller {
 		try {
 			// Connect to weight
 			socket.connect();
-			
+			try {
+				new MySQLConnector();
+			} catch (InstantiationException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IllegalAccessException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			// Find User
 			boolean userOK = false;
 			do {
 				String answer = requestInput("Input operator ID","ID","");
+				System.out.println(answer);
 				operatoer = MySQLoperatoer.getOperatoer(Integer.parseInt(answer));
 				userOK = userCheck(operatoer);
-			} while (user == null || !userOK);
+			} while (operatoer == null || !userOK);
 
 			// Get Batch Id
-			BatchDTO batch = null;
+			produktBatch = null;
+			boolean batchOK = false;
 			do {
 				try {
-					String batchID = requestInput("Input batch ID","1000-9999","");
-					batch = batchs.findBatch(Integer.parseInt(batchID));
-					logger.writeToLog(batch.getName());
+					String batchID = requestInput("Input batch ID","1-9999999","");
+					System.out.println(batchID);
+					produktBatch = MySQLproductBatch.getProduktBatch(Integer.parseInt(batchID));
+					batchOK = productBatchCheck(produktBatch);
 				} catch(NullPointerException e) {
 					logger.writeToLog("Batch does not exist or bad input.");
 				}
-			} while (batch == null);
+			} while (produktBatch == null || !batchOK);
 
 			// Request empty weight
 			do {
@@ -111,6 +133,12 @@ public class Controller {
 		catch (IOException e) {
 			logger.writeToLog(e.getMessage());
 			System.exit(0);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -155,7 +183,7 @@ public class Controller {
 		String str = null;
 		//Request 1 for right name or 0 for wrong name.
 		try {
-			str = requestInput(user.initials(user.trimmer(user.getForNavn()+user.getEfterNavn())+ user.getEfterNavn())+"? 1:0","","");
+			str = requestInput(user.initials(user.trimmer(user.getForNavn()+" "+user.getEfterNavn())+ user.getEfterNavn())+"? 1:0","","");
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -164,6 +192,39 @@ public class Controller {
 			str = "User does not exist.";
 			logger.writeToLog(str);
 			return false;
+		}
+		
+		String[] strArr = str.split(" ");
+		//strArr = strArr[2].split("\"");
+		if(Integer.parseInt(strArr[0]) == 1){
+			return true;
+		}else {
+			logger.writeToLog("Wrong name or bad input.");
+			return false;
+		}
+	}
+	
+	public boolean productBatchCheck(ProduktBatchDTO batch) {
+		String str = null;
+		//Request 1 for right name or 0 for wrong name.
+		try {
+			MySQLReceptDAO MySQLrecept = new MySQLReceptDAO();
+			ReceptDTO recept = MySQLrecept.getRecept(batch.getReceptId());
+			str = requestInput(recept.getReceptNavn() + "? 1:0","","");
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			str = "User does not exist.";
+			logger.writeToLog(str);
+			return false;
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		String[] strArr = str.split(" ");

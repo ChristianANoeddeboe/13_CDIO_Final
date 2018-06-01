@@ -3,7 +3,7 @@ package dto;
 public class ProduktBatchDTO 
 {
 	int pbId;                     // i omraadet 1-99999999
-	int status;					// 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
+	String status;					// 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
 	int receptId;
 
 	/**
@@ -11,7 +11,7 @@ public class ProduktBatchDTO
 	 * @param status
 	 * @param receptId
 	 */
-	public ProduktBatchDTO(int status, int receptId)
+	public ProduktBatchDTO(String status, int receptId)
 	{
 		this.status = status;
 		this.receptId = receptId;
@@ -19,13 +19,13 @@ public class ProduktBatchDTO
 	/**
 	 * Used for updating
 	 * @param pbId
-	 * @param status
+	 * @param string
 	 * @param receptId
 	 */
-	public ProduktBatchDTO(int pbId, int status, int receptId)
+	public ProduktBatchDTO(int pbId, String string, int receptId)
 	{
 		this.pbId = pbId;
-		this.status = status;
+		this.status = string;
 		this.receptId = receptId;
 	}
 
