@@ -16,7 +16,7 @@ public class ReceptDTO
     }
 
     public boolean isValid() {
-		return ErrorChecking.checkIntSize(receptId) && ErrorChecking.checkStrSize(receptNavn);
+		return (ErrorChecking.checkIntSize(receptId) && ErrorChecking.checkStrSize(receptNavn));
 	}
 
     public int getReceptId() { return receptId; }

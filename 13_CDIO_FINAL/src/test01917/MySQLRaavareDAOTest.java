@@ -1,8 +1,8 @@
 package test01917;
 
-import connector.Connector;
+import connector.MySQLConnector;
 import dao.MySQLRaavareDAO;
-import daointerfaces01917.DALException;
+import exception.DALException;
 import dto.RaavareDTO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +20,7 @@ class MySQLRaavareDAOTest {
 
     @BeforeAll
     static void setUp() {
-        try { new Connector(); }
+        try { new MySQLConnector(); }
         catch (InstantiationException e) { e.printStackTrace(); }
         catch (IllegalAccessException e) { e.printStackTrace(); }
         catch (ClassNotFoundException e) { e.printStackTrace(); }

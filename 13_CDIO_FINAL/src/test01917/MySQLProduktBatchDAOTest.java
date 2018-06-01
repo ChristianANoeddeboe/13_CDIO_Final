@@ -12,9 +12,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import connector.Connector;
+import connector.MySQLConnector;
 import dao.MySQLProduktBatchDAO;
-import daointerfaces01917.DALException;
+import exception.DALException;
 import dto.ProduktBatchDTO;
 
 class MySQLProduktBatchDAOTest {
@@ -25,7 +25,7 @@ class MySQLProduktBatchDAOTest {
 	 */
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		try { new Connector(); } 
+		try { new MySQLConnector(); }
 		catch (InstantiationException e) { e.printStackTrace(); }
 		catch (IllegalAccessException e) { e.printStackTrace(); }
 		catch (ClassNotFoundException e) { e.printStackTrace(); }

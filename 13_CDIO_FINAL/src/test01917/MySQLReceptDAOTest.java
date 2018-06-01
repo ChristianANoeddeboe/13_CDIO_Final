@@ -8,9 +8,9 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import connector.Connector;
+import connector.MySQLConnector;
 import dao.MySQLReceptDAO;
-import daointerfaces01917.DALException;
+import exception.DALException;
 import dto.ReceptDTO;
 
 class MySQLReceptDAOTest {
@@ -18,7 +18,7 @@ class MySQLReceptDAOTest {
 	//Test.
 	@BeforeAll
 	static void setup() {
-		try { new Connector(); } 
+		try { new MySQLConnector(); }
 		catch (InstantiationException e) { e.printStackTrace(); }
 		catch (IllegalAccessException e) { e.printStackTrace(); }
 		catch (ClassNotFoundException e) { e.printStackTrace(); }

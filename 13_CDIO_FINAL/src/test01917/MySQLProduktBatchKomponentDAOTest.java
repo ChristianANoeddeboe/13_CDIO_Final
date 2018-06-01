@@ -8,9 +8,9 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import connector.Connector;
+import connector.MySQLConnector;
 import dao.MySQLProductBatchKomponentDAO;
-import daointerfaces01917.DALException;
+import exception.DALException;
 import dto.ProduktBatchKompDTO;
 
 class MySQLProduktBatchKomponentDAOTest {
@@ -19,7 +19,7 @@ class MySQLProduktBatchKomponentDAOTest {
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		try { new Connector(); } 
+		try { new MySQLConnector(); }
 		catch (InstantiationException e) { e.printStackTrace(); }
 		catch (IllegalAccessException e) { e.printStackTrace(); }
 		catch (ClassNotFoundException e) { e.printStackTrace(); }

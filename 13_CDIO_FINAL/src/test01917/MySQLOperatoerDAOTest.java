@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import connector.Connector;
+import connector.MySQLConnector;
 import dao.MySQLOperatoerDAO;
 import dto.OperatoerDTO;
 import exception.DALException;
@@ -18,7 +18,7 @@ class MySQLOperatoerDAOTest {
 	static OperatoerDTO initialOperatoer;
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		try { new Connector(); } 
+		try { new MySQLConnector(); }
 		catch (InstantiationException e) { e.printStackTrace(); }
 		catch (IllegalAccessException e) { e.printStackTrace(); }
 		catch (ClassNotFoundException e) { e.printStackTrace(); }
