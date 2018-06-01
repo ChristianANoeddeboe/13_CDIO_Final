@@ -50,10 +50,10 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO{
 
 	@Override
 	public void updateProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
-		if(!produktbatch.isValid()) {
-			throw new DALException("2 Invalid data.");
-		}
-		if(MySQLConnector.doUpdate("call updateProductBatch("+produktbatch.getPbId()+","+produktbatch.getStatus()+","+produktbatch.getReceptId()+")")==0) {
+//		if(!produktbatch.isValid()) {
+	//		throw new DALException("2 Invalid data.");
+		//}
+		if(MySQLConnector.doUpdate("call updateProductBatch("+produktbatch.getPbId()+",'"+produktbatch.getStatus().toString()+"',"+produktbatch.getReceptId()+")")==0) {
 			throw new DALException("No rows updated in \"Produkt batch\".");
 		}
 	}
