@@ -69,12 +69,14 @@ public class Controller {
 	}
 
 	public void run() {
-		@SuppressWarnings("unused")
-		double netto1, netto2;
+		@TODO Remove variables below
+		@TODO Collect all vars in one place
+		double netto1, netto2; 
 		double tar1;
 		try {
 			// Connect to weight
 			socket.connect();
+			@TODO Use proper error messages
 			try {new MySQLConnector();} catch (InstantiationException e1) {
 				e1.printStackTrace();} catch (IllegalAccessException e1) {
 					e1.printStackTrace();} catch (ClassNotFoundException e1) {
@@ -82,6 +84,7 @@ public class Controller {
 							e1.printStackTrace();}
 			// Find User
 			boolean userOK = false;
+			@TODO move into own method
 			do {
 				String answer = requestInput("Input operator ID","ID","");
 				operatoer = MySQLoperatoer.getOperatoer(Integer.parseInt(answer));
@@ -91,6 +94,7 @@ public class Controller {
 			// Get Batch Id
 			produktBatch = null;
 			boolean batchOK = false;
+			@TODO move into own method
 			do {
 				try {
 					String batchID = requestInput("Input batch ID","1-9999999","");
@@ -103,11 +107,12 @@ public class Controller {
 
 			produktBatch.setStatus(Status.Igang);
 			MySQLproductBatch.updateProduktBatch(produktBatch);
-
+			@TODO initialize at top
 			MySQLReceptKompDAO tempreceptkomp = new MySQLReceptKompDAO();
 			MySQLRaavareBatchDAO mysqlraavareBatch = new MySQLRaavareBatchDAO();
 			MySQLRaavareDAO mysqlraavare = new MySQLRaavareDAO();
 			RaavareDTO raavare;
+			@TODO Move blow into own method
 			receptKompList = tempreceptkomp.getReceptKompList(produktBatch.getReceptId());
 			for (ReceptKompDTO receptKompDTO : receptKompList) {
 				// Request empty weight
@@ -117,6 +122,7 @@ public class Controller {
 					throw new DALException("Ikke nok materiale");
 				}
 			}
+			@TODO move vars to top and for loop into own method
 			double netto, tara, result;
 			for (ReceptKompDTO receptKompDTO : receptKompList) {
 				do {
@@ -140,6 +146,8 @@ public class Controller {
 				} while (netto2 == tar1);
 			}
 			
+			
+			@TODO Finish and convert to trans
 
 
 
@@ -165,6 +173,7 @@ public class Controller {
 	 * @return
 	 * @throws IOException
 	 */
+	@TODO Cleanup
 	public String requestInput(String string1, String string2, String string3) throws IOException {
 		//Format string to the weight format.
 		String msg = "RM20 8 "+"\""+string1+"\" "+"\""+string2+"\" "+"\""+string3+"\" "+"\n";
@@ -195,7 +204,7 @@ public class Controller {
 		}
 		return strArr[1];
 	}
-
+	
 	private boolean userCheck(OperatoerDTO user) throws IOException {
 		String str = null;
 		//Request 1 for right name or 0 for wrong name.
