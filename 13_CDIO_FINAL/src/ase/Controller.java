@@ -11,6 +11,7 @@ import dao.MySQLRaavareDAO;
 import dao.MySQLReceptDAO;
 import dao.MySQLReceptKompDAO;
 import dto.OperatoerDTO;
+import dto.OperatoerDTO.Aktiv;
 import dto.ProduktBatchDTO;
 import dto.ProduktBatchDTO.Status;
 import dto.RaavareBatchDTO;
@@ -33,7 +34,7 @@ public class Controller {
 	MySQLReceptKompDAO tempreceptkomp;
 	MySQLRaavareBatchDAO mysqlraavareBatch;
 	MySQLRaavareDAO mysqlraavare;
-
+	RaavareDTO raavare;
 	public Controller(WeightSocket socket) {
 		this.socket = socket;
 		this.logger = new Logger();
@@ -43,12 +44,8 @@ public class Controller {
 		this.produktBatch = null;
 	}
 	
-	public void run() {
-		// TODO Remove variables below
-		// TODO Collect all vars in one place
-		double nettp, tara,result,netto1, netto2, tar1;
+	public void run() throws DALException {		
 		boolean userOK = false, batchOK = false;
-		RaavareDTO raavare;
 		try {
 			// Connect to weight
 			socket.connect();
@@ -61,61 +58,74 @@ public class Controller {
 			do {
 				userOK = requestUserID();
 			} while (operatoer == null || !userOK);
-
+			
 			// Get Batch Id
 			do {
 				batchOK = requestBatchID();
 			} while (produktBatch == null || !batchOK);
-			
+			if(produktBatch.getStatus() == Status.Igang) {
+				requestInput("Fejl afvejning allerede startet", "", "");
+				throw new DALException("Produktbatchets status var ´igang´ ved start");
+			}
 			produktBatch.setStatus(Status.Igang);
 			MySQLproductBatch.updateProduktBatch(produktBatch);
 			
 			getReceptKomp(produktBatch);
 			
-			// TODO move for loop into own method
-			for (ReceptKompDTO receptKompDTO : receptKompList) {
-				do {
-					requestInput("Toem Vaegt","","");
-				} while (readWeight() >= 0.01);
-				raavare = mysqlraavare.getRaavare(receptKompDTO.getRaavareId());
-				requestInput(raavare.getRaavareId()+":"+raavare.getRaavareNavn(),"", "");
-				// Request tara.
-				requestInput("Placer tara","","");
-				tar1 = tarare();
-
-				// Request netto.
-				requestInput("Placer netto","","");
-				netto1 = readWeight();
-				tarare();
-
-				// Request empty weight
-				do {
-					requestInput("Fjern netto", "","");
-					netto2 = readWeight();
-				} while (netto2 == tar1);
-			}
-			
-			
-			// TODO Finish and convert to trans
-
-
-
-			// Inform
-			requestInput("Kasser","","");
-			tarare();
+			bruttoCheck();
+			produktBatch.setStatus(Status.Afsluttet);
+			MySQLproductBatch.updateProduktBatch(produktBatch);
+			requestInput("Faerdig med afvejningen", "", "");
 		}	
 		catch (IOException e) {
+			produktBatch.setStatus(Status.Klar);
+			MySQLproductBatch.updateProduktBatch(produktBatch);
 			logger.writeToLog(e.getMessage());
 			System.exit(0);
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
+			produktBatch.setStatus(Status.Klar);
+			MySQLproductBatch.updateProduktBatch(produktBatch);
 			e.printStackTrace();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
+			produktBatch.setStatus(Status.Klar);
+			MySQLproductBatch.updateProduktBatch(produktBatch);
 			e.printStackTrace();
 		}
 	}
+	public void bruttoCheck() throws IOException, DALException {
+		//Nomnetto: Required amount
+		//Tolerance: weighed amount has to be within +- nomnetto
+		
+		double tara, nomnetto, tolerance, weightAmount, result;
+		for (ReceptKompDTO receptKompDTO : receptKompList) {
+			nomnetto = receptKompDTO.getNomNetto();
+			tolerance = receptKompDTO.getTolerance();
+			do {
+				requestInput("Toem Vaegt","","");
+			} while (readWeight() >= 0.01);
+			raavare = mysqlraavare.getRaavare(receptKompDTO.getRaavareId());
+			requestInput(raavare.getRaavareId()+":"+raavare.getRaavareNavn(),"", "");
+			// Request tara.
+			requestInput("Placer tara","","");
+			tara = tarare();
 
+			// Request netto.
+			requestInput("Placer netto","","");
+			weightAmount = readWeight();
+			
+			result = weightAmount-tara;
+			//If weighted amount minus the container minus the tolerance is greater than or equal to
+			//-the required amount, then we have weighed out sufficient.
+			if(result-tolerance >= nomnetto) {
+				RaavareBatchDTO tempraavarebatch = mysqlraavareBatch.getRaavareBatchRaavare(raavare.getRaavareId());
+				tempraavarebatch.setMaengde(tempraavarebatch.getMaengde()-result);
+				mysqlraavareBatch.updateRaavareBatch(tempraavarebatch);
+			}else {
+				continue;
+			}
+			
+		}
+	}
 	public String requestInput(String string1, String string2, String string3) throws IOException {
 		//Format string to the weight format.
 		String msg = "RM20 8 "+"\""+string1+"\" "+"\""+string2+"\" "+"\""+string3+"\" "+"\n";
@@ -174,6 +184,9 @@ public class Controller {
 	public boolean requestUserID() throws IOException, NumberFormatException, DALException {
 		String answer = requestInput("Input operator ID","ID","");
 		operatoer = MySQLoperatoer.getOperatoer(Integer.parseInt(answer));
+		if(operatoer.getAktiv().equals(Aktiv.inaktiv)) {
+			throw new DALException("Fejl, brugeren er inaktiv");
+		}
 		return userCheck(operatoer); // Get confirmation from user
 	}
 	
