@@ -1,0 +1,17 @@
+body {
+    display: flex;
+    align-items: center;
+}
+
+.thead {
+    background-color: #c51137;
+    color: #fff;
+}
+
+.container {
+    padding-top: 2em;
+}
+
+.table {
+    box-shadow: -1px 3px 5px #8888888c;
+}
