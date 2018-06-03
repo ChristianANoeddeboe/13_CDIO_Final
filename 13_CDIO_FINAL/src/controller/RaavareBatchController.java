@@ -43,7 +43,7 @@ public class RaavareBatchController {
         throwException(errMsg);
         errMsg = ErrorChecking.checkIntSize(raavareBatch.getRaavareId());
         throwException(errMsg);
-        errMsg = ErrorChecking.checkNomNetto(raavareBatch.getMaengde());
+        errMsg = ErrorChecking.checkNumberOfDecimals(raavareBatch.getMaengde());
         throwException(errMsg);
     }
 
