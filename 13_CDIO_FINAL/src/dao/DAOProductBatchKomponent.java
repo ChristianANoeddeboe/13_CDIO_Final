@@ -7,17 +7,17 @@ import java.util.List;
 
 import connector.MySQLConnector;
 import exception.DALException;
-import interfaces.ProduktBatchKompDAO;
-import dto.ProduktBatchKompDTO;
+import interfaces.IDAOProduktBatchKomp;
+import dto.DTOProduktBatchKomp;
 
-public class MySQLProductBatchKomponentDAO implements ProduktBatchKompDAO {
+public class DAOProductBatchKomponent implements IDAOProduktBatchKomp {
 
 	@Override
-	public ProduktBatchKompDTO getProduktBatchKomp(int pbId, int rbId) throws DALException {
+	public DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException {
 		try {
 			ResultSet rs = MySQLConnector.doQuery("SELECT * FROM produktbatchkomp WHERE pb_id ="+pbId+" AND rb_id ="+rbId);
 			if(!rs.first()) throw new DALException("Produktbatch komponentet med produkt batch id: "+pbId + " og raavare batch id: "+rbId+ " blev ikke fundet");
-			return new ProduktBatchKompDTO(rs.getInt("pb_id"), rs.getInt("rb_id"), rs.getDouble("tara"), rs.getDouble("netto"), rs.getInt("opr_id"));
+			return new DTOProduktBatchKomp(rs.getInt("pb_id"), rs.getInt("rb_id"), rs.getDouble("tara"), rs.getDouble("netto"), rs.getInt("opr_id"));
 		}
 		catch(SQLException e) {
 			throw new DALException(e);
@@ -25,12 +25,12 @@ public class MySQLProductBatchKomponentDAO implements ProduktBatchKompDAO {
 	}
 
 	@Override
-	public List<ProduktBatchKompDTO> getProduktBatchKompList(int pbId) throws DALException {
-		List<ProduktBatchKompDTO> list = new ArrayList<ProduktBatchKompDTO>();
+	public List<DTOProduktBatchKomp> getProduktBatchKompList(int pbId) throws DALException {
+		List<DTOProduktBatchKomp> list = new ArrayList<DTOProduktBatchKomp>();
 		ResultSet rs = MySQLConnector.doQuery("SELECT * FROM produktbatchkomp where pb_id="+pbId);
 		try {
 			while(rs.next()) {
-				list.add(new ProduktBatchKompDTO(rs.getInt("pb_id"), rs.getInt("rb_id"), rs.getDouble("tara"), rs.getDouble("netto"), rs.getInt("opr_id")));
+				list.add(new DTOProduktBatchKomp(rs.getInt("pb_id"), rs.getInt("rb_id"), rs.getDouble("tara"), rs.getDouble("netto"), rs.getInt("opr_id")));
 				
 			}
 		}
@@ -41,12 +41,12 @@ public class MySQLProductBatchKomponentDAO implements ProduktBatchKompDAO {
 	}
 
 	@Override
-	public List<ProduktBatchKompDTO> getProduktBatchKompList() throws DALException {
-		List<ProduktBatchKompDTO> list = new ArrayList<ProduktBatchKompDTO>();
+	public List<DTOProduktBatchKomp> getProduktBatchKompList() throws DALException {
+		List<DTOProduktBatchKomp> list = new ArrayList<DTOProduktBatchKomp>();
 		ResultSet rs = MySQLConnector.doQuery("SELECT * FROM produktbatchkomp");
 		try {
 			while(rs.next()) {
-				list.add(new ProduktBatchKompDTO(rs.getInt("pb_id"), rs.getInt("rb_id"), rs.getDouble("tara"), rs.getDouble("netto"), rs.getInt("opr_id")));
+				list.add(new DTOProduktBatchKomp(rs.getInt("pb_id"), rs.getInt("rb_id"), rs.getDouble("tara"), rs.getDouble("netto"), rs.getInt("opr_id")));
 				
 			}
 		}
@@ -57,7 +57,7 @@ public class MySQLProductBatchKomponentDAO implements ProduktBatchKompDAO {
 	}
 
 	@Override
-	public void createProduktBatchKomp(ProduktBatchKompDTO produktbatchkomponent) throws DALException {
+	public void createProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException {
 		if(MySQLConnector.doUpdate("CALL createProduktBatchKomp("+produktbatchkomponent.getPbId()+","+produktbatchkomponent.getRbId()+","+produktbatchkomponent.getTara()+""
 				+ ","+produktbatchkomponent.getNetto()+","+produktbatchkomponent.getOprId()+")")==0) {
 			throw new DALException("Couldn't add tuple to \"Produkt batch komponent\".");
@@ -65,7 +65,7 @@ public class MySQLProductBatchKomponentDAO implements ProduktBatchKompDAO {
 	}
 
 	@Override
-	public void updateProduktBatchKomp(ProduktBatchKompDTO produktbatchkomponent) throws DALException {
+	public void updateProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException {
 		if(MySQLConnector.doUpdate("CALL updateProduktBatchKomp("+produktbatchkomponent.getPbId()+","+produktbatchkomponent.getRbId()+","
 				+ ""+produktbatchkomponent.getTara()+","+produktbatchkomponent.getNetto()+","+produktbatchkomponent.getOprId()+")")==0) {
 			throw new DALException("No rows updated in \"Produkt batch komponent\".");

@@ -9,13 +9,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
-import dao.MySQLProductBatchKomponentDAO;
+import dao.DAOProductBatchKomponent;
 import exception.DALException;
-import dto.ProduktBatchKompDTO;
+import dto.DTOProduktBatchKomp;
 
 class MySQLProduktBatchKomponentDAOTest {
-	static MySQLProductBatchKomponentDAO prodBatchKomp;
-	static ProduktBatchKompDTO initialProdBatchKomp;
+	static DAOProductBatchKomponent prodBatchKomp;
+	static DTOProduktBatchKomp initialProdBatchKomp;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -24,7 +24,7 @@ class MySQLProduktBatchKomponentDAOTest {
 		catch (IllegalAccessException e) { e.printStackTrace(); }
 		catch (ClassNotFoundException e) { e.printStackTrace(); }
 		catch (SQLException e) { e.printStackTrace(); }
-		prodBatchKomp = new MySQLProductBatchKomponentDAO();
+		prodBatchKomp = new DAOProductBatchKomponent();
 		initialProdBatchKomp = prodBatchKomp.getProduktBatchKomp(1,1);
 	}
 
@@ -32,7 +32,7 @@ class MySQLProduktBatchKomponentDAOTest {
 	void testGetProduktBatchKompValid() {
 		boolean valid = true;
 		try {
-			ProduktBatchKompDTO prodBatchKompReturn = prodBatchKomp.getProduktBatchKomp(1, 1);
+			DTOProduktBatchKomp prodBatchKompReturn = prodBatchKomp.getProduktBatchKomp(1, 1);
 			if(prodBatchKompReturn.getPbId() != initialProdBatchKomp.getPbId()) { valid = false;}
 			if(prodBatchKompReturn.getRbId() != initialProdBatchKomp.getRbId()) { valid = false;}
 			if(prodBatchKompReturn.getNetto() != initialProdBatchKomp.getNetto()) { valid = false;}
@@ -49,7 +49,7 @@ class MySQLProduktBatchKomponentDAOTest {
 	void testGetProduktBatchKompInvalid() {
 		boolean valid = true;
 		try {
-			ProduktBatchKompDTO prodBatchKompReturn = prodBatchKomp.getProduktBatchKomp(9999, 9999);		
+			DTOProduktBatchKomp prodBatchKompReturn = prodBatchKomp.getProduktBatchKomp(9999, 9999);
 		} catch (DALException e) {
 			valid = false;
 		}catch (Exception e) {
@@ -61,7 +61,7 @@ class MySQLProduktBatchKomponentDAOTest {
 	@Test
 	void testGetProduktBatchKompListInt() {
 		try {
-			List<ProduktBatchKompDTO> list = prodBatchKomp.getProduktBatchKompList(1);
+			List<DTOProduktBatchKomp> list = prodBatchKomp.getProduktBatchKompList(1);
 			assertTrue(list.size() >0);
 		} catch (DALException e) {
 			fail("Something went wrong fecthing product batch komp list in the test with pb id = 1");
@@ -71,7 +71,7 @@ class MySQLProduktBatchKomponentDAOTest {
 	@Test
 	void testGetProduktBatchKompList() {
 		try {
-			List<ProduktBatchKompDTO> list = prodBatchKomp.getProduktBatchKompList();
+			List<DTOProduktBatchKomp> list = prodBatchKomp.getProduktBatchKompList();
 			assertTrue(list.size() >0);
 		} catch (DALException e) {
 			fail("Something went wrong fecthing product batch komp list in the test");
@@ -82,7 +82,7 @@ class MySQLProduktBatchKomponentDAOTest {
 	void testCreateProduktBatchKomp() {
 		int lastid;
 		try {
-			prodBatchKomp.createProduktBatchKomp(new ProduktBatchKompDTO(1, 10, 1.0, 1.0, 1));
+			prodBatchKomp.createProduktBatchKomp(new DTOProduktBatchKomp(1, 10, 1.0, 1.0, 1));
 		} catch (Exception e) {
 			fail("Something went wrong creating a product batch component");
 		}
@@ -92,7 +92,7 @@ class MySQLProduktBatchKomponentDAOTest {
 	void testUpdateProduktBatchKompValid() {
 		boolean valid = true;
 		try {
-			prodBatchKomp.updateProduktBatchKomp(new ProduktBatchKompDTO(1, 1, 2, 2, 1));
+			prodBatchKomp.updateProduktBatchKomp(new DTOProduktBatchKomp(1, 1, 2, 2, 1));
 		}catch (DALException e) {
 			valid = false;
 			fail("Invalid parameters");
@@ -107,7 +107,7 @@ class MySQLProduktBatchKomponentDAOTest {
 	void testUpdateProduktBatchKompInvalid() {
 		boolean valid = true;
 		try {
-			prodBatchKomp.updateProduktBatchKomp(new ProduktBatchKompDTO(99999, 9999, 99, 9999, 1));
+			prodBatchKomp.updateProduktBatchKomp(new DTOProduktBatchKomp(99999, 9999, 99, 9999, 1));
 		}catch (DALException e) {
 			valid = false;
 		}catch (Exception e) {

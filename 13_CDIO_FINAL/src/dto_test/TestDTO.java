@@ -6,10 +6,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import dto.RaavareDTO;
+import dto.DTORaavare;
 
 public class TestDTO {
-	private RaavareDTO raavareDTO = new RaavareDTO();
+	private DTORaavare raavareDTO = new DTORaavare();
 	
 	@Test
 	public void createEmptyRaavareDTO() {

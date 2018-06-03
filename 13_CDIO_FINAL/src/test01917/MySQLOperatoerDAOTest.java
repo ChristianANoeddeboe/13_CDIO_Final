@@ -9,14 +9,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
-import dao.MySQLOperatoerDAO;
-import dto.OperatoerDTO;
-import dto.OperatoerDTO.Aktiv;
+import dao.DAOOperatoer;
+import dto.DTOOperatoer;
+import dto.DTOOperatoer.Aktiv;
 import exception.DALException;
 
 class MySQLOperatoerDAOTest {
-	static MySQLOperatoerDAO operatoer;
-	static OperatoerDTO initialOperatoer;
+	static DAOOperatoer operatoer;
+	static DTOOperatoer initialOperatoer;
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		try { new MySQLConnector(); }
@@ -24,7 +24,7 @@ class MySQLOperatoerDAOTest {
 		catch (IllegalAccessException e) { e.printStackTrace(); }
 		catch (ClassNotFoundException e) { e.printStackTrace(); }
 		catch (SQLException e) { e.printStackTrace(); }
-		operatoer = new MySQLOperatoerDAO();
+		operatoer = new DAOOperatoer();
 		initialOperatoer = operatoer.getOperatoer(1);
 	}
 
@@ -32,7 +32,7 @@ class MySQLOperatoerDAOTest {
 	void testGetOperatoerValid() {
 		boolean valid = true;
 		try {
-			OperatoerDTO operatoerReturn = operatoer.getOperatoer(1);
+			DTOOperatoer operatoerReturn = operatoer.getOperatoer(1);
 			if(!operatoerReturn.getAktiv().equals(initialOperatoer.getAktiv())) { valid = false;}
 			if(!operatoerReturn.getCpr().equals(initialOperatoer.getCpr())) {valid = false;}
 			if(!operatoerReturn.getEfternavn().equals(initialOperatoer.getEfternavn())) {valid = false;}
@@ -54,7 +54,7 @@ class MySQLOperatoerDAOTest {
 	void testGetOperatoerInvalid() {
 		boolean valid = true;
 		try {
-			OperatoerDTO operatoerReturn = operatoer.getOperatoer(Integer.MAX_VALUE);
+			DTOOperatoer operatoerReturn = operatoer.getOperatoer(Integer.MAX_VALUE);
 			if(!operatoerReturn.getAktiv().equals(initialOperatoer.getAktiv())) { valid = false;}
 			if(!operatoerReturn.getCpr().equals(initialOperatoer.getCpr())) {valid = false;}
 			if(!operatoerReturn.getEfternavn().equals(initialOperatoer.getEfternavn())) {valid = false;}
@@ -74,7 +74,7 @@ class MySQLOperatoerDAOTest {
 	@Test
 	void testCreateOperatoer() {
 		try {
-			operatoer.createOperatoer(new OperatoerDTO("test", "testEfternavn", "123456-1210", "password", "Administrator", Aktiv.aktiv));
+			operatoer.createOperatoer(new DTOOperatoer("test", "testEfternavn", "123456-1210", "password", "Administrator", Aktiv.aktiv));
 		}catch (Exception e) {
 			fail("Something went wrong creating an operator");
 		}	}
@@ -83,7 +83,7 @@ class MySQLOperatoerDAOTest {
 	void testUpdateOperatoerValid() {
 		boolean valid = true;
 		try {
-			operatoer.updateOperatoer(new OperatoerDTO(1,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", Aktiv.aktiv));
+			operatoer.updateOperatoer(new DTOOperatoer(1,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 			fail("Invalid parameters");
@@ -98,7 +98,7 @@ class MySQLOperatoerDAOTest {
 	void testUpdateOperatoerInvalid() {
 		boolean valid = true;
 		try {
-			operatoer.updateOperatoer(new OperatoerDTO(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", Aktiv.aktiv));
+			operatoer.updateOperatoer(new DTOOperatoer(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 		}catch (Exception e) {
@@ -111,7 +111,7 @@ class MySQLOperatoerDAOTest {
 	@Test
 	void testGetOperatoerList() {
 		try {
-			List<OperatoerDTO> list = operatoer.getOperatoerList();
+			List<DTOOperatoer> list = operatoer.getOperatoerList();
 			assertTrue(list.size() >0);
 		} catch (DALException e) {
 			fail("Something went wrong fecthing operatoer list in the test");

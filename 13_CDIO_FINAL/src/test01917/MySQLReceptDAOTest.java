@@ -9,12 +9,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
-import dao.MySQLReceptDAO;
+import dao.DAORecept;
 import exception.DALException;
-import dto.ReceptDTO;
+import dto.DTORecept;
 
 class MySQLReceptDAOTest {
-	MySQLReceptDAO receptDAO = new MySQLReceptDAO();
+	DAORecept receptDAO = new DAORecept();
 	//Test.
 	@BeforeAll
 	static void setup() {
@@ -31,7 +31,7 @@ class MySQLReceptDAOTest {
 		int receptId = 10;
 		String expected = receptId+"\t"+name;
 		try {
-			ReceptDTO recept = receptDAO.getRecept(1);
+			DTORecept recept = receptDAO.getRecept(1);
 			if(recept.getReceptId()!=1) fail("Error getRecept: Id doesn't match.");
 			
 			recept.setReceptId(receptId);
@@ -68,7 +68,7 @@ class MySQLReceptDAOTest {
 	@Test
 	void getReceptListTEST() {
 		try {
-			List<ReceptDTO> recepts = receptDAO.getReceptList();
+			List<DTORecept> recepts = receptDAO.getReceptList();
 			if(recepts.isEmpty()) fail("List is empty");
 		} catch(DALException e) {
 			fail("getReceptListTEST DALException");
@@ -78,15 +78,15 @@ class MySQLReceptDAOTest {
 	@Test
 	void createReceptTest() throws DALException {
 		String name = "test";
-		ReceptDTO test = new ReceptDTO(name);
+		DTORecept test = new DTORecept(name);
 		try {
 			receptDAO.createRecept(test);
 		} catch(DALException e) {
 			fail("DALException caught.");
 		}
 		
-		List<ReceptDTO> list = receptDAO.getReceptList();
-		ReceptDTO dto = list.get(list.size()-1);
+		List<DTORecept> list = receptDAO.getReceptList();
+		DTORecept dto = list.get(list.size()-1);
 		
 		if(dto.getReceptId()!=list.size()-1 && !dto.getReceptNavn().equals(name)) {
 			fail("Recept wasns't created with expected values.");

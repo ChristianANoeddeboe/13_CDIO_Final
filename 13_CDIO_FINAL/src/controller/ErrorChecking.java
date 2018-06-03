@@ -43,7 +43,7 @@ public class ErrorChecking {
     public static String checkCPR(String input) {
         if (input.length() != 10) {
             return "5 Nummeret er for stort eller småt.";
-        } else {    
+        } else {
             return null;
         }
     }

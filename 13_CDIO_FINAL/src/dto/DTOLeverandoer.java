@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RaavareDTO {
+public class DTOLeverandoer {
     /**
      * i omraadet 1-99999999 vaelges af brugerne
      */
@@ -16,15 +16,5 @@ public class RaavareDTO {
     /**
      * min. 2 max. 20 karakterer
      */
-    private String raavareNavn;
-
-    /**
-     * min. 2 max. 20 karakterer
-     */
     private String leverandoer;
-
-    public RaavareDTO(String raavareNavn, String leverandoer) {
-        this.raavareNavn = raavareNavn;
-        this.leverandoer = leverandoer;
-    }
 }

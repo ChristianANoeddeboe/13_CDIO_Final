@@ -2,22 +2,22 @@ package dao;
 
 import connector.MySQLConnector;
 import exception.DALException;
-import interfaces.RaavareBatchDAO;
-import dto.RaavareBatchDTO;
+import interfaces.IDAORaavareBatch;
+import dto.DTORaavareBatch;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
+public class DAORaavareBatch implements IDAORaavareBatch {
 
     @Override
-    public RaavareBatchDTO getRaavareBatch(int rbId) throws DALException {
+    public DTORaavareBatch getRaavareBatch(int rbId) throws DALException {
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM raavarebatchview WHERE rb_id = " + rbId);
         try {
             if (!rs.first()) throw new DALException("RaavareBatchen " + rbId + " findes ikke.");
-            return new RaavareBatchDTO(rs.getInt("rb_id"), rs.getInt("raavare_id"),
+            return new DTORaavareBatch(rs.getInt("rb_id"), rs.getInt("raavare_id"),
                     rs.getDouble("maengde"));
         } catch (SQLException e) {
             throw new DALException(e);
@@ -26,12 +26,12 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
 
 
     @Override
-    public List<RaavareBatchDTO> getRaavareBatchList() throws DALException {
-        List<RaavareBatchDTO> list = new ArrayList<>();
+    public List<DTORaavareBatch> getRaavareBatchList() throws DALException {
+        List<DTORaavareBatch> list = new ArrayList<>();
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM raavarebatchview");
         try {
             while (rs.next()) {
-                list.add(new RaavareBatchDTO(rs.getInt("rb_id"), rs.getInt("raavare_id"),
+                list.add(new DTORaavareBatch(rs.getInt("rb_id"), rs.getInt("raavare_id"),
                         rs.getDouble("maengde")));
             }
         } catch (SQLException e) {
@@ -41,12 +41,12 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
     }
 
     @Override
-    public List<RaavareBatchDTO> getRaavareBatchList(int raavareId) throws DALException {
-        List<RaavareBatchDTO> list = new ArrayList<>();
+    public List<DTORaavareBatch> getRaavareBatchList(int raavareId) throws DALException {
+        List<DTORaavareBatch> list = new ArrayList<>();
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM raavarebatchview WHERE raavare_id = " + raavareId);
         try {
             while (rs.next()) {
-                list.add(new RaavareBatchDTO(rs.getInt("rb_id"), rs.getInt("raavare_id"),
+                list.add(new DTORaavareBatch(rs.getInt("rb_id"), rs.getInt("raavare_id"),
                         rs.getDouble("maengde")));
             }
         } catch (SQLException e) {
@@ -56,7 +56,7 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
     }
 
     @Override
-    public void createRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
+    public void createRaavareBatch(DTORaavareBatch raavarebatch) throws DALException {
         if (MySQLConnector.doUpdate("call createRaavareBatch(" + raavarebatch.getRaavareId() + "," +
                 raavarebatch.getMaengde() + ")") == 0) {
             throw new DALException("Couldn't add tuple to \"Raavare batch\".");
@@ -64,7 +64,7 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
     }
 
     @Override
-    public void updateRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
+    public void updateRaavareBatch(DTORaavareBatch raavarebatch) throws DALException {
         if (MySQLConnector.doUpdate("call updateRaavareBatch(" + raavarebatch.getRbId() + "," +
                 raavarebatch.getRaavareId() + "," + raavarebatch.getMaengde() + ")") == 0) {
             throw new DALException("No rows updated in \"Raavare batch\".");
@@ -79,11 +79,11 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
     }
 
     @Override
-    public RaavareBatchDTO getRaavareBatchRaavare(int raavareID) throws DALException {
+    public DTORaavareBatch getRaavareBatchRaavare(int raavareID) throws DALException {
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM raavarebatchview WHERE raavare_id = " + raavareID);
         try {
             if (!rs.first()) throw new DALException("Raavaren " + raavareID + " findes ikke.");
-            return new RaavareBatchDTO(rs.getInt("rb_id"), rs.getInt("raavare_id"),
+            return new DTORaavareBatch(rs.getInt("rb_id"), rs.getInt("raavare_id"),
                     rs.getDouble("maengde"));
         } catch (SQLException e) {
             throw new DALException(e);

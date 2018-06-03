@@ -7,16 +7,16 @@ import java.util.List;
 
 import connector.MySQLConnector;
 import controller.ErrorChecking;
-import dto.LeverandoerDTO;
+import dto.DTOLeverandoer;
 import exception.DALException;
-import interfaces.LeverandoerDAO;
+import interfaces.IDAOLeverandoer;
 import lombok.extern.java.Log;
 
 @Log
-public class MySQLLeverandoerDAO implements LeverandoerDAO{
+public class DAOLeverandoer implements IDAOLeverandoer {
 
 	@Override
-	public LeverandoerDTO getRaavare(int raavareId) throws DALException {
+	public DTOLeverandoer getRaavare(int raavareId) throws DALException {
 		ResultSet rs = MySQLConnector.doQuery("SELECT * FROM raavareview where raavare_id = " + raavareId);
 		String out = "";
 		try
@@ -25,20 +25,20 @@ public class MySQLLeverandoerDAO implements LeverandoerDAO{
 			{
 				out = out.concat(rs.getString("leverandoer") + " ");
 			}
-			return new LeverandoerDTO(raavareId, out);
+			return new DTOLeverandoer(raavareId, out);
 		}
 		catch (SQLException e) { throw new DALException(e); }
 	}
 
 	@Override
-	public List<LeverandoerDTO> getRaavareList() throws DALException {
-		List<LeverandoerDTO> list = new ArrayList<>();
+	public List<DTOLeverandoer> getRaavareList() throws DALException {
+		List<DTOLeverandoer> list = new ArrayList<>();
 		ResultSet rs = MySQLConnector.doQuery("SELECT * FROM raavareview");
 		try
 		{
 			while (rs.next())
 			{
-				list.add(new LeverandoerDTO(rs.getInt("raavare_id"), rs.getString("leverandoer")));
+				list.add(new DTOLeverandoer(rs.getInt("raavare_id"), rs.getString("leverandoer")));
 			}
 		}
 		catch (SQLException e) { throw new DALException(e); }
@@ -46,7 +46,7 @@ public class MySQLLeverandoerDAO implements LeverandoerDAO{
 	}
 
 	@Override
-	public void createRaavare(LeverandoerDTO raavare) throws DALException {
+	public void createRaavare(DTOLeverandoer raavare) throws DALException {
 		validateData(raavare);
 		if(MySQLConnector.doUpdate("call createRaavare('"+raavare.getLeverandoer()+"','"+raavare.getRaavareId()+"')")==0) {
 			throw new DALException("Couldn't add tuple to \"Raavare\".");
@@ -55,7 +55,7 @@ public class MySQLLeverandoerDAO implements LeverandoerDAO{
 	}
 
 	@Override
-	public void updateRaavare(LeverandoerDTO raavare) throws DALException {
+	public void updateRaavare(DTOLeverandoer raavare) throws DALException {
 		validateData(raavare);
 		if(MySQLConnector.doUpdate("call updateLeverandoer('"+raavare.getRaavareId()+"','"+raavare.getLeverandoer()+"')")==0) {
 			throw new DALException("No rows updated in \"Raavare\".");
@@ -71,7 +71,7 @@ public class MySQLLeverandoerDAO implements LeverandoerDAO{
 
 	}
 	
-	private void validateData(LeverandoerDTO leverandoer) throws DALException {
+	private void validateData(DTOLeverandoer leverandoer) throws DALException {
         String errMsg;
         errMsg = ErrorChecking.checkIntSize(leverandoer.getRaavareId());
         throwException(errMsg);

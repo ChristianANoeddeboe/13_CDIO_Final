@@ -13,14 +13,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
-import dao.MySQLProduktBatchDAO;
+import dao.DAOProduktBatch;
 import exception.DALException;
-import dto.ProduktBatchDTO;
-import dto.ProduktBatchDTO.Status;
+import dto.DTOProduktBatch;
+import dto.DTOProduktBatch.Status;
 
 class MySQLProduktBatchDAOTest {
-	static MySQLProduktBatchDAO prodBatch;
-	static ProduktBatchDTO initialProdBatch;
+	static DAOProduktBatch prodBatch;
+	static DTOProduktBatch initialProdBatch;
 	/**
 	 * @throws Exception
 	 */
@@ -31,7 +31,7 @@ class MySQLProduktBatchDAOTest {
 		catch (IllegalAccessException e) { e.printStackTrace(); }
 		catch (ClassNotFoundException e) { e.printStackTrace(); }
 		catch (SQLException e) { e.printStackTrace(); }
-		prodBatch = new MySQLProduktBatchDAO();
+		prodBatch = new DAOProduktBatch();
 		initialProdBatch = prodBatch.getProduktBatch(1);
 	}
 
@@ -42,7 +42,7 @@ class MySQLProduktBatchDAOTest {
 	void testGetProduktBatchValid() {
 		boolean valid = true;
 		try {
-			ProduktBatchDTO prodBatchReturn = prodBatch.getProduktBatch(1);
+			DTOProduktBatch prodBatchReturn = prodBatch.getProduktBatch(1);
 			if(prodBatchReturn.getPbId() != initialProdBatch.getPbId()) { valid = false;}
 			if(prodBatchReturn.getReceptId() != initialProdBatch.getReceptId()) {valid = false;}
 			if(prodBatchReturn.getStatus() != initialProdBatch.getStatus()) { valid = false;}
@@ -61,7 +61,7 @@ class MySQLProduktBatchDAOTest {
 	void testGetProduktBatchInvalid() {
 		boolean valid = true;
 		try {
-			ProduktBatchDTO prodBatchReturn = prodBatch.getProduktBatch(1234);
+			DTOProduktBatch prodBatchReturn = prodBatch.getProduktBatch(1234);
 		}catch (DALException e) {
 			valid = false;
 		}catch (Exception e) {
@@ -76,7 +76,7 @@ class MySQLProduktBatchDAOTest {
 	@Test
 	void testGetProduktBatchList() {
 		try {
-			List<ProduktBatchDTO> list = prodBatch.getProduktBatchList();
+			List<DTOProduktBatch> list = prodBatch.getProduktBatchList();
 			assertTrue(list.size() >0);
 		} catch (DALException e) {
 			fail("Something went wrong fecthing product batch list in the test");
@@ -89,7 +89,7 @@ class MySQLProduktBatchDAOTest {
 	@Test
 	void testCreateProduktBatch() {
 		try {
-			prodBatch.createProduktBatch(new ProduktBatchDTO(Status.Igang, 1));
+			prodBatch.createProduktBatch(new DTOProduktBatch(Status.Igang, 1));
 		}catch (Exception e) {
 			fail("Something went wrong creating a product batch");
 		}
@@ -102,7 +102,7 @@ class MySQLProduktBatchDAOTest {
 	void testUpdateProduktBatchValid() {
 		boolean valid = true;
 		try {
-			prodBatch.updateProduktBatch(new ProduktBatchDTO(1, Status.Igang, 1));
+			prodBatch.updateProduktBatch(new DTOProduktBatch(1, Status.Igang, 1));
 		}catch (DALException e) {
 			valid = false;
 			fail("Invalid pb id");
@@ -120,7 +120,7 @@ class MySQLProduktBatchDAOTest {
 	void testUpdateProduktBatchInValid() {
 		boolean valid = true;
 		try {
-			prodBatch.updateProduktBatch(new ProduktBatchDTO(9999, Status.Igang, 1));
+			prodBatch.updateProduktBatch(new DTOProduktBatch(9999, Status.Igang, 1));
 		}catch (DALException e) {
 			valid = false;
 		}catch (Exception e) {

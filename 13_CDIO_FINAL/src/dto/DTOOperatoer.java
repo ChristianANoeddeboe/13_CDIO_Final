@@ -14,7 +14,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OperatoerDTO {
+public class DTOOperatoer {
     /**
      * Operatoer-identifikationsnummer (opr_id) i omraadet 1-99999999. Vaelges af brugerne
      */
@@ -41,7 +41,7 @@ public class OperatoerDTO {
     private Enum<Aktiv> aktiv;
 
     
-    public OperatoerDTO(String fornavn, String efternavn, String cpr, String roles, Enum<Aktiv> aktiv) {
+    public DTOOperatoer(String fornavn, String efternavn, String cpr, String roles, Enum<Aktiv> aktiv) {
         this.fornavn = fornavn;
         this.efternavn = efternavn;
         this.cpr = cpr;
@@ -102,7 +102,7 @@ public class OperatoerDTO {
     }
 
     protected boolean canEqual(Object other) {
-        return other instanceof OperatoerDTO;
+        return other instanceof DTOOperatoer;
     }
 
 }

@@ -1,9 +1,9 @@
 package test01917;
 
 import connector.MySQLConnector;
-import dao.MySQLReceptKompDAO;
+import dao.DAOReceptKomp;
 import exception.DALException;
-import dto.ReceptKompDTO;
+import dto.DTOReceptKomp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MySQLReceptKompDAOTest {
 
-    MySQLReceptKompDAO receptkompDAO;
-    ReceptKompDTO receptKompDTO;
+    DAOReceptKomp receptkompDAO;
+    DTOReceptKomp receptKompDTO;
 
     @BeforeEach
     void setUp() {
@@ -23,7 +23,7 @@ class MySQLReceptKompDAOTest {
         catch (IllegalAccessException e) { e.printStackTrace(); }
         catch (ClassNotFoundException e) { e.printStackTrace(); }
         catch (SQLException e) { e.printStackTrace(); }
-        receptkompDAO = new MySQLReceptKompDAO();
+        receptkompDAO = new DAOReceptKomp();
     }
 
     @Test
@@ -87,11 +87,11 @@ class MySQLReceptKompDAOTest {
     @Test
     void createReceptKomp() {
         int lastid;
-        ReceptKompDTO compare;
+        DTOReceptKomp compare;
         try {
             lastid = receptkompDAO.getReceptKompList().size()-1;
             lastid = receptkompDAO.getReceptKompList().get(lastid).getReceptId();
-            receptKompDTO = new ReceptKompDTO(lastid+1,1,10,0.1);
+            receptKompDTO = new DTOReceptKomp(lastid+1,1,10,0.1);
             receptkompDAO.createReceptKomp(receptKompDTO);
             compare = receptkompDAO.getReceptKomp(receptKompDTO.getReceptId(),receptKompDTO.getRaavareId());
             assertEquals(receptKompDTO.getReceptId(), compare.getReceptId(), "Recept ID was not "+ compare.getReceptId());
@@ -128,7 +128,7 @@ class MySQLReceptKompDAOTest {
     @Test
     void updateReceptKompNegativ() {
         try {
-            receptkompDAO.updateReceptKomp(new ReceptKompDTO(9999, 9999, 1, 1));
+            receptkompDAO.updateReceptKomp(new DTOReceptKomp(9999, 9999, 1, 1));
             fail("Batch existed.");
         }catch (DALException e) {
             if (!e.getMessage().contains("No rows updated in \"Recept komponent\"")) {

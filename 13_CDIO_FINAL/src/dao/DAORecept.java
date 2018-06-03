@@ -7,20 +7,20 @@ import java.util.List;
 
 import connector.MySQLConnector;
 import exception.DALException;
-import interfaces.ReceptDAO;
-import dto.ReceptDTO;
+import interfaces.IDAORecept;
+import dto.DTORecept;
 
-public class MySQLReceptDAO implements ReceptDAO {
+public class DAORecept implements IDAORecept {
 
     /*Return a single recept based on the recept ID.*/
     @Override
-    public ReceptDTO getRecept(int receptId) throws DALException {
+    public DTORecept getRecept(int receptId) throws DALException {
         //Select the entry from receptView that matches the ID.
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM receptView WHERE recept_id=" + receptId);
 
         try {
             if (!rs.first()) throw new DALException("Recept " + receptId + " findes ikke.");
-            return new ReceptDTO(rs.getInt("recept_id"), rs.getString("recept_navn"));
+            return new DTORecept(rs.getInt("recept_id"), rs.getString("recept_navn"));
         } catch (SQLException e) {
             throw new DALException(e);
         }
@@ -28,13 +28,13 @@ public class MySQLReceptDAO implements ReceptDAO {
 
     /*Return the entire lists of recepts.*/
     @Override
-    public List<ReceptDTO> getReceptList() throws DALException {
-        List<ReceptDTO> list = new ArrayList<ReceptDTO>();
+    public List<DTORecept> getReceptList() throws DALException {
+        List<DTORecept> list = new ArrayList<DTORecept>();
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM receptView");
 
         try {
             while (rs.next()) {
-                list.add(new ReceptDTO(rs.getInt("recept_id"), rs.getString("recept_navn")));
+                list.add(new DTORecept(rs.getInt("recept_id"), rs.getString("recept_navn")));
             }
             return list;
         } catch (SQLException e) {
@@ -43,14 +43,14 @@ public class MySQLReceptDAO implements ReceptDAO {
     }
 
     @Override
-    public void createRecept(ReceptDTO recept) throws DALException {
+    public void createRecept(DTORecept recept) throws DALException {
         if (MySQLConnector.doUpdate("CALL createRecept('" + recept.getReceptNavn() + "');") == 0) {
             throw new DALException("Couldn't add tuple to \"Recept\".");
         }
     }
 
     @Override
-    public void updateRecept(ReceptDTO recept) throws DALException {
+    public void updateRecept(DTORecept recept) throws DALException {
         if (MySQLConnector.doUpdate("CALL updateRecept(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "');") == 0) {
             throw new DALException("No rows updated in \"Recept\".");
         }

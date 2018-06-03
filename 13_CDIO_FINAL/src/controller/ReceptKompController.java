@@ -2,36 +2,35 @@ package controller;
 
 import java.util.List;
 
-import dao.MySQLReceptKompDAO;
-import dto.ReceptKompDTO;
+import dto.DTOReceptKomp;
 import exception.DALException;
-import interfaces.ReceptKompDAO;
+import interfaces.IDAOReceptKomp;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
 @AllArgsConstructor
 public class ReceptKompController {
-    private ReceptKompDAO dao;
+    private IDAOReceptKomp dao;
 
-    public ReceptKompDTO getReceptKomp(int receptID, int raavarID) throws  DALException{
+    public DTOReceptKomp getReceptKomp(int receptID, int raavarID) throws  DALException{
         return  dao.getReceptKomp(receptID, raavarID);
     }
 
-    public List<ReceptKompDTO> getReceotKompList(int receptID) throws  DALException{
+    public List<DTOReceptKomp> getReceotKompList(int receptID) throws  DALException{
         return  dao.getReceptKompList(receptID);
     }
 
-    public  List<ReceptKompDTO> getRaceptKomList() throws  DALException{
+    public  List<DTOReceptKomp> getRaceptKomList() throws  DALException{
         return  dao.getReceptKompList();
     }
 
-    public void createReceptKomp(ReceptKompDTO receptKompDTO) throws  DALException{
+    public void createReceptKomp(DTOReceptKomp receptKompDTO) throws  DALException{
         validateData(receptKompDTO);
         dao.createReceptKomp(receptKompDTO);
     }
 
-    public  void updateReceptKomp(ReceptKompDTO receptKompDTO) throws  DALException{
+    public  void updateReceptKomp(DTOReceptKomp receptKompDTO) throws  DALException{
         validateData(receptKompDTO);
         dao.updateReceptKomp(receptKompDTO);
     }
@@ -40,7 +39,7 @@ public class ReceptKompController {
         dao.deleteReceptKomp(receptKompID, raavareID);
     }
 
-    private void validateData(ReceptKompDTO receptkomponent) throws DALException {
+    private void validateData(DTOReceptKomp receptkomponent) throws DALException {
         String errMsg;
         errMsg = ErrorChecking.checkIntSize(receptkomponent.getRaavareId());
         throwException(errMsg);

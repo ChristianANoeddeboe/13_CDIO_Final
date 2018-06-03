@@ -1,45 +1,43 @@
 package ase;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import dao.MySQLOperatoerDAO;
-import dao.MySQLProduktBatchDAO;
-import dao.MySQLRaavareBatchDAO;
-import dao.MySQLRaavareDAO;
-import dao.MySQLReceptDAO;
-import dao.MySQLReceptKompDAO;
-import dto.OperatoerDTO;
-import dto.ProduktBatchDTO;
-import dto.ProduktBatchDTO.Status;
-import dto.RaavareBatchDTO;
-import dto.RaavareDTO;
-import dto.ReceptDTO;
-import dto.ReceptKompDTO;
+import dao.DAOOperatoer;
+import dao.DAOProduktBatch;
+import dao.DAORaavareBatch;
+import dao.DAORaavare;
+import dao.DAORecept;
+import dao.DAOReceptKomp;
+import dto.DTOOperatoer;
+import dto.DTOProduktBatch;
+import dto.DTOProduktBatch.Status;
+import dto.DTORaavareBatch;
+import dto.DTORaavare;
+import dto.DTORecept;
+import dto.DTOReceptKomp;
 import exception.DALException;
-import ase.WeightSocket;
 import connector.MySQLConnector;
 
 
 public class Controller {
 	WeightSocket socket;
 	Logger logger;
-	MySQLOperatoerDAO MySQLoperatoer;
-	MySQLProduktBatchDAO MySQLproductBatch;
-	OperatoerDTO operatoer;
-	ProduktBatchDTO produktBatch;
-	List<ReceptKompDTO> receptKompList;
-	MySQLReceptKompDAO tempreceptkomp;
-	MySQLRaavareBatchDAO mysqlraavareBatch;
-	MySQLRaavareDAO mysqlraavare;
+	DAOOperatoer MySQLoperatoer;
+	DAOProduktBatch MySQLproductBatch;
+	DTOOperatoer operatoer;
+	DTOProduktBatch produktBatch;
+	List<DTOReceptKomp> receptKompList;
+	DAOReceptKomp tempreceptkomp;
+	DAORaavareBatch mysqlraavareBatch;
+	DAORaavare mysqlraavare;
 
 	public Controller(WeightSocket socket) {
 		this.socket = socket;
 		this.logger = new Logger();
-		this.MySQLoperatoer = new MySQLOperatoerDAO();
-		this.MySQLproductBatch = new MySQLProduktBatchDAO();
-		this.operatoer = new OperatoerDTO();
+		this.MySQLoperatoer = new DAOOperatoer();
+		this.MySQLproductBatch = new DAOProduktBatch();
+		this.operatoer = new DTOOperatoer();
 		this.produktBatch = null;
 	}
 	
@@ -48,15 +46,15 @@ public class Controller {
 		// TODO Collect all vars in one place
 		double nettp, tara,result,netto1, netto2, tar1;
 		boolean userOK = false, batchOK = false;
-		RaavareDTO raavare;
+		DTORaavare raavare;
 		try {
 			// Connect to weight
 			socket.connect();
 			// TODO Use proper error messages
 			try {new MySQLConnector();} catch (InstantiationException e1) {e1.printStackTrace();} catch (IllegalAccessException e1) {e1.printStackTrace();} catch (ClassNotFoundException e1) {e1.printStackTrace();} catch (SQLException e1) {e1.printStackTrace();}
-			tempreceptkomp = new MySQLReceptKompDAO();
-			mysqlraavareBatch = new MySQLRaavareBatchDAO();
-			mysqlraavare = new MySQLRaavareDAO();
+			tempreceptkomp = new DAOReceptKomp();
+			mysqlraavareBatch = new DAORaavareBatch();
+			mysqlraavare = new DAORaavare();
 			// Get UserID from input
 			do {
 				userOK = requestUserID();
@@ -73,7 +71,7 @@ public class Controller {
 			getReceptKomp(produktBatch);
 			
 			// TODO move for loop into own method
-			for (ReceptKompDTO receptKompDTO : receptKompList) {
+			for (DTOReceptKomp receptKompDTO : receptKompList) {
 				do {
 					requestInput("Toem Vaegt","","");
 				} while (readWeight() >= 0.01);
@@ -147,7 +145,7 @@ public class Controller {
 		return strArr[1];
 	}
 	
-	private boolean userCheck(OperatoerDTO user) throws IOException {
+	private boolean userCheck(DTOOperatoer user) throws IOException {
 		String str = null;
 		//Request 1 for right name or 0 for wrong name.
 		try {
@@ -177,12 +175,12 @@ public class Controller {
 		return userCheck(operatoer); // Get confirmation from user
 	}
 	
-	public boolean productBatchCheck(ProduktBatchDTO batch) {
+	public boolean productBatchCheck(DTOProduktBatch batch) {
 		String str = null;
 		//Request 1 for right name or 0 for wrong name.
 		try {
-			MySQLReceptDAO MySQLrecept = new MySQLReceptDAO();
-			ReceptDTO recept = MySQLrecept.getRecept(batch.getReceptId());
+			DAORecept MySQLrecept = new DAORecept();
+			DTORecept recept = MySQLrecept.getRecept(batch.getReceptId());
 			str = requestInput(recept.getReceptNavn() + "? 1:0","","");
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
@@ -216,11 +214,11 @@ public class Controller {
 		return productBatchCheck(produktBatch); // Get confirmation
 	}
 	
-	public void getReceptKomp(ProduktBatchDTO productbatch) throws DALException, IOException {
+	public void getReceptKomp(DTOProduktBatch productbatch) throws DALException, IOException {
 		receptKompList = tempreceptkomp.getReceptKompList(produktBatch.getReceptId());
-		for (ReceptKompDTO receptKompDTO : receptKompList) {
+		for (DTOReceptKomp receptKompDTO : receptKompList) {
 			// Request empty weight
-			RaavareBatchDTO tempraavarebatch = mysqlraavareBatch.getRaavareBatchRaavare(receptKompDTO.getRaavareId());
+			DTORaavareBatch tempraavarebatch = mysqlraavareBatch.getRaavareBatchRaavare(receptKompDTO.getRaavareId());
 			if(!(receptKompDTO.getNomNetto() + receptKompDTO.getTolerance() <= tempraavarebatch.getMaengde())){
 				requestInput("Ikke nok materiale","","");
 				throw new DALException("Ikke nok materiale");
