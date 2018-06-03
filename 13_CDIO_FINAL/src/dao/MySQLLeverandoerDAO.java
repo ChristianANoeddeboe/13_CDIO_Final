@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connector.MySQLConnector;
+import controller.ErrorChecking;
 import dto.LeverandoerDTO;
 import exception.DALException;
 import interfaces.LeverandoerDAO;

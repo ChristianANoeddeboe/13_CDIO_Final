@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import connector.MySQLConnector;
 import dao.MySQLOperatoerDAO;
 import dao.MySQLProduktBatchDAO;
 import dao.MySQLRaavareBatchDAO;
@@ -14,12 +12,15 @@ import dao.MySQLReceptDAO;
 import dao.MySQLReceptKompDAO;
 import dto.OperatoerDTO;
 import dto.ProduktBatchDTO;
-import dto.ReceptDTO;
-import dto.ReceptKompDTO;
 import dto.ProduktBatchDTO.Status;
 import dto.RaavareBatchDTO;
 import dto.RaavareDTO;
+import dto.ReceptDTO;
+import dto.ReceptKompDTO;
 import exception.DALException;
+import ase.WeightSocket;
+import connector.MySQLConnector;
+
 
 public class Controller {
 	WeightSocket socket;
@@ -28,8 +29,10 @@ public class Controller {
 	MySQLProduktBatchDAO MySQLproductBatch;
 	OperatoerDTO operatoer;
 	ProduktBatchDTO produktBatch;
-	List<ReceptKompDTO> receptKompList = new ArrayList<ReceptKompDTO>();
-
+	List<ReceptKompDTO> receptKompList;
+	MySQLReceptKompDAO tempreceptkomp;
+	MySQLRaavareBatchDAO mysqlraavareBatch;
+	MySQLRaavareDAO mysqlraavare;
 
 	public Controller(WeightSocket socket) {
 		this.socket = socket;
@@ -39,91 +42,37 @@ public class Controller {
 		this.operatoer = new OperatoerDTO();
 		this.produktBatch = null;
 	}
-
-
-	public double readWeight() throws IOException{
-		//Send cmd.
-		String str;
-		socket.write("S\n");
-		logger.writeToLog("Client: S\\n");
-		//Receive weight.
-		str = socket.read();
-		logger.writeToLog("Server: "+str);
-		System.out.println(str);
-		String[] strArr = str.split(" ");
-		System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
-		return Double.parseDouble(strArr[6]);
-	}
-
-	public double tarare() throws IOException {
-		String str;
-		//Send cmd.
-		socket.write("T\n");
-		logger.writeToLog("Client: T");
-		//Read tarrering.
-		str = socket.read();
-		logger.writeToLog("Server: "+str);
-		String[] strArr = str.split(" ");
-		System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
-		return Double.parseDouble(strArr[6]);
-	}
-
+	
 	public void run() {
 		// TODO Remove variables below
 		// TODO Collect all vars in one place
-		double netto1, netto2; 
-		double tar1;
+		double nettp, tara,result,netto1, netto2, tar1;
+		boolean userOK = false, batchOK = false;
+		RaavareDTO raavare;
 		try {
 			// Connect to weight
 			socket.connect();
 			// TODO Use proper error messages
-			try {new MySQLConnector();} catch (InstantiationException e1) {
-				e1.printStackTrace();} catch (IllegalAccessException e1) {
-					e1.printStackTrace();} catch (ClassNotFoundException e1) {
-						e1.printStackTrace();} catch (SQLException e1) {
-							e1.printStackTrace();}
-			// Find User
-			boolean userOK = false;
-			// TODO move into own method
+			try {new MySQLConnector();} catch (InstantiationException e1) {e1.printStackTrace();} catch (IllegalAccessException e1) {e1.printStackTrace();} catch (ClassNotFoundException e1) {e1.printStackTrace();} catch (SQLException e1) {e1.printStackTrace();}
+			tempreceptkomp = new MySQLReceptKompDAO();
+			mysqlraavareBatch = new MySQLRaavareBatchDAO();
+			mysqlraavare = new MySQLRaavareDAO();
+			// Get UserID from input
 			do {
-				String answer = requestInput("Input operator ID","ID","");
-				operatoer = MySQLoperatoer.getOperatoer(Integer.parseInt(answer));
-				userOK = userCheck(operatoer);
+				userOK = requestUserID();
 			} while (operatoer == null || !userOK);
 
 			// Get Batch Id
-			produktBatch = null;
-			boolean batchOK = false;
-			// TODO move into own method
 			do {
-				try {
-					String batchID = requestInput("Input batch ID","1-9999999","");
-					produktBatch = MySQLproductBatch.getProduktBatch(Integer.parseInt(batchID));
-					batchOK = productBatchCheck(produktBatch);
-				} catch(NullPointerException e) {
-					logger.writeToLog("Batch does not exist or bad input.");
-				}
+				batchOK = requestBatchID();
 			} while (produktBatch == null || !batchOK);
-
+			
 			produktBatch.setStatus(Status.Igang);
 			MySQLproductBatch.updateProduktBatch(produktBatch);
-			// TODO initialize at top
-			MySQLReceptKompDAO tempreceptkomp = new MySQLReceptKompDAO();
-			MySQLRaavareBatchDAO mysqlraavareBatch = new MySQLRaavareBatchDAO();
-			MySQLRaavareDAO mysqlraavare = new MySQLRaavareDAO();
-			RaavareDTO raavare;
-			// TODO Move blow into own method
-			receptKompList = tempreceptkomp.getReceptKompList(produktBatch.getReceptId());
-			for (ReceptKompDTO receptKompDTO : receptKompList) {
-				// Request empty weight
-				RaavareBatchDTO tempraavarebatch = mysqlraavareBatch.getRaavareBatchRaavare(receptKompDTO.getRaavareId());
-				if(!(receptKompDTO.getNomNetto() + receptKompDTO.getTolerance() <= tempraavarebatch.getMaengde())){
-					requestInput("Ikke nok materiale","","");
-					throw new DALException("Ikke nok materiale");
-				}
-			}
-			// TODO move vars to top and for loop into own method
-			double netto, tara, result;
+			
+			getReceptKomp(produktBatch);
+			
+			// TODO move for loop into own method
 			for (ReceptKompDTO receptKompDTO : receptKompList) {
 				do {
 					requestInput("Toem Vaegt","","");
@@ -167,13 +116,6 @@ public class Controller {
 		}
 	}
 
-	/**
-	 * Requests an input from the user.
-	 * @param msg
-	 * @return
-	 * @throws IOException
-	 */
-	// TODO Cleanup
 	public String requestInput(String string1, String string2, String string3) throws IOException {
 		//Format string to the weight format.
 		String msg = "RM20 8 "+"\""+string1+"\" "+"\""+string2+"\" "+"\""+string3+"\" "+"\n";
@@ -221,7 +163,6 @@ public class Controller {
 		}
 
 		String[] strArr = str.split(" ");
-		//strArr = strArr[2].split("\"");
 		if(Integer.parseInt(strArr[0]) == 1){
 			return true;
 		}else {
@@ -229,7 +170,13 @@ public class Controller {
 			return false;
 		}
 	}
-
+	
+	public boolean requestUserID() throws IOException, NumberFormatException, DALException {
+		String answer = requestInput("Input operator ID","ID","");
+		operatoer = MySQLoperatoer.getOperatoer(Integer.parseInt(answer));
+		return userCheck(operatoer); // Get confirmation from user
+	}
+	
 	public boolean productBatchCheck(ProduktBatchDTO batch) {
 		String str = null;
 		//Request 1 for right name or 0 for wrong name.
@@ -262,4 +209,51 @@ public class Controller {
 			return false;
 		}
 	}
+	
+	public boolean requestBatchID() throws IOException, NumberFormatException, DALException {
+		String batchID = requestInput("Input batch ID","1-9999999","");
+		produktBatch = MySQLproductBatch.getProduktBatch(Integer.parseInt(batchID));
+		return productBatchCheck(produktBatch); // Get confirmation
+	}
+	
+	public void getReceptKomp(ProduktBatchDTO productbatch) throws DALException, IOException {
+		receptKompList = tempreceptkomp.getReceptKompList(produktBatch.getReceptId());
+		for (ReceptKompDTO receptKompDTO : receptKompList) {
+			// Request empty weight
+			RaavareBatchDTO tempraavarebatch = mysqlraavareBatch.getRaavareBatchRaavare(receptKompDTO.getRaavareId());
+			if(!(receptKompDTO.getNomNetto() + receptKompDTO.getTolerance() <= tempraavarebatch.getMaengde())){
+				requestInput("Ikke nok materiale","","");
+				throw new DALException("Ikke nok materiale");
+			}
+		}
+	}
+	
+	public double readWeight() throws IOException{
+		//Send cmd.
+		String str;
+		socket.write("S\n");
+		logger.writeToLog("Client: S\\n");
+		//Receive weight.
+		str = socket.read();
+		logger.writeToLog("Server: "+str);
+		System.out.println(str);
+		String[] strArr = str.split(" ");
+		System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
+		return Double.parseDouble(strArr[6]);
+	}
+
+	public double tarare() throws IOException {
+		String str;
+		//Send cmd.
+		socket.write("T\n");
+		logger.writeToLog("Client: T");
+		//Read tarrering.
+		str = socket.read();
+		logger.writeToLog("Server: "+str);
+		String[] strArr = str.split(" ");
+		System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
+		return Double.parseDouble(strArr[6]);
+	}
+	
+	
 }
