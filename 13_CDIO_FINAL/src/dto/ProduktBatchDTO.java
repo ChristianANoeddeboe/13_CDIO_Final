@@ -5,11 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 @AllArgsConstructor
 public class ProduktBatchDTO {
     int pbId;                     // i omraadet 1-99999999
-    String status;                // Dette er af string format.
+    Enum<Status> status;                    // 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
     int receptId;
 
     /**
@@ -18,9 +17,12 @@ public class ProduktBatchDTO {
      * @param status
      * @param receptId
      */
-    public ProduktBatchDTO(String status, int receptId) {
+    public ProduktBatchDTO(Enum<Status> status, int receptId) {
         this.status = status;
         this.receptId = receptId;
     }
-}
-
+   
+    public enum Status{
+    	Igang,Klar,Afsluttet
+    }
+ }
