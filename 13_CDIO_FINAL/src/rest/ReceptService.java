@@ -24,22 +24,15 @@ public class ReceptService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response displayRecept() {
 		System.out.println("aa");
+		List<DTORecept> tempReceptList = new ArrayList<>();
+		DAORecept tempdao = new DAORecept();
+
 		try {
 			new MySQLConnector();
+			tempReceptList = tempdao.getReceptList();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		List<DTORecept> tempReceptList = new ArrayList<>();
-	
-		DAORecept tempdao = new DAORecept();
-		
-		try {
-			tempReceptList = tempdao.getReceptList();
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		return Response.ok(tempReceptList,MediaType.APPLICATION_JSON).build();
 	}
 }
