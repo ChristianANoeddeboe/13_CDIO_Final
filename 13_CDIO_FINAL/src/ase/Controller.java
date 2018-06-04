@@ -1,10 +1,13 @@
 package ase;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import dao.MySQLOperatoerDAO;
+import dao.MySQLProductBatchKomponentDAO;
 import dao.MySQLProduktBatchDAO;
 import dao.MySQLRaavareBatchDAO;
 import dao.MySQLRaavareDAO;
@@ -14,6 +17,7 @@ import dto.OperatoerDTO;
 import dto.OperatoerDTO.Aktiv;
 import dto.ProduktBatchDTO;
 import dto.ProduktBatchDTO.Status;
+import dto.ProduktBatchKompDTO;
 import dto.RaavareBatchDTO;
 import dto.RaavareDTO;
 import dto.ReceptDTO;
@@ -35,6 +39,7 @@ public class Controller {
 	MySQLRaavareBatchDAO mysqlraavareBatch;
 	MySQLRaavareDAO mysqlraavare;
 	RaavareDTO raavare;
+	HashMap<Integer, PreparedStatement> preparedstatementsContainer = new HashMap<>();
 	public Controller(WeightSocket socket) {
 		this.socket = socket;
 		this.logger = new Logger();
@@ -51,6 +56,7 @@ public class Controller {
 			socket.connect();
 			// TODO Use proper error messages
 			try {new MySQLConnector();} catch (InstantiationException e1) {e1.printStackTrace();} catch (IllegalAccessException e1) {e1.printStackTrace();} catch (ClassNotFoundException e1) {e1.printStackTrace();} catch (SQLException e1) {e1.printStackTrace();}
+			MySQLConnector.getConn().setAutoCommit(false);
 			tempreceptkomp = new MySQLReceptKompDAO();
 			mysqlraavareBatch = new MySQLRaavareBatchDAO();
 			mysqlraavare = new MySQLRaavareDAO();
@@ -63,12 +69,14 @@ public class Controller {
 			do {
 				batchOK = requestBatchID();
 			} while (produktBatch == null || !batchOK);
-			if(produktBatch.getStatus() == Status.Igang) {
+			if(produktBatch.getStatus() != Status.Klar) {
 				requestInput("Fejl afvejning allerede startet", "", "");
-				throw new DALException("Produktbatchets status var ´igang´ ved start");
+				throw new DALException("Produktbatchets status var ikke klar ved start");
 			}
+			
 			produktBatch.setStatus(Status.Igang);
-			MySQLproductBatch.updateProduktBatch(produktBatch);
+			preparedstatementsContainer.put(1, MySQLConnector.getConn().prepareStatement("call updateProductBatch("+produktBatch.getPbId()+",'"+produktBatch.getStatus()+"',"+produktBatch.getReceptId()+")"));
+			//MySQLproductBatch.updateProduktBatch(produktBatch);
 			
 			getReceptKomp(produktBatch);
 			
@@ -90,19 +98,25 @@ public class Controller {
 			produktBatch.setStatus(Status.Klar);
 			MySQLproductBatch.updateProduktBatch(produktBatch);
 			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	public void bruttoCheck() throws IOException, DALException {
 		//Nomnetto: Required amount
 		//Tolerance: weighed amount has to be within +- nomnetto
 		
+		
 		double tara, nomnetto, tolerance, weightAmount, result;
 		for (ReceptKompDTO receptKompDTO : receptKompList) {
 			nomnetto = receptKompDTO.getNomNetto();
 			tolerance = receptKompDTO.getTolerance();
+			tarare();
 			do {
 				requestInput("Toem Vaegt","","");
 			} while (readWeight() >= 0.01);
+			
 			raavare = mysqlraavare.getRaavare(receptKompDTO.getRaavareId());
 			requestInput(raavare.getRaavareId()+":"+raavare.getRaavareNavn(),"", "");
 			// Request tara.
@@ -120,6 +134,10 @@ public class Controller {
 				RaavareBatchDTO tempraavarebatch = mysqlraavareBatch.getRaavareBatchRaavare(raavare.getRaavareId());
 				tempraavarebatch.setMaengde(tempraavarebatch.getMaengde()-result);
 				mysqlraavareBatch.updateRaavareBatch(tempraavarebatch);
+				ProduktBatchKompDTO tempProduktBatchKomp = new ProduktBatchKompDTO(produktBatch.getPbId(), tempraavarebatch.getRbId(), tara, weightAmount, operatoer.getOprId());
+				
+				MySQLProductBatchKomponentDAO tempMySQLProdukt = new MySQLProductBatchKomponentDAO();
+				tempMySQLProdukt.createProduktBatchKomp(tempProduktBatchKomp);
 			}else {
 				continue;
 			}
@@ -171,7 +189,9 @@ public class Controller {
 			logger.writeToLog(str);
 			return false;
 		}
-
+		if(str.length() == 0) {
+			return true;
+		}
 		String[] strArr = str.split(" ");
 		if(Integer.parseInt(strArr[0]) == 1){
 			return true;
@@ -212,7 +232,9 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		if(str.length() == 0) {
+			return true;
+		}
 		String[] strArr = str.split(" ");
 		//strArr = strArr[2].split("\"");
 		if(Integer.parseInt(strArr[0]) == 1){
