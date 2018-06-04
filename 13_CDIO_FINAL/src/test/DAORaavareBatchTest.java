@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class MySQLRaavareBatchDAOTest {
+public class DAORaavareBatchTest {
 
     private DAORaavareBatch testRaavareBatchDAO;
     private DTORaavareBatch testRaavareBatchDTO;

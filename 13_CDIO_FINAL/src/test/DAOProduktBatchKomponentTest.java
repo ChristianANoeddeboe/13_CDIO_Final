@@ -13,7 +13,7 @@ import dao.DAOProductBatchKomponent;
 import exception.DALException;
 import dto.DTOProduktBatchKomp;
 
-class MySQLProduktBatchKomponentDAOTest {
+class DAOProduktBatchKomponentTest {
 	static DAOProductBatchKomponent prodBatchKomp;
 	static DTOProduktBatchKomp initialProdBatchKomp;
 	

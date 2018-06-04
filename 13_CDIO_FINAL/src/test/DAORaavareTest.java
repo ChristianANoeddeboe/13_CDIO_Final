@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MySQLRaavareDAOTest {
+class DAORaavareTest {
 
     DTORaavare testRaavareDTO;
     DAORaavare testRaavareDAO  = new DAORaavare();

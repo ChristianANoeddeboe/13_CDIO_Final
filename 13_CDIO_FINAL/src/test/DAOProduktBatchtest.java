@@ -18,7 +18,7 @@ import exception.DALException;
 import dto.DTOProduktBatch;
 import dto.DTOProduktBatch.Status;
 
-class MySQLProduktBatchDAOTest {
+class DAOProduktBatchtest {
 	static DAOProduktBatch prodBatch;
 	static DTOProduktBatch initialProdBatch;
 	/**

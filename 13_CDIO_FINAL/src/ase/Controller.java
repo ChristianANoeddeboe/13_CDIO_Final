@@ -31,7 +31,7 @@ public class Controller {
     IDAORaavareBatch mysqlraavareBatch;
     IDAORaavare mysqlraavare;
     DTORaavare raavare;
-    HashMap<Integer, PreparedStatement> preparedstatementsContainer = new HashMap<>();
+    //HashMap<Integer, PreparedStatement> preparedstatementsContainer = new HashMap<>();
     public Controller(WeightSocket socket) {
         this.socket = socket;
         this.logger = new Logger();
@@ -39,6 +39,7 @@ public class Controller {
         this.MySQLproductBatch = new DAOProduktBatch();
         this.operatoer = new DTOOperatoer();
         this.produktBatch = null;
+  
     }
 
     public void run() throws DALException {
@@ -67,8 +68,8 @@ public class Controller {
             }
 
             produktBatch.setStatus(Status.Igang);
-            preparedstatementsContainer.put(1, MySQLConnector.getConn().prepareStatement("call updateProductBatch("+produktBatch.getPbId()+",'"+produktBatch.getStatus()+"',"+produktBatch.getReceptId()+")"));
-            //MySQLproductBatch.updateProduktBatch(produktBatch);
+            //preparedstatementsContainer.put(1, MySQLConnector.getConn().prepareStatement("call updateProductBatch("+produktBatch.getPbId()+",'"+produktBatch.getStatus()+"',"+produktBatch.getReceptId()+")"));
+            MySQLproductBatch.updateProduktBatch(produktBatch);
 
             getReceptKomp(produktBatch);
 

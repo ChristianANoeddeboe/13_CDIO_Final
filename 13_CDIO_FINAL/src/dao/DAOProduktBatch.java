@@ -10,7 +10,9 @@ import exception.DALException;
 import interfaces.IDAOProduktBatch;
 import dto.DTOProduktBatch;
 import dto.DTOProduktBatch.Status;
+import lombok.extern.java.Log;
 
+@Log
 public class DAOProduktBatch implements IDAOProduktBatch {
 
     @Override
@@ -21,6 +23,7 @@ public class DAOProduktBatch implements IDAOProduktBatch {
             return new DTOProduktBatch(rs.getInt("pb_id"),
                     Status.valueOf(rs.getString("status")), rs.getInt("recept_id"));
         } catch (SQLException e) {
+            log.severe(e.toString());
             throw new DALException(e);
         }
     }
@@ -35,6 +38,7 @@ public class DAOProduktBatch implements IDAOProduktBatch {
                         Status.valueOf(rs.getString("status")), rs.getInt("recept_id")));
             }
         } catch (SQLException e) {
+            log.severe(e.toString());
             throw new DALException(e);
         }
         return list;
@@ -44,7 +48,9 @@ public class DAOProduktBatch implements IDAOProduktBatch {
     public void createProduktBatch(DTOProduktBatch produktbatch) throws DALException {
         if (MySQLConnector.doUpdate("call createProductBatch(" + produktbatch.getStatus() + "," +
                 produktbatch.getReceptId() + ")") == 0) {
-            throw new DALException("Couldn't add tuple to \"Produkt batch\".");
+            String errMsg = "Couldn't add tuple to \"Produkt batch\".";
+            log.severe(errMsg);
+            throw new DALException(errMsg);
         }
     }
 
@@ -52,16 +58,18 @@ public class DAOProduktBatch implements IDAOProduktBatch {
     public void updateProduktBatch(DTOProduktBatch produktbatch) throws DALException {
         if (MySQLConnector.doUpdate("call updateProductBatch(" + produktbatch.getPbId() + ",'" +
                 produktbatch.getStatus().toString() + "'," + produktbatch.getReceptId() + ")") == 0) {
-            throw new DALException("No rows updated in \"Produkt batch\".");
+            String errMsg = "No rows updated in \"Produkt batch\".";
+            log.severe(errMsg);
+            throw new DALException(errMsg);
         }
     }
 
     @Override
     public void deleteProduktBatch(int pbID) throws DALException {
         if (MySQLConnector.doUpdate("call deleteProductBatch(" + pbID + ")") == 0) {
-            throw new DALException("No rows updated in \"Produkt batch\".");
+            String errMsg = "No rows updated in \"Produkt batch\".";
+            log.severe(errMsg);
+            throw new DALException(errMsg);
         }
-
     }
-
 }

@@ -13,7 +13,7 @@ import dao.DAORecept;
 import exception.DALException;
 import dto.DTORecept;
 
-class MySQLReceptDAOTest {
+class DAOReceptTest {
 	DAORecept receptDAO = new DAORecept();
 	//Test.
 	@BeforeAll
