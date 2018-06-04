@@ -24,3 +24,29 @@ body {
     background-color: #c51137;
     color: #fff;
 }
+
+.btn {
+    padding: .12rem .5rem .02rem .5rem;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #c51137;
+    border-color: #fff;
+}
+
+.btn-primary:hover {
+    color: #c51137;
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.btn-primary:focus {
+    0 0 0 0.2rem rgba(123,123,123,.5)
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    color: #c51137;
+    background-color: #fff;
+    border-color: #fff;
+}
