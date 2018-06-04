@@ -26,7 +26,7 @@ public class OperatoerService implements IOperatoerService {
 	static DAOOperatoer dao = new DAOOperatoer();
 
 	@GET
-	@Path("id/{id}")
+	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getOperatoer(@PathParam("id") int oprId) throws DALException {
