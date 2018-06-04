@@ -68,24 +68,27 @@ public class DAOReceptKomp implements IDAOReceptKomp {
             throw new DALException("Netto or tolerance was less than or equal to 0");
         }
         if (MySQLConnector.doUpdate("CALL createReceptkomponent(" + receptkomponent.getReceptId() + ", " + receptkomponent.getRaavareId() + ", " + receptkomponent.getNomNetto() + ", " + receptkomponent.getTolerance() + ");") == 0) {
-            log.severe("Couldn't add tuple to \"Recept komponent\".");
-            throw new DALException("Couldn't add tuple to \"Recept komponent\".");
+            String errMsg = "Couldn't add tuple to \"Recept komponent\".";
+            log.severe(errMsg);
+            throw new DALException(errMsg);
         }
     }
 
     @Override
     public void updateReceptKomp(DTOReceptKomp receptkomponent) throws DALException {
         if (MySQLConnector.doUpdate("CALL updateReceptkomponent(" + receptkomponent.getReceptId() + ", " + receptkomponent.getRaavareId() + ", " + receptkomponent.getNomNetto() + ", " + receptkomponent.getTolerance() + ");") == 0) {
-            log.severe("No rows updated in \"Recept komponent\".");
-            throw new DALException("No rows updated in \"Recept komponent\".");
+            String errMsg = "No rows updated in \"Recept komponent\".";
+            log.severe(errMsg);
+            throw new DALException(errMsg);
         }
     }
 
     @Override
     public void deleteReceptKomp(int recept_id, int raavare_id) throws DALException {
         if (MySQLConnector.doUpdate("CALL deleteReceptKomp(" + recept_id + ", " + raavare_id + ");") == 0) {
-            log.severe("No rows updated in \"Recept komponent\".");
-            throw new DALException("No rows updated in \"Recept komponent\".");
+            String errMsg = "No rows updated in \"Recept komponent\".";
+            log.severe(errMsg);
+            throw new DALException(errMsg);
         }
     }
 }
