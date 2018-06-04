@@ -25,14 +25,14 @@ public class ErrorChecking {
     }
 
     public static String checkStatus(Enum input) {
-        input.toString();
-
-        if(false){
-            return ERROR3;
+        String status = input.name();
+        Object[] obj = input.getDeclaringClass().getEnumConstants();
+        for (Object object: obj) {
+            if(object.toString().equals(input.toString())){
+                return null;
+            }
         }
-        else{
-            return null;
-        }
+        return ERROR4;
     }
 
     public static String checkCPR(String input) {
