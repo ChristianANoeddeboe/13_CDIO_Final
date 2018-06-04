@@ -13,25 +13,25 @@ import java.util.List;
 public class ProduktBatchController {
     private IDAOProduktBatch dao;
 
-    public DTOProduktBatch getProductBatch(int pbID) throws DALException{
+    public DTOProduktBatch getProduktBatch(int pbID) throws DALException{
         return dao.getProduktBatch(pbID);
     }
 
-    public List<DTOProduktBatch> getProductBatchList() throws DALException{
+    public List<DTOProduktBatch> getProduktBatchList() throws DALException{
         return dao.getProduktBatchList();
     }
 
-    public void createProductBatch(DTOProduktBatch produktBatch) throws DALException{
+    public void createProduktBatch(DTOProduktBatch produktBatch) throws DALException{
         validateData(produktBatch);
         dao.createProduktBatch(produktBatch);
     }
 
-    public void updateProductBatch(DTOProduktBatch produktBatch) throws DALException{
+    public void updateProduktBatch(DTOProduktBatch produktBatch) throws DALException{
         validateData(produktBatch);
         dao.updateProduktBatch(produktBatch);
     }
 
-    public void delteProductBatch(int pbID) throws DALException{
+    public void deleteProduktBatch(int pbID) throws DALException{
         dao.deleteProduktBatch(pbID);
     }
 

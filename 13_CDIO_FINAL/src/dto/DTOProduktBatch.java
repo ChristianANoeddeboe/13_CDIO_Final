@@ -23,6 +23,6 @@ public class DTOProduktBatch {
     }
    
     public enum Status{
-    	Igang,Klar,Afsluttet
+        Igang,Klar,Afsluttet
     }
  }

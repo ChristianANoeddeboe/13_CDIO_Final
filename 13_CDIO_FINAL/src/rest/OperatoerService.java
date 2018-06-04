@@ -87,7 +87,7 @@ public class OperatoerService implements IOperatoerService {
 	
 	}
 
-	@PUT
+	@POST
 	@Path("create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createOperatoer(DTOOperatoer opr) throws DALException {
