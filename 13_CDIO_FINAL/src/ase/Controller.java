@@ -17,6 +17,9 @@ import connector.MySQLConnector;
 
 
 public class Controller {
+	final static int MSGLENGTH = 24;
+	final static int UNITLENGTH = 7;
+	
     WeightSocket socket;
     Logger logger;
     IDAOOperatoer MySQLoperatoer;
@@ -135,6 +138,9 @@ public class Controller {
     }
     public String requestInput(String string1, String string2, String string3) throws IOException {
         //Format string to the weight format.
+    	string1 = truncateMsg(string1);
+    	string2 = truncateMsg(string2);
+    	string3 = truncateUnit(string3);
         String msg = "RM20 8 "+"\""+string1+"\" "+"\""+string2+"\" "+"\""+string3+"\" "+"\n";
         String str;
         logger.writeToLog("Client: "+msg.replace("\n", "\\n"));
@@ -278,6 +284,12 @@ public class Controller {
         System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
         return Double.parseDouble(strArr[6]);
     }
-
-
+    
+    private String truncateMsg(String msg) {
+    		return msg.substring(0, Math.min(msg.length()-1, MSGLENGTH-1));
+    }
+    
+    private String truncateUnit(String unit) {
+    	return unit.substring(0, Math.min(unit.length()-1, UNITLENGTH-1));
+    }
 }
