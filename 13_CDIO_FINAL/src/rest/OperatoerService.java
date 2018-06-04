@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import connector.MySQLConnector;
+import controller.*;
 import dao.DAOOperatoer;
 import dto.DTOOperatoer;
 
@@ -23,10 +24,11 @@ import exception.DALException;
 @Produces(MediaType.APPLICATION_JSON)
 
 public class OperatoerService implements IOperatoerService {
-	static DAOOperatoer dao = new DAOOperatoer();
+	
+	static OperatoerController controller = new OperatoerController(new DAOOperatoer());
 
 	@GET
-	@Path("id/{id}")
+	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getOperatoer(@PathParam("id") int oprId) throws DALException {
@@ -47,7 +49,7 @@ public class OperatoerService implements IOperatoerService {
 		}
 		DTOOperatoer result = null;
 		try {
-			result = dao.getOperatoer(oprId);
+			result = controller.getOperatoer(oprId);
 		} catch(DALException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
 		}
@@ -77,7 +79,7 @@ public class OperatoerService implements IOperatoerService {
 		
 		List<DTOOperatoer> result = null;
 		try {
-			result = dao.getOperatoerList();
+			result = controller.getOperatoerList();
 		} catch(DALException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
 		}
@@ -85,7 +87,7 @@ public class OperatoerService implements IOperatoerService {
 	
 	}
 
-	@POST
+	@PUT
 	@Path("create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createOperatoer(DTOOperatoer opr) throws DALException {
@@ -104,7 +106,13 @@ public class OperatoerService implements IOperatoerService {
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
-		return null;
+		
+		try {
+			controller.createOperatoer(opr);
+		} catch(DALException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok().entity("User created").build();
 		
 	}
 
@@ -128,14 +136,19 @@ public class OperatoerService implements IOperatoerService {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
 		
-		return Response.status(Response.Status.NOT_IMPLEMENTED).entity("Ikke implementeret endnu").build();
+		try {
+			controller.updateOperatoer(opr);
+		} catch(DALException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok().entity("User updated").build();
 		
 	}
 
 	@Override
 	@DELETE
-	@Path("delete")
-	public Response deleteOperatoer(int opr_id) throws DALException {
+	@Path("{id}")
+	public Response deleteOperatoer(@PathParam("id") int opr_id) throws DALException {
 		try {
 			new MySQLConnector();
 		} catch (InstantiationException e) {
@@ -152,8 +165,12 @@ public class OperatoerService implements IOperatoerService {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
 		
-		return Response.status(Response.Status.NOT_IMPLEMENTED).entity("Rest metode ikke implementeret endnu").build();
-		
+		try {
+			controller.deleteOperatoer(opr_id);
+		} catch(DALException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok().entity("User deleted").build();
 	}
 	
 }
