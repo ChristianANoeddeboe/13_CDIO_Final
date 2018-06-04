@@ -17,104 +17,6 @@ import connector.MySQLConnector;
 
 
 public class Controller {
-<<<<<<< HEAD
-	WeightSocket socket;
-	Logger logger;
-	MySQLOperatoerDAO MySQLoperatoer;
-	MySQLProduktBatchDAO MySQLproductBatch;
-	OperatoerDTO operatoer;
-	ProduktBatchDTO produktBatch;
-	List<ReceptKompDTO> receptKompList;
-	MySQLReceptKompDAO tempreceptkomp;
-	MySQLRaavareBatchDAO mysqlraavareBatch;
-	MySQLRaavareDAO mysqlraavare;
-	RaavareDTO raavare;
-	HashMap<Integer, PreparedStatement> preparedstatementsContainer = new HashMap<>();
-	public Controller(WeightSocket socket) {
-		this.socket = socket;
-		this.logger = new Logger();
-		this.MySQLoperatoer = new MySQLOperatoerDAO();
-		this.MySQLproductBatch = new MySQLProduktBatchDAO();
-		this.operatoer = new OperatoerDTO();
-		this.produktBatch = null;
-	}
-	
-	public void run() throws DALException {		
-		boolean userOK = false, batchOK = false;
-		try {
-			// Connect to weight
-			socket.connect();
-			// TODO Use proper error messages
-			try {new MySQLConnector();} catch (InstantiationException e1) {e1.printStackTrace();} catch (IllegalAccessException e1) {e1.printStackTrace();} catch (ClassNotFoundException e1) {e1.printStackTrace();} catch (SQLException e1) {e1.printStackTrace();}
-			MySQLConnector.getConn().setAutoCommit(false);
-			tempreceptkomp = new MySQLReceptKompDAO();
-			mysqlraavareBatch = new MySQLRaavareBatchDAO();
-			mysqlraavare = new MySQLRaavareDAO();
-			// Get UserID from input
-			do {
-				userOK = requestUserID();
-			} while (operatoer == null || !userOK);
-			if(operatoer.getAktiv().equals(Aktiv.inaktiv)) {
-				requestInput("Brugeren er inaktiv","","");
-				throw new DALException("Brugeren er inaktiv");
-			}
-			// Get Batch Id
-			do {
-				batchOK = requestBatchID();
-			} while (produktBatch == null || !batchOK);
-			if(produktBatch.getStatus() != Status.Klar) {
-				requestInput("Fejl afvejning allerede startet", "", "");
-				throw new DALException("Produktbatchets status var ikke klar ved start");
-			}
-			
-			produktBatch.setStatus(Status.Igang);
-			//preparedstatementsContainer.put(1, MySQLConnector.getConn().prepareStatement("call updateProductBatch("+produktBatch.getPbId()+",'"+produktBatch.getStatus()+"',"+produktBatch.getReceptId()+")"));
-			MySQLproductBatch.updateProduktBatch(produktBatch);
-			getReceptKomp(produktBatch);
-			
-			bruttoCheck();
-			produktBatch.setStatus(Status.Afsluttet);
-			MySQLproductBatch.updateProduktBatch(produktBatch);
-			requestInput("Faerdig med afvejningen", "", "");
-		}	
-		catch (IOException e) {
-			produktBatch.setStatus(Status.Klar);
-			MySQLproductBatch.updateProduktBatch(produktBatch);
-			logger.writeToLog(e.getMessage());
-			System.exit(0);
-		} catch (NumberFormatException e) {
-			produktBatch.setStatus(Status.Klar);
-			MySQLproductBatch.updateProduktBatch(produktBatch);
-			e.printStackTrace();
-		} catch (DALException e) {
-			produktBatch.setStatus(Status.Klar);
-			MySQLproductBatch.updateProduktBatch(produktBatch);
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	public void bruttoCheck() throws IOException, DALException {
-		//Nomnetto: Required amount
-		//Tolerance: weighed amount has to be within +- nomnetto
-		
-		
-		double tara, nomnetto, tolerance, weightAmount, result;
-		for (ReceptKompDTO receptKompDTO : receptKompList) {
-			nomnetto = receptKompDTO.getNomNetto();
-			tolerance = receptKompDTO.getTolerance();
-			tarare();
-			do {
-				requestInput("Toem Vaegt","","");
-			} while (readWeight() >= 0.01);
-			
-			raavare = mysqlraavare.getRaavare(receptKompDTO.getRaavareId());
-			requestInput(raavare.getRaavareId()+":"+raavare.getRaavareNavn(),"", "");
-			// Request tara.
-			requestInput("Placer tara","","");
-			tara = tarare();
-=======
     WeightSocket socket;
     Logger logger;
     IDAOOperatoer MySQLoperatoer;
@@ -135,14 +37,13 @@ public class Controller {
         this.operatoer = new DTOOperatoer();
         this.produktBatch = null;
     }
->>>>>>> branch 'development' of https://github.com/mathiasthejsen/13_CDIO_Final
 
     public void run() throws DALException {
         boolean userOK = false, batchOK = false;
         try {
             // Connect to weight
             socket.connect();
-            // TODO Use proper error messages
+            // TO-DO Use proper error messages
             try {new MySQLConnector();} catch (InstantiationException e1) {e1.printStackTrace();} catch (IllegalAccessException e1) {e1.printStackTrace();} catch (ClassNotFoundException e1) {e1.printStackTrace();} catch (SQLException e1) {e1.printStackTrace();}
             MySQLConnector.getConn().setAutoCommit(false);
             tempreceptkomp = new DAOReceptKomp();
