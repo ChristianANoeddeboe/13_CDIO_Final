@@ -31,7 +31,7 @@ public class ProduktBatchController {
         dao.updateProduktBatch(produktBatch);
     }
 
-    public void delteProduktBatch(int pbID) throws DALException{
+    public void deleteProduktBatch(int pbID) throws DALException{
         dao.deleteProduktBatch(pbID);
     }
 
