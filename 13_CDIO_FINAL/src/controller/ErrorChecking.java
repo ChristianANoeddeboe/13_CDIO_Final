@@ -32,12 +32,8 @@ public class ErrorChecking {
         }
     }
 
-    public static String checkStatus(String input) {
-        if (!Statuss.isMember(input)) {
-            return "4 Status invalid.";
-        } else {
-            return null;
-        }
+    public static String checkStatus(Enum input) {
+        input.toString();
     }
 
     public static String checkCPR(String input) {

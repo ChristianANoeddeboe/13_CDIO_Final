@@ -51,8 +51,8 @@ public class DAORaavare implements IDAORaavare {
     }
 
 	@Override
-	public void deleteRaavare(int recept_id) throws DALException {
-		if(MySQLConnector.doUpdate("call deleteRaavare('"+recept_id+"')")==0) {
+	public void deleteRaavare(int raavare_id) throws DALException {
+		if(MySQLConnector.doUpdate("call deleteRaavare('"+raavare_id+"')")==0) {
         	throw new DALException("No rows updated in \"Raavare\".");
         }
 	}
