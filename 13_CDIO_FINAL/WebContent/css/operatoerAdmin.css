@@ -15,3 +15,12 @@ body {
 .table {
     box-shadow: -1px 3px 5px #8888888c;
 }
+
+.table th:last-child {
+    width: 5%;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #c51137;
+    color: #fff;
+}
