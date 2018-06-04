@@ -104,8 +104,13 @@ public class OperatoerService implements IOperatoerService {
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
-		//TODO
-		return Response.status(Response.Status.NOT_IMPLEMENTED).entity("Ikke implementeret endnu").build();
+		
+		try {
+			dao.createOperatoer(opr);
+		} catch(DALException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok().entity("User created").build();
 		
 	}
 
@@ -128,14 +133,19 @@ public class OperatoerService implements IOperatoerService {
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
-		//TODO
-		return Response.status(Response.Status.NOT_IMPLEMENTED).entity("Ikke implementeret endnu").build();
+		
+		try {
+			dao.updateOperatoer(opr);
+		} catch(DALException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok().entity("User updated").build();
 		
 	}
 
 	@Override
 	@DELETE
-	@Path("delete/{id}")
+	@Path("{id}")
 	public Response deleteOperatoer(@PathParam("id") int opr_id) throws DALException {
 		try {
 			new MySQLConnector();
