@@ -4,12 +4,14 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.IDAORaavare;
 import dto.DTORaavare;
+import lombok.extern.java.Log;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log
 public class DAORaavare implements IDAORaavare {
 
     @Override
@@ -18,7 +20,10 @@ public class DAORaavare implements IDAORaavare {
         try {
             if (!rs.first()) throw new DALException("Raavaren " + raavareId + " findes ikke.");
             return new DTORaavare(rs.getInt("raavare_id"), rs.getString("raavare_navn"), "");
-        } catch (SQLException e) {throw new DALException(e);}
+        } catch (SQLException e) {
+            log.severe(e.toString());
+            throw new DALException(e);
+        }
     }
 
     @Override
@@ -32,28 +37,37 @@ public class DAORaavare implements IDAORaavare {
                 list.add(new DTORaavare(rs.getInt("raavare_id"), rs.getString("raavare_navn"), rs.getString("leverandoer")));
             }
         }
-        catch (SQLException e) { throw new DALException(e); }
+        catch (SQLException e) {
+            log.severe(e.toString());
+            throw new DALException(e);
+        }
         return list;
     }
 
     @Override
     public void createRaavare(DTORaavare raavare) throws DALException {
         if(MySQLConnector.doUpdate("call createRaavare('"+raavare.getRaavareNavn()+"','"+raavare.getLeverandoer()+"','"+raavare.getRaavareId()+"')")==0) {
-        	throw new DALException("Couldn't add tuple to \"Raavare\".");
+        	String errMsg = "Couldn't add tuple to \"Raavare\".";
+        	log.severe(errMsg);
+            throw new DALException(errMsg);
         }
     }
 
     @Override
     public void updateRaavare(DTORaavare raavare) throws DALException {
         if(MySQLConnector.doUpdate("call updateRaavare('"+raavare.getRaavareId()+"','"+raavare.getRaavareNavn()+"','"+raavare.getLeverandoer()+"')")==0) {
-        	throw new DALException("No rows updated in \"Raavare\".");
+        	String errMsg = "No rows updated in \"Raavare\".";
+        	log.severe(errMsg);
+            throw new DALException(errMsg);
         }
     }
 
 	@Override
 	public void deleteRaavare(int raavare_id) throws DALException {
 		if(MySQLConnector.doUpdate("call deleteRaavare('"+raavare_id+"')")==0) {
-        	throw new DALException("No rows updated in \"Raavare\".");
+        	String errMsg = "No rows updated in \"Raavare\".";
+        	log.severe(errMsg);
+		    throw new DALException(errMsg);
         }
 	}
 }
