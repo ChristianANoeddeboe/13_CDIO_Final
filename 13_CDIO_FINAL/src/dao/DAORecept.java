@@ -9,7 +9,9 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.IDAORecept;
 import dto.DTORecept;
+import lombok.extern.java.Log;
 
+@Log
 public class DAORecept implements IDAORecept {
 
     /*Return a single recept based on the recept ID.*/
@@ -22,6 +24,7 @@ public class DAORecept implements IDAORecept {
             if (!rs.first()) throw new DALException("Recept " + receptId + " findes ikke.");
             return new DTORecept(rs.getInt("recept_id"), rs.getString("recept_navn"));
         } catch (SQLException e) {
+            log.severe(e.toString());
             throw new DALException(e);
         }
     }
@@ -38,6 +41,7 @@ public class DAORecept implements IDAORecept {
             }
             return list;
         } catch (SQLException e) {
+            log.severe(e.toString());
             throw new DALException(e);
         }
     }
@@ -45,21 +49,27 @@ public class DAORecept implements IDAORecept {
     @Override
     public void createRecept(DTORecept recept) throws DALException {
         if (MySQLConnector.doUpdate("CALL createRecept('" + recept.getReceptNavn() + "');") == 0) {
-            throw new DALException("Couldn't add tuple to \"Recept\".");
+            String errMsg = "Couldn't add tuple to \"Recept\".";
+            log.severe(errMsg);
+            throw new DALException(errMsg);
         }
     }
 
     @Override
     public void updateRecept(DTORecept recept) throws DALException {
         if (MySQLConnector.doUpdate("CALL updateRecept(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "');") == 0) {
-            throw new DALException("No rows updated in \"Recept\".");
+            String errMsg = "No rows updated in \"Recept\".";
+            log.severe(errMsg);
+            throw new DALException(errMsg);
         }
     }
 
     @Override
     public void deleteRecept(int receptID) throws DALException {
         if (MySQLConnector.doUpdate("CALL deleteRecept(" + receptID + "');") == 0) {
-            throw new DALException("No rows deleted in \"Recept\".");
+            String eerMsg = "No rows deleted in \"Recept\".";
+            log.severe(eerMsg);
+            throw new DALException(eerMsg);
         }
     }
 }
