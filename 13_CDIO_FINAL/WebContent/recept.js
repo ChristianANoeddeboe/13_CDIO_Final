@@ -19,9 +19,10 @@ $(document).ready(function() {
 
 	//Convenience function for generating html
 	function generateOperatoerHTML(recept) {
-		return 	'<tr><td>' + recept.receptId + '</td>' +
-		'<td>' + recept.receptNavn + '</td>' +
-		'</tr>';
+		return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
+		'<td><input type="text" class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
+		'<td><button type="button" class="btn btn-primary slet" data-toggle="modal" data-target="#exampleModalCenter2">Slet</button>'+
+		'</td></tr>';
 	}
 	
 	function clearTable(){
