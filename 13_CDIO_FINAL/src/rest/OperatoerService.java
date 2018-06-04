@@ -10,7 +10,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import connector.MySQLConnector;
 import dao.DAOOperatoer;
@@ -25,13 +24,34 @@ import exception.DALException;
 
 public class OperatoerService implements IOperatoerService {
 	static DAOOperatoer dao = new DAOOperatoer();
-	
+
 	@GET
 	@Path("id/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public DTOOperatoer getOperatoer(@PathParam("id") int oprId) throws DALException {
-		return dao.getOperatoer(oprId);
+	public Response getOperatoer(@PathParam("id") int oprId) throws DALException {
+		try {
+			new MySQLConnector();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
+		}
+		DTOOperatoer result = null;
+		try {
+			result = dao.getOperatoer(oprId);
+		} catch(DALException e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok(result, MediaType.APPLICATION_JSON).build();
 	}
 
 	@GET
@@ -39,24 +59,27 @@ public class OperatoerService implements IOperatoerService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getOperatoerList() throws DALException {
-		List<DTOOperatoer> result = null;
-        try {
-        	new MySQLConnector();
-            result = dao.getOperatoerList();
-        } catch(IndexOutOfBoundsException e){
-	   		return Response.status(Response.Status.BAD_GATEWAY).entity("Brugeren eksisterer ikke").build();
-        } catch (InstantiationException e) {
-			// TODO Auto-generated catch block
+		try {
+			new MySQLConnector();
+		} catch (InstantiationException e) {
 			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
+		}
+		
+		List<DTOOperatoer> result = null;
+		try {
+			result = dao.getOperatoerList();
+		} catch(DALException e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
 		}
         return Response.ok(result, MediaType.APPLICATION_JSON).build();
 	
@@ -66,6 +89,21 @@ public class OperatoerService implements IOperatoerService {
 	@Path("create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createOperatoer(DTOOperatoer opr) throws DALException {
+		try {
+			new MySQLConnector();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
+		}
 		return null;
 		
 	}
@@ -74,7 +112,23 @@ public class OperatoerService implements IOperatoerService {
 	@PUT
 	@Path("update")
 	public Response updateOperatoer(DTOOperatoer opr) throws DALException {
-		return null;
+		try {
+			new MySQLConnector();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
+		}
+		
+		return Response.status(Response.Status.NOT_IMPLEMENTED).entity("Ikke implementeret endnu").build();
 		
 	}
 
@@ -82,7 +136,23 @@ public class OperatoerService implements IOperatoerService {
 	@DELETE
 	@Path("delete")
 	public Response deleteOperatoer(int opr_id) throws DALException {
-		return null;
+		try {
+			new MySQLConnector();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
+		}
+		
+		return Response.status(Response.Status.NOT_IMPLEMENTED).entity("Rest metode ikke implementeret endnu").build();
 		
 	}
 	
