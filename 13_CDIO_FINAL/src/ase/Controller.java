@@ -64,7 +64,10 @@ public class Controller {
 			do {
 				userOK = requestUserID();
 			} while (operatoer == null || !userOK);
-			
+			if(operatoer.getAktiv().equals(Aktiv.inaktiv)) {
+				requestInput("Brugeren er inaktiv","","");
+				throw new DALException("Brugeren er inaktiv");
+			}
 			// Get Batch Id
 			do {
 				batchOK = requestBatchID();
@@ -75,9 +78,8 @@ public class Controller {
 			}
 			
 			produktBatch.setStatus(Status.Igang);
-			preparedstatementsContainer.put(1, MySQLConnector.getConn().prepareStatement("call updateProductBatch("+produktBatch.getPbId()+",'"+produktBatch.getStatus()+"',"+produktBatch.getReceptId()+")"));
-			//MySQLproductBatch.updateProduktBatch(produktBatch);
-			
+			//preparedstatementsContainer.put(1, MySQLConnector.getConn().prepareStatement("call updateProductBatch("+produktBatch.getPbId()+",'"+produktBatch.getStatus()+"',"+produktBatch.getReceptId()+")"));
+			MySQLproductBatch.updateProduktBatch(produktBatch);
 			getReceptKomp(produktBatch);
 			
 			bruttoCheck();
