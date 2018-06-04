@@ -27,8 +27,8 @@ public class ErrorChecking {
     public static String checkStatus(Enum input) {
         String status = input.name();
         Object[] obj = input.getDeclaringClass().getEnumConstants();
-        for (Object object: obj) {
-            if(object.toString().equals(input.toString())){
+        for (Object object : obj) {
+            if (object.toString().equals(input.toString())) {
                 return null;
             }
         }
@@ -38,9 +38,14 @@ public class ErrorChecking {
     public static String checkCPR(String input) {
         if (input.length() != 10) {
             return ERROR5;
-        } else {
-            return null;
         }
+        for (char chr : input.toCharArray()) {
+            System.out.print(chr);
+            if (chr < 48 || chr > 57) {
+                return ERROR3;
+            }
+        }
+        return null;
     }
 
     public static String checkId(int input) {
@@ -59,14 +64,13 @@ public class ErrorChecking {
         }
     }
 
-    public static String checkNumberOfDecimals(double maengde){
+    public static String checkNumberOfDecimals(double maengde) {
         String s = "" + maengde;
         String[] StrArr = s.split("\\.");
         int numberOfDecimals = StrArr[1].length();
-        if(numberOfDecimals > 4){
+        if (numberOfDecimals > 4) {
             return ERROR3;
-        }
-        else{
+        } else {
             return null;
         }
     }
