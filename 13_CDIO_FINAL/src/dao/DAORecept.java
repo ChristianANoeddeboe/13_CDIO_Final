@@ -66,7 +66,7 @@ public class DAORecept implements IDAORecept {
 
     @Override
     public void deleteRecept(int receptID) throws DALException {
-        if (MySQLConnector.doUpdate("CALL deleteRecept(" + receptID + "');") == 0) {
+        if (MySQLConnector.doUpdate("CALL deleteRecept(" + receptID + ");") == 0) {
             String eerMsg = "No rows deleted in \"Recept\".";
             log.severe(eerMsg);
             throw new DALException(eerMsg);
