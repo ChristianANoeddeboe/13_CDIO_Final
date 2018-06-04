@@ -43,7 +43,7 @@ public class Controller {
         try {
             // Connect to weight
             socket.connect();
-            // TODO Use proper error messages
+            // TO-DO Use proper error messages
             try {new MySQLConnector();} catch (InstantiationException e1) {e1.printStackTrace();} catch (IllegalAccessException e1) {e1.printStackTrace();} catch (ClassNotFoundException e1) {e1.printStackTrace();} catch (SQLException e1) {e1.printStackTrace();}
             MySQLConnector.getConn().setAutoCommit(false);
             tempreceptkomp = new DAOReceptKomp();
