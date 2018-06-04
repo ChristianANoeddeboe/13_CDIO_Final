@@ -51,4 +51,8 @@ public class RaavareBatchController {
             throw new DALException(errMsg);
         }
     }
+    
+    public List<DTORaavareBatch> getRaavareBatchList(int raavareId) throws DALException{
+    	return dao.getRaavareBatchList(raavareId);
+    }
 }
