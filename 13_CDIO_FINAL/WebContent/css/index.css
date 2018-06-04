@@ -40,3 +40,7 @@ input:focus {
 .list-group-item {
     padding: 0;
 }
+
+a:hover {
+    text-decoration: none;
+}

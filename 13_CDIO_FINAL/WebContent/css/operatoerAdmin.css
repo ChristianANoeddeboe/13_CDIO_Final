@@ -19,11 +19,11 @@ body {
 .table th:last-child {
     width: 5%;
 }
-
+/*
 .table-hover tbody tr:hover {
-    background-color: #c51137;
+    background-color: #3c4854;
     color: #fff;
-}
+}*/
 
 .btn {
     padding: .12rem .5rem .02rem .5rem;
@@ -42,11 +42,28 @@ body {
 }
 
 .btn-primary:focus {
-    0 0 0 0.2rem rgba(123,123,123,.5)
+    box-shadow: 0 0 0 0.2rem rgba(123,123,123,.5)
 }
 
 .btn-primary:not(:disabled):not(.disabled):active {
     color: #c51137;
     background-color: #fff;
+    border-color: #fff;
+}
+
+.form-control-plaintext {
+    width: auto;
+    padding: 0;
+}
+
+.slet {
+    color: #c51137;
+    background-color: #ffffff;
+    border-color: #c51137;
+}
+
+.slet:hover {
+    color: #fff;
+    background-color: #c51137;
     border-color: #fff;
 }
