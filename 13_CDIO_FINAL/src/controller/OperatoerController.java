@@ -5,30 +5,29 @@ import lombok.extern.java.Log;
 
 import java.util.List;
 
-import dao.MySQLOperatoerDAO;
-import dto.OperatoerDTO;
+import dto.DTOOperatoer;
 import exception.DALException;
-import interfaces.OperatoerDAO;
+import interfaces.IDAOOperatoer;
 
 @Log
 @AllArgsConstructor
 public class OperatoerController {
-	private OperatoerDAO dao;
+	private IDAOOperatoer dao;
 	
-	public OperatoerDTO getOperatoer(int oprId) throws DALException {
+	public DTOOperatoer getOperatoer(int oprId) throws DALException {
 		return dao.getOperatoer(oprId);
 	}
 	
-	public List<OperatoerDTO> getOperatoerList() throws DALException{
+	public List<DTOOperatoer> getOperatoerList() throws DALException{
 		return dao.getOperatoerList();
 	}
 	
-	public void createOperatoer(OperatoerDTO operatoerDTO) throws DALException {
+	public void createOperatoer(DTOOperatoer operatoerDTO) throws DALException {
 		validateData(operatoerDTO);
 		dao.createOperatoer(operatoerDTO);
 	}
 	
-	public void updateOperatoer(OperatoerDTO operatoerDTO) throws DALException{
+	public void updateOperatoer(DTOOperatoer operatoerDTO) throws DALException{
 		validateData(operatoerDTO);
 		dao.updateOperatoer(operatoerDTO);
 	}
@@ -37,7 +36,7 @@ public class OperatoerController {
 		dao.deleteOperatoer(oprId);
 	}
 	
-	private void validateData(OperatoerDTO operatoer) throws DALException{
+	private void validateData(DTOOperatoer operatoer) throws DALException{
 		String errMsg;
 		errMsg = ErrorChecking.checkId(operatoer.getOprId());
 		throwException(errMsg);

@@ -5,11 +5,11 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ReceptDTO {
+public class DTORecept {
     private int receptId;
     private String receptNavn;
 
-    public ReceptDTO(String receptNavn) {
+    public DTORecept(String receptNavn) {
         this.receptNavn = receptNavn;
     }
 }

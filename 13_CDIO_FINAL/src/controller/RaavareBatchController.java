@@ -1,10 +1,8 @@
 package controller;
 
-import dao.MySQLRaavareBatchDAO;
-import dto.RaavareBatchDTO;
+import dto.DTORaavareBatch;
 import exception.DALException;
-import interfaces.ProduktBatchDAO;
-import interfaces.RaavareBatchDAO;
+import interfaces.IDAORaavareBatch;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
@@ -13,22 +11,22 @@ import java.util.List;
 @Log
 @AllArgsConstructor
 public class RaavareBatchController {
-    private RaavareBatchDAO dao;
+    private IDAORaavareBatch dao;
 
-    public RaavareBatchDTO getRaavareBatch(int rbID) throws DALException {
+    public DTORaavareBatch getRaavareBatch(int rbID) throws DALException {
         return dao.getRaavareBatch(rbID);
     }
 
-    public List<RaavareBatchDTO> getRaavareBatchList() throws DALException{
+    public List<DTORaavareBatch> getRaavareBatchList() throws DALException{
         return dao.getRaavareBatchList();
     }
 
-    public void createRaavsareBatch(RaavareBatchDTO raavareBatch) throws DALException{
+    public void createRaavsareBatch(DTORaavareBatch raavareBatch) throws DALException{
         validateData(raavareBatch);
         dao.createRaavareBatch(raavareBatch);
     }
 
-    public void updateRaavareBatch(RaavareBatchDTO raavareBatch) throws  DALException{
+    public void updateRaavareBatch(DTORaavareBatch raavareBatch) throws  DALException{
         validateData(raavareBatch);
         dao.updateRaavareBatch(raavareBatch);
     }
@@ -37,7 +35,7 @@ public class RaavareBatchController {
         dao.deleteRaavareBatch(raavareBatchID);
     }
 
-    private void validateData(RaavareBatchDTO raavareBatch) throws DALException{
+    private void validateData(DTORaavareBatch raavareBatch) throws DALException{
         String errMsg;
         errMsg = ErrorChecking.checkIntSize(raavareBatch.getRbId());
         throwException(errMsg);

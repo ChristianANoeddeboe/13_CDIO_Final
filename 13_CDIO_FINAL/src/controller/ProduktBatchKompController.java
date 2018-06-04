@@ -2,36 +2,35 @@ package controller;
 
 import java.util.List;
 
-import dao.MySQLProductBatchKomponentDAO;
-import dto.ProduktBatchKompDTO;
+import dto.DTOProduktBatchKomp;
 import exception.DALException;
-import interfaces.ProduktBatchKompDAO;
+import interfaces.IDAOProduktBatchKomp;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
 @AllArgsConstructor
 public class ProduktBatchKompController {
-	private ProduktBatchKompDAO dao;
+	private IDAOProduktBatchKomp dao;
 	
-	public ProduktBatchKompDTO getProduktBatchKomp(int pbId, int rbId) throws DALException{
+	public DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException{
 		return dao.getProduktBatchKomp(pbId, rbId);
 	}
 	
-	public List<ProduktBatchKompDTO> getProduktBatchKomponentList(int pbId) throws DALException{
+	public List<DTOProduktBatchKomp> getProduktBatchKomponentList(int pbId) throws DALException{
 		return dao.getProduktBatchKompList(pbId);
 	}
 	
-	public List<ProduktBatchKompDTO> getProduktBatchKomponentList() throws DALException{
+	public List<DTOProduktBatchKomp> getProduktBatchKomponentList() throws DALException{
 		return dao.getProduktBatchKompList();
 	}
 	
-	public void createProdBatchKomp(ProduktBatchKompDTO prodBatchKomp) throws DALException{
+	public void createProdBatchKomp(DTOProduktBatchKomp prodBatchKomp) throws DALException{
 		validateData(prodBatchKomp);
 		dao.createProduktBatchKomp(prodBatchKomp);
 	}
 	
-	public void updateProdBatchKomp(ProduktBatchKompDTO prodBatchKomp) throws DALException{
+	public void updateProdBatchKomp(DTOProduktBatchKomp prodBatchKomp) throws DALException{
 		validateData(prodBatchKomp);
 		dao.updateProduktBatchKomp(prodBatchKomp);
 	}
@@ -40,7 +39,7 @@ public class ProduktBatchKompController {
 		dao.deleteProduktBatchKomp(pbId, rbId);
 	}
 	
-	private void validateData(ProduktBatchKompDTO produktBatchKomp) throws DALException {
+	private void validateData(DTOProduktBatchKomp produktBatchKomp) throws DALException {
 		String errMsg;
 		errMsg = ErrorChecking.checkIntSize(produktBatchKomp.getPbId());
 		throwException(errMsg);

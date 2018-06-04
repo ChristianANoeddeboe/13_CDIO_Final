@@ -1,9 +1,8 @@
 package controller;
 
-import dao.MySQLProduktBatchDAO;
-import dto.ProduktBatchDTO;
+import dto.DTOProduktBatch;
 import exception.DALException;
-import interfaces.ProduktBatchDAO;
+import interfaces.IDAOProduktBatch;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
@@ -12,22 +11,22 @@ import java.util.List;
 @Log
 @AllArgsConstructor
 public class ProduktBatchController {
-    private ProduktBatchDAO dao;
+    private IDAOProduktBatch dao;
 
-    public ProduktBatchDTO getProductBatch(int pbID) throws DALException{
+    public DTOProduktBatch getProductBatch(int pbID) throws DALException{
         return dao.getProduktBatch(pbID);
     }
 
-    public List<ProduktBatchDTO> getProductBatchList() throws DALException{
+    public List<DTOProduktBatch> getProductBatchList() throws DALException{
         return dao.getProduktBatchList();
     }
 
-    public void createProductBatch(ProduktBatchDTO produktBatch) throws DALException{
+    public void createProductBatch(DTOProduktBatch produktBatch) throws DALException{
         validateData(produktBatch);
         dao.createProduktBatch(produktBatch);
     }
 
-    public void updateProductBatch(ProduktBatchDTO produktBatch) throws DALException{
+    public void updateProductBatch(DTOProduktBatch produktBatch) throws DALException{
         validateData(produktBatch);
         dao.updateProduktBatch(produktBatch);
     }
@@ -36,7 +35,7 @@ public class ProduktBatchController {
         dao.deleteProduktBatch(pbID);
     }
 
-    private void validateData(ProduktBatchDTO produktBatch) throws DALException {
+    private void validateData(DTOProduktBatch produktBatch) throws DALException {
         String errMsg;
         errMsg = ErrorChecking.checkIntSize(produktBatch.getPbId());
         throwException(errMsg);

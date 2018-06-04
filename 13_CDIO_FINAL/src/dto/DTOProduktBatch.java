@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ProduktBatchDTO {
+public class DTOProduktBatch {
     int pbId;                     // i omraadet 1-99999999
     Enum<Status> status;                    // 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
     int receptId;
@@ -17,7 +17,7 @@ public class ProduktBatchDTO {
      * @param status
      * @param receptId
      */
-    public ProduktBatchDTO(Enum<Status> status, int receptId) {
+    public DTOProduktBatch(Enum<Status> status, int receptId) {
         this.status = status;
         this.receptId = receptId;
     }
