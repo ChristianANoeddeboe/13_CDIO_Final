@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import connector.MySQLConnector;
+import controller.*;
 import dao.DAOOperatoer;
 import dto.DTOOperatoer;
 
@@ -23,7 +24,8 @@ import exception.DALException;
 @Produces(MediaType.APPLICATION_JSON)
 
 public class OperatoerService implements IOperatoerService {
-	static DAOOperatoer dao = new DAOOperatoer();
+	
+	static OperatoerController controller = new OperatoerController(new DAOOperatoer());
 
 	@GET
 	@Path("{id}")
@@ -47,7 +49,7 @@ public class OperatoerService implements IOperatoerService {
 		}
 		DTOOperatoer result = null;
 		try {
-			result = dao.getOperatoer(oprId);
+			result = controller.getOperatoer(oprId);
 		} catch(DALException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
 		}
@@ -77,7 +79,7 @@ public class OperatoerService implements IOperatoerService {
 		
 		List<DTOOperatoer> result = null;
 		try {
-			result = dao.getOperatoerList();
+			result = controller.getOperatoerList();
 		} catch(DALException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
 		}
@@ -106,7 +108,7 @@ public class OperatoerService implements IOperatoerService {
 		}
 		
 		try {
-			dao.createOperatoer(opr);
+			controller.createOperatoer(opr);
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
@@ -135,7 +137,7 @@ public class OperatoerService implements IOperatoerService {
 		}
 		
 		try {
-			dao.updateOperatoer(opr);
+			controller.updateOperatoer(opr);
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
@@ -164,7 +166,7 @@ public class OperatoerService implements IOperatoerService {
 		}
 		
 		try {
-			dao.deleteOperatoer(opr_id);
+			controller.deleteOperatoer(opr_id);
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
