@@ -104,7 +104,8 @@ public class OperatoerService implements IOperatoerService {
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
-		return null;
+		//TODO
+		return Response.status(Response.Status.NOT_IMPLEMENTED).entity("Ikke implementeret endnu").build();
 		
 	}
 
@@ -127,15 +128,15 @@ public class OperatoerService implements IOperatoerService {
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
-		
+		//TODO
 		return Response.status(Response.Status.NOT_IMPLEMENTED).entity("Ikke implementeret endnu").build();
 		
 	}
 
 	@Override
 	@DELETE
-	@Path("delete")
-	public Response deleteOperatoer(int opr_id) throws DALException {
+	@Path("delete/{id}")
+	public Response deleteOperatoer(@PathParam("id") int opr_id) throws DALException {
 		try {
 			new MySQLConnector();
 		} catch (InstantiationException e) {
@@ -152,8 +153,12 @@ public class OperatoerService implements IOperatoerService {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
 		
-		return Response.status(Response.Status.NOT_IMPLEMENTED).entity("Rest metode ikke implementeret endnu").build();
-		
+		try {
+			dao.deleteOperatoer(opr_id);
+		} catch(DALException e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok().entity("User deleted").build();
 	}
 	
 }
