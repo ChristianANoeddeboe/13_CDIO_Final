@@ -9,12 +9,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
-import dao.DAOProductBatchKomponent;
+import dao.DAOProduktBatchKomp;
 import exception.DALException;
 import dto.DTOProduktBatchKomp;
 
 class DAOProduktBatchKomponentTest {
-	static DAOProductBatchKomponent prodBatchKomp;
+	static DAOProduktBatchKomp prodBatchKomp;
 	static DTOProduktBatchKomp initialProdBatchKomp;
 	
 	@BeforeAll
@@ -24,7 +24,7 @@ class DAOProduktBatchKomponentTest {
 		catch (IllegalAccessException e) { e.printStackTrace(); }
 		catch (ClassNotFoundException e) { e.printStackTrace(); }
 		catch (SQLException e) { e.printStackTrace(); }
-		prodBatchKomp = new DAOProductBatchKomponent();
+		prodBatchKomp = new DAOProduktBatchKomp();
 		initialProdBatchKomp = prodBatchKomp.getProduktBatchKomp(1,1);
 	}
 

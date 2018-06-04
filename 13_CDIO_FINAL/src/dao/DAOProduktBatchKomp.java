@@ -12,7 +12,7 @@ import dto.DTOProduktBatchKomp;
 import lombok.extern.java.Log;
 
 @Log
-public class DAOProductBatchKomponent implements IDAOProduktBatchKomp {
+public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
 
     @Override
     public DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException {

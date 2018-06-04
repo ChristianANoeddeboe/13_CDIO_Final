@@ -129,7 +129,7 @@ public class Controller {
                 mysqlraavareBatch.updateRaavareBatch(tempraavarebatch);
                 DTOProduktBatchKomp tempProduktBatchKomp = new DTOProduktBatchKomp(produktBatch.getPbId(), tempraavarebatch.getRbId(), tara, weightAmount, operatoer.getOprId());
 
-                IDAOProduktBatchKomp tempMySQLProdukt = new DAOProductBatchKomponent();
+                IDAOProduktBatchKomp tempMySQLProdukt = new DAOProduktBatchKomp();
                 tempMySQLProdukt.createProduktBatchKomp(tempProduktBatchKomp);
             }else {
                 continue;

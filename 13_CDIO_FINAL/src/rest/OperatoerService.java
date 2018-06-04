@@ -85,7 +85,7 @@ public class OperatoerService implements IOperatoerService {
 	
 	}
 
-	@POST
+	@PUT
 	@Path("create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createOperatoer(DTOOperatoer opr) throws DALException {
@@ -156,7 +156,7 @@ public class OperatoerService implements IOperatoerService {
 		try {
 			dao.deleteOperatoer(opr_id);
 		} catch(DALException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
 		return Response.ok().entity("User deleted").build();
 	}
