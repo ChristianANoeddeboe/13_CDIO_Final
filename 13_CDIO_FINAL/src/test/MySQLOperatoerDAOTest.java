@@ -72,11 +72,7 @@ class MySQLOperatoerDAOTest {
 	@Test
 	void testCreateOperatoer() {
 		try {
-<<<<<<< HEAD:13_CDIO_FINAL/src/test01917/MySQLOperatoerDAOTest.java
-			operatoer.createOperatoer(new DTOOperatoer("test", "testEfternavn", "123456-1210", "password", "Administrator", Aktiv.aktiv));
-=======
-			operatoer.createOperatoer(new OperatoerDTO("test", "testEfternavn", "123456-1210", "Administrator", Aktiv.aktiv));
->>>>>>> development:13_CDIO_FINAL/src/test/MySQLOperatoerDAOTest.java
+			operatoer.createOperatoer(new DTOOperatoer("test", "testEfternavn", "123456-1210", "Administrator", Aktiv.aktiv));
 		}catch (Exception e) {
 			fail("Something went wrong creating an operator");
 		}	}
@@ -85,11 +81,7 @@ class MySQLOperatoerDAOTest {
 	void testUpdateOperatoerValid() {
 		boolean valid = true;
 		try {
-<<<<<<< HEAD:13_CDIO_FINAL/src/test01917/MySQLOperatoerDAOTest.java
-			operatoer.updateOperatoer(new DTOOperatoer(1,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", Aktiv.aktiv));
-=======
-			operatoer.updateOperatoer(new OperatoerDTO(1,"testUpdated", "testEfternavn", "123456-1234", "Administrator", Aktiv.aktiv));
->>>>>>> development:13_CDIO_FINAL/src/test/MySQLOperatoerDAOTest.java
+			operatoer.updateOperatoer(new DTOOperatoer(1,"testUpdated", "testEfternavn", "123456-1234", "Administrator", Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 			fail("Invalid parameters");
@@ -104,11 +96,7 @@ class MySQLOperatoerDAOTest {
 	void testUpdateOperatoerInvalid() {
 		boolean valid = true;
 		try {
-<<<<<<< HEAD:13_CDIO_FINAL/src/test01917/MySQLOperatoerDAOTest.java
-			operatoer.updateOperatoer(new DTOOperatoer(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", "password", "Administrator", Aktiv.aktiv));
-=======
-			operatoer.updateOperatoer(new OperatoerDTO(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", "Administrator", Aktiv.aktiv));
->>>>>>> development:13_CDIO_FINAL/src/test/MySQLOperatoerDAOTest.java
+			operatoer.updateOperatoer(new DTOOperatoer(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", "Administrator", Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 		}catch (Exception e) {
