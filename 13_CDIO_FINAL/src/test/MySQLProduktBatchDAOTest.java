@@ -1,7 +1,7 @@
 /**
  * 
  */
-package test01917;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
