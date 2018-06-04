@@ -4,7 +4,8 @@
 
 $(document).ready(function() {
 	var id;
-
+	var value;
+	const enterkey = 13;
 	function loadUsers(){
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/recept/display', //specificerer endpointet
@@ -56,14 +57,34 @@ $(document).ready(function() {
 		$("#receptTable>tbody").empty();
 
 	};
-	
-	
+
+
 	$(document).keypress(function(e) {
-	    if(e.which == 13) {
-	    	id = e.target.id;
-	    }
-	    $('#exampleModalCenter3').modal('show');
+		if(e.which == enterkey) {
+			id = e.target.id;
+			value = e.target.value;
+			$('#exampleModalCenter3').modal('show');
+		}
+		
 	});
 
+	$(".btn-secondaryUpdate").click(function(){		
+		$.ajax({ //Indleder et asynkront ajax kald
+			url : 'rest/recept/update', //specificerer endpointet
+			data : JSON.stringify({
+				receptId : id,
+				receptNavn : value
+			}),
+			contentType : "application/json",
+			type : 'PUT', //Typen af HTTP requestet (GET er default)
+			success : function(data) {//Funktion der skal udføres når data er hentet
+				loadUsers();
+			},
+			error : function(data){
+				alert("Error happend");
+			}
+		});
+
+	})
 
 });
