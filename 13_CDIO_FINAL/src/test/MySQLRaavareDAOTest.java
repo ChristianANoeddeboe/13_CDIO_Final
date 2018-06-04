@@ -1,9 +1,9 @@
 package test;
 
 import connector.MySQLConnector;
-import dao.MySQLRaavareDAO;
+import dao.DAORaavare;
 import exception.DALException;
-import dto.RaavareDTO;
+import dto.DTORaavare;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MySQLRaavareDAOTest {
 
-    RaavareDTO testRaavareDTO;
-    MySQLRaavareDAO testRaavareDAO  = new MySQLRaavareDAO();
+    DTORaavare testRaavareDTO;
+    DAORaavare testRaavareDAO  = new DAORaavare();
 
     @BeforeAll
     static void setUp() {
@@ -72,10 +72,10 @@ class MySQLRaavareDAOTest {
 
     @Test
     void createRaavarePositive() {
-        testRaavareDTO = new RaavareDTO("Smør", "Arla");
-        RaavareDTO compare;
+        testRaavareDTO = new DTORaavare("Smør", "Arla");
+        DTORaavare compare;
         int expectedID;
-        List<RaavareDTO> testList;
+        List<DTORaavare> testList;
         try {
             testList = testRaavareDAO.getRaavareList();
             expectedID = testList.get(testList.size() - 1).getRaavareId() + 1;
@@ -97,7 +97,7 @@ class MySQLRaavareDAOTest {
         try {
             testRaavareDTO = testRaavareDAO.getRaavare(raavareID);
             originalLeverandoer = testRaavareDTO.getLeverandoer();
-            testRaavareDAO.updateRaavare(new RaavareDTO(raavareID,testRaavareDTO.getRaavareNavn(),"Tester12"));
+            testRaavareDAO.updateRaavare(new DTORaavare(raavareID,testRaavareDTO.getRaavareNavn(),"Tester12"));
             testRaavareDTO = testRaavareDAO.getRaavare(raavareID);
             assertEquals("Tester12", testRaavareDTO.getLeverandoer());
             testRaavareDTO.setLeverandoer(originalLeverandoer);
@@ -112,7 +112,7 @@ class MySQLRaavareDAOTest {
     @Test
     public void updateRaavareNegative() {
         try {
-            testRaavareDAO.updateRaavare(new RaavareDTO(9999,"test","test"));
+            testRaavareDAO.updateRaavare(new DTORaavare(9999,"test","test"));
             fail("Batch existed.");
         }catch (DALException e) {
             if (!e.getMessage().contains("No rows updated in \"Raavare\"")) {

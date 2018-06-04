@@ -1,9 +1,8 @@
 package controller;
 
-import dao.MySQLRaavareDAO;
-import dto.RaavareDTO;
+import dto.DTORaavare;
 import exception.DALException;
-import interfaces.RaavareDAO;
+import interfaces.IDAORaavare;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
@@ -12,22 +11,22 @@ import java.util.List;
 @Log
 @AllArgsConstructor
 public class RaavareController {
-    private RaavareDAO dao;
+    private IDAORaavare dao;
 
-    public RaavareDTO getRaavare(int raavareID) throws DALException {
+    public DTORaavare getRaavare(int raavareID) throws DALException {
         return dao.getRaavare(raavareID);
     }
 
-    public List<RaavareDTO> getRaavreList() throws DALException {
+    public List<DTORaavare> getRaavreList() throws DALException {
         return dao.getRaavareList();
     }
 
-    public void createRaavare(RaavareDTO raavare) throws DALException {
+    public void createRaavare(DTORaavare raavare) throws DALException {
         validateData(raavare);
         dao.createRaavare(raavare);
     }
 
-    public void updateRaavare(RaavareDTO raavare) throws DALException{
+    public void updateRaavare(DTORaavare raavare) throws DALException{
         validateData(raavare);
         dao.updateRaavare(raavare);
     }
@@ -36,7 +35,7 @@ public class RaavareController {
         dao.deleteRaavare(raavareID);
     }
 
-    private void validateData(RaavareDTO raavare) throws DALException {
+    private void validateData(DTORaavare raavare) throws DALException {
         String errMsg;
         errMsg = ErrorChecking.checkIntSize(raavare.getRaavareId());
         throwException(errMsg);
