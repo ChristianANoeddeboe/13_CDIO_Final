@@ -42,16 +42,6 @@ class DAOProduktBatchtest {
         prodBatch = new DAOProduktBatch();
         initialProdBatch = prodBatch.getProduktBatch(1);
     }
-
-    @AfterAll
-    static void tearDown() {
-        try {
-            MySQLConnector.doQuery("CALL ('" + 1005 + "');");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Testing a valid prod batch
      */
@@ -115,6 +105,13 @@ class DAOProduktBatchtest {
             prodBatch.createProduktBatch(new DTOProduktBatch(Status.Igang, 1));
         } catch (Exception e) {
             fail("Something went wrong creating a product batch");
+        }finally {
+            try {
+                int delID = prodBatch.getProduktBatchList().get(prodBatch.getProduktBatchList().size()-1).getPbId();
+                MySQLConnector.doQuery("CALL deleteProductBatch('" + delID + "');");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
