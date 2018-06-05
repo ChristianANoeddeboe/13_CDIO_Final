@@ -17,12 +17,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import connector.MySQLConnector;
-import controller.OperatoerController;
 import controller.ReceptController;
-import dao.DAOOperatoer;
+import controller.ReceptKompController;
 import dao.DAORecept;
 import dao.DAOReceptKomp;
-import dto.DTOOperatoer;
 import dto.DTORecept;
 import dto.DTOReceptKomp;
 import exception.DALException;
@@ -32,6 +30,7 @@ import exception.DALException;
 public class ReceptService implements IReceptService {
 	
 	static ReceptController controller = new ReceptController(new DAORecept());
+	static ReceptKompController kompController = new ReceptKompController(new DAOReceptKomp());
 	@Override
 	public Response getRecept(int receptId) throws DALException {
 		// TODO Auto-generated method stub
@@ -154,52 +153,177 @@ public class ReceptService implements IReceptService {
 		return Response.status(Response.Status.OK).build();
 	}
 	
-	@Override
-	public Response getReceptKomp(int receptId, int raavareId) throws DALException {
-		
-		
-		return null;
+	@GET
+	@Path("komponent/{receptId}/{raavareId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response getReceptKomp(@PathParam("receptId") int receptId,@PathParam("raavareId") int raavareId) throws DALException {
+		try {
+			new MySQLConnector();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
+		}
+		DTOReceptKomp result = null;
+		try {
+			result = kompController.getReceptKomp(receptId, raavareId);
+		} catch(DALException e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok(result, MediaType.APPLICATION_JSON).build();
 	}
 	
+	
 	@GET
-	@Path("displayKomp/{id}")
+	@Path("komponent/list/{receptId}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public Response getReceptKompList(@PathParam("id") int receptId) throws DALException {
-		List<DTOReceptKomp> tempReceptKompList = new ArrayList<>();
-		DAOReceptKomp tempdao = new DAOReceptKomp();
+	public Response getReceptKompList(@PathParam("receptId") int receptId) throws DALException {
 		try {
 			new MySQLConnector();
-			tempReceptKompList = tempdao.getReceptKompList(receptId);
-		}catch (Exception e) {
-			// TODO: handle exception
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
 		
-		return null;
+		List<DTOReceptKomp> result = null;
+		try {
+			result = kompController.getReceptKompList(receptId);
+		} catch(DALException e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
+		}
+        return Response.ok(result, MediaType.APPLICATION_JSON).build();
 	}
 
+	@GET
+	@Path("komponent/list/all")
+	@Produces(MediaType.APPLICATION_JSON)
 	@Override
 	public Response getReceptKompList() throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			new MySQLConnector();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
+		}
+		
+		List<DTOReceptKomp> result = null;
+		try {
+			result = kompController.getReceptKompList();
+		} catch(DALException e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
+		}
+        return Response.ok(result, MediaType.APPLICATION_JSON).build();
 	}
 
-	@Override
+	@POST
+	@Path("komponent/create")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createReceptKomp(DTOReceptKomp receptkomponent) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			new MySQLConnector();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
+		}
+		
+		try {
+			kompController.createReceptKomp(receptkomponent);
+		} catch(DALException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok().build();
 	}
 
-	@Override
+	@PUT
+	@Path("komponent/update")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateReceptKomp(DTOReceptKomp receptkomponent) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			new MySQLConnector();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
+		}
+		
+		try {
+			kompController.updateReceptKomp(receptkomponent);
+		} catch(DALException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok().build();
 	}
 
-	@Override
-	public Response deleteReceptKomp(int recept_id, int raavare_id) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+	@DELETE
+	@Path("komponent/{receptId}/{raavareId}")
+	public Response deleteReceptKomp(@PathParam("receptId") int receptId, @PathParam("raavareId") int raavareId) throws DALException {
+		try {
+			new MySQLConnector();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
+		}
+		
+		try {
+			kompController.deleteReceptKomp(receptId, raavareId);
+		} catch(DALException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok().build();
 	}
 }
