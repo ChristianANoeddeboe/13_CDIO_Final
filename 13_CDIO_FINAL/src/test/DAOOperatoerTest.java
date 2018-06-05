@@ -75,6 +75,12 @@ class DAOOperatoerTest {
 			operatoer.createOperatoer(new DTOOperatoer("test", "testEfternavn", "1234561210", "Administrator", Aktiv.aktiv));
 		}catch (Exception e) {
 			fail("Something went wrong creating an operator");
+		}finally {
+			try {
+				MySQLConnector.doQuery("CALL adminDeleteOperator('" + 1234561210 + "');");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -82,7 +88,7 @@ class DAOOperatoerTest {
 	void testUpdateOperatoerValid() {
 		boolean valid = true;
 		try {
-			operatoer.updateOperatoer(new DTOOperatoer(1,"testUpdated", "testEfternavn", "123456-1234", "Administrator", Aktiv.aktiv));
+			operatoer.updateOperatoer(new DTOOperatoer(1,"testUpdated", "testEfternavn", "1234561234", "Administrator", Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 			fail("Invalid parameters");

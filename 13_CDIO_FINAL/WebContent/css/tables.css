@@ -16,6 +16,10 @@ body {
     box-shadow: -1px 3px 5px #8888888c;
 }
 
+.modal-content {
+    overflow: auto;
+}
+
 .btn {
     padding: .12rem .5rem .02rem .5rem;
 }

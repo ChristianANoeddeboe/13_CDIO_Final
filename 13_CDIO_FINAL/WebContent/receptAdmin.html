@@ -27,23 +27,24 @@
 </head>
 <body>
 
-	<div class="container" id="receptAdmin">
-		<table class="table table-striped" id="receptTable">
-			<thead class="thead">
-				<tr>
-					<th class="col-1" scope="col">ID</th>
-					<th class="col" scope="col" colspan="2">Recept navn</th>
-					<th class="col-12" scope="col">
-						<button type="button" class="btn btn-primary add"
-							data-toggle="modal" data-target="#addModal">+</button>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
+<div class="container" id="receptAdmin">
+	<table class="table table-striped" id = "receptTable">
+		<thead class="thead">
+		<tr>
+			<th class="col-1" scope="col">ID</th>
+			<th class="col-10" scope="col">Recept navn</th>
+			<th class="col-1 text-right" scope="col" colspan="2">
+				<button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#addModal">
+					+
+				</button>
+			</th>
+		</tr>
+		</thead>
+		<tbody>
 
-			</tbody>
-		</table>
-	</div>
+		</tbody>
+	</table>
+</div>
 
 	<!-- Modal -->
 	<div class="modal fade" id="showMoreModal" tabindex="-1" role="dialog"
@@ -64,7 +65,7 @@
 								<th scope="col">ReceptID</th>
 								<th scope="col">RåvareID</th>
 								<th scope="col">Nom netto</th>
-								<th scope="col" colspan="1">Tolerance</th>
+								<th scope="col">Tolerance</th>
 								<th class="col" scope="col">
 									<button type="button" class="btn btn-primary add"
 										data-toggle="modal" data-target="#addKompModal">+</button>
