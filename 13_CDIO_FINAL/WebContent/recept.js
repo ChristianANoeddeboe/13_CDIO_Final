@@ -20,9 +20,20 @@ $(document).ready(function() {
 					id = e.target.id;
 					e.preventDefault();
 				})
+				$(".vis").click(function(e){
+					id = e.target.id;
+					$('#showMoreModal').modal('show');
+					$.ajax({
+						url : 'rest/receptkomp/all'
+						
+						
+					});
+					e.preventDefault();
+					
+				})
 			},
 			error : function(data){
-				alert("Error fetching data");
+				$.notify(data.responseText, "error");
 			}
 		});
 	};
@@ -46,7 +57,9 @@ $(document).ready(function() {
 				loadUsers();
 			},
 			error : function(data){
-				alert("error happend");
+				$('#addModal').modal('hide');
+				$.notify("Fejl ved oprettelse af bruger", "error");
+				loadUsers();
 			}
 		});
 	});
@@ -68,7 +81,9 @@ $(document).ready(function() {
 				loadUsers();
 			},
 			error : function(data){
-				alert("Error happend");
+				$('#updateModal').modal('hide');
+				$.notify(data.responseText, "error");
+				loadUsers();
 			}
 		});
 
@@ -86,7 +101,9 @@ $(document).ready(function() {
 				loadUsers();
 			},
 			error : function(data){
-				alert("Error happend");
+				$('#deleteModal').modal('hide');
+				$.notify(data.responseText, "error");
+				loadUsers();
 			}
 		});
 
@@ -96,19 +113,20 @@ $(document).ready(function() {
 		$('#deleteModal').modal('hide');
 	});
 	
+
+	
 	
 	//Convenience function for generating html
 	function generateOperatoerHTML(recept) {
 		return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
 		'<td><input type="text" id = "'+recept.receptId +'"class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
 		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary vis" data-toggle="modal" data-target="#showMoreModal">▼</button>'+'</td>' +
-		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet" data-toggle="modal" data-target="#deleteModal"><i class="far fa-trash-alt"></i></button>'+'</td>' +
+		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet"><i class="far fa-trash-alt"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 
 	function clearTable(){
 		$("#receptTable>tbody").empty();
-
 	};
 	
 	
