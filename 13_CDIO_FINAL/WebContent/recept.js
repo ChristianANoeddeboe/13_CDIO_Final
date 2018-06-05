@@ -6,7 +6,7 @@ $(document).ready(function() {
 	var id;
 	var value;
 	const enterkey = 13;
-	function loadUsers(){
+	function loadRecepts(){
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/recept/all', //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
@@ -34,7 +34,7 @@ $(document).ready(function() {
 		});
 	};
 
-	loadUsers();
+	loadRecepts();
 
 
 
@@ -50,16 +50,15 @@ $(document).ready(function() {
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				$('#addModal').modal('hide');
 				$.notify("Recepten blev operettet", "success");
-				loadUsers();
+				loadRecepts();
 			},
 			error : function(data){
 				$('#addModal').modal('hide');
-				$.notify("Fejl ved oprettelse af bruger", "error");
-				loadUsers();
+				$.notify("Fejl ved oprettelse af recepten", "error");
+				loadRecepts();
 			}
 		});
 	});
-
 
 
 	$(".btn-primaryUpdate").click(function(){		
@@ -74,12 +73,12 @@ $(document).ready(function() {
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				$('#updateModal').modal('hide');
 				$.notify("Recepten blev opdateret", "success");
-				loadUsers();
+				loadRecepts();
 			},
 			error : function(data){
 				$('#updateModal').modal('hide');
 				$.notify(data.responseText, "error");
-				loadUsers();
+				loadRecepts();
 			}
 		});
 
@@ -94,12 +93,12 @@ $(document).ready(function() {
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				$('#deleteModal').modal('hide');
 				$.notify("Recepten blev slettet", "success");
-				loadUsers();
+				loadRecepts();
 			},
 			error : function(data){
 				$('#deleteModal').modal('hide');
 				$.notify(data.responseText, "error");
-				loadUsers();
+				loadRecepts();
 			}
 		});
 
@@ -108,9 +107,9 @@ $(document).ready(function() {
 	$(".btn-secondaryDelete").click(function(){
 		$('#deleteModal').modal('hide');
 	});
-
-
-	$('#showMoreModal').on('shown.bs.modal', function (e) {
+	//Recept komp stuff starts here
+	function loadReceptKomps(){
+		
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/recept/komponent/list/'+id, //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
@@ -125,8 +124,40 @@ $(document).ready(function() {
 				$.notify(data.responseText, "error");
 			}
 		});
+	
+	};
+	
+	$('#showMoreModal').on('shown.bs.modal', function () {
+		loadReceptKomps();
 	});
+	
 
+
+	$(".btn-primaryAddKomp").click(function(){
+		$.ajax({ //Indleder et asynkront ajax kald
+			url : 'rest/recept/komponent/create', //specificerer endpointet
+			data : JSON.stringify({
+				receptId : $("#inputReceptID")["0"].value,
+				raavareId : $("#inputRaavareID")["0"].value,
+				nomNetto : $("#inputNomNetto")["0"].value,
+				tolerance: $("#inputTolerance")["0"].value
+			}),
+			contentType : "application/JSON",
+			type : 'POST', //Typen af HTTP requestet (GET er default)
+			success : function(data) {//Funktion der skal udføres når data er hentet
+				$('#addKompModal').modal('hide');
+				$.notify("Receptenkomponenten blev operettet", "success");
+				loadReceptKomps();
+			},
+			error : function(data){
+				$('#addKompModal').modal('hide');
+				$.notify("Fejl ved oprettelse af receptkomponenten", "error");
+				loadReceptKomps();
+			}
+		});
+	});
+	
+	
 	//Convenience function for generating html
 	function generateReceptHTML(recept) {
 		return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
