@@ -8,9 +8,9 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class DTOProduktBatchKomp {
-    int pbId;      // produktbatchets id
-    int rbId;        // i omraadet 1-99999999
-    double tara;
-    double netto;
-    int oprId;                    // operatoer-nummer
+    private int pbId;      // produktbatchets id
+    private int rbId;        // i omraadet 1-99999999
+    private double tara;
+    private double netto;
+    private int oprId;                    // operatoer-nummer
 }
