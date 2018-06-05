@@ -44,7 +44,6 @@ public class Controller {
         this.logger = new Logger();
         this.operatoer = new DTOOperatoer();
         this.produktBatch = null;
-  
     }
 
     public void run() throws DALException {
@@ -70,7 +69,6 @@ public class Controller {
             }
 
             produktBatch.setStatus(Status.Igang);
-            //preparedstatementsContainer.put(1, MySQLConnector.getConn().prepareStatement("call updateProductBatch("+produktBatch.getPbId()+",'"+produktBatch.getStatus()+"',"+produktBatch.getReceptId()+")"));
             productBatchController.updateProduktBatch(produktBatch);
 
             getReceptKomp(produktBatch);
@@ -101,9 +99,8 @@ public class Controller {
     public void bruttoCheck() throws IOException, DALException {
         //Nomnetto: Required amount
         //Tolerance: weighed amount has to be within +- nomnetto
-
-
         double tara, nomnetto, tolerance, weightAmount, result;
+
         for (DTOReceptKomp receptKompDTO : receptKompList) {
             nomnetto = receptKompDTO.getNomNetto();
             tolerance = receptKompDTO.getTolerance();
@@ -253,8 +250,7 @@ public class Controller {
         receptKompList = receptKompController.getReceptKompList(produktBatch.getReceptId());
         for (DTOReceptKomp receptKompDTO : receptKompList) {
             // Request empty weight
-            DTORaavareBatch tempraavarebatch = productBatchController.getRaavareBatchList(receptKompDTO.getRaavareId());
-            if(!(receptKompDTO.getNomNetto() + receptKompDTO.getTolerance() <= tempraavarebatch.getMaengde())){
+            if(!(receptKompDTO.getNomNetto() + receptKompDTO.getTolerance() <= samletMaengdeRaavare(receptKompDTO.getRaavareId()))){
                 requestInput("Ikke nok materiale","","");
                 throw new DALException("Ikke nok materiale");
             }
@@ -294,5 +290,19 @@ public class Controller {
     
     private String truncateUnit(String unit) {
     	return unit.substring(0, Math.min(unit.length()-1, UNITLENGTH-1));
+    }
+    
+    private double samletMaengdeRaavare(int raavareId) {
+    	double maengde = 0;
+    	try {
+			List<DTORaavareBatch> raavareBatches = raavareBatchController.getRaavareBatchList(raavareId);
+			for(DTORaavareBatch rb : raavareBatches) {
+				maengde += rb.getMaengde();
+			}
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return maengde;
     }
 }
