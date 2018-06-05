@@ -72,7 +72,7 @@ $(document).ready(function() {
 		return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
 		'<td><input type="text" id = "'+recept.receptId +'"class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
 		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary vis" data-toggle="modal" data-target="#showMoreModal">▼</button>'+'</td>' +
-		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet" data-toggle="modal" data-target="#deleteModal">Slet</button>'+'</td>' +
+		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet" data-toggle="modal" data-target="#deleteModal">🗑🗑🗑🗑🗑🗑🗑🗑🗑Slet</button>'+'</td>' +
 		'</td></tr>';
 	}
 
