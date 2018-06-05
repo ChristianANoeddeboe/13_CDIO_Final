@@ -141,7 +141,7 @@ public class OperatoerService implements IOperatoerService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("User updated").build();
+		return Response.ok("User updated").build();
 		
 	}
 
@@ -170,7 +170,7 @@ public class OperatoerService implements IOperatoerService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("User deleted").build();
+		return Response.ok("User deleted").build();
 	}
 	
 }

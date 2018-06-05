@@ -114,7 +114,7 @@ public class RaavareService implements IRaavareService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Råvare created").build();
+		return Response.ok("Råvare created").build();
 	}
 
 	@PUT
@@ -141,7 +141,7 @@ public class RaavareService implements IRaavareService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Råvare updated").build();
+		return Response.ok("Råvare updated").build();
 	}
 
 	@DELETE
@@ -168,7 +168,7 @@ public class RaavareService implements IRaavareService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Råvare deleted").build();
+		return Response.ok("Råvare deleted").build();
 	}
 
 	@GET
@@ -291,7 +291,7 @@ public class RaavareService implements IRaavareService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Råvarebatch created").build();
+		return Response.ok("Råvarebatch created").build();
 	}
 
 	@PUT
@@ -318,7 +318,7 @@ public class RaavareService implements IRaavareService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Råvarebatch updated").build();
+		return Response.ok("Råvarebatch updated").build();
 	}
 
 	@DELETE
@@ -345,7 +345,7 @@ public class RaavareService implements IRaavareService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Råvarebatch deleted").build();
+		return Response.ok("Råvarebatch deleted").build();
 	}
 
 }

@@ -58,17 +58,22 @@ body {
 
 .slet {
     color: #c51137;
-    background-color: #ffffff;
+    background-color: transparent;
     border-color: #c51137;
 }
 
 .slet:hover {
     color: #fff;
     background-color: #c51137;
-    border-color: #fff;
+    border-color: #c51137;
 }
 
 .vis {
     color: #c51137;
     background-color: transparent;
+    border: none;
+}
+
+.vis:hover {
+    box-shadow: 0 0 0 0.1rem rgba(189, 0, 0, 0.5);
 }
