@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -48,11 +49,19 @@ public class ReceptService implements IReceptService {
 		}
 		return Response.ok(tempReceptList,MediaType.APPLICATION_JSON).build();
 	}
-
+	@POST
+	@Path("add")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response createRecept(DTORecept recept) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		DAORecept tempdao = new DAORecept();
+		try {
+			new MySQLConnector();
+			tempdao.createRecept(recept);
+		}catch (Exception e) {
+			return Response.status(Status.BAD_REQUEST).entity("Something went wrong").build();
+		}
+		return Response.ok().build();
 	}
 	@PUT
 	@Path("update")

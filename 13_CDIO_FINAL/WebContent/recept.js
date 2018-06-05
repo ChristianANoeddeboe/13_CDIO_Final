@@ -14,7 +14,7 @@ $(document).ready(function() {
 				clearTable();
 				$.each(data,function(i,element){
 					$('#receptAdmin').children().append(generateOperatoerHTML(data[i]));
-
+					
 				})
 				$(".slet").click(function(e){
 					id = e.target.id;
@@ -28,7 +28,29 @@ $(document).ready(function() {
 	}
 	loadUsers();
 
-
+	
+	
+	$(".btn-primaryAdd").click(function(){
+		$.ajax({ //Indleder et asynkront ajax kald
+			url : 'rest/recept/add', //specificerer endpointet
+			data : JSON.stringify({
+				receptId : $("#inputID")["0"].value,
+				receptNavn : $("#inputName")["0"].value
+			}),
+			contentType : "application/JSON",
+			type : 'POST', //Typen af HTTP requestet (GET er default)
+			success : function(data) {//Funktion der skal udføres når data er hentet
+				alert("OK");
+				$('#exampleModalCenter').modal('hide');
+				loadUsers();
+				
+			},
+			error : function(data){
+				alert("error happend");
+			}
+		});
+	});
+	
 	$(".btn-secondary").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/recept/'+id, //specificerer endpointet
@@ -86,5 +108,7 @@ $(document).ready(function() {
 		});
 
 	})
+	
+	
 
 });
