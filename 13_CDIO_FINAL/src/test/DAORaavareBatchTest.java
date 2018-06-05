@@ -36,15 +36,6 @@ public class DAORaavareBatchTest {
         testRaavareBatchDAO = new DAORaavareBatch();
     }
 
-    @AfterAll
-    static void tearDown() {
-        try {
-            MySQLConnector.doQuery("CALL ('" + 1005 + "');");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @Test
     public void getRaavareBatchPositive() {
         try {
@@ -89,9 +80,9 @@ public class DAORaavareBatchTest {
         int expectedID;
         List<DTORaavareBatch> testList;
         try {
-            testList = testRaavareBatchDAO.getRaavareBatchList();
-            expectedID = testList.get(testList.size() - 1).getRbId() + 1;
             testRaavareBatchDAO.createRaavareBatch(testRaavareBatchDTO);
+            testList = testRaavareBatchDAO.getRaavareBatchList();
+            expectedID = testList.get((testList.size()-1 )).getRbId();
             compare = testRaavareBatchDAO.getRaavareBatch(expectedID);
             assertEquals(expectedID, compare.getRbId(), "Batch id was not same");
             assertEquals(testRaavareBatchDTO.getRaavareId(), compare.getRaavareId(), "raavare id was not same");
@@ -99,6 +90,14 @@ public class DAORaavareBatchTest {
         } catch (DALException e) {
             e.printStackTrace();
             fail("Could not create new Raavare Batch");
+        }finally {
+            try {
+                testList = testRaavareBatchDAO.getRaavareBatchList();
+                expectedID = testList.get((testList.size()-1 )).getRbId();
+                MySQLConnector.doQuery("CALL deleteRaavareBatch('" + expectedID + "');");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -108,9 +107,9 @@ public class DAORaavareBatchTest {
         try {
             testRaavareBatchDTO = testRaavareBatchDAO.getRaavareBatch(1);
             originalmaengde = testRaavareBatchDTO.getMaengde();
-            testRaavareBatchDAO.updateRaavareBatch(new DTORaavareBatch(1, testRaavareBatchDTO.getRaavareId(), originalmaengde + 100));
+            testRaavareBatchDAO.updateRaavareBatch(new DTORaavareBatch(1, testRaavareBatchDTO.getRaavareId(), 1000));
             testRaavareBatchDTO = testRaavareBatchDAO.getRaavareBatch(1);
-            assertEquals(originalmaengde + 100, testRaavareBatchDTO.getMaengde());
+            assertEquals(1000, testRaavareBatchDTO.getMaengde());
             testRaavareBatchDTO.setMaengde(originalmaengde);
             testRaavareBatchDAO.updateRaavareBatch(testRaavareBatchDTO);
         } catch (DALException e) {
