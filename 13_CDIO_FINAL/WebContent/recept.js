@@ -8,7 +8,7 @@ $(document).ready(function() {
 	const enterkey = 13;
 	function loadUsers(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/display', //specificerer endpointet
+			url : 'rest/recept/all', //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				clearTable();
@@ -66,31 +66,7 @@ $(document).ready(function() {
 		});
 
 	})
-
-	//Convenience function for generating html
-	function generateOperatoerHTML(recept) {
-		return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
-		'<td><input type="text" id = "'+recept.receptId +'"class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
-		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary vis" data-toggle="modal" data-target="#showMoreModal">▼</button>'+'</td>' +
-		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet" data-toggle="modal" data-target="#deleteModal">🗑🗑🗑🗑🗑🗑🗑🗑🗑Slet</button>'+'</td>' +
-		'</td></tr>';
-	}
-
-	function clearTable(){
-		$("#receptTable>tbody").empty();
-
-	};
-
-
-	$(document).keypress(function(e) {
-		if(e.which == enterkey) {
-			id = e.target.id;
-			value = e.target.value;
-			$('#exampleModalCenter3').modal('show');
-		}
-		
-	});
-
+	
 	$(".btn-secondaryUpdate").click(function(){		
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/recept/update', //specificerer endpointet
@@ -110,6 +86,28 @@ $(document).ready(function() {
 
 	})
 	
+	//Convenience function for generating html
+	function generateOperatoerHTML(recept) {
+		return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
+		'<td><input type="text" id = "'+recept.receptId +'"class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
+		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary vis" data-toggle="modal" data-target="#showMoreModal">▼</button>'+'</td>' +
+		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet" data-toggle="modal" data-target="#deleteModal">🗑🗑🗑🗑🗑🗑🗑🗑🗑Slet</button>'+'</td>' +
+		'</td></tr>';
+	}
+
+	function clearTable(){
+		$("#receptTable>tbody").empty();
+
+	};
 	
+	
+	$(document).keypress(function(e) {
+		if(e.which == enterkey) {
+			id = e.target.id;
+			value = e.target.value;
+			$('#exampleModalCenter3').modal('show');
+		}
+		
+	});
 
 });
