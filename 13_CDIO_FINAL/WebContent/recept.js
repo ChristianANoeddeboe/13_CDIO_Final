@@ -3,7 +3,7 @@
  */
 
 $(document).ready(function() {
-	var id;
+	var id,id2;
 	var value;
 	const enterkey = 13;
 	function loadRecepts(){
@@ -83,8 +83,29 @@ $(document).ready(function() {
 		});
 
 	})
+	
+	
 
 
+	$(".btn-primaryDelete").click(function(){
+		$.ajax({ //Indleder et asynkront ajax kald
+			url : 'rest/recept/'+id, //specificerer endpointet
+			contentType : "plain/text",
+			type : 'DELETE', //Typen af HTTP requestet (GET er default)
+			success : function(data) {//Funktion der skal udføres når data er hentet
+				$('#deleteModal').modal('hide');
+				$.notify("Recepten blev slettet", "success");
+				loadRecepts();
+			},
+			error : function(data){
+				$('#deleteModal').modal('hide');
+				$.notify(data.responseText, "error");
+				loadRecepts();
+			}
+		});
+
+	});
+	
 	$(".btn-primaryDelete").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/recept/'+id, //specificerer endpointet
@@ -109,15 +130,20 @@ $(document).ready(function() {
 	});
 	//Recept komp stuff starts here
 	function loadReceptKomps(){
-		
+		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/komponent/list/'+id, //specificerer endpointet
+			url : 'rest/recept/komponent/list/'+res[0], //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				clearReceptKompTable();
 				$.each(data,function(i,element){
 					$('#receptKompTable').append(generateReceptKompHTML(data[i]));
 
+				});
+				$(".sletKomp").click(function(e){
+					id2 = e.target.id;
+					$('#deleteKompModal').modal('show');
+					e.preventDefault();
 				});
 			},
 			error : function(data){
@@ -157,22 +183,67 @@ $(document).ready(function() {
 		});
 	});
 	
+	$(".btn-primaryDeleteKomp").click(function(){
+		var res = id2.split("_");
+		$.ajax({ //Indleder et asynkront ajax kald
+			url : 'rest/recept/komponent/'+res[0]+'/'+res[1], //specificerer endpointet
+			contentType : "plain/text",
+			type : 'DELETE', //Typen af HTTP requestet (GET er default)
+			success : function(data) {//Funktion der skal udføres når data er hentet
+				$('#deleteKompModal').modal('hide');
+				$.notify("Recept komponenten blev slettet", "success");
+				loadReceptKomps();
+			},
+			error : function(data){
+				$('#deleteKompModal').modal('hide');
+				$.notify(data.responseText, "error");
+				loadReceptKomps();
+			}
+		});
+
+	});
+	
+	$(".btn-primaryUpdateKomp").click(function(){
+		var res = id.split("_")
+		$.ajax({ //Indleder et asynkront ajax kald
+			url : 'rest/recept/komponent/update', //specificerer endpointet
+			data : JSON.stringify({
+				receptId : res[0],
+				raavareId : res[1],
+				nomNetto : $(("#"+res[0]+"_"+res[1]+"_netto"))["0"].value,
+				tolerance : $(("#"+res[0]+"_"+res[1]+"_tolerance"))["0"].value
+			}),
+			contentType : "application/json",
+			type : 'PUT', //Typen af HTTP requestet (GET er default)
+			success : function(data) {//Funktion der skal udføres når data er hentet
+				$('#updateKompModal').modal('hide');
+				$.notify("Recept komponenten blev opdateret", "success");
+				loadReceptKomps();
+			},
+			error : function(data){
+				$('#updateKompModal').modal('hide');
+				$.notify(data.responseText, "error");
+				loadReceptKomps();
+			}
+		});
+
+	})
 	
 	//Convenience function for generating html
 	function generateReceptHTML(recept) {
 		return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
 		'<td><input type="text" id = "'+recept.receptId +'"class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
 		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary vis">▼</button>'+'</td>' +
-		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet"><i class="far fa-trash-alt"></i></button>'+'</td>' +
+		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+recept.receptId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 
 	function generateReceptKompHTML(receptKomp) {
 		return 	'<tr><th scope ="row">' + receptKomp.receptId + '</th>' +
-		'<td>'+receptKomp.raavareId + '</td>' +		
-		'<td><input type="text" id = "'+receptKomp.receptId+receptKomp.raavareId+'"class="form-control-plaintext" value="' + receptKomp.nomNetto + '"></td></td>' +
-		'<td><input type="text" id = "'+receptKomp.receptId+receptKomp.raavareId+'"class="form-control-plaintext" value="' + receptKomp.tolerance + '"></td></td>' +
-		'<td><button type="button" id = "'+receptKomp.receptId+'"class="btn btn-primary slet"><i class="far fa-trash-alt"></i></button>'+'</td>' +
+		'<th scope = "row">'+receptKomp.raavareId + '</th>' +		
+		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_netto"+'"class="form-control-plaintext" value="' + receptKomp.nomNetto + '"></td></td>' +
+		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_tolerance"+'"class="form-control-plaintext" value="' + receptKomp.tolerance + '"></td></td>' +
+		'<td><button type="button" id = "'+receptKomp.receptId+'"class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 
@@ -189,7 +260,12 @@ $(document).ready(function() {
 		if(e.which == enterkey) {
 			id = e.target.id;
 			value = e.target.value;
-			$('#updateModal').modal('show');
+			var res = id.split("_");
+			if(res.length == 1){
+				$('#updateModal').modal('show');
+			}else{
+				$('#updateKompModal').modal('show');
+			}
 		}
 
 	});
