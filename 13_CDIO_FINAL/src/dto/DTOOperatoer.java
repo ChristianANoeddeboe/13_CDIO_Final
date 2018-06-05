@@ -56,7 +56,6 @@ public class DTOOperatoer {
 
 	public void formatCPR() {
         String temp = cpr.substring(0, 5);
-        temp.concat("-");
         temp.concat(cpr.substring(6));
     }
 

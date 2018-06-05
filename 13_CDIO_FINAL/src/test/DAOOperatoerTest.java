@@ -72,7 +72,7 @@ class DAOOperatoerTest {
 	@Test
 	void testCreateOperatoer() {
 		try {
-			operatoer.createOperatoer(new DTOOperatoer("test", "testEfternavn", "123456-1210", "Administrator", Aktiv.aktiv));
+			operatoer.createOperatoer(new DTOOperatoer("test", "testEfternavn", "1234561210", "Administrator", Aktiv.aktiv));
 		}catch (Exception e) {
 			fail("Something went wrong creating an operator");
 		}	}
