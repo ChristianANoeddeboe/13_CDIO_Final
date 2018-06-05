@@ -1,5 +1,6 @@
 package rest;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,17 +17,21 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import connector.MySQLConnector;
+import controller.OperatoerController;
+import controller.ReceptController;
+import dao.DAOOperatoer;
 import dao.DAORecept;
 import dao.DAOReceptKomp;
+import dto.DTOOperatoer;
 import dto.DTORecept;
 import dto.DTOReceptKomp;
 import exception.DALException;
 
 @Path("recept")
+@Produces(MediaType.APPLICATION_JSON)
 public class ReceptService implements IReceptService {
 	
-
-
+	static ReceptController controller = new ReceptController(new DAORecept());
 	@Override
 	public Response getRecept(int receptId) throws DALException {
 		// TODO Auto-generated method stub
@@ -34,65 +39,119 @@ public class ReceptService implements IReceptService {
 	}
 	
 	@GET
-	@Path("display")
+	@Path("all")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	@Override
 	public Response getReceptList() throws DALException {
-		List<DTORecept> tempReceptList = new ArrayList<>();
-		DAORecept tempdao = new DAORecept();
-
 		try {
 			new MySQLConnector();
-			tempReceptList = tempdao.getReceptList();
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
-		return Response.ok(tempReceptList,MediaType.APPLICATION_JSON).build();
+		
+		List<DTORecept> result = null;
+		try {
+			result = controller.getReceptList();
+		} catch(DALException e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
+		}
+        return Response.ok(result, MediaType.APPLICATION_JSON).build();
 	}
+	
 	@POST
 	@Path("create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
-	public Response createRecept(DTORecept recept) throws DALException {
-		DAORecept tempdao = new DAORecept();
+	public Response createRecept(DTORecept recept) throws DALException {		
 		try {
 			new MySQLConnector();
-			tempdao.createRecept(recept);
-		}catch (Exception e) {
-			return Response.status(Status.BAD_REQUEST).entity("Something went wrong").build();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
-		return Response.ok().build();
+		
+		try {
+			controller.createRecept(recept);
+		} catch(DALException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok().entity("Recept created").build();
 	}
+	
 	@PUT
 	@Path("update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
-	public Response updateRecept(DTORecept recept) throws DALException {
-		DAORecept tempdao = new DAORecept();
-
+	public Response updateRecept(DTORecept recept) throws DALException {		
 		try {
 			new MySQLConnector();
-			tempdao.updateRecept(recept);
-		} catch (Exception e) {
-			return Response.status(Status.BAD_REQUEST).entity("Something went wrong").build();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
-		return Response.ok().build();
+		
+		try {
+			controller.updateRecept(recept);
+		} catch(DALException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok().entity("Recept updated").build();
 	}
 	
 	@DELETE
 	@Path("{id}")
 	@Override
-	public Response deleteRecept(@PathParam("id") int id) throws DALException {
-		DAORecept tempdao = new DAORecept();
-
+	public Response deleteRecept(@PathParam("id") int id) throws DALException {	
 		try {
 			new MySQLConnector();
-			tempdao.deleteRecept(id);
-		} catch (Exception e) {
-			return Response.status(Status.BAD_REQUEST).entity("Constraints issues").build();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
 		}
-		return Response.ok().build();
+		
+		try {
+			controller.deleteRecept(id);
+		} catch(DALException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
+		}
+		return Response.ok().entity("Recept deleted").build();
 	}
 	
 	@Override
