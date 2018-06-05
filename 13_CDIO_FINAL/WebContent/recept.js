@@ -32,7 +32,7 @@ $(document).ready(function() {
 	
 	$(".btn-primaryAdd").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/add', //specificerer endpointet
+			url : 'rest/recept/create', //specificerer endpointet
 			data : JSON.stringify({
 				receptId : $("#inputID")["0"].value,
 				receptNavn : $("#inputName")["0"].value
