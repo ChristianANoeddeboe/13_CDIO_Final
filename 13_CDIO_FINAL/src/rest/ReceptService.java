@@ -94,7 +94,7 @@ public class ReceptService implements IReceptService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Recept created").build();
+		return Response.status(Response.Status.CREATED).build();
 	}
 	
 	@PUT
@@ -123,7 +123,7 @@ public class ReceptService implements IReceptService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Recept updated").build();
+		return Response.status(Response.Status.OK).build();
 	}
 	
 	@DELETE
@@ -151,7 +151,7 @@ public class ReceptService implements IReceptService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Recept deleted").build();
+		return Response.status(Response.Status.OK).build();
 	}
 	
 	@Override

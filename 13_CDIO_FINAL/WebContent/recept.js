@@ -22,10 +22,11 @@ $(document).ready(function() {
 				})
 			},
 			error : function(data){
-				alert("error");
+				alert("Error fetching data");
 			}
 		});
-	}
+	};
+	
 	loadUsers();
 
 	
@@ -40,10 +41,9 @@ $(document).ready(function() {
 			contentType : "application/JSON",
 			type : 'POST', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
-				alert("OK");
-				$('#exampleModalCenter').modal('hide');
+				$('#addModal').modal('hide');
+				$.notify("Recepten blev operettet", "success");
 				loadUsers();
-				
 			},
 			error : function(data){
 				alert("error happend");
@@ -51,23 +51,9 @@ $(document).ready(function() {
 		});
 	});
 	
-	$(".btn-secondary").click(function(){
-		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/'+id, //specificerer endpointet
-			contentType : "plain/text",
-			type : 'DELETE', //Typen af HTTP requestet (GET er default)
-			success : function(data) {//Funktion der skal udføres når data er hentet
-				alert("OK");
-				loadUsers();
-			},
-			error : function(data){
-				alert("Error happend");
-			}
-		});
-
-	})
 	
-	$(".btn-secondaryUpdate").click(function(){		
+	
+	$(".btn-primaryUpdate").click(function(){		
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/recept/update', //specificerer endpointet
 			data : JSON.stringify({
@@ -77,6 +63,8 @@ $(document).ready(function() {
 			contentType : "application/json",
 			type : 'PUT', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
+				$('#updateModal').modal('hide');
+				$.notify("Recepten blev opdateret", "success");
 				loadUsers();
 			},
 			error : function(data){
@@ -86,12 +74,35 @@ $(document).ready(function() {
 
 	})
 	
+	
+	$(".btn-primaryDelete").click(function(){
+		$.ajax({ //Indleder et asynkront ajax kald
+			url : 'rest/recept/'+id, //specificerer endpointet
+			contentType : "plain/text",
+			type : 'DELETE', //Typen af HTTP requestet (GET er default)
+			success : function(data) {//Funktion der skal udføres når data er hentet
+				$('#deleteModal').modal('hide');
+				$.notify("Recepten blev slettet", "success");
+				loadUsers();
+			},
+			error : function(data){
+				alert("Error happend");
+			}
+		});
+
+	});
+	
+	$(".btn-secondaryDelete").click(function(){
+		$('#deleteModal').modal('hide');
+	});
+	
+	
 	//Convenience function for generating html
 	function generateOperatoerHTML(recept) {
 		return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
 		'<td><input type="text" id = "'+recept.receptId +'"class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
 		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary vis" data-toggle="modal" data-target="#showMoreModal">▼</button>'+'</td>' +
-		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet" data-toggle="modal" data-target="#deleteModal">🗑🗑🗑🗑🗑🗑🗑🗑🗑Slet</button>'+'</td>' +
+		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet" data-toggle="modal" data-target="#deleteModal"><i class="far fa-trash-alt"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 
@@ -105,7 +116,7 @@ $(document).ready(function() {
 		if(e.which == enterkey) {
 			id = e.target.id;
 			value = e.target.value;
-			$('#exampleModalCenter3').modal('show');
+			$('#updateModal').modal('show');
 		}
 		
 	});
