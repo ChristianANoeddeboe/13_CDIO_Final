@@ -32,7 +32,7 @@ $(document).ready(function() {
 	
 	$(".btn-primaryAdd").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/add', //specificerer endpointet
+			url : 'rest/recept/create', //specificerer endpointet
 			data : JSON.stringify({
 				receptId : $("#inputID")["0"].value,
 				receptNavn : $("#inputName")["0"].value
@@ -71,7 +71,8 @@ $(document).ready(function() {
 	function generateOperatoerHTML(recept) {
 		return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
 		'<td><input type="text" id = "'+recept.receptId +'"class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
-		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet" data-toggle="modal" data-target="#exampleModalCenter2">Slet</button>'+
+		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary vis" data-toggle="modal" data-target="#showMoreModal">▼</button>'+'</td>' +
+		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet" data-toggle="modal" data-target="#deleteModal">Slet</button>'+'</td>' +
 		'</td></tr>';
 	}
 

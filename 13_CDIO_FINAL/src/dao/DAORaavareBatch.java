@@ -88,17 +88,4 @@ public class DAORaavareBatch implements IDAORaavareBatch {
             throw new DALException(errMsg);
         }
     }
-
-    @Override
-    public DTORaavareBatch getRaavareBatchRaavare(int raavareID) throws DALException {
-        ResultSet rs = MySQLConnector.doQuery("SELECT * FROM raavarebatchview WHERE raavare_id = " + raavareID);
-        try {
-            if (!rs.first()) throw new DALException("Raavaren " + raavareID + " findes ikke.");
-            return new DTORaavareBatch(rs.getInt("rb_id"), rs.getInt("raavare_id"),
-                    rs.getDouble("maengde"));
-        } catch (SQLException e) {
-            log.severe(e.toString());
-            throw new DALException(e);
-        }
-    }
 }
