@@ -16,6 +16,7 @@ import ase.WeightSocket;
 import connector.MySQLConnector;
 import controller.OperatoerController;
 import controller.ProduktBatchController;
+import controller.ProduktBatchKompController;
 import controller.RaavareBatchController;
 import controller.RaavareController;
 import controller.ReceptController;
@@ -44,7 +45,6 @@ public class Controller {
         this.logger = new Logger();
         this.operatoer = new DTOOperatoer();
         this.produktBatch = null;
-  
     }
 
     public void run() throws DALException {
@@ -70,12 +70,11 @@ public class Controller {
             }
 
             produktBatch.setStatus(Status.Igang);
-            //preparedstatementsContainer.put(1, MySQLConnector.getConn().prepareStatement("call updateProductBatch("+produktBatch.getPbId()+",'"+produktBatch.getStatus()+"',"+produktBatch.getReceptId()+")"));
             productBatchController.updateProduktBatch(produktBatch);
 
             getReceptKomp(produktBatch);
 
-            bruttoCheck();
+            afvejning();
             produktBatch.setStatus(Status.Afsluttet);
             productBatchController.updateProduktBatch(produktBatch);
             requestInput("Faerdig med afvejningen", "", "");
@@ -98,12 +97,14 @@ public class Controller {
             e.printStackTrace();
         }
     }
-    public void bruttoCheck() throws IOException, DALException {
+    public void afvejning() throws IOException, DALException {
         //Nomnetto: Required amount
         //Tolerance: weighed amount has to be within +- nomnetto
-
-
         double tara, nomnetto, tolerance, weightAmount, result;
+        DTOProduktBatchKomp tempProduktBatchKomp = null;
+        DTORaavareBatch temp = null;
+        ProduktBatchKompController pbkController = new ProduktBatchKompController(new DAOProduktBatchKomp());
+        
         for (DTOReceptKomp receptKompDTO : receptKompList) {
             nomnetto = receptKompDTO.getNomNetto();
             tolerance = receptKompDTO.getTolerance();
@@ -126,19 +127,32 @@ public class Controller {
             //If weighted amount minus the container minus the tolerance is greater than or equal to
             //-the required amount, then we have weighed out sufficient.
             if(result-tolerance >= nomnetto) {
-                List<DTORaavareBatch> tempraavarebatch = raavareBatchController.getRaavareBatchList(raavare.getRaavareId());
-                tempraavarebatch.setMaengde(tempraavarebatch.getMaengde()-result);
-                raavareBatchController.updateRaavareBatch(tempraavarebatch);
-                DTOProduktBatchKomp tempProduktBatchKomp = new DTOProduktBatchKomp(produktBatch.getPbId(), tempraavarebatch.getRbId(), tara, weightAmount, operatoer.getOprId());
-
-                IDAOProduktBatchKomp tempMySQLProdukt = new DAOProduktBatchKomp();
-                tempMySQLProdukt.createProduktBatchKomp(tempProduktBatchKomp);
-            }else {
+            	int index = 0;
+                List<DTORaavareBatch> raavareBatches = raavareBatchController.getRaavareBatchList(raavare.getRaavareId());       
+                
+                do {
+                	temp = raavareBatches.get(index++);
+                	if(temp.getMaengde()<result) {
+                		result-=temp.getMaengde();
+                		tempProduktBatchKomp = new DTOProduktBatchKomp(produktBatch.getPbId(), temp.getRbId(), tara, temp.getMaengde(), operatoer.getOprId());
+                		temp.setMaengde(0);
+                		raavareBatchController.updateRaavareBatch(temp);
+                	}
+                	else {
+                		tempProduktBatchKomp = new DTOProduktBatchKomp(produktBatch.getPbId(), temp.getRbId(), tara, result, operatoer.getOprId());
+                		temp.setMaengde(temp.getMaengde()-result);
+                		raavareBatchController.updateRaavareBatch(temp);
+                		result = 0;
+                	}
+                	 pbkController.createProdBatchKomp(tempProduktBatchKomp);
+                } while(result>0);
+            }
+            else {
                 continue;
             }
-
         }
     }
+    
     public String requestInput(String string1, String string2, String string3) throws IOException {
         //Format string to the weight format.
     	string1 = truncateMsg(string1);
@@ -253,8 +267,7 @@ public class Controller {
         receptKompList = receptKompController.getReceptKompList(produktBatch.getReceptId());
         for (DTOReceptKomp receptKompDTO : receptKompList) {
             // Request empty weight
-            DTORaavareBatch tempraavarebatch = productBatchController.getRaavareBatchList(receptKompDTO.getRaavareId());
-            if(!(receptKompDTO.getNomNetto() + receptKompDTO.getTolerance() <= tempraavarebatch.getMaengde())){
+            if(!(receptKompDTO.getNomNetto() + receptKompDTO.getTolerance() <= samletMaengdeRaavare(receptKompDTO.getRaavareId()))){
                 requestInput("Ikke nok materiale","","");
                 throw new DALException("Ikke nok materiale");
             }
@@ -294,5 +307,32 @@ public class Controller {
     
     private String truncateUnit(String unit) {
     	return unit.substring(0, Math.min(unit.length()-1, UNITLENGTH-1));
+    }
+    
+    private double samletMaengdeRaavare(int raavareId) {
+    	double maengde = 0;
+    	try {
+			List<DTORaavareBatch> raavareBatches = raavareBatchController.getRaavareBatchList(raavareId);
+			for(DTORaavareBatch rb : raavareBatches) {
+				maengde += rb.getMaengde();
+			}
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return maengde;
+    }
+    
+    private void regulerMaengde(int raavareId, double maengde) {
+    	List<DTORaavareBatch> raavareBatches;
+		try {
+			raavareBatches = raavareBatchController.getRaavareBatchList(raavareId);
+	    	for(DTORaavareBatch rb : raavareBatches) {
+	    		
+	    	}
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
