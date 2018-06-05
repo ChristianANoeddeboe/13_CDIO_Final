@@ -289,7 +289,6 @@ public class ProduktService implements IProduktService {
 		return Response.ok().build();
 	}
 
-	@Override
 	@PUT
 	@Path("komponent/update")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -318,9 +317,8 @@ public class ProduktService implements IProduktService {
 		return Response.ok().build();
 	}
 
-	@Override
 	@DELETE
-	@Path("komponent/delete/{pbid}/{rbid}")
+	@Path("komponent/{pbid}/{rbid}")
 	public Response deleteProduktBatchKomp(@PathParam("pbid") int productBatch_ID, @PathParam("rbid") int raavareBatch_ID) throws DALException {
 		try {
 			new MySQLConnector();
