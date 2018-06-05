@@ -141,7 +141,6 @@ $(document).ready(function() {
 		'<td>'+receptKomp.raavareId + '</td>' +		
 		'<td><input type="text" id = "'+receptKomp.receptId+receptKomp.raavareId+'"class="form-control-plaintext" value="' + receptKomp.nomNetto + '"></td></td>' +
 		'<td><input type="text" id = "'+receptKomp.receptId+receptKomp.raavareId+'"class="form-control-plaintext" value="' + receptKomp.tolerance + '"></td></td>' +
-		'<td><button type="button" id = "'+receptKomp.receptId+'"class="btn btn-primary vis">▼</button>'+'</td>' +
 		'<td><button type="button" id = "'+receptKomp.receptId+'"class="btn btn-primary slet"><i class="far fa-trash-alt"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
