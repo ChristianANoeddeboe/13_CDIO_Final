@@ -199,12 +199,6 @@ public class RaavareService implements IRaavareService {
 		return Response.ok(result, MediaType.APPLICATION_JSON).build();
 	}
 
-	@Override
-	public Response getRaavareBatchRaavare(int raavareID) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@GET
 	@Path("batch/list/all")
 	@Produces(MediaType.APPLICATION_JSON)

@@ -17,14 +17,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import connector.MySQLConnector;
-import controller.OperatoerController;
 import controller.ReceptController;
 import controller.ReceptKompController;
-import dao.DAOOperatoer;
 import dao.DAORecept;
 import dao.DAOReceptKomp;
-import dto.DTOOperatoer;
-import dto.DTOProduktBatchKomp;
 import dto.DTORecept;
 import dto.DTOReceptKomp;
 import exception.DALException;

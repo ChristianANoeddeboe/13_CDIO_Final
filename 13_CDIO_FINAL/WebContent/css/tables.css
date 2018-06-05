@@ -16,15 +16,6 @@ body {
     box-shadow: -1px 3px 5px #8888888c;
 }
 
-.table th:last-child {
-    width: 5%;
-}
-/*
-.table-hover tbody tr:hover {
-    background-color: #3c4854;
-    color: #fff;
-}*/
-
 .btn {
     padding: .12rem .5rem .02rem .5rem;
 }
@@ -33,7 +24,6 @@ body {
     color: #c51137;
     background-color: transparent;
     border: none;
-    /*border-color: #c51137;*/
 }
 
 .btn-primary:hover {
@@ -46,6 +36,7 @@ body {
     color: #fff;
     background-color: #c51137;
     border-color: #fff;
+    margin-left: 5%;
 }
 
 .add:hover {
@@ -55,7 +46,7 @@ body {
 }
 
 .btn-primary:focus {
-    box-shadow: 0 0 0 0.2rem rgba(123,123,123,.5)
+    box-shadow: none;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active {
