@@ -16,7 +16,6 @@ import controller.RaavareController;
 import controller.RaavareBatchController;
 import dao.DAORaavare;
 import dao.DAORaavareBatch;
-import dto.DTOOperatoer;
 import dto.DTORaavare;
 import dto.DTORaavareBatch;
 
@@ -114,7 +113,7 @@ public class RaavareService implements IRaavareService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok("Råvare created").build();
+		return Response.ok().build();
 	}
 
 	@PUT
@@ -141,7 +140,7 @@ public class RaavareService implements IRaavareService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok("Råvare updated").build();
+		return Response.ok().build();
 	}
 
 	@DELETE
@@ -168,7 +167,7 @@ public class RaavareService implements IRaavareService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok("Råvare deleted").build();
+		return Response.ok().build();
 	}
 
 	@GET
@@ -291,7 +290,7 @@ public class RaavareService implements IRaavareService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok("Råvarebatch created").build();
+		return Response.ok().build();
 	}
 
 	@PUT
@@ -318,7 +317,7 @@ public class RaavareService implements IRaavareService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok("Råvarebatch updated").build();
+		return Response.ok().build();
 	}
 
 	@DELETE
@@ -345,7 +344,7 @@ public class RaavareService implements IRaavareService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok("Råvarebatch deleted").build();
+		return Response.ok().build();
 	}
 
 }

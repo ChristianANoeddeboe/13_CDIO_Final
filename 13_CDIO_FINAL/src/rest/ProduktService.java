@@ -112,7 +112,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok("User created").build();
+		return Response.ok().build();
 	}
 
 	@PUT
@@ -140,7 +140,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok("User updated").build();
+		return Response.ok().build();
 	}
 
 	@DELETE
@@ -167,7 +167,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok("User deleted").build();
+		return Response.ok().build();
 	}
 
 	//KOMPONENTER
@@ -286,7 +286,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok("Produkt batch komponent oprettet").build();
+		return Response.ok().build();
 	}
 
 	@Override
@@ -315,7 +315,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok("Produkt batch komponent opdateret").build();
+		return Response.ok().build();
 	}
 
 	@Override
@@ -343,7 +343,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok("Produkt batch komponent slettet").build();
+		return Response.ok().build();
 	}
 
 
