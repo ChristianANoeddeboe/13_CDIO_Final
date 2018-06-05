@@ -7,7 +7,6 @@ import dto.DTORaavareBatch;
 
 public interface IDAORaavareBatch {
 	DTORaavareBatch getRaavareBatch(int rbId) throws DALException;
-	DTORaavareBatch getRaavareBatchRaavare(int raavareID) throws DALException;
 	List<DTORaavareBatch> getRaavareBatchList() throws DALException;
 	List<DTORaavareBatch> getRaavareBatchList(int raavareId) throws DALException;
 	void createRaavareBatch(DTORaavareBatch raavarebatch) throws DALException;
