@@ -24,8 +24,14 @@ $(document).ready(function() {
 					id = e.target.id;
 					$('#showMoreModal').modal('show');
 					$.ajax({
-						url : 'rest/receptkomp/all'
-						
+						url : 'rest/recept/komponent/list/'+id,
+						type : 'GET',
+						sucess : function(data){
+							alert('ok');
+						},
+						error : function(data){
+							alert('error');
+						}
 						
 					});
 					e.preventDefault();
