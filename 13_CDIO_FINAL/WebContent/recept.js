@@ -117,7 +117,7 @@ $(document).ready(function() {
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				clearReceptKompTable();
 				$.each(data,function(i,element){
-					$('#receptKompTable').children().append(generateReceptKompHTML(data[i]));
+					$('#receptKompTable').append(generateReceptKompHTML(data[i]));
 
 				});
 			},
