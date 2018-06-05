@@ -48,7 +48,7 @@ public class DAORecept implements IDAORecept {
 
     @Override
     public void createRecept(DTORecept recept) throws DALException {
-        if (MySQLConnector.doUpdate("CALL createRecept('" + recept.getReceptNavn() + "');") == 0) {
+        if (MySQLConnector.doUpdate("CALL createRecept("+recept.getReceptId()+ ",'" + recept.getReceptNavn() + "');") == 0) {
             String errMsg = "Couldn't add tuple to \"Recept\".";
             log.severe(errMsg);
             throw new DALException(errMsg);

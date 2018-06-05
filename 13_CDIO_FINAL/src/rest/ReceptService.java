@@ -50,7 +50,7 @@ public class ReceptService implements IReceptService {
 		return Response.ok(tempReceptList,MediaType.APPLICATION_JSON).build();
 	}
 	@POST
-	@Path("add")
+	@Path("create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response createRecept(DTORecept recept) throws DALException {
