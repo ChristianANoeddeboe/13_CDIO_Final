@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class DTOProduktBatch {
-    int pbId;                     // i omraadet 1-99999999
-    Enum<Status> status;                    // 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
-    int receptId;
+    private int pbId;                     // i omraadet 1-99999999
+    private Enum<Status> status;                    // 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
+    private int receptId;
 
     /**
      * Used for creating

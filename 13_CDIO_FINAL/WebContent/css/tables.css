@@ -69,8 +69,6 @@ body {
 }
 
 .vis {
-    color: #fff;
-    background-color: #c51137;
-    border-color: #fff;
-    width: 1000px;
+    color: #c51137;
+    background-color: transparent;
 }
