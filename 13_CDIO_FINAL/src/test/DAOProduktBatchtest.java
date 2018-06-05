@@ -110,7 +110,7 @@ class DAOProduktBatchtest {
                 int delID = prodBatch.getProduktBatchList().get(prodBatch.getProduktBatchList().size()-1).getPbId();
                 MySQLConnector.doQuery("CALL deleteProductBatch('" + delID + "');");
             } catch (Exception e) {
-                e.printStackTrace();
+                 e.printStackTrace();
             }
         }
     }
