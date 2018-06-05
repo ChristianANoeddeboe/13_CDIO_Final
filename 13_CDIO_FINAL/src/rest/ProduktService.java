@@ -19,7 +19,6 @@ import controller.ProduktBatchController;
 import controller.ProduktBatchKompController;
 import dao.DAOProduktBatchKomp;
 import dao.DAOProduktBatch;
-import dto.DTOOperatoer;
 import dto.DTOProduktBatch;
 import dto.DTOProduktBatchKomp;
 import exception.DALException;
@@ -113,7 +112,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("User created").build();
+		return Response.ok().build();
 	}
 
 	@PUT
@@ -141,7 +140,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("User updated").build();
+		return Response.ok().build();
 	}
 
 	@DELETE
@@ -168,7 +167,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("User deleted").build();
+		return Response.ok().build();
 	}
 
 	//KOMPONENTER
@@ -287,7 +286,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Produkt batch komponent oprettet").build();
+		return Response.ok().build();
 	}
 
 	@Override
@@ -316,7 +315,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Produkt batch komponent opdateret").build();
+		return Response.ok().build();
 	}
 
 	@Override
@@ -344,7 +343,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Produkt batch komponent slettet").build();
+		return Response.ok().build();
 	}
 
 
