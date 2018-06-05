@@ -75,7 +75,8 @@ class DAOOperatoerTest {
 			operatoer.createOperatoer(new DTOOperatoer("test", "testEfternavn", "1234561210", "Administrator", Aktiv.aktiv));
 		}catch (Exception e) {
 			fail("Something went wrong creating an operator");
-		}	}
+		}
+	}
 
 	@Test
 	void testUpdateOperatoerValid() {

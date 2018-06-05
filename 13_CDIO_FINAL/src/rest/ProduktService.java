@@ -19,7 +19,6 @@ import controller.ProduktBatchController;
 import controller.ProduktBatchKompController;
 import dao.DAOProduktBatchKomp;
 import dao.DAOProduktBatch;
-import dto.DTOOperatoer;
 import dto.DTOProduktBatch;
 import dto.DTOProduktBatchKomp;
 import exception.DALException;
@@ -113,7 +112,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("User created").build();
+		return Response.ok().build();
 	}
 
 	@PUT
@@ -141,7 +140,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("User updated").build();
+		return Response.ok().build();
 	}
 
 	@DELETE
@@ -168,7 +167,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("User deleted").build();
+		return Response.ok().build();
 	}
 
 	//KOMPONENTER
@@ -287,10 +286,9 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Produkt batch komponent oprettet").build();
+		return Response.ok().build();
 	}
 
-	@Override
 	@PUT
 	@Path("komponent/update")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -316,12 +314,11 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Produkt batch komponent opdateret").build();
+		return Response.ok().build();
 	}
 
-	@Override
 	@DELETE
-	@Path("komponent/delete/{pbid}/{rbid}")
+	@Path("komponent/{pbid}/{rbid}")
 	public Response deleteProduktBatchKomp(@PathParam("pbid") int productBatch_ID, @PathParam("rbid") int raavareBatch_ID) throws DALException {
 		try {
 			new MySQLConnector();
@@ -344,7 +341,7 @@ public class ProduktService implements IProduktService {
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
-		return Response.ok().entity("Produkt batch komponent slettet").build();
+		return Response.ok().build();
 	}
 
 

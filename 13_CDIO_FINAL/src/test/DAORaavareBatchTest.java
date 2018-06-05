@@ -4,6 +4,7 @@ import connector.MySQLConnector;
 import dao.DAORaavareBatch;
 import exception.DALException;
 import dto.DTORaavareBatch;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,13 +21,28 @@ public class DAORaavareBatchTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        try { new MySQLConnector(); }
-        catch (InstantiationException e) { e.printStackTrace(); }
-        catch (IllegalAccessException e) { e.printStackTrace(); }
-        catch (ClassNotFoundException e) { e.printStackTrace(); }
-        catch (SQLException e) { e.printStackTrace(); }
+        try {
+            new MySQLConnector();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         testRaavareBatchDAO = new DAORaavareBatch();
+    }
+
+    @AfterAll
+    static void tearDown() {
+        try {
+            MySQLConnector.doQuery("CALL ('" + 1005 + "');");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -92,14 +108,14 @@ public class DAORaavareBatchTest {
         try {
             testRaavareBatchDTO = testRaavareBatchDAO.getRaavareBatch(1);
             originalmaengde = testRaavareBatchDTO.getMaengde();
-            testRaavareBatchDAO.updateRaavareBatch(new DTORaavareBatch(1,testRaavareBatchDTO.getRaavareId(),originalmaengde + 100));
+            testRaavareBatchDAO.updateRaavareBatch(new DTORaavareBatch(1, testRaavareBatchDTO.getRaavareId(), originalmaengde + 100));
             testRaavareBatchDTO = testRaavareBatchDAO.getRaavareBatch(1);
             assertEquals(originalmaengde + 100, testRaavareBatchDTO.getMaengde());
             testRaavareBatchDTO.setMaengde(originalmaengde);
             testRaavareBatchDAO.updateRaavareBatch(testRaavareBatchDTO);
-        }catch (DALException e) {
+        } catch (DALException e) {
             fail("Invalid raavare id");
-        }catch (Exception e) {
+        } catch (Exception e) {
             fail("Something went wrong");
         }
     }
@@ -107,9 +123,9 @@ public class DAORaavareBatchTest {
     @Test
     public void updateRaavareBatchNegative() {
         try {
-            testRaavareBatchDAO.updateRaavareBatch(new DTORaavareBatch(9999,1,100));
+            testRaavareBatchDAO.updateRaavareBatch(new DTORaavareBatch(9999, 1, 100));
             fail("Batch existed.");
-        }catch (DALException e) {
+        } catch (DALException e) {
             if (!e.getMessage().contains("No rows updated in \"Raavare batch\"")) {
                 fail(e.getMessage());
             }

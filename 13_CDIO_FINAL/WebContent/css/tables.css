@@ -30,12 +30,26 @@ body {
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #c51137;
-    border-color: #fff;
+    color: #c51137;
+    background-color: transparent;
+    border: none;
+    /*border-color: #c51137;*/
 }
 
 .btn-primary:hover {
+    color: #fff;
+    background-color: #c51137;
+    border-color: #c51137;
+}
+
+.add {
+    color: #fff;
+    background-color: #c51137;
+    border-color: #fff;
+    margin-left: 70%;
+}
+
+.add:hover {
     color: #c51137;
     background-color: #fff;
     border-color: #fff;
@@ -54,21 +68,4 @@ body {
 .form-control-plaintext {
     width: auto;
     padding: 0;
-}
-
-.slet {
-    color: #c51137;
-    background-color: #ffffff;
-    border-color: #c51137;
-}
-
-.slet:hover {
-    color: #fff;
-    background-color: #c51137;
-    border-color: #fff;
-}
-
-.vis {
-    color: #c51137;
-    background-color: transparent;
 }
