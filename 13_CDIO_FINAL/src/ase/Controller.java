@@ -14,6 +14,12 @@ import dto.DTOProduktBatch.Status;
 import exception.DALException;
 import ase.WeightSocket;
 import connector.MySQLConnector;
+import controller.OperatoerController;
+import controller.ProduktBatchController;
+import controller.RaavareBatchController;
+import controller.RaavareController;
+import controller.ReceptController;
+import controller.ReceptKompController;
 
 
 public class Controller {
@@ -22,21 +28,20 @@ public class Controller {
 	
     WeightSocket socket;
     Logger logger;
-    IDAOOperatoer MySQLoperatoer;
-    IDAOProduktBatch MySQLproductBatch;
+	static OperatoerController operatoerController = new OperatoerController(new DAOOperatoer());
+	static RaavareBatchController raavareBatchController = new RaavareBatchController(new DAORaavareBatch());
+	static ProduktBatchController productBatchController = new ProduktBatchController(new DAOProduktBatch());
+	static RaavareController raavareController = new RaavareController(new DAORaavare());
+	static ReceptController receptController = new ReceptController(new DAORecept());
+	static ReceptKompController receptKompController = new ReceptKompController(new DAOReceptKomp());
     DTOOperatoer operatoer;
     DTOProduktBatch produktBatch;
     List<DTOReceptKomp> receptKompList;
-    IDAOReceptKomp tempreceptkomp;
-    IDAORaavareBatch mysqlraavareBatch;
-    IDAORaavare mysqlraavare;
     DTORaavare raavare;
     //HashMap<Integer, PreparedStatement> preparedstatementsContainer = new HashMap<>();
     public Controller(WeightSocket socket) {
         this.socket = socket;
         this.logger = new Logger();
-        this.MySQLoperatoer = new DAOOperatoer();
-        this.MySQLproductBatch = new DAOProduktBatch();
         this.operatoer = new DTOOperatoer();
         this.produktBatch = null;
   
@@ -50,9 +55,6 @@ public class Controller {
             // TO-DO Use proper error messages
             try {new MySQLConnector();} catch (InstantiationException e1) {e1.printStackTrace();} catch (IllegalAccessException e1) {e1.printStackTrace();} catch (ClassNotFoundException e1) {e1.printStackTrace();} catch (SQLException e1) {e1.printStackTrace();}
             MySQLConnector.getConn().setAutoCommit(false);
-            tempreceptkomp = new DAOReceptKomp();
-            mysqlraavareBatch = new DAORaavareBatch();
-            mysqlraavare = new DAORaavare();
             // Get UserID from input
             do {
                 userOK = requestUserID();
@@ -69,27 +71,27 @@ public class Controller {
 
             produktBatch.setStatus(Status.Igang);
             //preparedstatementsContainer.put(1, MySQLConnector.getConn().prepareStatement("call updateProductBatch("+produktBatch.getPbId()+",'"+produktBatch.getStatus()+"',"+produktBatch.getReceptId()+")"));
-            MySQLproductBatch.updateProduktBatch(produktBatch);
+            productBatchController.updateProduktBatch(produktBatch);
 
             getReceptKomp(produktBatch);
 
             bruttoCheck();
             produktBatch.setStatus(Status.Afsluttet);
-            MySQLproductBatch.updateProduktBatch(produktBatch);
+            productBatchController.updateProduktBatch(produktBatch);
             requestInput("Faerdig med afvejningen", "", "");
         }
         catch (IOException e) {
             produktBatch.setStatus(Status.Klar);
-            MySQLproductBatch.updateProduktBatch(produktBatch);
+            productBatchController.updateProduktBatch(produktBatch);
             logger.writeToLog(e.getMessage());
             System.exit(0);
         } catch (NumberFormatException e) {
             produktBatch.setStatus(Status.Klar);
-            MySQLproductBatch.updateProduktBatch(produktBatch);
+            productBatchController.updateProduktBatch(produktBatch);
             e.printStackTrace();
         } catch (DALException e) {
             produktBatch.setStatus(Status.Klar);
-            MySQLproductBatch.updateProduktBatch(produktBatch);
+            productBatchController.updateProduktBatch(produktBatch);
             e.printStackTrace();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -110,7 +112,7 @@ public class Controller {
                 requestInput("Toem Vaegt","","");
             } while (readWeight() >= 0.01);
 
-            raavare = mysqlraavare.getRaavare(receptKompDTO.getRaavareId());
+            raavare = raavareController.getRaavare(receptKompDTO.getRaavareId());
             requestInput(raavare.getRaavareId()+":"+raavare.getRaavareNavn(),"", "");
             // Request tara.
             requestInput("Placer tara","","");
@@ -124,9 +126,9 @@ public class Controller {
             //If weighted amount minus the container minus the tolerance is greater than or equal to
             //-the required amount, then we have weighed out sufficient.
             if(result-tolerance >= nomnetto) {
-                DTORaavareBatch tempraavarebatch = mysqlraavareBatch.getRaavareBatchRaavare(raavare.getRaavareId());
+                List<DTORaavareBatch> tempraavarebatch = raavareBatchController.getRaavareBatchList(raavare.getRaavareId());
                 tempraavarebatch.setMaengde(tempraavarebatch.getMaengde()-result);
-                mysqlraavareBatch.updateRaavareBatch(tempraavarebatch);
+                raavareBatchController.updateRaavareBatch(tempraavarebatch);
                 DTOProduktBatchKomp tempProduktBatchKomp = new DTOProduktBatchKomp(produktBatch.getPbId(), tempraavarebatch.getRbId(), tara, weightAmount, operatoer.getOprId());
 
                 IDAOProduktBatchKomp tempMySQLProdukt = new DAOProduktBatchKomp();
@@ -199,7 +201,7 @@ public class Controller {
 
     public boolean requestUserID() throws IOException, NumberFormatException, DALException {
         String answer = requestInput("Input operator ID","ID","");
-        operatoer = MySQLoperatoer.getOperatoer(Integer.parseInt(answer));
+        operatoer = operatoerController.getOperatoer(Integer.parseInt(answer));
         if(operatoer.getAktiv().equals(Aktiv.inaktiv)) {
             throw new DALException("Fejl, brugeren er inaktiv");
         }
@@ -243,15 +245,15 @@ public class Controller {
 
     public boolean requestBatchID() throws IOException, NumberFormatException, DALException {
         String batchID = requestInput("Input batch ID","1-9999999","");
-        produktBatch = MySQLproductBatch.getProduktBatch(Integer.parseInt(batchID));
+        produktBatch = productBatchController.getProduktBatch(Integer.parseInt(batchID));
         return productBatchCheck(produktBatch); // Get confirmation
     }
 
     public void getReceptKomp(DTOProduktBatch productbatch) throws DALException, IOException {
-        receptKompList = tempreceptkomp.getReceptKompList(produktBatch.getReceptId());
+        receptKompList = receptKompController.getReceptKompList(produktBatch.getReceptId());
         for (DTOReceptKomp receptKompDTO : receptKompList) {
             // Request empty weight
-            DTORaavareBatch tempraavarebatch = mysqlraavareBatch.getRaavareBatchRaavare(receptKompDTO.getRaavareId());
+            DTORaavareBatch tempraavarebatch = productBatchController.getRaavareBatchList(receptKompDTO.getRaavareId());
             if(!(receptKompDTO.getNomNetto() + receptKompDTO.getTolerance() <= tempraavarebatch.getMaengde())){
                 requestInput("Ikke nok materiale","","");
                 throw new DALException("Ikke nok materiale");

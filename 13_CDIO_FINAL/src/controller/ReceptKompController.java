@@ -17,11 +17,11 @@ public class ReceptKompController {
         return  dao.getReceptKomp(receptID, raavarID);
     }
 
-    public List<DTOReceptKomp> getReceotKompList(int receptID) throws  DALException{
+    public List<DTOReceptKomp> getReceptKompList(int receptID) throws  DALException{
         return  dao.getReceptKompList(receptID);
     }
 
-    public  List<DTOReceptKomp> getRaceptKomList() throws  DALException{
+    public  List<DTOReceptKomp> getReceptKompList() throws  DALException{
         return  dao.getReceptKompList();
     }
 

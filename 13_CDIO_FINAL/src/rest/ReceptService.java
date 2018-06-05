@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response.Status;
 
 import connector.MySQLConnector;
 import dao.DAORecept;
+import dao.DAOReceptKomp;
 import dto.DTORecept;
 import dto.DTOReceptKomp;
 import exception.DALException;
@@ -93,16 +94,29 @@ public class ReceptService implements IReceptService {
 		}
 		return Response.ok().build();
 	}
-
+	
 	@Override
 	public Response getReceptKomp(int receptId, int raavareId) throws DALException {
-		// TODO Auto-generated method stub
+		
+		
 		return null;
 	}
-
+	
+	@GET
+	@Path("displayKomp/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public Response getReceptKompList(int receptId) throws DALException {
-		// TODO Auto-generated method stub
+	public Response getReceptKompList(@PathParam("id") int receptId) throws DALException {
+		List<DTOReceptKomp> tempReceptKompList = new ArrayList<>();
+		DAOReceptKomp tempdao = new DAOReceptKomp();
+		try {
+			new MySQLConnector();
+			tempReceptKompList = tempdao.getReceptKompList(receptId);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		return null;
 	}
 
