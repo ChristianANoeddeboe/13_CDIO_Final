@@ -19,7 +19,7 @@ public class DAORaavare implements IDAORaavare {
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM raavareview WHERE raavare_id = " + raavareId);
         try {
             if (!rs.first()) throw new DALException("Raavaren " + raavareId + " findes ikke.");
-            return new DTORaavare(rs.getInt("raavare_id"), rs.getString("raavare_navn"), "");
+            return new DTORaavare(rs.getInt("raavare_id"), rs.getString("raavare_navn"), rs.getString("leverandoer"));
         } catch (SQLException e) {
             log.severe(e.toString());
             throw new DALException(e);
