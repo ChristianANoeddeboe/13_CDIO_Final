@@ -67,7 +67,7 @@ public class DAORaavareBatch implements IDAORaavareBatch {
 
     @Override
     public void createRaavareBatch(DTORaavareBatch raavarebatch) throws DALException {
-        if (MySQLConnector.doUpdate("call createRaavareBatch(" + raavarebatch.getRaavareId() + "," +
+        if (MySQLConnector.doUpdate("call createRaavareBatch(" + raavarebatch.getRbId()+ ","+raavarebatch.getRaavareId() + "," +
                 raavarebatch.getMaengde() + ")") == 0) {
             String errMsg = "Couldn't add tuple to \"Raavare batch\".";
             log.severe(errMsg);
@@ -87,7 +87,7 @@ public class DAORaavareBatch implements IDAORaavareBatch {
 
     @Override
     public void deleteRaavareBatch(int raavarebatch_ID) throws DALException {
-        if (MySQLConnector.doUpdate("call updateRaavareBatch(" + raavarebatch_ID + ")") == 0) {
+        if (MySQLConnector.doUpdate("call deleteRaavareBatch(" + raavarebatch_ID + ")") == 0) {
             String errMsg = "No rows updated in \"Raavare batch\".";
             log.severe(errMsg);
             throw new DALException(errMsg);

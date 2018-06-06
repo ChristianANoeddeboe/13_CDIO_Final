@@ -86,7 +86,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
 
     @Override
     public void deleteProduktBatchKomp(int productBatch_ID, int raavareBatch_ID) throws DALException {
-        if (MySQLConnector.doUpdate("CALL deleteProduktBatchKomp(" + productBatch_ID + "," + raavareBatch_ID + ")") == 0) {
+        if (MySQLConnector.doUpdate("CALL deleteProductBatchKomp(" + productBatch_ID + "," + raavareBatch_ID + ")") == 0) {
             String errMsg = "No rows updated in \"Produkt batch komponent\".";
             log.severe(errMsg);
             throw new DALException(errMsg);
