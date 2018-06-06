@@ -245,7 +245,7 @@ $(document).ready(function() {
 	}
 
 	function clearProduktTable(){
-		$("#produktTable tbody").empty();
+		$("#produktAdminTable tbody").empty();
 	};
 
 	function clearProduktBatchKompTable(){

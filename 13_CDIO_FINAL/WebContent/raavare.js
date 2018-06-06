@@ -31,7 +31,7 @@ $(document).ready(function() {
 	};
 	loadProdukt();
 
-
+	
 
 	$(".btn-primaryAdd").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
