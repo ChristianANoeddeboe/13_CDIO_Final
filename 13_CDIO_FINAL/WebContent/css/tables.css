@@ -3,21 +3,27 @@ body {
     align-items: center;
 }
 
+#outercontainer {
+    width: 100%;
+}
+
 .thead {
     background-color: #c51137;
     color: #fff;
 }
 
-.container {
-    padding-top: 2em;
-}
-
 .table {
     box-shadow: -1px 3px 5px #8888888c;
+    margin-top: 2em;
 }
 
 .modal-content {
     overflow: auto;
+}
+
+.form-control-plaintext {
+    width: auto;
+    padding: 0;
 }
 
 .btn {
@@ -36,6 +42,16 @@ body {
     border-color: #c51137;
 }
 
+.btn-primary:focus {
+    box-shadow: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    color: #c51137;
+    background-color: #fff;
+    border-color: #fff;
+}
+
 .add {
     color: #fff;
     background-color: #c51137;
@@ -48,19 +64,4 @@ body {
     color: #c51137;
     background-color: #fff;
     border-color: #fff;
-}
-
-.btn-primary:focus {
-    box-shadow: none;
-}
-
-.btn-primary:not(:disabled):not(.disabled):active {
-    color: #c51137;
-    background-color: #fff;
-    border-color: #fff;
-}
-
-.form-control-plaintext {
-    width: auto;
-    padding: 0;
 }

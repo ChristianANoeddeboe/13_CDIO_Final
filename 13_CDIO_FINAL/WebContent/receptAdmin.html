@@ -26,27 +26,33 @@
 <title>Hello, world!</title>
 </head>
 <body>
-<div id = "menuLoader">
 
+<div id="outercontainer">
+	<nav class="navbar navbar-expand-lg" id="menuLoader">
 
-</div>
-<div class="container" id="receptAdmin">
-	<table class="table table-striped" id = "receptTable">
-		<thead class="thead">
-		<tr>
-			<th class="col-1" scope="col">ID</th>
-			<th class="col-10" scope="col">Recept navn</th>
-			<th class="col-1 text-right" scope="col" colspan="2">
-				<button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#addModal">
-					+
-				</button>
-			</th>
-		</tr>
-		</thead>
-		<tbody>
+	</nav>
 
-		</tbody>
-	</table>
+	<div class="container">
+
+		<div id="receptAdmin">
+			<table class="table table-striped" id = "receptTable">
+				<thead class="thead">
+				<tr>
+					<th class="col-1" scope="col">ID</th>
+					<th class="col-10" scope="col">Recept navn</th>
+					<th class="col-1 text-right" scope="col" colspan="2">
+						<button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#addModal">
+							+
+						</button>
+					</th>
+				</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
 
 	<!-- Modal -->
@@ -69,7 +75,7 @@
 								<th scope="col">RåvareID</th>
 								<th scope="col">Nom netto</th>
 								<th scope="col">Tolerance</th>
-								<th class="col" scope="col">
+								<th class="col text-right" scope="col">
 									<button type="button" class="btn btn-primary add"
 										data-toggle="modal" data-target="#addKompModal">+</button>
 								</th>
