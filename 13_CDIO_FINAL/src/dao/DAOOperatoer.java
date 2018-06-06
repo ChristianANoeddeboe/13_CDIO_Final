@@ -10,10 +10,16 @@ import exception.DALException;
 import interfaces.IDAOOperatoer;
 import dto.DTOOperatoer;
 import dto.DTOOperatoer.Aktiv;
+import logging.LogHandler;
 import lombok.extern.java.Log;
 
 @Log
 public class DAOOperatoer implements IDAOOperatoer {
+
+    public DAOOperatoer(){
+        new LogHandler(log, "DAO");
+    }
+
     //Get operator with specific ID
     public DTOOperatoer getOperatoer(int oprId) throws DALException {
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId); // View

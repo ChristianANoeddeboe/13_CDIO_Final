@@ -9,10 +9,15 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.IDAOProduktBatchKomp;
 import dto.DTOProduktBatchKomp;
+import logging.LogHandler;
 import lombok.extern.java.Log;
 
 @Log
 public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
+
+    public DAOProduktBatchKomp(){
+        new LogHandler(log, "DAO");
+    }
 
     @Override
     public DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException {

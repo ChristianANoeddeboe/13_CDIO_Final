@@ -10,10 +10,15 @@ import exception.DALException;
 import interfaces.IDAOProduktBatch;
 import dto.DTOProduktBatch;
 import dto.Status;
+import logging.LogHandler;
 import lombok.extern.java.Log;
 
 @Log
 public class DAOProduktBatch implements IDAOProduktBatch {
+
+    public DAOProduktBatch(){
+        new LogHandler(log, "DAO");
+    }
 
     @Override
     public DTOProduktBatch getProduktBatch(int pbId) throws DALException {

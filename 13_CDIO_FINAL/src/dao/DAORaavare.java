@@ -4,6 +4,7 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.IDAORaavare;
 import dto.DTORaavare;
+import logging.LogHandler;
 import lombok.extern.java.Log;
 
 import java.sql.ResultSet;
@@ -13,6 +14,10 @@ import java.util.List;
 
 @Log
 public class DAORaavare implements IDAORaavare {
+
+    public DAORaavare(){
+        new LogHandler(log, "DAO");
+    }
 
     @Override
     public DTORaavare getRaavare(int raavareId) throws DALException {

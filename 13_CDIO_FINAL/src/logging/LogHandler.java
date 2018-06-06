@@ -23,4 +23,19 @@ public class LogHandler {
             e.printStackTrace();
         }
     }
+
+    public LogHandler(Logger log, String dir) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date date = new Date();
+        String fileName = dir + "-" + dateFormat.format(date) + ".txt";
+
+        try{
+            log.addHandler(new FileHandler(fileName, true));
+        }catch (IOException e){
+            e.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

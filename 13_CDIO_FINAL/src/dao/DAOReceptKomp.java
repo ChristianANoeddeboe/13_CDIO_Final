@@ -9,10 +9,15 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.IDAOReceptKomp;
 import dto.DTOReceptKomp;
+import logging.LogHandler;
 import lombok.extern.java.Log;
 
 @Log
 public class DAOReceptKomp implements IDAOReceptKomp {
+
+    public DAOReceptKomp() {
+        new LogHandler(log, "DAO");
+    }
 
     @Override
     public DTOReceptKomp getReceptKomp(int receptId, int raavareId) throws DALException {
