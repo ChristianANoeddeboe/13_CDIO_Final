@@ -9,10 +9,15 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.IDAORecept;
 import dto.DTORecept;
+import logging.LogHandler;
 import lombok.extern.java.Log;
 
 @Log
 public class DAORecept implements IDAORecept {
+
+    public DAORecept(){
+        new LogHandler(log, "DAO");
+    }
 
     /*Return a single recept based on the recept ID.*/
     @Override
