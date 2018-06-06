@@ -9,7 +9,6 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.IDAOOperatoer;
 import dto.DTOOperatoer;
-import dto.DTOOperatoer.Aktiv;
 import logging.LogHandler;
 import lombok.extern.java.Log;
 
@@ -28,7 +27,7 @@ public class DAOOperatoer implements IDAOOperatoer {
             return new DTOOperatoer(rs.getInt("opr_id"), rs.getString("fornavn"),
                     rs.getString("efternavn"), rs.getString("cpr"),
                     rs.getString("roller"),
-                    Aktiv.valueOf(rs.getString("aktiv")));
+                    dto.Aktiv.valueOf(rs.getString("aktiv")));
         } catch (SQLException e) {
             log.severe(e.toString());
             throw new DALException(e);
@@ -48,7 +47,7 @@ public class DAOOperatoer implements IDAOOperatoer {
 
     public void updateOperatoer(DTOOperatoer opr) throws DALException {
         opr.formatCPR();
-        if (MySQLConnector.doUpdate("CALL updateOperator(" + opr.getOprId() + ",'" + opr.getCpr() + "','" + opr.getRoles() + "','" + opr.getFornavn() + "','" + opr.getEfternavn() + "','" + opr.getAktiv() + "')") == 0) {
+        if (MySQLConnector.doUpdate("CALL updateOperator(" + opr.getOprId() + "," + opr.getCpr() + ",'" + opr.getRoles() + "','" + opr.getFornavn() + "','" + opr.getEfternavn() + "','" + opr.getAktiv() + "')") == 0) {
             String errMsg = "No rows updated in \"Operatoer\".";
             log.severe(errMsg);
             throw new DALException(errMsg);
@@ -63,7 +62,7 @@ public class DAOOperatoer implements IDAOOperatoer {
                 list.add(new DTOOperatoer(rs.getInt("opr_id"), rs.getString("fornavn"),
                         rs.getString("efternavn"), rs.getString("cpr"),
                         rs.getString("roller"),
-                        Aktiv.valueOf(rs.getString("aktiv"))));
+                        dto.Aktiv.valueOf(rs.getString("aktiv"))));
             }
         } catch (SQLException e) {
             log.severe(e.toString());

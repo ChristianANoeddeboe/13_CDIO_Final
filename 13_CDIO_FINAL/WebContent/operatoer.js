@@ -68,11 +68,17 @@ $(document).ready(function() {
 
 
     $(".btn-primaryUpdate").click(function(){
+    	var res = id.split("_");
         $.ajax({ //Indleder et asynkront ajax kald
             url : 'rest/operatoer/update', //specificerer endpointet
             data : JSON.stringify({
-                oprId : id,
-                fornavn : value
+                oprId : res[0],
+                fornavn : $(("#"+res[0]+"_fornavn"))["0"].value,
+                efternavn : $(("#"+res[0]+"_efternavn"))["0"].value,
+                cpr : $(("#"+res[0]+"_cpr"))["0"].value,
+                roles : " ",
+                aktiv : $(("#"+res[0]+"_aktiv"))["0"].value
+                
             }),
             contentType : "application/json",
             type : 'PUT', //Typen af HTTP requestet (GET er default)
@@ -116,16 +122,25 @@ $(document).ready(function() {
     //Convenience function for generating html
     function generateOperatoerHTML(operatoer) {
         return 	'<tr><th scope ="row">' + operatoer.oprId + '</th>' +
-            '<td><input type="text" id = "'+operatoer.oprId+'"class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
-            '<td><input type="text" id = "'+operatoer.oprId+'"class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
-            '<td><input type="text" id = "'+operatoer.oprId+'"class="form-control-plaintext" value="' + operatoer.cpr + '"></td></td>' +
-            '<td><input type="text" id = "'+operatoer.oprId+'"class="form-control-plaintext" value="' + operatoer.aktiv + '"></td></td>' +
+            '<td><input type="text" id = "'+operatoer.oprId+"_fornavn"+'"class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
+            '<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'"class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
+            '<td><input type="text" id = "'+operatoer.oprId+"_cpr"+'"class="form-control-plaintext" value="' + operatoer.cpr + '"></td></td>' +
+            '<td><input type="text" id = "'+operatoer.oprId+"_aktiv"+'"class="form-control-plaintext" value="' + operatoer.aktiv + '"></td></td>' +
             '<td><button type="button" id = "'+operatoer.oprId+'"class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
             '</td></tr>';
     }
-
+    
     function clearOperatoerTable(){
         $("#operatoerAdminTable tbody").empty();
     };
+    
+    
+    $(document).keypress(function(e) {
+		if(e.which == enterkey) {
+			id = e.target.id;
+			$('#updateModal').modal('show');
+		}
 
+	});
+    
 });

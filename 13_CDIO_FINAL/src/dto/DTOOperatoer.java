@@ -38,21 +38,10 @@ public class DTOOperatoer {
     /**
      * Operatoer aktiv
      */
-    private Enum<Aktiv> aktiv;
+    private Aktiv aktiv;
 
     
-    public DTOOperatoer(String fornavn, String efternavn, String cpr, String roles, Enum<Aktiv> aktiv) {
-        this.fornavn = fornavn;
-        this.efternavn = efternavn;
-        this.cpr = cpr;
-        this.roles = roles;
-        this.aktiv = aktiv;
-    }
-
-    public enum Aktiv{
-    	aktiv,inaktiv
-    }
-    
+   
 
 	public void formatCPR() {
         String temp = cpr.substring(0, 5);
