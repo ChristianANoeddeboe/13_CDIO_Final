@@ -1,0 +1,46 @@
+html, body {
+    height: 100%;
+}
+
+
+#dtulogo {
+    min-width: 10em;
+    width: 50%;
+    max-width: 15em;
+    user-select: none;
+    margin-bottom: 4em;
+    margin-top: 30%;
+}
+
+.form-control-plaintext {
+    outline: none;
+    padding: 5px;
+    margin: 15px;
+    width: 93%;
+}
+
+#dtulogin {
+    max-width: 30em;
+    width: 70%;
+}
+
+.btn {
+    margin-top: 1em;
+}
+
+input:focus {
+    border-bottom: 1px solid;
+    border-bottom-color: #c51137;
+    color: #c51137;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -webkit-transition: 0.5s;
+}
+
+.list-group-item {
+    padding: 0;
+}
+
+a:hover {
+    text-decoration: none;
+}
