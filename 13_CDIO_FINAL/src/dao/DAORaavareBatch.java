@@ -4,6 +4,7 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.IDAORaavareBatch;
 import dto.DTORaavareBatch;
+import logging.LogHandler;
 import lombok.extern.java.Log;
 
 import java.sql.ResultSet;
@@ -13,6 +14,10 @@ import java.util.List;
 
 @Log
 public class DAORaavareBatch implements IDAORaavareBatch {
+
+    public DAORaavareBatch(){
+        new LogHandler(log, "DAO");
+    }
 
     @Override
     public DTORaavareBatch getRaavareBatch(int rbId) throws DALException {

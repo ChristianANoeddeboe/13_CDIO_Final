@@ -3,7 +3,7 @@ body {
     align-items: center;
 }
 
-#outercontainer {
+.outercontainer {
     width: 100%;
 }
 
