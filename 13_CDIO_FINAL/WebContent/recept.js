@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	var id,id2;
 	var value;
+	var rolle;
 	const enterkey = 13;
 	function loadRecepts(){
 		$.ajax({ //Indleder et asynkront ajax kald
@@ -9,7 +10,7 @@ $(document).ready(function() {
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				clearReceptTable();
 				$.each(data,function(i,element){
-					$('#receptAdmin').children().append(generateReceptHTML(data[i]));
+					$('#receptAdminTable').children().append(generateReceptHTML(data[i]));
 
 				});
 				$(".slet").click(function(e){
@@ -30,9 +31,22 @@ $(document).ready(function() {
 		});
 	};
 	loadRecepts();
-	$("#menuLoader").load("menu.html");
 
+    $("#menuLoader").load("menu.html");
 
+    rolle = localStorage.getItem('rolle');
+    if (rolle === "Laborant") {
+        $("#receptAdmin").hide();
+        $("#operatoerAdmin").hide();
+        $("#raavareAdmin").hide();
+    }
+    if (rolle === "Værksfører") {
+        $("#receptAdmin").hide();
+        $("#operatoerAdmin").hide();
+    }
+    if (rolle === "Pharmaceut") {
+        $("#operatoerAdmin").hide();
+    }
 
 	$(".btn-primaryAdd").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
