@@ -9,7 +9,7 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.IDAOProduktBatch;
 import dto.DTOProduktBatch;
-import dto.DTOProduktBatch.Status;
+import dto.Status;
 import lombok.extern.java.Log;
 
 @Log
@@ -46,7 +46,7 @@ public class DAOProduktBatch implements IDAOProduktBatch {
 
     @Override
     public void createProduktBatch(DTOProduktBatch produktbatch) throws DALException {
-        if (MySQLConnector.doUpdate("call createProductBatch('"+produktbatch.getStatus() + "'," +
+        if (MySQLConnector.doUpdate("call createProductBatch("+produktbatch.getPbId()+",'"+produktbatch.getStatus() + "'," +
                 produktbatch.getReceptId() + ")") == 0) {
             String errMsg = "Couldn't add tuple to \"Produkt batch\".";
             log.severe(errMsg);

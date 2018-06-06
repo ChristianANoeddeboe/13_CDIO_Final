@@ -18,7 +18,7 @@
 	integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
 	crossorigin="anonymous">
 <script src="jquery-3.3.1.js"></script>
-<script src="recept.js"></script>
+<script src="produkt.js"></script>
 <script src="jquery.serialize-object.js"></script>
 <script src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
 
@@ -27,24 +27,24 @@
 </head>
 <body>
 
-<div class="container" id="receptAdmin">
-	<table class="table table-striped" id = "receptTable">
-		<thead class="thead">
-		<tr>
-			<th class="col-1" scope="col">ID</th>
-			<th class="col-10" scope="col">Recept navn</th>
-			<th class="col-1 text-right" scope="col" colspan="2">
-				<button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#addModal">
-					+
-				</button>
-			</th>
-		</tr>
-		</thead>
-		<tbody>
+	<div class="container" id="produktAdmin">
+		<table class="table table-striped" id="produktTable">
+			<thead class="thead">
+				<tr>
+					<th class="col-1" scope="col">Produkt Batch ID</th>
+					<th class="col" scope="col">Status</th>
+					<th class="col" scope="col">Recept ID</th>
+					<th class="col-1 text-right" scope="col" colspan="2">
+						<button type="button" class="btn btn-primary add"
+							data-toggle="modal" data-target="#addModal">+</button>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
 
-		</tbody>
-	</table>
-</div>
+			</tbody>
+		</table>
+	</div>
 
 	<!-- Modal -->
 	<div class="modal fade" id="showMoreModal" tabindex="-1" role="dialog"
@@ -91,7 +91,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="addTitle">Tilføj recept</h5>
+					<h5 class="modal-title" id="addTitle">Tilføj produktbatch</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -100,18 +100,44 @@
 				<div class="modal-body">
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="inputID">ReceptID</label>
+							<label class="col-sm-2 control-label" for="inputID">ProduktBatchID</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputID"
-									placeholder="ReceptID" />
+									placeholder="ProduktBatchID" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm control-label" for="inputName">Recept
-								navn</label>
+							<label class="col-sm-2 control-label" for="inputStatus">Status</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputName"
-									placeholder="Recept Navn" />
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="exampleRadios" id="exampleRadios1" value="Klar"
+										checked> <label class="form-check-label"
+										for="exampleRadios1"> Klar </label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="exampleRadios" id="exampleRadios2" value="Igang">
+									<label class="form-check-label" for="exampleRadios2">
+										Igang </label>
+								</div>
+								
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="exampleRadios" id="exampleRadios3" value="Afsluttet">
+									<label class="form-check-label" for="exampleRadios2">
+										Afsluttet </label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="col-sm control-label" for="inputReceptID">Recept
+								ID</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputReceptId"
+									placeholder="Recept ID" />
 							</div>
 						</div>
 					</form>
@@ -154,14 +180,15 @@
 								<input type="text" class="form-control" id="inputRaavareID"
 									placeholder="RaavareID" />
 							</div>
-						</div>					
+						</div>
 						<div class="form-group">
-							<label class="col-sm control-label" for="inputNomNetto">Nom netto</label>
+							<label class="col-sm control-label" for="inputNomNetto">Nom
+								netto</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputNomNetto"
 									placeholder="Nominelle netto" />
 							</div>
-						</div>						
+						</div>
 						<div class="form-group">
 							<label class="col-sm control-label" for="inputTolerance">Tolerance</label>
 							<div class="col-sm-10">
@@ -181,13 +208,14 @@
 	</div>
 
 	<!-- Modal -->
-	<div class="modal fade" id="deleteKompModal" tabindex="-1" role="dialog"
-		aria-labelledby="deleteKompModalTitle" aria-hidden="true">
+	<div class="modal fade" id="deleteKompModal" tabindex="-1"
+		role="dialog" aria-labelledby="deleteKompModalTitle"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="deleteKompModalTitle">Vil du slette
-						denne recept komponent?</h5>
+					<h5 class="modal-title" id="deleteKompModalTitle">Vil du
+						slette denne recept komponent?</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -202,8 +230,8 @@
 		</div>
 	</div>
 	<!-- Modal -->
-	<div class="modal fade" id="updateKompModal" tabindex="-1" role="dialog"
-		aria-labelledby="showMoreModalTitle" aria-hidden="true">
+	<div class="modal fade" id="updateKompModal" tabindex="-1"
+		role="dialog" aria-labelledby="showMoreModalTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">

@@ -61,6 +61,7 @@ public class ProduktService implements IProduktService {
 	
 	@GET
 	@Path("all")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getProduktBatchList() throws DALException {
 		try {
 			new MySQLConnector();

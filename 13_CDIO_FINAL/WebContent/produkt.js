@@ -4,12 +4,12 @@ $(document).ready(function() {
 	const enterkey = 13;
 	function loadRecepts(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/all', //specificerer endpointet
+			url : 'rest/produktbatch/all', //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
-				clearReceptTable();
+				clearProduktTable();
 				$.each(data,function(i,element){
-					$('#receptAdmin').children().append(generateReceptHTML(data[i]));
+					$('#produktAdmin').children().append(generateProduktHTML(data[i]));
 
 				});
 				$(".slet").click(function(e){
@@ -35,32 +35,35 @@ $(document).ready(function() {
 
 	$(".btn-primaryAdd").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/create', //specificerer endpointet
+			url : 'rest/produktbatch/create', //specificerer endpointet
 			data : JSON.stringify({
-				receptId : $("#inputID")["0"].value,
-				receptNavn : $("#inputName")["0"].value
+				pbId : $("#inputID")["0"].value,
+				status : $("input:checked").val(),
+				receptId : $("#inputReceptId")["0"].value
 			}),
 			contentType : "application/JSON",
 			type : 'POST', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				$('#addModal').modal('hide');
-				$.notify("Recepten blev operettet", "success");
+				$.notify("Produkt batchet blev operettet", "success");
 				loadRecepts();
 			},
 			error : function(data){
 				$('#addModal').modal('hide');
-				$.notify("Fejl ved oprettelse af recepten", "error");
+				$.notify("Fejl ved oprettelse af produkt batchet", "error");
 				loadRecepts();
 			}
 		});
 	});
 
 
-	$(".btn-primaryUpdate").click(function(){		
+	$(".btn-primaryUpdate").click(function(){
+		var actualId = id.split("_");
+		
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/update', //specificerer endpointet
+			url : 'rest/produktBatch/update', //specificerer endpointet
 			data : JSON.stringify({
-				receptId : id,
+				pbId : id,
 				receptNavn : value
 			}),
 			contentType : "application/json",
@@ -225,11 +228,12 @@ $(document).ready(function() {
 	})
 	
 	//Convenience function for generating html
-	function generateReceptHTML(recept) {
-		return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
-		'<td><input type="text" id = "'+recept.receptId +'"class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
-		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary vis">▼</button>'+'</td>' +
-		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+recept.receptId+'"></i></button>'+'</td>' +
+	function generateProduktHTML(produkt) {
+		return 	'<tr><th scope ="row">' + produkt.pbId + '</th>' +
+		'<td><input type="text" id = "'+produkt.pbId +"_status"+'"class="form-control-plaintext" value="' + produkt.status + '"></td></td>' +
+		'<td><input type="text" id = "'+produkt.pbId +"_recept"+'"class="form-control-plaintext" value="' + produkt.receptId + '"></td></td>' +
+		'<td><button type="button" id = "'+produkt.pbId+'"class="btn btn-primary vis">▼</button>'+'</td>' +
+		'<td><button type="button" id = "'+produkt.pbId+'"class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+produkt.pbId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 
@@ -242,8 +246,8 @@ $(document).ready(function() {
 		'</td></tr>';
 	}
 
-	function clearReceptTable(){
-		$("#receptTable>tbody").empty();
+	function clearProduktTable(){
+		$("#produktTable>tbody").empty();
 	};
 
 	function clearReceptKompTable(){
