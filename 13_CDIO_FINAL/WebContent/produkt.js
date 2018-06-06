@@ -9,7 +9,7 @@ $(document).ready(function() {
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				clearProduktTable();
 				$.each(data,function(i,element){
-					$('#produktAdmin').children().append(generateProduktHTML(data[i]));
+					$('#produktAdminTable').children().append(generateProduktHTML(data[i]));
 
 				});
 				$(".slet").click(function(e){
