@@ -10,7 +10,6 @@ $(document).ready(function() {
             success : function(data) {//Funktion der skal udføres når data er hentet
                 clearOperatoerTable();
                 $.each(data,function(i,element){
-                    data.status = 'Aktiv'
                     $('#operatoerAdminTable').children().append(generateOperatoerHTML(data[i]));
                 });
                 $(".slet").click(function(e){
@@ -91,9 +90,6 @@ $(document).ready(function() {
 
     })
 
-
-
-
     $(".btn-primaryDelete").click(function(e){
         $.ajax({ //Indleder et asynkront ajax kald
             url : 'rest/operatoer/'+id, //specificerer endpointet
@@ -113,42 +109,23 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $(".btn-primaryDelete").click(function(){
-        $.ajax({ //Indleder et asynkront ajax kald
-            url : 'rest/operatoer/'+id, //specificerer endpointet
-            contentType : "plain/text",
-            type : 'DELETE', //Typen af HTTP requestet (GET er default)
-            success : function(data) {//Funktion der skal udføres når data er hentet
-                $('#deleteModal').modal('hide');
-                $.notify("Operatoeren blev slettet", "success");
-                loadOperatoer();
-            },
-            error : function(data){
-                $('#deleteModal').modal('hide');
-                $.notify(data.responseText, "error");
-                loadOperatoer();
-            }
-        });
-
-    });
-
     $(".btn-secondaryDelete").click(function(){
         $('#deleteModal').modal('hide');
     });
 
     //Convenience function for generating html
     function generateOperatoerHTML(operatoer) {
-        return 	'<tr><th scope ="row">' + operatoer.id + '</th>' +
-            '<td><input type="text" id = "'+operatoer.id+'"class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
-            '<td><input type="text" id = "'+operatoer.id+'"class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
-            '<td><input type="text" id = "'+operatoer.id+'"class="form-control-plaintext" value="' + operatoer.cpr + '"></td></td>' +
-            '<td><input type="text" id = "'+operatoer.id+'"class="form-control-plaintext" value="' + operatoer.status + '"></td></td>' +
-            '<td><button type="button" id = "'+operatoer.id+'"class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+operatoer.id+'"></i></button>'+'</td>' +
+        return 	'<tr><th scope ="row">' + operatoer.oprId + '</th>' +
+            '<td><input type="text" id = "'+operatoer.oprId+'"class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
+            '<td><input type="text" id = "'+operatoer.oprId+'"class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
+            '<td><input type="text" id = "'+operatoer.oprId+'"class="form-control-plaintext" value="' + operatoer.cpr + '"></td></td>' +
+            '<td><input type="text" id = "'+operatoer.oprId+'"class="form-control-plaintext" value="' + operatoer.aktiv + '"></td></td>' +
+            '<td><button type="button" id = "'+operatoer.oprId+'"class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
             '</td></tr>';
     }
 
     function clearOperatoerTable(){
-        $("#operatoerAdminTable>tbody").empty();
+        $("#operatoerAdminTable tbody").empty();
     };
 
 });

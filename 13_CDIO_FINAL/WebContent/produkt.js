@@ -245,11 +245,11 @@ $(document).ready(function() {
 	}
 
 	function clearProduktTable(){
-		$("#produktTable>tbody").empty();
+		$("#produktTable tbody").empty();
 	};
 
 	function clearProduktBatchKompTable(){
-		$("#produktBatchKompTable>tbody").empty();
+		$("#produktBatchKompTable tbody").empty();
 	};
 
 

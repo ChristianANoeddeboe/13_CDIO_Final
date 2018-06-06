@@ -224,11 +224,11 @@ $(document).ready(function() {
 	}
 
 	function clearRaavareTable(){
-		$("#raavareTable>tbody").empty();
+		$("#raavareTable tbody").empty();
 	};
 
 	function clearRåvareBatchTable(){
-		$("#råvareBatchTable>tbody").empty();
+		$("#råvareBatchTable tbody").empty();
 	};
 
 

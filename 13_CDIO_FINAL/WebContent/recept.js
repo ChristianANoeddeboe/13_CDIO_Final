@@ -260,11 +260,11 @@ $(document).ready(function() {
 	}
 
 	function clearReceptTable(){
-		$("#receptTable>tbody").empty();
+		$("#receptTable tbody").empty();
 	};
 
 	function clearReceptKompTable(){
-		$("#receptKompTable>tbody").empty();
+		$("#receptKompTable tbody").empty();
 	};
 
 

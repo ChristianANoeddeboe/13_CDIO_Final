@@ -74,7 +74,7 @@ public class DAOOperatoer implements IDAOOperatoer {
 
     @Override
     public void deleteOperatoer(int opr_id) throws DALException {
-        if (MySQLConnector.doUpdate("CALL deleteOperator('" + opr_id + "','aktiv')") == 0) {
+        if (MySQLConnector.doUpdate("CALL deleteOperator('" + opr_id + "')") == 0) {
             String errMsg = "Couldn't add tuple to \"Operatoer\".";
             log.severe(errMsg);
             throw new DALException(errMsg);
