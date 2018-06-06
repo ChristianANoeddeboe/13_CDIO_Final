@@ -21,14 +21,15 @@ import controller.RaavareBatchController;
 import controller.RaavareController;
 import controller.ReceptController;
 import controller.ReceptKompController;
+import logging.LogHandler;
+import lombok.extern.java.Log;
 
-
+@Log
 public class Controller {
 	final static int MSGLENGTH = 24;
 	final static int UNITLENGTH = 7;
-	
+
     WeightSocket socket;
-    Logger logger;
 	static OperatoerController operatoerController = new OperatoerController(new DAOOperatoer());
 	static RaavareBatchController raavareBatchController = new RaavareBatchController(new DAORaavareBatch());
 	static ProduktBatchController productBatchController = new ProduktBatchController(new DAOProduktBatch());
@@ -42,9 +43,9 @@ public class Controller {
     //HashMap<Integer, PreparedStatement> preparedstatementsContainer = new HashMap<>();
     public Controller(WeightSocket socket) {
         this.socket = socket;
-        this.logger = new Logger();
         this.operatoer = new DTOOperatoer();
         this.produktBatch = null;
+        new LogHandler(log, "ASE");
     }
 
     public void run() throws DALException {
@@ -82,7 +83,7 @@ public class Controller {
         catch (IOException e) {
             produktBatch.setStatus(Status.Klar);
             productBatchController.updateProduktBatch(produktBatch);
-            logger.writeToLog(e.getMessage());
+            log.severe(e.getMessage());
             System.exit(0);
         } catch (NumberFormatException e) {
             produktBatch.setStatus(Status.Klar);
@@ -104,7 +105,7 @@ public class Controller {
         DTOProduktBatchKomp tempProduktBatchKomp = null;
         DTORaavareBatch temp = null;
         ProduktBatchKompController pbkController = new ProduktBatchKompController(new DAOProduktBatchKomp());
-        
+
         for (DTOReceptKomp receptKompDTO : receptKompList) {
             nomnetto = receptKompDTO.getNomNetto();
             tolerance = receptKompDTO.getTolerance();
@@ -128,8 +129,8 @@ public class Controller {
             //-the required amount, then we have weighed out sufficient.
             if(result-tolerance >= nomnetto) {
             	int index = 0;
-                List<DTORaavareBatch> raavareBatches = raavareBatchController.getRaavareBatchList(raavare.getRaavareId());       
-                
+                List<DTORaavareBatch> raavareBatches = raavareBatchController.getRaavareBatchList(raavare.getRaavareId());
+
                 do {
                 	temp = raavareBatches.get(index++);
                 	if(temp.getMaengde()<result) {
@@ -152,7 +153,7 @@ public class Controller {
             }
         }
     }
-    
+
     public String requestInput(String string1, String string2, String string3) throws IOException {
         //Format string to the weight format.
     	string1 = truncateMsg(string1);
@@ -160,7 +161,7 @@ public class Controller {
     	string3 = truncateUnit(string3);
         String msg = "RM20 8 "+"\""+string1+"\" "+"\""+string2+"\" "+"\""+string3+"\" "+"\n";
         String str;
-        logger.writeToLog("Client: "+msg.replace("\n", "\\n"));
+        log.info("Client: "+msg.replace("\n", "\\n"));
 
         try {
             Thread.sleep(100);
@@ -172,9 +173,9 @@ public class Controller {
         socket.write(msg);
         //wait until we actually get the return msg.
         while (!(str = socket.read()).contains("RM20 A")) {
-            logger.writeToLog("Server: "+str);
+            log.info("Server: "+str);
         }
-        logger.writeToLog("Server: "+str);
+        log.info("Server: "+str);
         String[] strArr = str.split(" ");
 
         if(strArr.length == 3) {
@@ -198,7 +199,7 @@ public class Controller {
             e.printStackTrace();
         } catch (NullPointerException e) {
             str = "User does not exist.";
-            logger.writeToLog(str);
+            log.warning(str);
             return false;
         }
         if(str.length() == 0) {
@@ -208,7 +209,7 @@ public class Controller {
         if(Integer.parseInt(strArr[0]) == 1){
             return true;
         }else {
-            logger.writeToLog("Wrong name or bad input.");
+            log.warning("Wrong name or bad input.");
             return false;
         }
     }
@@ -235,7 +236,7 @@ public class Controller {
             e.printStackTrace();
         } catch (NullPointerException e) {
             str = "User does not exist.";
-            logger.writeToLog(str);
+            log.warning(str);
             return false;
         } catch (DALException e) {
             // TODO Auto-generated catch block
@@ -252,7 +253,7 @@ public class Controller {
         if(Integer.parseInt(strArr[0]) == 1){
             return true;
         }else {
-            logger.writeToLog("Wrong name or bad input.");
+            log.warning("Wrong name or bad input.");
             return false;
         }
     }
@@ -278,10 +279,10 @@ public class Controller {
         //Send cmd.
         String str;
         socket.write("S\n");
-        logger.writeToLog("Client: S\\n");
+        log.info("Client: S\\n");
         //Receive weight.
         str = socket.read();
-        logger.writeToLog("Server: "+str);
+        log.info("Server: "+str);
         System.out.println(str);
         String[] strArr = str.split(" ");
         System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
@@ -292,23 +293,23 @@ public class Controller {
         String str;
         //Send cmd.
         socket.write("T\n");
-        logger.writeToLog("Client: T");
+        log.info("Client: T");
         //Read tarrering.
         str = socket.read();
-        logger.writeToLog("Server: "+str);
+        log.info("Server: "+str);
         String[] strArr = str.split(" ");
         System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
         return Double.parseDouble(strArr[6]);
     }
-    
+
     private String truncateMsg(String msg) {
     		return msg.substring(0, Math.min(msg.length()-1, MSGLENGTH-1));
     }
-    
+
     private String truncateUnit(String unit) {
     	return unit.substring(0, Math.min(unit.length()-1, UNITLENGTH-1));
     }
-    
+
     private double samletMaengdeRaavare(int raavareId) {
     	double maengde = 0;
     	try {
@@ -322,13 +323,13 @@ public class Controller {
 		}
     	return maengde;
     }
-    
+
     private void regulerMaengde(int raavareId, double maengde) {
     	List<DTORaavareBatch> raavareBatches;
 		try {
 			raavareBatches = raavareBatchController.getRaavareBatchList(raavareId);
 	    	for(DTORaavareBatch rb : raavareBatches) {
-	    		
+
 	    	}
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
