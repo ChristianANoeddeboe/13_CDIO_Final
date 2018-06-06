@@ -32,21 +32,23 @@ $(document).ready(function() {
 	};
 	loadRecepts();
 
-    $("#menuLoader").load("menu.html");
+    $("#menuLoader").load("menu.html", null, function () {
+        rolle = localStorage.getItem('rolle');
+        if (rolle === "Laborant") {
+            $("#operatoerAdmin").hide();
+            $("#receptAdmin").hide();
+            $("#raavareAdmin").hide();
+        }
+        if (rolle === "Værksfører") {
+            $("#receptAdmin").hide();
+            $("#operatoerAdmin").hide()
+        }
+        if (rolle === "Pharmaceut") {
+            $("#operatoerAdmin").hide();
+        }
+    });
 
-    rolle = localStorage.getItem('rolle');
-    if (rolle === "Laborant") {
-        $("#receptAdmin").hide();
-        $("#operatoerAdmin").hide();
-        $("#raavareAdmin").hide();
-    }
-    if (rolle === "Værksfører") {
-        $("#receptAdmin").hide();
-        $("#operatoerAdmin").hide();
-    }
-    if (rolle === "Pharmaceut") {
-        $("#operatoerAdmin").hide();
-    }
+
 
 	$(".btn-primaryAdd").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
