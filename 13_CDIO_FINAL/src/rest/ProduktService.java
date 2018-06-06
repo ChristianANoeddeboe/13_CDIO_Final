@@ -146,7 +146,7 @@ public class ProduktService implements IProduktService {
 
 	@DELETE
 	@Path("{id}")
-	public Response deleteProduktBatch(int pbID) throws DALException {
+	public Response deleteProduktBatch(@PathParam("id") int pbID) throws DALException {
 		try {
 			new MySQLConnector();
 		} catch (InstantiationException e) {
@@ -206,7 +206,7 @@ public class ProduktService implements IProduktService {
 	@Path("komponent/list/{pbId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getProduktBatchKompList(int pbId) throws DALException {
+	public Response getProduktBatchKompList(@PathParam("pbId")int pbId) throws DALException {
 		try {
 			new MySQLConnector();
 		} catch (InstantiationException e) {

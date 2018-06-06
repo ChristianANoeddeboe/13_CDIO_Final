@@ -45,46 +45,29 @@
 			</tbody>
 		</table>
 	</div>
-
 	<!-- Modal -->
-	<div class="modal fade" id="showMoreModal" tabindex="-1" role="dialog"
-		aria-labelledby="showMoreTitle" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
+	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+		aria-labelledby="showMoreModalTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="showMoreTitle">Receptkomponenter</h5>
+					<h5 class="modal-title" id="showMoreModalTitle">Vil du
+						opdatere denne produktBatch?</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<table class="table table-striped" id="receptKompTable">
-						<thead class="thead">
-							<tr>
-								<th scope="col">ReceptID</th>
-								<th scope="col">RåvareID</th>
-								<th scope="col">Nom netto</th>
-								<th scope="col">Tolerance</th>
-								<th class="col" scope="col">
-									<button type="button" class="btn btn-primary add"
-										data-toggle="modal" data-target="#addKompModal">+</button>
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-
-						</tbody>
-					</table>
-				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-secondaryUpdate"
+						data-dismiss="modal">Afbryd</button>
+					<button type="button" class="btn btn-primaryUpdate">Opdater</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
+	
 	<!-- Modal -->
 	<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
 		aria-labelledby="addTitle" aria-hidden="true">
@@ -150,8 +133,68 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+		aria-labelledby="deleteModalTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deleteModalTitle">Vil du slette
+						denne produkt batch?</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondaryDelete"
+						data-dismiss="modal">Afbryd</button>
+					<button type="button" class="btn btn-primaryDelete">Slet</button>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	<!-- Modal -->
+	<div class="modal fade" id="showMoreModal" tabindex="-1" role="dialog"
+		aria-labelledby="showMoreTitle" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="showMoreTitle">Produktbatch komponenter</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table table-striped" id="produktBatchKompTable">
+						<thead class="thead">
+							<tr>
+								<th scope="col">ProduktBatchID</th>
+								<th scope="col">RåvareBatchID</th>
+								<th scope="col">Tara</th>
+								<th scope="col">Netto</th>
+								<th scope="col">Operatoer ID</th>
+								<th class="col" scope="col">
+									<button type="button" class="btn btn-primary add"
+										data-toggle="modal" data-target="#addKompModal">+</button>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
 
-
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Modal -->
 	<div class="modal fade" id="addKompModal" tabindex="-1" role="dialog"
@@ -159,7 +202,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="addTitle">Tilføj receptkomponent</h5>
+					<h5 class="modal-title" id="addTitle">Tilføj produktbatchkomponent</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -168,32 +211,36 @@
 				<div class="modal-body">
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="inputReceptID">ReceptID</label>
+							<label class="col-sm-2 control-label" for="inputPBID">PB ID</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputReceptID"
-									placeholder="ReceptID" />
+								<input type="text" class="form-control" id="inputPBID"
+									placeholder="Produkt Batch ID" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm control-label" for="inputRaavareID">RaavareID</label>
+							<label class="col-sm control-label" for="inputRBID">RB ID</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputRaavareID"
-									placeholder="RaavareID" />
+								<input type="text" class="form-control" id="inputRBID"
+									placeholder="Råvare batch ID" />
 							</div>
 						</div>
+						
+						
+						
 						<div class="form-group">
-							<label class="col-sm control-label" for="inputNomNetto">Nom
-								netto</label>
+							<label class="col-sm control-label" for="inputNetto">Netto</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputNomNetto"
-									placeholder="Nominelle netto" />
+								<input type="text" class="form-control" id="inputNetto"
+									placeholder="Netto vægt" />
 							</div>
 						</div>
+						
+						
 						<div class="form-group">
-							<label class="col-sm control-label" for="inputTolerance">Tolerance</label>
+							<label class="col-sm control-label" for="inputOpr">Opr ID</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputTolerance"
-									placeholder="Tolerance" />
+								<input type="text" class="form-control" id="inputOpr"
+									placeholder="Operatør ID" />
 							</div>
 						</div>
 					</form>
@@ -206,7 +253,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- Modal -->
 	<div class="modal fade" id="deleteKompModal" tabindex="-1"
 		role="dialog" aria-labelledby="deleteKompModalTitle"
@@ -215,7 +261,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="deleteKompModalTitle">Vil du
-						slette denne recept komponent?</h5>
+						slette denne produktbatch komponent?</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -236,7 +282,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="showMoreModalTitle">Vil du
-						opdatere denne receptkomponent?</h5>
+						opdatere denne produktbatch komponent?</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -250,49 +296,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- Modal -->
-	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
-		aria-labelledby="deleteModalTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="deleteModalTitle">Vil du slette
-						denne recept?</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondaryDelete"
-						data-dismiss="modal">Afbryd</button>
-					<button type="button" class="btn btn-primaryDelete">Slet</button>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<!-- Modal -->
-	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
-		aria-labelledby="showMoreModalTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="showMoreModalTitle">Vil du
-						opdatere denne recept</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondaryUpdate"
-						data-dismiss="modal">Afbryd</button>
-					<button type="button" class="btn btn-primaryUpdate">Opdater</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
 
 

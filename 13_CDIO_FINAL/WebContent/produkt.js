@@ -2,7 +2,7 @@ $(document).ready(function() {
 	var id,id2;
 	var value;
 	const enterkey = 13;
-	function loadRecepts(){
+	function loadProdukt(){
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/produktbatch/all', //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
@@ -29,7 +29,7 @@ $(document).ready(function() {
 			}
 		});
 	};
-	loadRecepts();
+	loadProdukt();
 
 
 
@@ -46,12 +46,12 @@ $(document).ready(function() {
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				$('#addModal').modal('hide');
 				$.notify("Produkt batchet blev operettet", "success");
-				loadRecepts();
+				loadProdukt();
 			},
 			error : function(data){
 				$('#addModal').modal('hide');
 				$.notify("Fejl ved oprettelse af produkt batchet", "error");
-				loadRecepts();
+				loadProdukt();
 			}
 		});
 	});
@@ -61,63 +61,42 @@ $(document).ready(function() {
 		var actualId = id.split("_");
 		
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/produktBatch/update', //specificerer endpointet
+			url : 'rest/produktbatch/update', //specificerer endpointet
 			data : JSON.stringify({
-				pbId : id,
-				receptNavn : value
+				pbId : actualId[0],
+				status : $("#"+actualId[0]+"_status")["0"].value,
+				receptId : $("#"+actualId[0]+"_recept")["0"].value
 			}),
 			contentType : "application/json",
 			type : 'PUT', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				$('#updateModal').modal('hide');
-				$.notify("Recepten blev opdateret", "success");
-				loadRecepts();
+				$.notify("ProduktBatchet blev opdateret", "success");
+				loadProdukt();
 			},
 			error : function(data){
 				$('#updateModal').modal('hide');
 				$.notify(data.responseText, "error");
-				loadRecepts();
+				loadProdukt();
 			}
 		});
 
 	})
 	
-	
-
-
-	$(".btn-primaryDelete").click(function(e){
-		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/'+id, //specificerer endpointet
-			contentType : "plain/text",
-			type : 'DELETE', //Typen af HTTP requestet (GET er default)
-			success : function(data) {//Funktion der skal udføres når data er hentet
-				$('#deleteModal').modal('hide');
-				$.notify("Recepten blev slettet", "success");
-				loadRecepts();
-			},
-			error : function(data){
-				$('#deleteModal').modal('hide');
-				$.notify(data.responseText, "error");
-				loadRecepts();
-			}
-		});
-		e.preventDefault();
-	});
-	
 	$(".btn-primaryDelete").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/'+id, //specificerer endpointet
+			url : 'rest/produktbatch/'+id, //specificerer endpointet
 			contentType : "plain/text",
 			type : 'DELETE', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				$('#deleteModal').modal('hide');
-				$.notify("Recepten blev slettet", "success");
-				loadRecepts();
+				$.notify("Produktbatchet blev slettet", "success");
+				loadProdukt();
 			},
 			error : function(data){
 				$('#deleteModal').modal('hide');
 				$.notify(data.responseText, "error");
-				loadRecepts();
+				loadProdukt();
 			}
 		});
 
@@ -126,16 +105,17 @@ $(document).ready(function() {
 	$(".btn-secondaryDelete").click(function(){
 		$('#deleteModal').modal('hide');
 	});
-	//Recept komp stuff starts here
-	function loadReceptKomps(){
+	
+	//Produktbatch komp stuff starts here
+	function loadProduktBatchKomps(){
 		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/komponent/list/'+res[0], //specificerer endpointet
+			url : 'rest/produktbatch/komponent/list/'+res[0], //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
-				clearReceptKompTable();
+				clearProduktBatchKompTable();
 				$.each(data,function(i,element){
-					$('#receptKompTable').append(generateReceptKompHTML(data[i]));
+					$('#produktBatchKompTable').append(generateProduktBatchKompHTML(data[i]));
 
 				});
 				$(".sletKomp").click(function(e){
@@ -152,31 +132,32 @@ $(document).ready(function() {
 	};
 	
 	$('#showMoreModal').on('shown.bs.modal', function () {
-		loadReceptKomps();
+		loadProduktBatchKomps();
 	});
 	
 
 
 	$(".btn-primaryAddKomp").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/komponent/create', //specificerer endpointet
+			url : 'rest/produktbatch/komponent/create', //specificerer endpointet
 			data : JSON.stringify({
-				receptId : $("#inputReceptID")["0"].value,
-				raavareId : $("#inputRaavareID")["0"].value,
-				nomNetto : $("#inputNomNetto")["0"].value,
-				tolerance: $("#inputTolerance")["0"].value
+				pbId : $("#inputPBID")["0"].value,
+				rbId : $("#inputRBID")["0"].value,
+				tara : $("#inputTara")["0"].value,
+				netto : $("#inputNetto")["0"].value,
+				oprId : $("#inputOpr")["0"].value
 			}),
 			contentType : "application/JSON",
 			type : 'POST', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				$('#addKompModal').modal('hide');
-				$.notify("Receptenkomponenten blev operettet", "success");
-				loadReceptKomps();
+				$.notify("Produktbatch komponenten blev operettet", "success");
+				loadProduktBatchKomps();
 			},
 			error : function(data){
 				$('#addKompModal').modal('hide');
-				$.notify("Fejl ved oprettelse af receptkomponenten", "error");
-				loadReceptKomps();
+				$.notify("Fejl ved oprettelse af produktbatch komponenten", "error");
+				loadProduktBatchKomps();
 			}
 		});
 	});
@@ -184,18 +165,18 @@ $(document).ready(function() {
 	$(".btn-primaryDeleteKomp").click(function(){
 		var res = id2.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/komponent/'+res[0]+'/'+res[1], //specificerer endpointet
+			url : 'rest/produktbatch/komponent/'+res[0]+'/'+res[1], //specificerer endpointet
 			contentType : "plain/text",
 			type : 'DELETE', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				$('#deleteKompModal').modal('hide');
-				$.notify("Recept komponenten blev slettet", "success");
-				loadReceptKomps();
+				$.notify("Produktbatch komponenten blev slettet", "success");
+				loadProduktBatchKomps();
 			},
 			error : function(data){
 				$('#deleteKompModal').modal('hide');
 				$.notify(data.responseText, "error");
-				loadReceptKomps();
+				loadProduktBatchKomps();
 			}
 		});
 
@@ -204,24 +185,25 @@ $(document).ready(function() {
 	$(".btn-primaryUpdateKomp").click(function(){
 		var res = id.split("_")
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/komponent/update', //specificerer endpointet
+			url : 'rest/produktbatch/komponent/update', //specificerer endpointet
 			data : JSON.stringify({
-				receptId : res[0],
-				raavareId : res[1],
-				nomNetto : $(("#"+res[0]+"_"+res[1]+"_netto"))["0"].value,
-				tolerance : $(("#"+res[0]+"_"+res[1]+"_tolerance"))["0"].value
+				pbId : res[0],
+				rbId : res[1],
+				tara :  $(("#"+res[0]+"_"+res[1]+"_tara"))["0"].value,
+				netto : $(("#"+res[0]+"_"+res[1]+"_netto"))["0"].value,
+				oprId : $(("#"+res[0]+"_"+res[1]+"_operatoer"))["0"].value
 			}),
 			contentType : "application/json",
 			type : 'PUT', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				$('#updateKompModal').modal('hide');
-				$.notify("Recept komponenten blev opdateret", "success");
-				loadReceptKomps();
+				$.notify("Produktbatch komponenten blev opdateret", "success");
+				loadProduktBatchKomps();
 			},
 			error : function(data){
 				$('#updateKompModal').modal('hide');
 				$.notify(data.responseText, "error");
-				loadReceptKomps();
+				loadProduktBatchKomps();
 			}
 		});
 
@@ -237,12 +219,13 @@ $(document).ready(function() {
 		'</td></tr>';
 	}
 
-	function generateReceptKompHTML(receptKomp) {
-		return 	'<tr><th scope ="row">' + receptKomp.receptId + '</th>' +
-		'<th scope = "row">'+receptKomp.raavareId + '</th>' +		
-		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_netto"+'"class="form-control-plaintext" value="' + receptKomp.nomNetto + '"></td></td>' +
-		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_tolerance"+'"class="form-control-plaintext" value="' + receptKomp.tolerance + '"></td></td>' +
-		'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
+	function generateProduktBatchKompHTML(produktKomp) {
+		return 	'<tr><th scope ="row">' + produktKomp.pbId + '</th>' +
+		'<th scope = "row">'+produktKomp.rbId + '</th>' +		
+		'<td><input type="text" id = "'+produktKomp.pbId+"_"+produktKomp.rbId+"_tara"+'"class="form-control-plaintext" value="' + produktKomp.tara + '"></td></td>' +
+		'<td><input type="text" id =  "'+produktKomp.pbId+"_"+produktKomp.rbId+"_netto"+'"class="form-control-plaintext" value="' + produktKomp.netto + '"></td></td>' +
+		'<td><input type="text" id =  "'+produktKomp.pbId+"_"+produktKomp.rbId+"_operatoer"+'"class="form-control-plaintext" value="' + produktKomp.oprId + '"></td></td>' +
+		'<td><button type="button" id =  "'+produktKomp.pbId+"_"+produktKomp.rbId+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id = "'+produktKomp.pbId+"_"+produktKomp.rbId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 
@@ -250,8 +233,8 @@ $(document).ready(function() {
 		$("#produktTable>tbody").empty();
 	};
 
-	function clearReceptKompTable(){
-		$("#receptKompTable>tbody").empty();
+	function clearProduktBatchKompTable(){
+		$("#produktBatchKompTable>tbody").empty();
 	};
 
 
@@ -260,7 +243,7 @@ $(document).ready(function() {
 			id = e.target.id;
 			value = e.target.value;
 			var res = id.split("_");
-			if(res.length == 1){
+			if(res.length == 2){
 				$('#updateModal').modal('show');
 			}else{
 				$('#updateKompModal').modal('show');
