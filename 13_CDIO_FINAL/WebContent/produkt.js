@@ -30,7 +30,6 @@ $(document).ready(function() {
 		});
 	};
 	loadRecepts();
-	$("#menuLoader").load("menu.html");
 
 
 
