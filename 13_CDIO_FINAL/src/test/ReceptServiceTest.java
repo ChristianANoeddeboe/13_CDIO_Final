@@ -181,9 +181,9 @@ class ReceptServiceTest {
 	@Test
 	void testGetReceptKompList() {
 		try {
-			HttpResponse<DTOReceptKomp[]> response = Unirest.get(baseUrl+"komponent/list/").asObject(DTOReceptKomp[].class);
+			HttpResponse<DTOReceptKomp[]> response = Unirest.get(baseUrl+"komponent/list/"+1).asObject(DTOReceptKomp[].class);
 			DTOReceptKomp[] responseArray = response.getBody();		
-			List<DTOReceptKomp> sqlResponseArray = controllerKomp.getReceptKompList();
+			List<DTOReceptKomp> sqlResponseArray = controllerKomp.getReceptKompList(1);
 			if(responseArray.length == sqlResponseArray.size()) {
 				for (int i = 0; i < responseArray.length; i++) {
 					if(!(responseArray[i].getReceptId() == sqlResponseArray.get(i).getReceptId() &&
@@ -207,17 +207,104 @@ class ReceptServiceTest {
 
 	@Test
 	void testCreateReceptKomp() {
-		fail("Not yet implemented");
+		try {
+			Unirest.post(baseUrl + "create")
+			.header("Content-Type", "application/json").
+			body(new DTORecept(9999, "Test"))
+			.asJson();
+			
+			Unirest.post(baseUrl+"komponent/create").
+			header("Content-Type", "application/json").
+			body(new DTOReceptKomp(9999, 1, 1, 1)).asJson();
+		
+			DTOReceptKomp tempKomp = controllerKomp.getReceptKomp(9999, 1);
+			if(tempKomp.getTolerance() == 1 && tempKomp.getNomNetto() == 1) {
+				controllerKomp.deleteReceptKomp(9999, 1);
+				controller.deleteRecept(9999);
+			}else {
+				fail("The created receptKomp was not found or did not match the one created with rest");
+			}
+		} catch (UnirestException e) {
+			e.printStackTrace();
+			fail("UniRestexception");
+
+		} catch (DALException e) {
+			e.printStackTrace();
+			fail("DalException");
+
+		}
 	}
 
 	@Test
 	void testUpdateReceptKomp() {
-		fail("Not yet implemented");
+		try {
+			Unirest.post(baseUrl + "create")
+			.header("Content-Type", "application/json")
+			.body(new DTORecept(9999, "Test"))
+			.asJson();
+			
+			Unirest.post(baseUrl+"komponent/create")
+			.header("Content-Type", "application/json")
+			.body(new DTOReceptKomp(9999, 1, 1, 1))
+			.asJson();
+		
+			DTOReceptKomp tempKomp = controllerKomp.getReceptKomp(9999, 1);
+			if(tempKomp.getTolerance() == 1 && tempKomp.getNomNetto() == 1) {
+				Unirest.put(baseUrl + "komponent/update")
+				.header("Content-Type", "application/json")
+				.body(new DTOReceptKomp(9999, 1, 2, 2))
+				.asJson();
+
+				DTOReceptKomp temp2 = controllerKomp.getReceptKomp(9999,1);
+				
+				if(temp2.getNomNetto() == 2 && temp2.getTolerance() == 2) {
+					controllerKomp.deleteReceptKomp(9999, 1);
+					controller.deleteRecept(9999);
+				}else {
+					fail("The receptKomp was not updater properly");
+				}
+			}else {
+				fail("The created receptKomp was not found or did not match the one created with rest");
+			}
+
+		} catch (UnirestException e) {
+			e.printStackTrace();
+			fail("UniRestexception");
+		} catch (DALException e) {
+			e.printStackTrace();
+			fail("DalException");
+		}
 	}
 
 	@Test
 	void testDeleteReceptKomp() {
-		fail("Not yet implemented");
+		try {
+			Unirest.post(baseUrl + "create")
+			.header("Content-Type", "application/json").
+			body(new DTORecept(9999, "Test"))
+			.asJson();
+			
+			Unirest.post(baseUrl+"komponent/create").
+			header("Content-Type", "application/json").
+			body(new DTOReceptKomp(9999, 1, 1, 1)).asJson();
+			
+			Unirest.delete(baseUrl + "komponent/{id}/{id2}")
+			.header("Content-Type", "application/json")
+			.routeParam("id", "9999")
+			.routeParam("id2", "1")
+			.asJson();
+				try {
+					controllerKomp.getReceptKomp(9999,1);
+					controller.deleteRecept(9999);
+				} catch (Exception e) {
+
+				}		
+			
+		} catch (UnirestException e) {
+			e.printStackTrace();
+			fail("UniRestexception");
+
+		}
 	}
 
 }
