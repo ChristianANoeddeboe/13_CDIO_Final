@@ -155,6 +155,12 @@ public class Controller {
 				}
 				pbkController.createProdBatchKomp(tempProduktBatchKomp);
 			} while(weightAmount>0);
+			
+			requestInput("", "Tøm vægten.", "");
+			while(!bruttokontrol(tara)) {
+				requestInput("", "Bruttokontrol fejlet.", "");
+			}
+			tarer();
 		}
 	}
 
@@ -166,7 +172,8 @@ public class Controller {
 		String msg = "RM20 8 "+"\""+string1+"\" "+"\""+string2+"\" "+"\""+string3+"\" "+"\n";
 		String str;
 		log.info("Client: "+msg.replace("\n", "\\n"));
-
+		
+		/*Der skal sleepes før den vil vise beskeden for some reason.*/
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
@@ -294,15 +301,25 @@ public class Controller {
 	}
 
 	private double readWeight() throws IOException{
-		//Send cmd.
+		double weight = 0;
 		String str;
+		//Send cmd.
 		socket.write("S\n");
 		log.info("Client: S\\n");
+		
 		//Receive weight.
 		str = socket.read();
 		log.info("Server: "+str);
-		String[] strArr = str.split(" ");
-		return Double.parseDouble(strArr[6]);
+		
+		if(str.contains("-")) {
+			String[] strArr = str.split(" ");
+			weight = Double.parseDouble(strArr[5]); 
+		}
+		else {
+			String[] strArr = str.split(" ");
+			weight = Double.parseDouble(strArr[6]); 
+		}
+		return weight;
 	}
 
 	private double tarer() throws IOException {
@@ -344,6 +361,7 @@ public class Controller {
 	}
 	
 	private void showMsg(String msg, int mili) throws IOException, InterruptedException {
+		/*Der skal sleepes før den vil vise beskeden for some reason.*/
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
@@ -354,5 +372,20 @@ public class Controller {
 		socket.write(str);
 		Thread.sleep(mili);
 		socket.write("DW\n");
+	}
+	
+	private boolean bruttokontrol(double tara) {
+		double afvejning = 0;
+		try {
+			afvejning = readWeight()*-1;
+			if(afvejning==tara) {
+				return true;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(0);
+		}
+		return false;
 	}
 }
