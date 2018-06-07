@@ -48,7 +48,7 @@ public class Controller {
 		new LogHandler(log, "ASE");
 	}
 
-	public void run() throws DALException {
+	public void run() {
 		boolean userOK = false, batchOK = false;
 		try {
 			// Connect to weight
@@ -91,9 +91,11 @@ public class Controller {
 		catch (IOException e) {
 			log.severe(e.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+			log.severe(e.getMessage());
+		} catch(DALException e) {
+			log.info(e.getMessage());
+		}
+		finally {
 			try {
 				socket.disconnect();
 			} catch (IOException e1) {
