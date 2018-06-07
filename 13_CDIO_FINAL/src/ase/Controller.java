@@ -121,7 +121,7 @@ public class Controller {
 
 			do {
 				requestInput("Toem Vaegt","","");
-			} while (readWeight() >= 0.01);
+			} while (readWeight()>=0.0001);
 
 			raavare = raavareController.getRaavare(receptKompDTO.getRaavareId());
 			requestInput(raavare.getRaavareId()+" : "+raavare.getRaavareNavn(),"", "");
@@ -154,7 +154,7 @@ public class Controller {
 					weightAmount = 0;
 				}
 				pbkController.createProdBatchKomp(tempProduktBatchKomp);
-			} while(weightAmount>0);
+			} while(weightAmount>0.00001);
 			
 			requestInput("", "Tøm vægten.", "");
 			while(!bruttokontrol(tara)) {
@@ -378,7 +378,7 @@ public class Controller {
 		double afvejning = 0;
 		try {
 			afvejning = readWeight()*-1;
-			if(afvejning==tara) {
+			if(Math.abs(afvejning-tara)<0.00001) {
 				return true;
 			}
 		} catch (IOException e) {
