@@ -9,15 +9,12 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.IDAOOperatoer;
 import dto.DTOOperatoer;
-import logging.LogHandler;
-import lombok.extern.java.Log;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-@Log
+@Slf4j
+@NoArgsConstructor
 public class DAOOperatoer implements IDAOOperatoer {
-
-    public DAOOperatoer(){
-        new LogHandler(log, "DAO");
-    }
 
     //Get operator with specific ID
     public DTOOperatoer getOperatoer(int oprId) throws DALException {
@@ -29,8 +26,7 @@ public class DAOOperatoer implements IDAOOperatoer {
                     dto.Roller.valueOf(rs.getString("roller")),
                     dto.Aktiv.valueOf(rs.getString("aktiv")));
         } catch (SQLException e) {
-            log.severe(e.toString());
-            log.getHandlers()[0].close();
+            log.warn(e.toString());
             throw new DALException(e);
         }
 
@@ -41,8 +37,7 @@ public class DAOOperatoer implements IDAOOperatoer {
         if (MySQLConnector.doUpdate("CALL createOperator('" + opr.getCpr() + "','" + opr.getRoles() +
                 "','" + opr.getFornavn() + "','" + opr.getEfternavn() + "','aktiv')") == 0) {
             String errMsg = "Couldn't add tuple to \"Operatoer\".";
-            log.severe(errMsg);
-            log.getHandlers()[0].close();
+            log.warn(errMsg);
             throw new DALException(errMsg);
         }
     }
@@ -51,8 +46,7 @@ public class DAOOperatoer implements IDAOOperatoer {
         opr.formatCPR();
         if (MySQLConnector.doUpdate("CALL updateOperator(" + opr.getOprId() + "," + opr.getCpr() + ",'" + opr.getRoles() + "','" + opr.getFornavn() + "','" + opr.getEfternavn() + "','" + opr.getAktiv() + "')") == 0) {
             String errMsg = "No rows updated in \"Operatoer\".";
-            log.severe(errMsg);
-            log.getHandlers()[0].close();
+            log.warn(errMsg);
             throw new DALException(errMsg);
         }
     }
@@ -68,8 +62,7 @@ public class DAOOperatoer implements IDAOOperatoer {
                         dto.Aktiv.valueOf(rs.getString("aktiv"))));
             }
         } catch (SQLException e) {
-            log.severe(e.toString());
-            log.getHandlers()[0].close();
+            log.warn(e.toString());
             throw new DALException(e);
         }
         return list;
@@ -79,8 +72,7 @@ public class DAOOperatoer implements IDAOOperatoer {
     public void deleteOperatoer(int opr_id) throws DALException {
         if (MySQLConnector.doUpdate("CALL deleteOperator('" + opr_id + "')") == 0) {
             String errMsg = "Couldn't add tuple to \"Operatoer\".";
-            log.severe(errMsg);
-            log.getHandlers()[0].close();
+            log.warn(errMsg);
             throw new DALException(errMsg);
         }
     }
