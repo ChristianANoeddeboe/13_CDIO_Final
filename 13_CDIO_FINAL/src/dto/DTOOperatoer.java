@@ -34,13 +34,13 @@ public class DTOOperatoer {
     /**
      * Operatoer rolle
      */
-    private String roles;
+    private Roller roles;
     /**
      * Operatoer aktiv
      */
     private Aktiv aktiv;
 
-    public DTOOperatoer(String fornavn, String efternavn, String cpr, String roles, Aktiv aktiv) {
+    public DTOOperatoer(String fornavn, String efternavn, String cpr, Roller roles, Aktiv aktiv) {
         this.fornavn = fornavn;
         this.efternavn = efternavn;
         this.cpr = cpr;
