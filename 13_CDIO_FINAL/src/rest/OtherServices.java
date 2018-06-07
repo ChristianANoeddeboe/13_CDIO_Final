@@ -1,6 +1,7 @@
 package rest;
 
 import connector.MySQLConnector;
+import dto.Aktiv;
 import dto.DTOProduktBatch;
 import dto.Status;
 import exception.DALException;
@@ -17,24 +18,22 @@ public class OtherServices {
 
 
     @GET
-    @Path("statuss")
+    @Path("status_produktbatch")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response getOperatoer() throws DALException {
+    public Response getStatusProduktBatch() {
         Object[] arr = Status.values();
-        String result = "";
-        for(Object object : arr){
-            result += object.toString() + " ";
-        }
-        String[] strArr = result.split(" ");
 
-        String json = "[";
-        for(int i = 0; i < strArr.length-1; i++){
-            json += "{\"status" + i + "\":\"" + strArr[i] +"\"},";
-        }
-        json += "{\"status" + (strArr.length-1) + "\":\"" + strArr[strArr.length-1] +"\"}]";
+        return Response.ok(arr, MediaType.APPLICATION_JSON).build();
+    }
 
-//        return Response.ok(json).build();
+    @GET
+    @Path("status_operatoer")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response getStatusOperatoer() {
+        Object[] arr = Aktiv.values();
+
         return Response.ok(arr, MediaType.APPLICATION_JSON).build();
     }
 }

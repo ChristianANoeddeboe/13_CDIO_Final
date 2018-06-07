@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     function loadProdukt() {
         clearProduktTable();
-        loadStatuss();
+        loadStatus();
         $.ajax({ //Indleder et asynkront ajax kald
             url: 'rest/produktbatch/all', //specificerer endpointet
             type: 'GET', //Typen af HTTP requestet (GET er default)
@@ -34,9 +34,9 @@ $(document).ready(function () {
     };
     loadProdukt();
 
-    function loadStatuss() {
+    function loadStatus() {
         $.ajax({ //Indleder et asynkront ajax kald
-            url: 'rest/other/statuss', //specificerer endpointet
+            url: 'rest/other/status_produktbatch', //specificerer endpointet
             type: 'GET', //Typen af HTTP requestet (GET er default)
             success: function (data) {//Funktion der skal udføres når data er hentet
                 statuss = data;

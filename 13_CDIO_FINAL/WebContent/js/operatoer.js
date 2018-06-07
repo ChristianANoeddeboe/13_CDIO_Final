@@ -2,8 +2,10 @@ $(document).ready(function() {
     var id;
     var value;
     var rolle;
+    var statuss;
     const enterkey = 13;
     function loadOperatoer(){
+        loadStatus();
         $.ajax({ //Indleder et asynkront ajax kald
             url : 'rest/operatoer/all', //specificerer endpointet
             type : 'GET', //Typen af HTTP requestet (GET er default)
@@ -24,6 +26,19 @@ $(document).ready(function() {
         });
     };
     loadOperatoer();
+
+    function loadStatus() {
+        $.ajax({ //Indleder et asynkront ajax kald
+            url: 'rest/other/status_operatoer', //specificerer endpointet
+            type: 'GET', //Typen af HTTP requestet (GET er default)
+            success: function (data) {//Funktion der skal udføres når data er hentet
+                statuss = data;
+            },
+            error: function (data) {
+                $.notify(data.responseText, "error");
+            }
+        });
+    }
 
     $("#menuLoader").load("menu.html", null, function () {
         rolle = localStorage.getItem('rolle');
@@ -121,11 +136,28 @@ $(document).ready(function() {
 
     //Convenience function for generating html
     function generateOperatoerHTML(operatoer) {
+        var status = new Array();
+        status.push(operatoer.aktiv);
+        $.notify(operatoer.aktiv)
+
+        if(statuss[0] == status[0]){
+            status[1] = statuss[1];
+        }else{
+            status[1] = statuss[0];
+        }
+
+        // statuss.forEach((st) => {
+        //     if (st != status[0]) {
+        //         statuss.push(st);
+        //         $.notify("Pushed")
+        //     }
+        // });
+
         return 	'<tr><th scope ="row">' + operatoer.oprId + '</th>' +
             '<td><input type="text" id = "'+operatoer.oprId+"_fornavn"+'" class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
             '<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'" class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
             '<td><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></td></td>' +
-            '<td><select class="" name="' + operatoer.oprId + '_status" id="' + operatoer.oprId + '_status"><option value="' + 'Aktiv' + '">' + 'Aktiv' + '</option><option value="' + 'Inaktiv' + '">' + 'Inaktiv' + '</option>></select></td></td>' +
+            '<td><select class="" name="' + operatoer.oprId + '_aktiv" id="' + operatoer.oprId + '_status"><option value="' + status[0] + '">' + status[0]  + '</option><option value="' + status[1] + '">' + status[1] + '</option>></select></td></td>' +
             '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update"><i class="fas fa-sync"></i></button>'+'</td>' +
             '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
             '</td></tr>';
