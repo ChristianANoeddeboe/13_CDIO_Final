@@ -26,7 +26,6 @@ $(document).ready(function () {
                     e.preventDefault();
                 });
                 $(".update").click(function(e){
-                    alert("test");
                     id = e.target.id;
                     $('#updateModal').modal('show');
                 });

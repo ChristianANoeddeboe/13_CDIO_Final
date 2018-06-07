@@ -19,6 +19,10 @@ $(document).ready(function() {
                     $('#deleteModal').modal('show');
                     e.preventDefault();
                 });
+                $(".update").click(function(e){
+                    id = e.target.id;
+                    $('#updateModal').modal('show');
+                });
             },
             error : function(data){
                 $.notify(data.responseText, "error");

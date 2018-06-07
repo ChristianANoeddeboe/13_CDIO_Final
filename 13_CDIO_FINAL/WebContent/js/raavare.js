@@ -22,14 +22,8 @@ $(document).ready(function() {
 					e.preventDefault();
 				});
                 $(".update").click(function(e){
-                    alert("test");
                     id = e.target.id;
-                    var res = id.split("_");
-                    if(res.length === 1){
-                        $('#updateModal').modal('show');
-                    }else{
-                        $('#updateKompModal').modal('show');
-                    }
+                    $('#updateModal').modal('show');
                 });
 			},
 			error : function(data){
@@ -146,6 +140,10 @@ $(document).ready(function() {
 					$('#deleteKompModal').modal('show');
 					e.preventDefault();
 				});
+                $(".updateKomp").click(function(e){
+                    id = e.target.id;
+                    $('#updateKompModal').modal('show');
+                });
 			},
 			error : function(data){
 				$.notify(data.responseText, "error");
