@@ -90,17 +90,17 @@ public class Controller {
 		}
 		catch (IOException e) {
 			log.severe(e.getMessage());
-			System.exit(0);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (DALException e) {
-			if(produktBatch!=null) { 
-				produktBatch.setStatus(Status.Klar);
-				productBatchController.updateProduktBatch(produktBatch);
-			}
 		} finally {
+			try {
+				socket.disconnect();
+			} catch (IOException e1) {
+				log.severe(e1.getMessage());
+			}
 			log.getHandlers()[0].close();
+			System.exit(0);
 		}
 	}
 	private void afvejning() throws IOException, DALException {
@@ -196,7 +196,14 @@ public class Controller {
 				}
 			}
 		} catch(IOException e) {
-
+			log.severe(e.getMessage());
+			try {
+				socket.disconnect();
+			} catch (IOException e1) {
+				log.severe(e.getMessage());
+			}
+			log.getHandlers()[0].close();
+			System.exit(0);
 		}
 
 		log.info("Server: "+str);
@@ -238,7 +245,7 @@ public class Controller {
 		}
 	}
 
-	private boolean requestUserID() {
+	private boolean requestUserID() throws IOException {
 		while(true) {
 			try {
 				String answer = requestInput("Input operator ID","ID","");
@@ -251,15 +258,6 @@ public class Controller {
 			} catch(NumberFormatException e) {
 				log.info("Ikke gyldigt ID");
 				requestInput("", "Ikke gyldigt ID", "");
-			} catch(IOException e) {
-				log.severe(e.getMessage());
-				try {
-					socket.disconnect();
-				} catch (IOException e1) {
-					log.severe(e.getMessage());
-				}
-				log.getHandlers()[0].close();
-				System.exit(0);
 			} catch(DALException e) {
 				log.info(e.getMessage());
 				requestInput("", e.getMessage(), "");
@@ -279,14 +277,13 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NullPointerException e) {
-			str = "User does not exist.";
-			log.warning(str);
-			return false;
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		if(str.length() == 0) {
 			return true;
 		}
