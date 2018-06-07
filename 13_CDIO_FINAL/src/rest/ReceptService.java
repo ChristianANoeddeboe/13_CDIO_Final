@@ -31,11 +31,6 @@ public class ReceptService implements IReceptService {
 	
 	static ReceptController controller = new ReceptController(new DAORecept());
 	static ReceptKompController kompController = new ReceptKompController(new DAOReceptKomp());
-	@Override
-	public Response getRecept(int receptId) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@GET
 	@Path("all")

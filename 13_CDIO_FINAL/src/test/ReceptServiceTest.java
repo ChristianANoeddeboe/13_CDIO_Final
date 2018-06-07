@@ -6,10 +6,16 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-class ReceptServiceTest {
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 
+class ReceptServiceTest {
+	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/recept/";
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		
 	}
 
 	@AfterAll
@@ -17,57 +23,57 @@ class ReceptServiceTest {
 	}
 
 	@Test
-	void testGetRaavare() {
+	void testGetReceptList() {
+		try {
+			HttpResponse<JsonNode> response = Unirest.get(baseUrl+"all").asJson();
+		} catch (UnirestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	void testCreateRecept() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetRaavareList() {
+	void testUpdateRecept() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testCreateRaavare() {
+	void testDeleteRecept() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testUpdateRaavare() {
+	void testGetReceptKomp() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testDeleteRaavare() {
+	void testGetReceptKompListInt() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetRaavareBatch() {
+	void testGetReceptKompList() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetRaavareBatchList() {
+	void testCreateReceptKomp() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetRaavareBatchListInt() {
+	void testUpdateReceptKomp() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testCreateRaavareBatch() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testUpdateRaavareBatch() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testDeleteRaavareBatch() {
+	void testDeleteReceptKomp() {
 		fail("Not yet implemented");
 	}
 
