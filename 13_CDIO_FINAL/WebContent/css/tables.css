@@ -17,6 +17,10 @@ body {
     margin-top: 2em;
 }
 
+*:focus *:active {
+    outline: none;
+}
+
 .modal-content {
     overflow: auto;
 }
