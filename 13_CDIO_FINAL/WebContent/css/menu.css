@@ -8,3 +8,9 @@
     font-size: large;
 }
 
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff; /* Changes regular toggle color */
+}
+.navbar-default .navbar-toggle .icon-bar:hover {
+    background-color: #fff; /* Changes toggle color on hover */
+}
