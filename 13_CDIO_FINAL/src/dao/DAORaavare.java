@@ -27,6 +27,7 @@ public class DAORaavare implements IDAORaavare {
             return new DTORaavare(rs.getInt("raavare_id"), rs.getString("raavare_navn"), rs.getString("leverandoer"));
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
     }
@@ -44,6 +45,7 @@ public class DAORaavare implements IDAORaavare {
         }
         catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
         return list;
@@ -54,6 +56,7 @@ public class DAORaavare implements IDAORaavare {
         if(MySQLConnector.doUpdate("call createRaavare('"+raavare.getRaavareNavn()+"','"+raavare.getLeverandoer()+"','"+raavare.getRaavareId()+"')")==0) {
         	String errMsg = "Couldn't add tuple to \"Raavare\".";
         	log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
@@ -63,6 +66,7 @@ public class DAORaavare implements IDAORaavare {
         if(MySQLConnector.doUpdate("call updateRaavare('"+raavare.getRaavareId()+"','"+raavare.getRaavareNavn()+"','"+raavare.getLeverandoer()+"')")==0) {
         	String errMsg = "No rows updated in \"Raavare\".";
         	log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
@@ -72,7 +76,8 @@ public class DAORaavare implements IDAORaavare {
 		if(MySQLConnector.doUpdate("call deleteRaavare('"+raavare_id+"')")==0) {
         	String errMsg = "No rows updated in \"Raavare\".";
         	log.severe(errMsg);
-		    throw new DALException(errMsg);
+            log.getHandlers()[0].close();
+            throw new DALException(errMsg);
         }
 	}
 }
