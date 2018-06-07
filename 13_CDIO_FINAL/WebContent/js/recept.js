@@ -24,6 +24,16 @@ $(document).ready(function() {
 					e.preventDefault();
 
 				});
+                $(".update").click(function(e){
+                    alert("test");
+                    id = e.target.id;
+                    var res = id.split("_");
+                    if(res.length === 1){
+                        $('#updateModal').modal('show');
+                    }else{
+                        $('#updateKompModal').modal('show');
+                    }
+                });
 			},
 			error : function(data){
 				$.notify(data.responseText, "error");
@@ -162,13 +172,11 @@ $(document).ready(function() {
 				$.notify(data.responseText, "error");
 			}
 		});
-	
-	};
+	}
 	
 	$('#showMoreModal').on('shown.bs.modal', function () {
 		loadReceptKomps();
 	});
-	
 
 
 	$(".btn-primaryAddKomp").click(function(){
@@ -239,7 +247,7 @@ $(document).ready(function() {
 			}
 		});
 
-	})
+	});
 	
 	//Convenience function for generating html
 	function generateReceptHTML(recept) {
@@ -256,17 +264,20 @@ $(document).ready(function() {
 		'<th scope = "row">'+receptKomp.raavareId + '</th>' +		
 		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_netto"+'" class="form-control-plaintext" value="' + receptKomp.nomNetto + '"></td></td>' +
 		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_tolerance"+'" class="form-control-plaintext" value="' + receptKomp.tolerance + '"></td></td>' +
+        '<td><button type="button" id = "'+receptKomp.receptId+'" class="btn btn-primary updateKomp"><i class="fas fa-sync"></i></button>'+'</td>' +
 		'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 
 	function clearReceptTable(){
 		$("#receptTable tbody").empty();
-	};
+	}
 
 	function clearReceptKompTable(){
 		$("#receptKompTable tbody").empty();
-	};
+	}
+
+
 
 
 	$(document).keypress(function(e) {
@@ -282,5 +293,4 @@ $(document).ready(function() {
 		}
 
 	});
-
 });

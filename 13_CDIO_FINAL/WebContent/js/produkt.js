@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     function loadProdukt() {
         clearProduktTable();
-        loadStatuss();
+        loadStatus();
         $.ajax({ //Indleder et asynkront ajax kald
             url: 'rest/produktbatch/all', //specificerer endpointet
             type: 'GET', //Typen af HTTP requestet (GET er default)
@@ -24,7 +24,11 @@ $(document).ready(function () {
                     id = e.target.id;
                     $('#showMoreModal').modal('show');
                     e.preventDefault();
-
+                });
+                $(".update").click(function(e){
+                    alert("test");
+                    id = e.target.id;
+                    $('#updateModal').modal('show');
                 });
             },
             error: function (data) {
@@ -34,9 +38,9 @@ $(document).ready(function () {
     };
     loadProdukt();
 
-    function loadStatuss() {
+    function loadStatus() {
         $.ajax({ //Indleder et asynkront ajax kald
-            url: 'rest/other/statuss', //specificerer endpointet
+            url: 'rest/other/status_produktbatch', //specificerer endpointet
             type: 'GET', //Typen af HTTP requestet (GET er default)
             success: function (data) {//Funktion der skal udføres når data er hentet
                 statuss = data;
@@ -154,13 +158,16 @@ $(document).ready(function () {
                     $('#deleteKompModal').modal('show');
                     e.preventDefault();
                 });
+                $(".updateKomp").click(function(e){
+                    id = e.target.id;
+                    $('#updateKompModal').modal('show');
+                });
             },
             error: function (data) {
                 $.notify(data.responseText, "error");
             }
         });
-
-    };
+    }
 
     $('#showMoreModal').on('shown.bs.modal', function () {
         loadProduktBatchKomps();
@@ -266,6 +273,7 @@ $(document).ready(function () {
             '<td><input type="text" id = "' + produktKomp.pbId + "_" + produktKomp.rbId + "_tara" + '" class="form-control-plaintext" value="' + produktKomp.tara + '"></td></td>' +
             '<td><input type="text" id =  "' + produktKomp.pbId + "_" + produktKomp.rbId + "_netto" + '" class="form-control-plaintext" value="' + produktKomp.netto + '"></td></td>' +
             '<td><input type="text" id =  "' + produktKomp.pbId + "_" + produktKomp.rbId + "_operatoer" + '" class="form-control-plaintext" value="' + produktKomp.oprId + '"></td></td>' +
+            '<td><button type="button" id = "'+produktKomp.pbId+'" class="btn btn-primary updateKomp"><i class="fas fa-sync"></i></button>'+'</td>' +
             '<td><button type="button" id =  "' + produktKomp.pbId + "_" + produktKomp.rbId + '" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id = "' + produktKomp.pbId + "_" + produktKomp.rbId + '"></i></button>' + '</td>' +
             '</td></tr>';
     }
