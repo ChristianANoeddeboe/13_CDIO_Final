@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import connector.MySQLConnector;
 import dao.DAOOperatoer;
 import dto.DTOOperatoer;
-import dto.DTOOperatoer.Aktiv;
+import dto.Aktiv;
 import exception.DALException;
 
 class DAOOperatoerTest {
