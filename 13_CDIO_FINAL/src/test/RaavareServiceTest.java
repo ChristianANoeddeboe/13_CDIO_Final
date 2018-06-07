@@ -279,7 +279,7 @@ class RaavareServiceTest {
 			header("Content-Type", "application/json").
 			body(new DTORaavareBatch(9999, 1, 1000)).asJson();
 			
-			Unirest.delete(baseUrl + "komponent/{id}/")
+			Unirest.delete(baseUrl + "batch/{id}/")
 			.header("Content-Type", "application/json")
 			.routeParam("id", "9999")
 			.asJson();
