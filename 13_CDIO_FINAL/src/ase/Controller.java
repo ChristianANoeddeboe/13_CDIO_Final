@@ -285,9 +285,7 @@ public class Controller {
 		//Receive weight.
 		str = socket.read();
 		log.info("Server: "+str);
-		System.out.println(str);
 		String[] strArr = str.split(" ");
-		System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
 		return Double.parseDouble(strArr[6]);
 	}
 
@@ -300,7 +298,6 @@ public class Controller {
 		str = socket.read();
 		log.info("Server: "+str);
 		String[] strArr = str.split(" ");
-		System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
 		return Double.parseDouble(strArr[6]);
 	}
 
