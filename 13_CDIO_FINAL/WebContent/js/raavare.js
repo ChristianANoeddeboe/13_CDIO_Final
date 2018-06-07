@@ -10,7 +10,6 @@ $(document).ready(function() {
 				clearRaavareTable();
 				$.each(data,function(i,element){
 					$('#raavareAdminTable').children().append(generateRaavareHTML(data[i]));
-
 				});
 				$(".slet").click(function(e){
 					id = e.target.id;
@@ -239,7 +238,7 @@ $(document).ready(function() {
 	}
 
 	function clearRaavareTable(){
-		$("#raavareTable tbody").empty();
+		$("#raavareAdminTable tbody").empty();
 	};
 
 	function clearRaavareBatchTable(){
