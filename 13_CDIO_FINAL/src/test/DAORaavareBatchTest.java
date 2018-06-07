@@ -4,6 +4,7 @@ import connector.MySQLConnector;
 import dao.DAORaavareBatch;
 import exception.DALException;
 import dto.DTORaavareBatch;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 
 public class DAORaavareBatchTest {
 
