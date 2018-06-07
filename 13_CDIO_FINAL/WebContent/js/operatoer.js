@@ -138,7 +138,6 @@ $(document).ready(function() {
     function generateOperatoerHTML(operatoer) {
         var status = new Array();
         status.push(operatoer.aktiv);
-        $.notify(operatoer.aktiv)
 
         if(statuss[0] == status[0]){
             status[1] = statuss[1];
