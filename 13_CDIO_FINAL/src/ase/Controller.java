@@ -396,23 +396,15 @@ public class Controller {
 			Thread.sleep(mili);
 			socket.write("DW\n");
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			// En trådet system, bør ikke kunne interruptes.
 			e.printStackTrace();
 		}
 	}
 
-	private boolean bruttokontrol(double tara) {
+	private boolean bruttokontrol(double tara) throws IOException {
 		double afvejning = 0;
-		try {
-			afvejning = readWeight()*-1;
-			if(Math.abs(afvejning-tara)<0.00001) {
-				return true;
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.exit(0);
-		}
+		afvejning = readWeight()*-1;
+		if(Math.abs(afvejning-tara)<0.00001) return true;
 		return false;
 	}
 }
