@@ -1,29 +1,29 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="css/tables.css">
-<!-- Fontawesome -->
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-	integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-	crossorigin="anonymous">
-<script src="jquery-3.3.1.js"></script>
-<script src="produkt.js"></script>
-<script src="jquery.serialize-object.js"></script>
-<script src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet"
+		  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		  integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+		  crossorigin="anonymous">
+	<link rel="stylesheet" href="css/tables.css">
+	<!-- Fontawesome -->
+	<link rel="stylesheet"
+		  href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		  integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		  crossorigin="anonymous">
+	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/produkt.js"></script>
+	<script src="js/jquery.serialize-object.js"></script>
+	<script src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
 
 
-<title>Hello, world!</title>
+	<title>Hello, world!</title>
 </head>
 <body>
 
@@ -33,17 +33,17 @@
 	</nav>
 
 	<div class="container" id="produktAdminTable">
-		<table class="table table-striped">
+		<table class="table table-striped" id="produktTable">
 			<thead class="thead">
-				<tr>
-					<th class="col-1" scope="col">Produkt Batch ID</th>
-					<th class="col" scope="col">Status</th>
-					<th class="col" scope="col">Recept ID</th>
-					<th class="col-1 text-right" scope="col" colspan="2">
-						<button type="button" class="btn btn-primary add"
+			<tr>
+				<th class="col-1" scope="col">Produkt Batch ID</th>
+				<th class="col" scope="col">Status</th>
+				<th class="col" scope="col">Recept ID</th>
+				<th class="col-1 text-right" scope="col" colspan="2">
+					<button type="button" class="btn btn-primary add"
 							data-toggle="modal" data-target="#addModal">+</button>
-					</th>
-				</tr>
+				</th>
+			</tr>
 			</thead>
 			<tbody>
 
@@ -52,36 +52,36 @@
 	</div>
 	<!-- Modal -->
 	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
-		aria-labelledby="showMoreModalTitle" aria-hidden="true">
+		 aria-labelledby="showMoreModalTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="showMoreModalTitle">Vil du
 						opdatere denne produktBatch?</h5>
 					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+							aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondaryUpdate"
-						data-dismiss="modal">Afbryd</button>
+							data-dismiss="modal">Afbryd</button>
 					<button type="button" class="btn btn-primaryUpdate">Opdater</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	<!-- Modal -->
 	<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
-		aria-labelledby="addTitle" aria-hidden="true">
+		 aria-labelledby="addTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="addTitle">Tilføj produktbatch</h5>
 					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+							aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -91,7 +91,7 @@
 							<label class="col-sm-2 control-label" for="inputID">ProduktBatchID</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputID"
-									placeholder="ProduktBatchID" />
+									   placeholder="ProduktBatchID" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -99,20 +99,20 @@
 							<div class="col-sm-10">
 								<div class="form-check">
 									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios1" value="Klar"
-										checked> <label class="form-check-label"
-										for="exampleRadios1"> Klar </label>
+										   name="exampleRadios" id="exampleRadios1" value="Klar"
+										   checked> <label class="form-check-label"
+														   for="exampleRadios1"> Klar </label>
 								</div>
 								<div class="form-check">
 									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios2" value="Igang">
+										   name="exampleRadios" id="exampleRadios2" value="Igang">
 									<label class="form-check-label" for="exampleRadios2">
 										Igang </label>
 								</div>
-								
+
 								<div class="form-check">
 									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios3" value="Afsluttet">
+										   name="exampleRadios" id="exampleRadios3" value="Afsluttet">
 									<label class="form-check-label" for="exampleRadios2">
 										Afsluttet </label>
 								</div>
@@ -125,68 +125,68 @@
 								ID</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputReceptId"
-									placeholder="Recept ID" />
+									   placeholder="Recept ID" />
 							</div>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
+							data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-primaryAdd">Tilføj</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Modal -->
 	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
-		aria-labelledby="deleteModalTitle" aria-hidden="true">
+		 aria-labelledby="deleteModalTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="deleteModalTitle">Vil du slette
 						denne produkt batch?</h5>
 					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+							aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondaryDelete"
-						data-dismiss="modal">Afbryd</button>
+							data-dismiss="modal">Afbryd</button>
 					<button type="button" class="btn btn-primaryDelete">Slet</button>
 				</div>
 			</div>
 		</div>
 	</div>
-		
+
 	<!-- Modal -->
 	<div class="modal fade" id="showMoreModal" tabindex="-1" role="dialog"
-		aria-labelledby="showMoreTitle" aria-hidden="true">
+		 aria-labelledby="showMoreTitle" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="showMoreTitle">Produktbatch komponenter</h5>
 					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+							aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<table class="table table-striped" id="produktBatchKompTable">
 						<thead class="thead">
-							<tr>
-								<th scope="col">ProduktBatchID</th>
-								<th scope="col">RåvareBatchID</th>
-								<th scope="col">Tara</th>
-								<th scope="col">Netto</th>
-								<th scope="col">Operatoer ID</th>
-								<th class="col" scope="col">
-									<button type="button" class="btn btn-primary add"
+						<tr>
+							<th scope="col">ProduktBatchID</th>
+							<th scope="col">RåvareBatchID</th>
+							<th scope="col">Tara</th>
+							<th scope="col">Netto</th>
+							<th scope="col">Operatoer ID</th>
+							<th class="col" scope="col">
+								<button type="button" class="btn btn-primary add"
 										data-toggle="modal" data-target="#addKompModal">+</button>
-								</th>
-							</tr>
+							</th>
+						</tr>
 						</thead>
 						<tbody>
 
@@ -195,7 +195,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
+							data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
@@ -203,13 +203,13 @@
 
 	<!-- Modal -->
 	<div class="modal fade" id="addKompModal" tabindex="-1" role="dialog"
-		aria-labelledby="addTitle" aria-hidden="true">
+		 aria-labelledby="addTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="addTitle">Tilføj produktbatchkomponent</h5>
 					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+							aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -219,40 +219,40 @@
 							<label class="col-sm-2 control-label" for="inputPBID">PB ID</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputPBID"
-									placeholder="Produkt Batch ID" />
+									   placeholder="Produkt Batch ID" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm control-label" for="inputRBID">RB ID</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputRBID"
-									placeholder="Råvare batch ID" />
+									   placeholder="Råvare batch ID" />
 							</div>
 						</div>
-						
-						
-						
+
+
+
 						<div class="form-group">
 							<label class="col-sm control-label" for="inputNetto">Netto</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputNetto"
-									placeholder="Netto vægt" />
+									   placeholder="Netto vægt" />
 							</div>
 						</div>
-						
-						
+
+
 						<div class="form-group">
 							<label class="col-sm control-label" for="inputOpr">Opr ID</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputOpr"
-									placeholder="Operatør ID" />
+									   placeholder="Operatør ID" />
 							</div>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
+							data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-primaryAddKomp">Tilføj</button>
 				</div>
 			</div>
@@ -260,21 +260,21 @@
 	</div>
 	<!-- Modal -->
 	<div class="modal fade" id="deleteKompModal" tabindex="-1"
-		role="dialog" aria-labelledby="deleteKompModalTitle"
-		aria-hidden="true">
+		 role="dialog" aria-labelledby="deleteKompModalTitle"
+		 aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="deleteKompModalTitle">Vil du
 						slette denne produktbatch komponent?</h5>
 					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+							aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondaryDeleteKomp"
-						data-dismiss="modal">Afbryd</button>
+							data-dismiss="modal">Afbryd</button>
 					<button type="button" class="btn btn-primaryDeleteKomp">Slet</button>
 				</div>
 			</div>
@@ -282,38 +282,38 @@
 	</div>
 	<!-- Modal -->
 	<div class="modal fade" id="updateKompModal" tabindex="-1"
-		role="dialog" aria-labelledby="showMoreModalTitle" aria-hidden="true">
+		 role="dialog" aria-labelledby="showMoreModalTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="showMoreModalTitle">Vil du
 						opdatere denne produktbatch komponent?</h5>
 					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+							aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondaryUpdate"
-						data-dismiss="modal">Afbryd</button>
+							data-dismiss="modal">Afbryd</button>
 					<button type="button" class="btn btn-primaryUpdateKomp">Opdater</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	
+
 
 
 
 	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		crossorigin="anonymous"></script>
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+			crossorigin="anonymous"></script>
 	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-		crossorigin="anonymous"></script>
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+			integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+			crossorigin="anonymous"></script>
 
 </body>
 

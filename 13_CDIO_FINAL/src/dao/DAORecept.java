@@ -30,6 +30,7 @@ public class DAORecept implements IDAORecept {
             return new DTORecept(rs.getInt("recept_id"), rs.getString("recept_navn"));
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
     }
@@ -47,6 +48,7 @@ public class DAORecept implements IDAORecept {
             return list;
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
     }
@@ -56,6 +58,7 @@ public class DAORecept implements IDAORecept {
         if (MySQLConnector.doUpdate("CALL createRecept("+recept.getReceptId()+ ",'" + recept.getReceptNavn() + "');") == 0) {
             String errMsg = "Couldn't add tuple to \"Recept\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
@@ -65,6 +68,7 @@ public class DAORecept implements IDAORecept {
         if (MySQLConnector.doUpdate("CALL updateRecept(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "');") == 0) {
             String errMsg = "No rows updated in \"Recept\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
@@ -74,6 +78,7 @@ public class DAORecept implements IDAORecept {
         if (MySQLConnector.doUpdate("CALL deleteRecept(" + receptID + ");") == 0) {
             String eerMsg = "No rows deleted in \"Recept\".";
             log.severe(eerMsg);
+            log.getHandlers()[0].close();
             throw new DALException(eerMsg);
         }
     }

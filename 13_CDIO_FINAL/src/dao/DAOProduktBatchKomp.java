@@ -28,6 +28,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
             return new DTOProduktBatchKomp(rs.getInt("pb_id"), rs.getInt("rb_id"), rs.getDouble("tara"), rs.getDouble("netto"), rs.getInt("opr_id"));
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
     }
@@ -43,6 +44,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
             }
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
         return list;
@@ -59,6 +61,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
             }
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
         return list;
@@ -70,6 +73,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
                 + "," + produktbatchkomponent.getNetto() + "," + produktbatchkomponent.getOprId() + ")") == 0) {
             String errMsg = "Couldn't add tuple to \"Produkt batch komponent\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
@@ -80,6 +84,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
                 + "" + produktbatchkomponent.getTara() + "," + produktbatchkomponent.getNetto() + "," + produktbatchkomponent.getOprId() + ")") == 0) {
             String errMsg = "No rows updated in \"Produkt batch komponent\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
@@ -89,6 +94,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
         if (MySQLConnector.doUpdate("CALL deleteProductBatchKomp(" + productBatch_ID + "," + raavareBatch_ID + ")") == 0) {
             String errMsg = "No rows updated in \"Produkt batch komponent\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }

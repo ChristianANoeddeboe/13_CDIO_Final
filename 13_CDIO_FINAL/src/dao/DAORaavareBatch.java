@@ -28,6 +28,7 @@ public class DAORaavareBatch implements IDAORaavareBatch {
                     rs.getDouble("maengde"));
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
     }
@@ -44,6 +45,7 @@ public class DAORaavareBatch implements IDAORaavareBatch {
             }
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
         return list;
@@ -60,6 +62,7 @@ public class DAORaavareBatch implements IDAORaavareBatch {
             }
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
         return list;
@@ -71,6 +74,7 @@ public class DAORaavareBatch implements IDAORaavareBatch {
                 raavarebatch.getMaengde() + ")") == 0) {
             String errMsg = "Couldn't add tuple to \"Raavare batch\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
@@ -81,6 +85,7 @@ public class DAORaavareBatch implements IDAORaavareBatch {
                 raavarebatch.getRaavareId() + "," + raavarebatch.getMaengde() + ")") == 0) {
             String errMsg = "No rows updated in \"Raavare batch\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
@@ -90,6 +95,7 @@ public class DAORaavareBatch implements IDAORaavareBatch {
         if (MySQLConnector.doUpdate("call deleteRaavareBatch(" + raavarebatch_ID + ")") == 0) {
             String errMsg = "No rows updated in \"Raavare batch\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
