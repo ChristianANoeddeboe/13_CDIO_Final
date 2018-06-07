@@ -4,7 +4,7 @@ import exception.DALException;
 
 public class Main {
 	public static void main(String[] args) {
-		WeightSocket weightSocket = new WeightSocket("127.0.0.1");
+		WeightSocket weightSocket = new WeightSocket("169.254.2.2");
 		Controller socketControl = new Controller(weightSocket);
 		try {
 			socketControl.run();

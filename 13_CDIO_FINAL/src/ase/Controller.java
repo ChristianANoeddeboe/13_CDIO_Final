@@ -103,6 +103,9 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally {
+			log.getHandlers()[0].close();
+		}
 	}
 	private void afvejning() throws IOException, DALException {
 		//Nomnetto: Required amount
@@ -175,9 +178,22 @@ public class Controller {
 		//wait until we actually get the return msg.
 		while (!(str = socket.read()).contains("RM20 A")) {
 			log.info("Server: "+str);
+			if(str.contains("RM20 C")) {
+				log.info("Server: "+str);
+				try {
+					showMsg("Bye", 1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				log.getHandlers()[0].close();
+				System.exit(0);
+			}
 		}
+		
 		log.info("Server: "+str);
 		String[] strArr = str.split(" ");
+		
 
 		if(strArr.length == 3) {
 			strArr = strArr[2].split("\"");
@@ -285,9 +301,7 @@ public class Controller {
 		//Receive weight.
 		str = socket.read();
 		log.info("Server: "+str);
-		System.out.println(str);
 		String[] strArr = str.split(" ");
-		System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
 		return Double.parseDouble(strArr[6]);
 	}
 
@@ -300,7 +314,6 @@ public class Controller {
 		str = socket.read();
 		log.info("Server: "+str);
 		String[] strArr = str.split(" ");
-		System.out.println("Debug str: "+Arrays.toString(strArr)+ " Length" + strArr.length);
 		return Double.parseDouble(strArr[6]);
 	}
 
@@ -329,17 +342,17 @@ public class Controller {
 		}
 		return maengde;
 	}
-
-	private void regulerMaengde(int raavareId, double maengde) {
-		List<DTORaavareBatch> raavareBatches;
+	
+	private void showMsg(String msg, int mili) throws IOException, InterruptedException {
 		try {
-			raavareBatches = raavareBatchController.getRaavareBatchList(raavareId);
-			for(DTORaavareBatch rb : raavareBatches) {
-
-			}
-		} catch (DALException e) {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String str = "D \""+msg+"\"\n";
+		socket.write(str);
+		Thread.sleep(mili);
+		socket.write("DW\n");
 	}
 }

@@ -29,6 +29,7 @@ public class DAOReceptKomp implements IDAOReceptKomp {
             return new DTOReceptKomp(rs.getInt("recept_id"), rs.getInt("raavare_id"), rs.getDouble("nom_netto"), rs.getDouble("tolerance"));
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
     }
@@ -45,6 +46,7 @@ public class DAOReceptKomp implements IDAOReceptKomp {
             return list;
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
 
@@ -62,6 +64,7 @@ public class DAOReceptKomp implements IDAOReceptKomp {
             return list;
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
     }
@@ -77,6 +80,8 @@ public class DAOReceptKomp implements IDAOReceptKomp {
             log.severe(errMsg);
             throw new DALException(errMsg);
         }
+        log.getHandlers()[0].close();
+
     }
 
     @Override
@@ -84,6 +89,7 @@ public class DAOReceptKomp implements IDAOReceptKomp {
         if (MySQLConnector.doUpdate("CALL updateReceptkomponent(" + receptkomponent.getReceptId() + ", " + receptkomponent.getRaavareId() + ", " + receptkomponent.getNomNetto() + ", " + receptkomponent.getTolerance() + ");") == 0) {
             String errMsg = "No rows updated in \"Recept komponent\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
@@ -93,6 +99,7 @@ public class DAOReceptKomp implements IDAOReceptKomp {
         if (MySQLConnector.doUpdate("CALL deleteReceptKomp(" + recept_id + ", " + raavare_id + ");") == 0) {
             String errMsg = "No rows updated in \"Recept komponent\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }

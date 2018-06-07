@@ -29,6 +29,7 @@ public class DAOProduktBatch implements IDAOProduktBatch {
                     Status.valueOf(rs.getString("status")), rs.getInt("recept_id"));
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
     }
@@ -44,6 +45,7 @@ public class DAOProduktBatch implements IDAOProduktBatch {
             }
         } catch (SQLException e) {
             log.severe(e.toString());
+            log.getHandlers()[0].close();
             throw new DALException(e);
         }
         return list;
@@ -55,6 +57,7 @@ public class DAOProduktBatch implements IDAOProduktBatch {
                 produktbatch.getReceptId() + ")") == 0) {
             String errMsg = "Couldn't add tuple to \"Produkt batch\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
@@ -65,6 +68,7 @@ public class DAOProduktBatch implements IDAOProduktBatch {
                 produktbatch.getStatus().toString() + "'," + produktbatch.getReceptId() + ")") == 0) {
             String errMsg = "No rows updated in \"Produkt batch\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
@@ -74,6 +78,7 @@ public class DAOProduktBatch implements IDAOProduktBatch {
         if (MySQLConnector.doUpdate("call deleteProductBatch(" + pbID + ")") == 0) {
             String errMsg = "No rows updated in \"Produkt batch\".";
             log.severe(errMsg);
+            log.getHandlers()[0].close();
             throw new DALException(errMsg);
         }
     }
