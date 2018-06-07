@@ -3,23 +3,16 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
-import javax.ws.rs.core.Response;
-
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.http.options.Options;
-
 import connector.MySQLConnector;
 import controller.ReceptController;
 import controller.ReceptKompController;
@@ -284,22 +277,24 @@ class ReceptServiceTest {
 			header("Content-Type", "application/json").
 			body(new DTOReceptKomp(9999, 1, 1, 1)).asJson();
 			
-			Unirest.delete(baseUrl + "komponent/{id}/{id2}")
+			Unirest.delete(baseUrl + "batch/{id}")
 			.header("Content-Type", "application/json")
 			.routeParam("id", "9999")
 			.routeParam("id2", "1")
 			.asJson();
 				try {
 					controllerKomp.getReceptKomp(9999,1);
-					controller.deleteRecept(9999);
 				} catch (Exception e) {
-
+					
 				}		
-			
+				controller.deleteRecept(9999);
 		} catch (UnirestException e) {
 			e.printStackTrace();
 			fail("UniRestexception");
 
+		} catch (DALException e) {
+			e.printStackTrace();
+			fail("Dalexception");
 		}
 	}
 
