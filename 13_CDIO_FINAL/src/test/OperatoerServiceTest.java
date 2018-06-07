@@ -1,5 +1,7 @@
 package test;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
@@ -30,6 +32,14 @@ import exception.DALException;
 public class OperatoerServiceTest {
 	static OperatoerController controller = new OperatoerController(new DAOOperatoer());
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/operatoer/";
+	
+	//Testdata
+	int id = 1;
+	String fornavn = "Fornavn";
+	String efternavn = "Efternavn";
+	String cpr = "1919239950";
+	String roles = "Administrator";
+	Aktiv status = Aktiv.aktiv;
 	
     @BeforeAll
     static void setUp() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
@@ -70,22 +80,22 @@ public class OperatoerServiceTest {
 			List<DTOOperatoer> sqlResponseArray = controller.getOperatoerList();
 			if(responseArray.length == sqlResponseArray.size()) {
 				for (int i = 0; i < responseArray.length; i++) {
-					if(!(responseArray[i].getCpr() == sqlResponseArray.get(i).getCpr())) {
+					if(!(responseArray[i].getCpr().equals(sqlResponseArray.get(i).getCpr()))) {
 						fail("The two arrays are not equal");
 					}
-					if(!(responseArray[i].getFornavn() == sqlResponseArray.get(i).getFornavn())) {
+					if(!(responseArray[i].getFornavn().equals(sqlResponseArray.get(i).getFornavn()))) {
 						fail("The two arrays are not equal");
 					}
-					if(!(responseArray[i].getEfternavn() == sqlResponseArray.get(i).getEfternavn())) {
+					if(!(responseArray[i].getEfternavn().equals(sqlResponseArray.get(i).getEfternavn()))) {
 						fail("The two arrays are not equal");
 					}
-					if(!(responseArray[i].getAktiv() == sqlResponseArray.get(i).getAktiv())) {
+					if(!(responseArray[i].getAktiv().equals(sqlResponseArray.get(i).getAktiv()))) {
 						fail("The two arrays are not equal");
 					}
 					if(!(responseArray[i].getOprId() == sqlResponseArray.get(i).getOprId())) {
 						fail("The two arrays are not equal");
 					}
-					if(!(responseArray[i].getRoles() == sqlResponseArray.get(i).getRoles())) {
+					if(!(responseArray[i].getRoles().equals(sqlResponseArray.get(i).getRoles()))) {
 						fail("The two arrays are not equal");
 					}
 				}
@@ -104,12 +114,7 @@ public class OperatoerServiceTest {
 
 	@Test
 	void testCreateOperatoer() {
-		int id = 99192;
-		String fornavn = "Fornavn";
-		String efternavn = "Efternavn";
-		String cpr = "1919239923";
-		String roles = "";
-		Aktiv status = Aktiv.aktiv;
+
 		
 		try {
 			Unirest.post(baseUrl+"create")
@@ -117,23 +122,40 @@ public class OperatoerServiceTest {
 					  .body(new DTOOperatoer(id, fornavn, efternavn, cpr, roles, status))
 					  .asJson();
 			
-			HttpResponse<DTOOperatoer> checkResponse = Unirest.get(baseUrl+id)
-					  .asObject(DTOOperatoer.class);
-			
-			DTOOperatoer sqlResponse = controller.getOperatoer(id);
-			DTOOperatoer restResponse = checkResponse.getBody();
-			System.out.println(sqlResponse.toString());
-			if(true) {
-				
-			} else {
-				fail("The two arrays are not of the same size");
+			List<DTOOperatoer> sqlResponse = controller.getOperatoerList();
+			for(int i = 0; i >= sqlResponse.size(); i++) {
+				if(sqlResponse.get(i).getCpr() == cpr) {
+					id = sqlResponse.get(i).getOprId();
+					DTOOperatoer opr = controller.getOperatoer(id);
+					if(!(opr.getFornavn() == fornavn)) {
+						fail("Not same value");
+					}
+					if(!(opr.getEfternavn() == efternavn)) {
+						fail("Not same value");
+					}
+					if(!(opr.getCpr() == cpr)) {
+						fail("Not same value");
+					}
+					if(!(opr.getRoles() == roles)) {
+						fail("Not same value");
+					}
+					if(!(opr.getAktiv() == status)) {
+						fail("Not same value");
+					}
+					break;
+				}
 			}
-
 		} catch (UnirestException e) {
 			e.printStackTrace();
 			fail("Unirest");
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
+			fail("DALExeption");
+			e.printStackTrace();
+		}
+		
+		try {
+			MySQLConnector.doQuery("CALL adminDeleteOperator('" + cpr + "');");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -141,11 +163,112 @@ public class OperatoerServiceTest {
 
 	@Test
 	void testUpdateOperatoer() {
-		fail("Not yet implemented");
+		try {
+			Unirest.post(baseUrl+"create")
+					  .header("Content-Type", "application/json")
+					  .body(new DTOOperatoer(id, fornavn, efternavn, cpr, roles, status))
+					  .asJson();
+			
+			List<DTOOperatoer> sqlResponse = controller.getOperatoerList();
+			for(int i = 0; i >= sqlResponse.size(); i++) {
+				if(sqlResponse.get(i).getCpr() == cpr) {
+					id = sqlResponse.get(i).getOprId();
+					DTOOperatoer opr = controller.getOperatoer(id);
+					
+					Unirest.post(baseUrl+"update")
+					  .header("Content-Type", "application/json")
+					  .body(new DTOOperatoer(opr.getOprId(), "NytFornavn", "NytEfternavn", "0987654321", opr.getRoles(), opr.getAktiv()))
+					  .asJson();
+				}
+			}
+		} catch (UnirestException e) {
+			e.printStackTrace();
+			fail("Unirest");
+		} catch (DALException e) {
+			fail("DALExeption");
+			e.printStackTrace();
+		}
+		
+		try {
+		List<DTOOperatoer> sqlResponse = controller.getOperatoerList();
+		for(int i = 0; i >= sqlResponse.size(); i++) {
+			if(sqlResponse.get(i).getCpr() == "0987654321") {
+				id = sqlResponse.get(i).getOprId();
+				DTOOperatoer opr = controller.getOperatoer(id);
+			
+				if(!(opr.getFornavn() == "NytFornavn")) {
+					fail("Not same value");
+				}
+				if(!(opr.getEfternavn() == "NytEfternavn")) {
+					fail("Not same value");
+				}
+				if(!(opr.getCpr() == "0987654321")) {
+					fail("Not same value");
+				}
+				if(!(opr.getRoles() == "Administrator")) {
+					fail("Not same value");
+				}
+				if(!(opr.getAktiv() == Aktiv.aktiv)) {
+					fail("Not same value");
+				}
+				break;
+			}
+		}
+	} catch (DALException e) {
+		fail("DALExeption");
+		e.printStackTrace();
+	}
+		try {
+			MySQLConnector.doQuery("CALL adminDeleteOperator('" + cpr + "');");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Test
 	void testDeleteOperatoer() {
-		fail("Not yet implemented");
+		try {
+			Unirest.post(baseUrl+"create")
+					  .header("Content-Type", "application/json")
+					  .body(new DTOOperatoer(id, fornavn, efternavn, cpr, roles, status))
+					  .asJson();
+			
+			List<DTOOperatoer> sqlResponse = controller.getOperatoerList();
+			for(int i = 0; i >= sqlResponse.size(); i++) {
+				if(sqlResponse.get(i).getCpr() == cpr) {
+					id = sqlResponse.get(i).getOprId();
+					
+					try {
+						controller.deleteOperatoer(id);
+					} catch(DALException e) {
+						fail("DALExeption");
+					}
+				}
+			}
+		} catch (UnirestException e) {
+			e.printStackTrace();
+			fail("Unirest");
+		} catch (DALException e) {
+			fail("DALExeption");
+			e.printStackTrace();
+		}
+		boolean failed = false;
+		try {
+			controller.getOperatoer(id);
+		} catch(DALException e) {
+			failed = true;
+		}
+		if(!failed) {
+			fail("Failed");
+		}
+		
+		
+		///////
+		try {
+			MySQLConnector.doQuery("CALL adminDeleteOperator('" + cpr + "');");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
