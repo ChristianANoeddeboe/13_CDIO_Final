@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,8 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+
+import dto.DTORecept;
 
 class ReceptServiceTest {
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/recept/";
@@ -24,12 +28,18 @@ class ReceptServiceTest {
 
 	@Test
 	void testGetReceptList() {
+		
+		System.out.println("a");
 		try {
 			HttpResponse<JsonNode> response = Unirest.get(baseUrl+"all").asJson();
+			System.out.println("a");
+			//HttpResponse<DTORecept[]> response = Unirest.get(baseUrl+"all").asObject(DTORecept[].class);
+			System.out.println("a");
 		} catch (UnirestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	@Test
