@@ -19,6 +19,7 @@ class ReceptServiceTest {
 	
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
+		
 	}
 	
 }
