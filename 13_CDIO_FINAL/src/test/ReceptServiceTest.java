@@ -22,18 +22,22 @@ import com.mashape.unirest.http.options.Options;
 
 import connector.MySQLConnector;
 import controller.ReceptController;
+import controller.ReceptKompController;
 import dao.DAORecept;
+import dao.DAOReceptKomp;
 import dto.DTORecept;
+import dto.DTOReceptKomp;
 import exception.DALException;
 
 class ReceptServiceTest {
 	static ReceptController controller = new ReceptController(new DAORecept());
+	static ReceptKompController controllerKomp = new ReceptKompController(new DAOReceptKomp());
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/recept/";
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 
 		new MySQLConnector();
-		
+
 		Unirest.setObjectMapper(new ObjectMapper() {
 			private com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper
 			= new com.fasterxml.jackson.databind.ObjectMapper();
@@ -77,42 +81,128 @@ class ReceptServiceTest {
 				fail("The two arrays are not of the same size");
 			}
 		} catch (UnirestException e) {
-			// TODO Auto-generated catch block
+			fail("UniRestexception");
 			e.printStackTrace();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
+			fail("DalException");
 			e.printStackTrace();
 		}
 
 	}
 	@Test
 	void testCreateRecept() {
-		fail("Not yet implemented");
-	}
+		try {
+			Unirest.post(baseUrl + "create")
+			.header("Content-Type", "application/json").
+			body(new DTORecept(9999, "Test"))
+			.asJson();
+			DTORecept temp = controller.getRecept(9999);
+			if(temp.getReceptId() == 9999 && temp.getReceptNavn().equals("Test")) {
+				controller.deleteRecept(9999);
+			}else {
+				fail("The created recept was not found or did not match the one created with rest");
+			}
+		} catch (UnirestException e) {
+			e.printStackTrace();
+			fail("UniRestexception");
 
+		} catch (DALException e) {
+			e.printStackTrace();
+			fail("DalException");
+
+		}
+
+	}
 	@Test
 	void testUpdateRecept() {
-		fail("Not yet implemented");
-	}
+		try {
+			Unirest.post(baseUrl + "create")
+			.header("Content-Type", "application/json")
+			.body(new DTORecept(9999, "Test"))
+			.asJson();
+			DTORecept temp = controller.getRecept(9999);
+			if(temp.getReceptId() == 9999 && temp.getReceptNavn().equals("Test")) {
+				Unirest.put(baseUrl + "update")
+				.header("Content-Type", "application/json")
+				.body(new DTORecept(9999, "Test2"))
+				.asJson();
 
+				DTORecept temp2 = controller.getRecept(9999);
+				if(temp2.getReceptNavn().equals("Test2") && temp2.getReceptId() == 9999) {
+					controller.deleteRecept(9999);
+				}else {
+					fail("The recept was not updater properly");
+				}
+			}else {
+				fail("The created recept was not found or did not match the one created with rest");
+			}
+
+		} catch (UnirestException e) {
+			e.printStackTrace();
+			fail("UniRestexception");
+		} catch (DALException e) {
+			e.printStackTrace();
+			fail("DalException");
+		}
+	}
 	@Test
 	void testDeleteRecept() {
-		fail("Not yet implemented");
+		try {
+			Unirest.post(baseUrl + "create")
+			.header("Content-Type", "application/json").
+			body(new DTORecept(9999, "Test"))
+			.asJson();	
+			DTORecept temp = controller.getRecept(9999);
+			if(temp.getReceptId() == 9999 && temp.getReceptNavn().equals("Test")) {
+				Unirest.delete(baseUrl + "{id}")
+				.header("Content-Type", "application/json")
+				.routeParam("id", "9999")
+				.asJson();
+				try {
+					controller.getRecept(9999);
+				} catch (Exception e) {
+
+				}		
+			}else {
+				fail("The created recept was not found or did not match the one created with rest");
+			}
+		} catch (UnirestException e) {
+			e.printStackTrace();
+			fail("UniRestexception");
+
+		} catch (DALException e) {
+			e.printStackTrace();
+			fail("DalException");
+
+		}
 	}
 
-	@Test
-	void testGetReceptKomp() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetReceptKompListInt() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testGetReceptKompList() {
-		fail("Not yet implemented");
+		try {
+			HttpResponse<DTOReceptKomp[]> response = Unirest.get(baseUrl+"komponent/list/").asObject(DTOReceptKomp[].class);
+			DTOReceptKomp[] responseArray = response.getBody();		
+			List<DTOReceptKomp> sqlResponseArray = controllerKomp.getReceptKompList();
+			if(responseArray.length == sqlResponseArray.size()) {
+				for (int i = 0; i < responseArray.length; i++) {
+					if(!(responseArray[i].getReceptId() == sqlResponseArray.get(i).getReceptId() &&
+							responseArray[i].getRaavareId() == sqlResponseArray.get(i).getRaavareId()&&
+							responseArray[i].getNomNetto() == sqlResponseArray.get(i).getNomNetto()&&
+							responseArray[i].getTolerance() == sqlResponseArray.get(i).getTolerance())) {
+						fail("The two arrays are not equal");
+					}
+				}
+			}else {
+				fail("The two arrays are not of the same size");
+			}
+		} catch (UnirestException e) {
+			fail("UniRestexception");
+			e.printStackTrace();
+		} catch (DALException e) {
+			fail("DalException");
+			e.printStackTrace();
+		}
 	}
 
 	@Test
