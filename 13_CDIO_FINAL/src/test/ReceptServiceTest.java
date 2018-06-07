@@ -3,6 +3,10 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.ws.rs.core.Response;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,32 +20,36 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.http.options.Options;
 
+import connector.MySQLConnector;
+import controller.ReceptController;
+import dao.DAORecept;
 import dto.DTORecept;
+import exception.DALException;
 
 class ReceptServiceTest {
-	
+	static ReceptController controller = new ReceptController(new DAORecept());
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/recept/";
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		Unirest.setObjectMapper(new ObjectMapper() {
-		    private com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper
-		                = new com.fasterxml.jackson.databind.ObjectMapper();
+			private com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper
+			= new com.fasterxml.jackson.databind.ObjectMapper();
 
-		    public <T> T readValue(String value, Class<T> valueType) {
-		        try {
-		            return jacksonObjectMapper.readValue(value, valueType);
-		        } catch (IOException e) {
-		            throw new RuntimeException(e);
-		        }
-		    }
+			public <T> T readValue(String value, Class<T> valueType) {
+				try {
+					return jacksonObjectMapper.readValue(value, valueType);
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
 
-		    public String writeValue(Object value) {
-		        try {
-		            return jacksonObjectMapper.writeValueAsString(value);
-		        } catch (JsonProcessingException e) {
-		            throw new RuntimeException(e);
-		        }
-		    }
+			public String writeValue(Object value) {
+				try {
+					return jacksonObjectMapper.writeValueAsString(value);
+				} catch (JsonProcessingException e) {
+					throw new RuntimeException(e);
+				}
+			}
 		});
 	}
 
@@ -50,21 +58,44 @@ class ReceptServiceTest {
 	}
 
 	@Test
-	void testGetReceptList() {
-		
-		System.out.println("a");
+	void testGetReceptList() {		
 		try {
-			Options.refresh();			
-			System.out.println("a");
+			new MySQLConnector();
 			HttpResponse<DTORecept[]> response = Unirest.get(baseUrl+"all").asObject(DTORecept[].class);
-			System.out.println("a");
+			DTORecept[] responseArray = response.getBody();		
+			List<DTORecept> sqlResponseArray = controller.getReceptList();
+			if(responseArray.length == sqlResponseArray.size()) {
+				for (int i = 0; i < responseArray.length; i++) {
+					if(!(responseArray[i].getReceptId() == sqlResponseArray.get(i).getReceptId() &&
+							responseArray[i].getReceptNavn().equals(sqlResponseArray.get(i).getReceptNavn()))) {
+						fail("The two arrays are not equal");
+					}
+				}
+			}else {
+				fail("The two arrays are not of the same size");
+			}
+
 		} catch (UnirestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-	}
 
+	}
 	@Test
 	void testCreateRecept() {
 		fail("Not yet implemented");
