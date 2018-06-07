@@ -1,0 +1,23 @@
+[INFO] 2018-06-07 18:10:28,932 ase.Controller requestInput - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-07 18:10:29,145 ase.Controller requestInput - Server: RM20 B
+[INFO] 2018-06-07 18:10:33,962 ase.Controller requestInput - Server: RM20 A "1"
+[INFO] 2018-06-07 18:11:38,708 ase.Controller requestInput - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-07 18:11:38,828 ase.Controller requestInput - Server: RM20 B
+[INFO] 2018-06-07 18:12:05,147 ase.Controller requestInput - Server: RM20 A "1"
+[INFO] 2018-06-07 18:29:17,553 ase.Controller requestInput - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-07 18:29:17,664 ase.Controller requestInput - Server: RM20 B
+[INFO] 2018-06-07 18:29:22,296 ase.Controller requestInput - Server: RM20 A "1"
+[INFO] 2018-06-07 18:29:22,388 ase.Controller requestInput - Client: RM20 8 "FE? 1:0" "" "" \n
+[INFO] 2018-06-07 18:29:22,495 ase.Controller requestInput - Server: RM20 B
+[INFO] 2018-06-07 18:29:26,464 ase.Controller requestInput - Server: RM20 A ""
+[INFO] 2018-06-07 18:29:26,564 ase.Controller requestInput - Client: RM20 8 "Input batch ID" "1-9999999" "" \n
+[INFO] 2018-06-07 18:29:26,667 ase.Controller requestInput - Server: RM20 B
+[INFO] 2018-06-07 18:29:38,716 ase.Controller requestInput - Server: RM20 A "11"
+[INFO] 2018-06-07 18:29:38,887 ase.Controller requestInput - Client: RM20 8 "margherita? 1:0" "" "" \n
+[INFO] 2018-06-07 18:29:38,990 ase.Controller requestInput - Server: RM20 B
+[INFO] 2018-06-07 18:29:41,693 ase.Controller requestInput - Server: RM20 A ""
+[INFO] 2018-06-07 18:29:42,020 ase.Controller requestInput - Client: RM20 8 "Ikke nok materiale" "" "" \n
+[INFO] 2018-06-07 18:29:42,125 ase.Controller requestInput - Server: RM20 B
+[INFO] 2018-06-07 18:30:19,104 ase.Controller requestInput - Server: RM20 A ""
+[INFO] 2018-06-07 18:30:19,104 ase.Controller run - Ikke nok materiale
+[INFO] 2018-06-07 18:30:19,108 ase.Controller run - System exit.

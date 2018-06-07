@@ -23,8 +23,9 @@ import controller.ReceptController;
 import controller.ReceptKompController;
 import logging.LogHandler;
 import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
-@Log
+@Slf4j
 public class Controller {
 	final static int MSGLENGTH = 24;
 	final static int UNITLENGTH = 7;
@@ -45,7 +46,7 @@ public class Controller {
 		this.socket = socket;
 		this.operatoer = new DTOOperatoer();
 		this.produktBatch = null;
-		new LogHandler(log, "ASE");
+//		new LogHandler(log, "ASE");
 	}
 
 	public void run() {
@@ -89,9 +90,9 @@ public class Controller {
 			requestInput("Faerdig med afvejningen", "", "");
 		}
 		catch (IOException e) {
-			log.severe(e.getMessage());
+			log.warn(e.getMessage());
 		} catch (SQLException e) {
-			log.severe(e.getMessage());
+			log.warn(e.getMessage());
 		} catch(DALException e) {
 			log.info(e.getMessage());
 		}
@@ -99,9 +100,10 @@ public class Controller {
 			try {
 				socket.disconnect();
 			} catch (IOException e1) {
-				log.severe(e1.getMessage());
+				log.warn(e1.getMessage());
 			}
-			log.getHandlers()[0].close();
+//			log.getHandlers()[0].close();
+			log.info("System exit.");
 			System.exit(0);
 		}
 	}
@@ -185,7 +187,7 @@ public class Controller {
 				if(str.contains("RM20 C")) {
 					log.info("Server: "+str);
 					showMsg("Bye", 1000);
-					log.getHandlers()[0].close();
+//					log.getHandlers()[0].close();
 					try {
 						socket.disconnect();
 					} catch (IOException e) {
@@ -196,13 +198,13 @@ public class Controller {
 				}
 			}
 		} catch(IOException e) {
-			log.severe(e.getMessage());
+			log.warn(e.getMessage());
 			try {
 				socket.disconnect();
 			} catch (IOException e1) {
-				log.severe(e.getMessage());
+				log.warn(e.getMessage());
 			}
-			log.getHandlers()[0].close();
+//			log.getHandlers()[0].close();
 			System.exit(0);
 		}
 
@@ -230,7 +232,7 @@ public class Controller {
 			e.printStackTrace();
 		} catch (NullPointerException e) {
 			str = "User does not exist.";
-			log.warning(str);
+			log.warn(str);
 			return false;
 		}
 		if(str.length() == 0) {
@@ -240,7 +242,7 @@ public class Controller {
 		if(Integer.parseInt(strArr[0]) == 1){
 			return true;
 		}else {
-			log.warning("Wrong name or bad input.");
+			log.warn("Wrong name or bad input.");
 			return false;
 		}
 	}
@@ -292,7 +294,7 @@ public class Controller {
 		if(Integer.parseInt(strArr[0]) == 1){
 			return true;
 		}else {
-			log.warning("Wrong name or bad input.");
+			log.warn("Wrong name or bad input.");
 			return false;
 		}
 	}
