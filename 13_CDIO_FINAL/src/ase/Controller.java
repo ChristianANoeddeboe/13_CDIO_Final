@@ -106,8 +106,6 @@ public class Controller {
 		}
 	}
 	private void afvejning() throws IOException, DALException {
-		//Nomnetto: Required amount
-		//Tolerance: weighed amount has to be within +- nomnetto
 		double tara, nomnetto, tolerance, weightAmount, upperbound, lowerbound;
 		DTOProduktBatchKomp tempProduktBatchKomp = null;
 		DTORaavareBatch temp = null;
