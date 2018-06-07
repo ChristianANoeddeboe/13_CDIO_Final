@@ -23,7 +23,7 @@ public class DAOOperatoer implements IDAOOperatoer {
             if (!rs.first()) throw new DALException("Operatoeren " + oprId + " findes ikke.");
             return new DTOOperatoer(rs.getInt("opr_id"), rs.getString("fornavn"),
                     rs.getString("efternavn"), rs.getString("cpr"),
-                    rs.getString("roller"),
+                    dto.Roller.valueOf(rs.getString("roller")),
                     dto.Aktiv.valueOf(rs.getString("aktiv")));
         } catch (SQLException e) {
             log.warn(e.toString());
@@ -58,7 +58,7 @@ public class DAOOperatoer implements IDAOOperatoer {
             while (rs.next()) {
                 list.add(new DTOOperatoer(rs.getInt("opr_id"), rs.getString("fornavn"),
                         rs.getString("efternavn"), rs.getString("cpr"),
-                        rs.getString("roller"),
+                        dto.Roller.valueOf(rs.getString("roller")),
                         dto.Aktiv.valueOf(rs.getString("aktiv"))));
             }
         } catch (SQLException e) {

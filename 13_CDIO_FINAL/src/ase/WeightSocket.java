@@ -6,12 +6,15 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import lombok.Data;
+
+@Data
 public class WeightSocket {
-	final int PORT = 8000;
-	String ip;
-	Socket socket;
-	DataOutputStream output ;
-	BufferedReader input;
+	private final int PORT = 8000;
+	private String ip;
+	private Socket socket;
+	private DataOutputStream output ;
+	private BufferedReader input;
 	
 	public WeightSocket(String ip) {
 		this.ip = ip;

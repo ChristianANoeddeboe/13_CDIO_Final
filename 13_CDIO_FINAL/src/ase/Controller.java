@@ -48,7 +48,7 @@ public class Controller {
 		new LogHandler(log, "ASE");
 	}
 
-	public void run() throws DALException {
+	public void run() {
 		boolean userOK = false, batchOK = false;
 		try {
 			// Connect to weight
@@ -62,6 +62,7 @@ public class Controller {
 			} catch (SQLException e1) {e1.printStackTrace();
 			}
 			MySQLConnector.getConn().setAutoCommit(false);
+
 			// Get UserID from input
 			do {
 				userOK = requestUserID();
@@ -82,34 +83,29 @@ public class Controller {
 			getReceptKomp(produktBatch);
 
 			afvejning();
+
 			produktBatch.setStatus(Status.Afsluttet);
 			productBatchController.updateProduktBatch(produktBatch);
 			requestInput("Faerdig med afvejningen", "", "");
 		}
 		catch (IOException e) {
-			produktBatch.setStatus(Status.Klar);
-			productBatchController.updateProduktBatch(produktBatch);
 			log.severe(e.getMessage());
-			System.exit(0);
-		} catch (NumberFormatException e) {
-			produktBatch.setStatus(Status.Klar);
-			productBatchController.updateProduktBatch(produktBatch);
-			e.printStackTrace();
-		} catch (DALException e) {
-			produktBatch.setStatus(Status.Klar);
-			productBatchController.updateProduktBatch(produktBatch);
-			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.severe(e.getMessage());
+		} catch(DALException e) {
+			log.info(e.getMessage());
 		}
 		finally {
+			try {
+				socket.disconnect();
+			} catch (IOException e1) {
+				log.severe(e1.getMessage());
+			}
 			log.getHandlers()[0].close();
+			System.exit(0);
 		}
 	}
 	private void afvejning() throws IOException, DALException {
-		//Nomnetto: Required amount
-		//Tolerance: weighed amount has to be within +- nomnetto
 		double tara, nomnetto, tolerance, weightAmount, upperbound, lowerbound;
 		DTOProduktBatchKomp tempProduktBatchKomp = null;
 		DTORaavareBatch temp = null;
@@ -121,7 +117,7 @@ public class Controller {
 
 			do {
 				requestInput("Toem Vaegt","","");
-			} while (readWeight() >= 0.01);
+			} while (readWeight()>=0.0001);
 
 			raavare = raavareController.getRaavare(receptKompDTO.getRaavareId());
 			requestInput(raavare.getRaavareId()+" : "+raavare.getRaavareNavn(),"", "");
@@ -154,19 +150,26 @@ public class Controller {
 					weightAmount = 0;
 				}
 				pbkController.createProdBatchKomp(tempProduktBatchKomp);
-			} while(weightAmount>0);
+			} while(weightAmount>0.00001);
+
+			requestInput("", "Tøm vægten.", "");
+			while(!bruttokontrol(tara)) {
+				requestInput("", "Bruttokontrol fejlet.", "");
+			}
+			tarer();
 		}
 	}
 
-	private String requestInput(String string1, String string2, String string3) throws IOException {
+	private String requestInput(String string1, String string2, String string3) {
 		//Format string to the weight format.
 		string1 = truncateMsg(string1);
 		string2 = truncateMsg(string2);
 		string3 = truncateUnit(string3);
 		String msg = "RM20 8 "+"\""+string1+"\" "+"\""+string2+"\" "+"\""+string3+"\" "+"\n";
-		String str;
+		String str = null;
 		log.info("Client: "+msg.replace("\n", "\\n"));
 
+		/*Der skal sleepes før den vil vise beskeden for some reason.*/
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
@@ -174,26 +177,37 @@ public class Controller {
 			e.printStackTrace();
 		}
 
-		socket.write(msg);
-		//wait until we actually get the return msg.
-		while (!(str = socket.read()).contains("RM20 A")) {
-			log.info("Server: "+str);
-			if(str.contains("RM20 C")) {
+		try {
+			socket.write(msg);
+			//wait until we actually get the return msg.
+			while (!(str = socket.read()).contains("RM20 A")) {
 				log.info("Server: "+str);
-				try {
+				if(str.contains("RM20 C")) {
+					log.info("Server: "+str);
 					showMsg("Bye", 1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.getHandlers()[0].close();
+					try {
+						socket.disconnect();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					System.exit(0);
 				}
-				log.getHandlers()[0].close();
-				System.exit(0);
 			}
+		} catch(IOException e) {
+			log.severe(e.getMessage());
+			try {
+				socket.disconnect();
+			} catch (IOException e1) {
+				log.severe(e.getMessage());
+			}
+			log.getHandlers()[0].close();
+			System.exit(0);
 		}
-		
+
 		log.info("Server: "+str);
 		String[] strArr = str.split(" ");
-		
 
 		if(strArr.length == 3) {
 			strArr = strArr[2].split("\"");
@@ -231,13 +245,24 @@ public class Controller {
 		}
 	}
 
-	private boolean requestUserID() throws IOException, NumberFormatException, DALException {
-		String answer = requestInput("Input operator ID","ID","");
-		operatoer = operatoerController.getOperatoer(Integer.parseInt(answer));
-		if(operatoer.getAktiv().equals(Aktiv.inaktiv)) {
-			throw new DALException("Fejl, brugeren er inaktiv");
+	private boolean requestUserID() throws IOException {
+		while(true) {
+			try {
+				String answer = requestInput("Input operator ID","ID","");
+				operatoer = operatoerController.getOperatoer(Integer.parseInt(answer));
+
+				if(operatoer.getAktiv().equals(Aktiv.inaktiv)) {
+					throw new DALException("Fejl, brugeren er inaktiv");
+				}
+				return userCheck(operatoer);
+			} catch(NumberFormatException e) {
+				log.info("Ikke gyldigt ID");
+				requestInput("", "Ikke gyldigt ID", "");
+			} catch(DALException e) {
+				log.info(e.getMessage());
+				requestInput("", e.getMessage(), "");
+			} 
 		}
-		return userCheck(operatoer); // Get confirmation from user
 	}
 
 	private boolean productBatchCheck(DTOProduktBatch batch) {
@@ -252,16 +277,13 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NullPointerException e) {
-			str = "User does not exist.";
-			log.warning(str);
-			return false;
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+
 		if(str.length() == 0) {
 			return true;
 		}
@@ -275,10 +297,20 @@ public class Controller {
 		}
 	}
 
-	private boolean requestBatchID() throws IOException, NumberFormatException, DALException {
-		String batchID = requestInput("Input batch ID","1-9999999","");
-		produktBatch = productBatchController.getProduktBatch(Integer.parseInt(batchID));
-		return productBatchCheck(produktBatch); // Get confirmation
+	private boolean requestBatchID() throws IOException {
+		while(true){
+			try {
+				String batchID = requestInput("Input batch ID","1-9999999","");
+				produktBatch = productBatchController.getProduktBatch(Integer.parseInt(batchID));
+				return productBatchCheck(produktBatch);
+			} catch(NumberFormatException e) {
+				log.info("Ikke gyldigt PB ID.");
+				requestInput("", "Ikke gyldigt PB ID.", "");
+			} catch(DALException e) {
+				log.info(e.getMessage());
+				requestInput("", "PB findes ikke.", "");
+			}
+		}
 	}
 
 	private void getReceptKomp(DTOProduktBatch productbatch) throws DALException, IOException {
@@ -294,15 +326,25 @@ public class Controller {
 	}
 
 	private double readWeight() throws IOException{
-		//Send cmd.
+		double weight = 0;
 		String str;
+		//Send cmd.
 		socket.write("S\n");
 		log.info("Client: S\\n");
+
 		//Receive weight.
 		str = socket.read();
 		log.info("Server: "+str);
-		String[] strArr = str.split(" ");
-		return Double.parseDouble(strArr[6]);
+
+		if(str.contains("-")) {
+			String[] strArr = str.split(" ");
+			weight = Double.parseDouble(strArr[5]); 
+		}
+		else {
+			String[] strArr = str.split(" ");
+			weight = Double.parseDouble(strArr[6]); 
+		}
+		return weight;
 	}
 
 	private double tarer() throws IOException {
@@ -342,17 +384,25 @@ public class Controller {
 		}
 		return maengde;
 	}
-	
-	private void showMsg(String msg, int mili) throws IOException, InterruptedException {
+
+	private void showMsg(String msg, int mili) throws IOException {
+		/*Der skal sleepes før den vil vise beskeden for some reason.*/
 		try {
 			Thread.sleep(100);
+			String str = "D \""+msg+"\"\n";
+			socket.write(str);
+			Thread.sleep(mili);
+			socket.write("DW\n");
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			// En trådet system, bør ikke kunne interruptes.
 			e.printStackTrace();
 		}
-		String str = "D \""+msg+"\"\n";
-		socket.write(str);
-		Thread.sleep(mili);
-		socket.write("DW\n");
+	}
+
+	private boolean bruttokontrol(double tara) throws IOException {
+		double afvejning = 0;
+		afvejning = readWeight()*-1;
+		if(Math.abs(afvejning-tara)<0.00001) return true;
+		return false;
 	}
 }
