@@ -60,10 +60,6 @@ class ReceptServiceTest {
 		});
 	}
 
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
 	@Test
 	void testGetReceptList() {		
 		try {
