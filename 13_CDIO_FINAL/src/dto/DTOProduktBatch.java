@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DTOProduktBatch {
     private int pbId;                     // i omraadet 1-99999999
-    private Status status;                    // 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
+    private Status status;
     private int receptId;
-   
  }
 
