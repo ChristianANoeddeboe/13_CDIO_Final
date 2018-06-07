@@ -222,10 +222,11 @@ $(document).ready(function() {
 	//Convenience function for generating html
 	function generateRaavareHTML(raavare) {
 		return 	'<tr><th scope ="row">' + raavare.raavareId + '</th>' +
-		'<td><input type="text" id = "'+raavare.raavareId +"_navn"+'"class="form-control-plaintext" value="' + raavare.raavareNavn + '"></td></td>' +
-		'<td><input type="text" id = "'+raavare.raavareId +"_leverandør"+'"class="form-control-plaintext" value="' + raavare.leverandoer + '"></td></td>' +
-		'<td><button type="button" id = "'+raavare.raavareId+'"class="btn btn-primary vis">▼</button>'+'</td>' +
-		'<td><button type="button" id = "'+raavare.raavareId+'"class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
+		'<td><input type="text" id = "'+raavare.raavareId +"_navn"+'" class="form-control-plaintext" value="' + raavare.raavareNavn + '"></td></td>' +
+		'<td><input type="text" id = "'+raavare.raavareId +"_leverandør"+'" class="form-control-plaintext" value="' + raavare.leverandoer + '"></td></td>' +
+		'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary vis">▼</button>'+'</td>' +
+        '<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary update"><i class="fas fa-sync"></i></button>'+'</td>' +
+		'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 

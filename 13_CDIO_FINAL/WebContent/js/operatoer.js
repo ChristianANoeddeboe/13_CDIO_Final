@@ -122,11 +122,12 @@ $(document).ready(function() {
     //Convenience function for generating html
     function generateOperatoerHTML(operatoer) {
         return 	'<tr><th scope ="row">' + operatoer.oprId + '</th>' +
-            '<td><input type="text" id = "'+operatoer.oprId+"_fornavn"+'"class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
-            '<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'"class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
-            '<td><th scope="row" id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</th></td></td>' +
-            '<td><input type="text" id = "'+operatoer.oprId+"_aktiv"+'"class="form-control-plaintext" value="' + operatoer.aktiv + '"></td></td>' +
-            '<td><button type="button" id = "'+operatoer.oprId+'"class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
+            '<td><input type="text" id = "'+operatoer.oprId+"_fornavn"+'" class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
+            '<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'" class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
+            '<td><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></td></td>' +
+            '<td><select class="" name="' + operatoer.oprId + '_status" id="' + operatoer.oprId + '_status"><option value="' + 'Aktiv' + '">' + 'Aktiv' + '</option><option value="' + 'Inaktiv' + '">' + 'Inaktiv' + '</option>></select></td></td>' +
+            '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update"><i class="fas fa-sync"></i></button>'+'</td>' +
+            '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
             '</td></tr>';
     }
     
