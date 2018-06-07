@@ -14,7 +14,13 @@ body {
 
 .table {
     box-shadow: -1px 3px 5px #8888888c;
+    margin: 0px auto;
     margin-top: 2em;
+    max-width: 60%;
+}
+
+.modal-lg {
+    max-width: 60%;
 }
 
 *:focus *:active {
