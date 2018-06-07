@@ -6,10 +6,10 @@ $(document).ready(function() {
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/raavare/all', //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
-			success : function(data) {//Funktion der skal udføres når data er hentet
+			success : function(data) {//Funktion der skal udføres naar data er hentet
 				clearRaavareTable();
 				$.each(data,function(i,element){
-					$('#raavareAdmin').children().append(generateRaavareHTML(data[i]));
+					$('#raavareAdminTable').children().append(generateRaavareHTML(data[i]));
 
 				});
 				$(".slet").click(function(e){
@@ -52,20 +52,20 @@ $(document).ready(function() {
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/raavare/create', //specificerer endpointet
 			data : JSON.stringify({
-				raavareId : $("#inputRåvareID")["0"].value,
-				raavareNavn : $("#inputRåvareNavn")["0"].value,
+				raavareId : $("#inputRaavareID")["0"].value,
+				raavareNavn : $("#inputRaavareNavn")["0"].value,
 				leverandoer : $("#inputLeverandør")["0"].value
 			}),
 			contentType : "application/JSON",
 			type : 'POST', //Typen af HTTP requestet (GET er default)
-			success : function(data) {//Funktion der skal udføres når data er hentet
+			success : function(data) {//Funktion der skal udføres naar data er hentet
 				$('#addModal').modal('hide');
-				$.notify("Råvaren blev operettet", "success");
+				$.notify("Raavaren blev operettet", "success");
 				loadProdukt();
 			},
 			error : function(data){
 				$('#addModal').modal('hide');
-				$.notify("Fejl ved oprettelse af råvaren", "error");
+				$.notify("Fejl ved oprettelse af raavaren", "error");
 				loadProdukt();
 			}
 		});
@@ -84,9 +84,9 @@ $(document).ready(function() {
 			}),
 			contentType : "application/json",
 			type : 'PUT', //Typen af HTTP requestet (GET er default)
-			success : function(data) {//Funktion der skal udføres når data er hentet
+			success : function(data) {//Funktion der skal udføres naar data er hentet
 				$('#updateModal').modal('hide');
-				$.notify("Råvaren blev opdateret", "success");
+				$.notify("Raavaren blev opdateret", "success");
 				loadProdukt();
 			},
 			error : function(data){
@@ -103,9 +103,9 @@ $(document).ready(function() {
 			url : 'rest/raavare/'+id, //specificerer endpointet
 			contentType : "plain/text",
 			type : 'DELETE', //Typen af HTTP requestet (GET er default)
-			success : function(data) {//Funktion der skal udføres når data er hentet
+			success : function(data) {//Funktion der skal udføres naar data er hentet
 				$('#deleteModal').modal('hide');
-				$.notify("Råvaren blev slettet", "success");
+				$.notify("Raavaren blev slettet", "success");
 				loadProdukt();
 			},
 			error : function(data){
@@ -122,15 +122,15 @@ $(document).ready(function() {
 	});
 	
 	//Produktbatch komp stuff starts here
-	function loadRåvareBatch(){
+	function loadRaavareBatch(){
 		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/raavare/batch/list/'+res[0], //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
-			success : function(data) {//Funktion der skal udføres når data er hentet
-				clearRåvareBatchTable();
+			success : function(data) {//Funktion der skal udføres naar data er hentet
+				clearRaavareBatchTable();
 				$.each(data,function(i,element){
-					$('#råvareBatchTable').append(generateRåvareBatchKompHTML(data[i]));
+					$('#raavareBatchTable').append(generateRaavareBatchKompHTML(data[i]));
 
 				});
 				$(".sletKomp").click(function(e){
@@ -147,7 +147,7 @@ $(document).ready(function() {
 	};
 	
 	$('#showMoreModal').on('shown.bs.modal', function () {
-		loadRåvareBatch();
+		loadRaavareBatch();
 	});
 	
 
@@ -162,15 +162,15 @@ $(document).ready(function() {
 			}),
 			contentType : "application/JSON",
 			type : 'POST', //Typen af HTTP requestet (GET er default)
-			success : function(data) {//Funktion der skal udføres når data er hentet
+			success : function(data) {//Funktion der skal udføres naar data er hentet
 				$('#addKompModal').modal('hide');
-				$.notify("Råvare batchen blev operettet", "success");
-				loadRåvareBatch();
+				$.notify("Raavare batchen blev operettet", "success");
+				loadRaavareBatch();
 			},
 			error : function(data){
 				$('#addKompModal').modal('hide');
-				$.notify("Fejl ved oprettelse af Råvare batchen", "error");
-				loadRåvareBatch();
+				$.notify("Fejl ved oprettelse af Raavare batchen", "error");
+				loadRaavareBatch();
 			}
 		});
 	});
@@ -181,15 +181,15 @@ $(document).ready(function() {
 			url : 'rest/raavare/batch/'+res[0], //specificerer endpointet
 			contentType : "plain/text",
 			type : 'DELETE', //Typen af HTTP requestet (GET er default)
-			success : function(data) {//Funktion der skal udføres når data er hentet
+			success : function(data) {//Funktion der skal udføres naar data er hentet
 				$('#deleteKompModal').modal('hide');
 				$.notify("Produktbatch komponenten blev slettet", "success");
-				loadRåvareBatch();
+				loadRaavareBatch();
 			},
 			error : function(data){
 				$('#deleteKompModal').modal('hide');
 				$.notify(data.responseText, "error");
-				loadRåvareBatch();
+				loadRaavareBatch();
 			}
 		});
 
@@ -206,15 +206,15 @@ $(document).ready(function() {
 			}),
 			contentType : "application/json",
 			type : 'PUT', //Typen af HTTP requestet (GET er default)
-			success : function(data) {//Funktion der skal udføres når data er hentet
+			success : function(data) {//Funktion der skal udføres naar data er hentet
 				$('#updateKompModal').modal('hide');
 				$.notify("Produktbatch komponenten blev opdateret", "success");
-				loadRåvareBatch();
+				loadRaavareBatch();
 			},
 			error : function(data){
 				$('#updateKompModal').modal('hide');
 				$.notify(data.responseText, "error");
-				loadRåvareBatch();
+				loadRaavareBatch();
 			}
 		});
 
@@ -230,11 +230,11 @@ $(document).ready(function() {
 		'</td></tr>';
 	}
 
-	function generateRåvareBatchKompHTML(råvareBatch) {
-		return 	'<tr><th scope ="row">' + råvareBatch.rbId + '</th>' +
-		'<th scope = "row">'+råvareBatch.raavareId + '</th>' +
-		'<td><input type="text" id =  "'+råvareBatch.rbId+"_"+råvareBatch.raavareId+"_mængde"+'"class="form-control-plaintext" value="' + råvareBatch.maengde + '"></td></td>' +
-		'<td><button type="button" id =  "'+råvareBatch.rbId+"_mængde"+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id ="'+råvareBatch.rbId+"_mængde"+'"></i></button>'+'</td>' +
+	function generateRaavareBatchKompHTML(raavareBatch) {
+		return 	'<tr><th scope ="row">' + raavareBatch.rbId + '</th>' +
+		'<th scope = "row">'+raavareBatch.raavareId + '</th>' +
+		'<td><input type="text" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+"_mængde"+'"class="form-control-plaintext" value="' + raavareBatch.maengde + '"></td></td>' +
+		'<td><button type="button" id =  "'+raavareBatch.rbId+"_mængde"+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id ="'+raavareBatch.rbId+"_mængde"+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 
@@ -242,8 +242,8 @@ $(document).ready(function() {
 		$("#raavareTable tbody").empty();
 	};
 
-	function clearRåvareBatchTable(){
-		$("#råvareBatchTable tbody").empty();
+	function clearRaavareBatchTable(){
+		$("#raavareBatchTable tbody").empty();
 	};
 
 
