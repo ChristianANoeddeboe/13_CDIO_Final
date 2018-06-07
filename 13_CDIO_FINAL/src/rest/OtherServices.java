@@ -3,6 +3,7 @@ package rest;
 import connector.MySQLConnector;
 import dto.Aktiv;
 import dto.DTOProduktBatch;
+import dto.Roller;
 import dto.Status;
 import exception.DALException;
 
@@ -33,6 +34,16 @@ public class OtherServices {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getStatusOperatoer() {
         Object[] arr = Aktiv.values();
+
+        return Response.ok(arr, MediaType.APPLICATION_JSON).build();
+    }
+
+    @GET
+    @Path("roller")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response getRoller() {
+        Object[] arr = Roller.values();
 
         return Response.ok(arr, MediaType.APPLICATION_JSON).build();
     }
