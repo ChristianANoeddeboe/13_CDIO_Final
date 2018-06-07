@@ -75,3 +75,10 @@ body {
     background-color: #fff;
     border-color: #fff;
 }
+
+select {
+    border: none;
+    border-bottom: 1px #c51137;
+    background-color: transparent;
+    outline: none;
+}
