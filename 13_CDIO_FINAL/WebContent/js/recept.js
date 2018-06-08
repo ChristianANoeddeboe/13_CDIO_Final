@@ -77,12 +77,13 @@ $(document).ready(function() {
 	});
 
 
-	$(".btn-primaryUpdate").click(function(){		
+	$(".btn-primaryUpdate").click(function(){	
+		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/recept/update', //specificerer endpointet
 			data : JSON.stringify({
-				receptId : id,
-				receptNavn : value
+				receptId : res[0],
+				receptNavn : $("#"+id[0]+"_Name")["0"].value
 			}),
 			contentType : "application/json",
 			type : 'PUT', //Typen af HTTP requestet (GET er default)
@@ -100,31 +101,11 @@ $(document).ready(function() {
 
 	})
 	
-	
-
-
-	$(".btn-primaryDelete").click(function(e){
-		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/'+id, //specificerer endpointet
-			contentType : "plain/text",
-			type : 'DELETE', //Typen af HTTP requestet (GET er default)
-			success : function(data) {//Funktion der skal udføres når data er hentet
-				$('#deleteModal').modal('hide');
-				$.notify("Recepten blev slettet", "success");
-				loadRecepts();
-			},
-			error : function(data){
-				$('#deleteModal').modal('hide');
-				$.notify(data.responseText, "error");
-				loadRecepts();
-			}
-		});
-		e.preventDefault();
-	});
-	
+		
 	$(".btn-primaryDelete").click(function(){
+		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/'+id, //specificerer endpointet
+			url : 'rest/recept/'+id[0], //specificerer endpointet
 			contentType : "plain/text",
 			type : 'DELETE', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
@@ -250,7 +231,7 @@ $(document).ready(function() {
 	//Convenience function for generating html
 	function generateReceptHTML(recept) {
 		return 	'<tr><td scope ="row">' + recept.receptId + '</td>' +
-		'<td><input type="text" id = "'+recept.receptId +' " class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
+		'<td><input type="text" id = "'+recept.receptId +"_Name"+'" class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
 		'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary vis">▼</button>'+'</td>' +
         '<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary update"><i class="fas fa-sync" id = "'+recept.receptId+'"></i></button>'+'</td>' +
 		'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+recept.receptId+'"></i></button>'+'</td>' +
