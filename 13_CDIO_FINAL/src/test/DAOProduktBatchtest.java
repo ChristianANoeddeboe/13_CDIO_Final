@@ -8,9 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
@@ -102,7 +100,7 @@ class DAOProduktBatchtest {
     @Test
     void testCreateProduktBatch() {
         try {
-            prodBatch.createProduktBatch(new DTOProduktBatch(Status.Igang, 1));
+            prodBatch.createProduktBatch(new DTOProduktBatch(1000, Status.Igang, 1));
         } catch (Exception e) {
             fail("Something went wrong creating a product batch");
         }finally {
