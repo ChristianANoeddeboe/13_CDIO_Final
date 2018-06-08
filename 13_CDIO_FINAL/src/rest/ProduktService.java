@@ -22,6 +22,7 @@ import dao.DAOProduktBatch;
 import dto.DTOProduktBatch;
 import dto.DTOProduktBatchKomp;
 import exception.DALException;
+import interfaces.IProduktService;
 
 @Path("produktbatch")
 @Produces(MediaType.APPLICATION_JSON)

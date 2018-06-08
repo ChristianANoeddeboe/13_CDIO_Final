@@ -1,4 +1,4 @@
-package rest;
+package interfaces;
 
 import javax.ws.rs.core.Response;
 
