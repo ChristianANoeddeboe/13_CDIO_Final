@@ -30,35 +30,6 @@ public class RaavareService implements IRaavareService {
 	static RaavareBatchController rbController = new RaavareBatchController(new DAORaavareBatch());
 	
 	@GET
-	@Path("{id}")
-	@Produces(MediaType.APPLICATION_ATOM_XML)
-	@Consumes(MediaType.APPLICATION_ATOM_XML)
-	public Response getRaavare(@PathParam("id") int raavareId) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch(InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch(IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch(ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch(SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		DTORaavare result = null;
-		try {
-			result = rController.getRaavare(raavareId);
-		} catch(DALException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
-		}
-		return Response.ok(result, MediaType.APPLICATION_JSON).build();
-	}
-
-	@GET
 	@Path("all")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)

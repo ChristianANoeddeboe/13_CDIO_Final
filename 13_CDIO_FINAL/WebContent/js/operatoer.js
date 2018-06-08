@@ -124,7 +124,7 @@ $(document).ready(function() {
         return 	'<tr><th scope ="row">' + operatoer.oprId + '</th>' +
             '<td><input type="text" id = "'+operatoer.oprId+"_fornavn"+'"class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
             '<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'"class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
-            '<td><input type="text" id = "'+operatoer.oprId+"_cpr"+'"class="form-control-plaintext" value="' + operatoer.cpr + '"></td></td>' +
+            '<td><th scope="row" id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</th></td></td>' +
             '<td><input type="text" id = "'+operatoer.oprId+"_aktiv"+'"class="form-control-plaintext" value="' + operatoer.aktiv + '"></td></td>' +
             '<td><button type="button" id = "'+operatoer.oprId+'"class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
             '</td></tr>';

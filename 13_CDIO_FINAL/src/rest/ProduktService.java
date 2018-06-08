@@ -31,35 +31,6 @@ public class ProduktService implements IProduktService {
 	static ProduktBatchKompController kompController = new ProduktBatchKompController(new DAOProduktBatchKomp());
 	
 	@GET
-	@Path("{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getProduktBatch(@PathParam("id") int pbID) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		DTOProduktBatch result = null;
-		try {
-			result = controller.getProduktBatch(pbID);
-		} catch(DALException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
-		}
-		return Response.ok(result, MediaType.APPLICATION_JSON).build();
-	}
-	
-	@GET
 	@Path("all")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getProduktBatchList() throws DALException {
