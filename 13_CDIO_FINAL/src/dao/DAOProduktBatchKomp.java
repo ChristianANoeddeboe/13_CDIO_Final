@@ -10,14 +10,14 @@ import exception.DALException;
 import interfaces.IDAOProduktBatchKomp;
 import dto.DTOProduktBatchKomp;
 import logging.LogHandler;
+import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
-@Log
+@Slf4j
+@NoArgsConstructor
 public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
 
-    public DAOProduktBatchKomp(){
-        new LogHandler(log, "DAO");
-    }
 
     @Override
     public DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException {
@@ -27,7 +27,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
                 throw new DALException("Produktbatch komponentet med produkt batch id: " + pbId + " og raavare batch id: " + rbId + " blev ikke fundet");
             return new DTOProduktBatchKomp(rs.getInt("pb_id"), rs.getInt("rb_id"), rs.getDouble("tara"), rs.getDouble("netto"), rs.getInt("opr_id"));
         } catch (SQLException e) {
-            log.severe(e.toString());
+            log.warn(e.toString());
             throw new DALException(e);
         }
     }
@@ -42,7 +42,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
 
             }
         } catch (SQLException e) {
-            log.severe(e.toString());
+            log.warn(e.toString());
             throw new DALException(e);
         }
         return list;
@@ -58,7 +58,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
 
             }
         } catch (SQLException e) {
-            log.severe(e.toString());
+            log.warn(e.toString());
             throw new DALException(e);
         }
         return list;
@@ -69,7 +69,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
         if (MySQLConnector.doUpdate("CALL createProduktBatchKomp(" + produktbatchkomponent.getPbId() + "," + produktbatchkomponent.getRbId() + "," + produktbatchkomponent.getTara() + ""
                 + "," + produktbatchkomponent.getNetto() + "," + produktbatchkomponent.getOprId() + ")") == 0) {
             String errMsg = "Couldn't add tuple to \"Produkt batch komponent\".";
-            log.severe(errMsg);
+            log.warn(errMsg);
             throw new DALException(errMsg);
         }
     }
@@ -79,7 +79,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
         if (MySQLConnector.doUpdate("CALL updateProduktBatchKomp(" + produktbatchkomponent.getPbId() + "," + produktbatchkomponent.getRbId() + ","
                 + "" + produktbatchkomponent.getTara() + "," + produktbatchkomponent.getNetto() + "," + produktbatchkomponent.getOprId() + ")") == 0) {
             String errMsg = "No rows updated in \"Produkt batch komponent\".";
-            log.severe(errMsg);
+            log.warn(errMsg);
             throw new DALException(errMsg);
         }
     }
@@ -88,7 +88,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
     public void deleteProduktBatchKomp(int productBatch_ID, int raavareBatch_ID) throws DALException {
         if (MySQLConnector.doUpdate("CALL deleteProductBatchKomp(" + productBatch_ID + "," + raavareBatch_ID + ")") == 0) {
             String errMsg = "No rows updated in \"Produkt batch komponent\".";
-            log.severe(errMsg);
+            log.warn(errMsg);
             throw new DALException(errMsg);
         }
     }

@@ -17,7 +17,7 @@ import connector.MySQLConnector;
 import dao.DAOProduktBatch;
 import exception.DALException;
 import dto.DTOProduktBatch;
-import dto.DTOProduktBatch.Status;
+import dto.Status;
 
 class DAOProduktBatchtest {
     static DAOProduktBatch prodBatch;

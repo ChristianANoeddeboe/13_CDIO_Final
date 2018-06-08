@@ -5,13 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.sql.SQLException;
 import java.util.List;
 
+import dto.Roller;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
 import dao.DAOOperatoer;
 import dto.DTOOperatoer;
-import dto.DTOOperatoer.Aktiv;
+import dto.Aktiv;
 import exception.DALException;
 
 class DAOOperatoerTest {
@@ -72,7 +73,7 @@ class DAOOperatoerTest {
 	@Test
 	void testCreateOperatoer() {
 		try {
-			operatoer.createOperatoer(new DTOOperatoer("test", "testEfternavn", "1234561210", "Administrator", Aktiv.aktiv));
+			operatoer.createOperatoer(new DTOOperatoer("test", "testEfternavn", "1234561210", Roller.Administrator, Aktiv.aktiv));
 		}catch (Exception e) {
 			fail("Something went wrong creating an operator");
 		}finally {
@@ -88,7 +89,7 @@ class DAOOperatoerTest {
 	void testUpdateOperatoerValid() {
 		boolean valid = true;
 		try {
-			operatoer.updateOperatoer(new DTOOperatoer(1,"testUpdated", "testEfternavn", "1234561234", "Administrator", Aktiv.aktiv));
+			operatoer.updateOperatoer(new DTOOperatoer(1,"testUpdated", "testEfternavn", "7070707007", Roller.Administrator, Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 			fail("Invalid parameters");
@@ -103,7 +104,7 @@ class DAOOperatoerTest {
 	void testUpdateOperatoerInvalid() {
 		boolean valid = true;
 		try {
-			operatoer.updateOperatoer(new DTOOperatoer(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", "Administrator", Aktiv.aktiv));
+			operatoer.updateOperatoer(new DTOOperatoer(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", Roller.Administrator, Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 		}catch (Exception e) {

@@ -34,16 +34,21 @@ public class DTOOperatoer {
     /**
      * Operatoer rolle
      */
-    private String roles;
+    private Roller roles;
     /**
      * Operatoer aktiv
      */
     private Aktiv aktiv;
 
-    
-   
+    public DTOOperatoer(String fornavn, String efternavn, String cpr, Roller roles, Aktiv aktiv) {
+        this.fornavn = fornavn;
+        this.efternavn = efternavn;
+        this.cpr = cpr;
+        this.roles = roles;
+        this.aktiv = aktiv;
+    }
 
-	public void formatCPR() {
+    public void formatCPR() {
         String temp = cpr.substring(0, 5);
         temp.concat(cpr.substring(6));
     }

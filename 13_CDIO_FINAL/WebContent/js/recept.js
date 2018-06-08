@@ -24,6 +24,10 @@ $(document).ready(function() {
 					e.preventDefault();
 
 				});
+                $(".update").click(function(e){
+                    id = e.target.id;
+                    $('#updateModal').modal('show');
+                });
 			},
 			error : function(data){
 				$.notify(data.responseText, "error");
@@ -157,18 +161,20 @@ $(document).ready(function() {
 					$('#deleteKompModal').modal('show');
 					e.preventDefault();
 				});
+                $(".updateKomp").click(function(e){
+                    id = e.target.id;
+                    $('#updateKompModal').modal('show');
+                });
 			},
 			error : function(data){
 				$.notify(data.responseText, "error");
 			}
 		});
-	
-	};
+	}
 	
 	$('#showMoreModal').on('shown.bs.modal', function () {
 		loadReceptKomps();
 	});
-	
 
 
 	$(".btn-primaryAddKomp").click(function(){
@@ -239,33 +245,37 @@ $(document).ready(function() {
 			}
 		});
 
-	})
+	});
 	
 	//Convenience function for generating html
 	function generateReceptHTML(recept) {
 		return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
-		'<td><input type="text" id = "'+recept.receptId +'"class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
-		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary vis">▼</button>'+'</td>' +
-		'<td><button type="button" id = "'+recept.receptId+'"class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+recept.receptId+'"></i></button>'+'</td>' +
+		'<td><input type="text" id = "'+recept.receptId +' " class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
+		'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary vis">▼</button>'+'</td>' +
+        '<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary update"><i class="fas fa-sync"></i></button>'+'</td>' +
+		'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+recept.receptId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 
 	function generateReceptKompHTML(receptKomp) {
 		return 	'<tr><th scope ="row">' + receptKomp.receptId + '</th>' +
 		'<th scope = "row">'+receptKomp.raavareId + '</th>' +		
-		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_netto"+'"class="form-control-plaintext" value="' + receptKomp.nomNetto + '"></td></td>' +
-		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_tolerance"+'"class="form-control-plaintext" value="' + receptKomp.tolerance + '"></td></td>' +
-		'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
+		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_netto"+'" class="form-control-plaintext" value="' + receptKomp.nomNetto + '"></td></td>' +
+		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_tolerance"+'" class="form-control-plaintext" value="' + receptKomp.tolerance + '"></td></td>' +
+        '<td><button type="button" id = "'+receptKomp.receptId+'" class="btn btn-primary updateKomp"><i class="fas fa-sync"></i></button>'+'</td>' +
+		'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 
 	function clearReceptTable(){
 		$("#receptTable tbody").empty();
-	};
+	}
 
 	function clearReceptKompTable(){
 		$("#receptKompTable tbody").empty();
-	};
+	}
+
+
 
 
 	$(document).keypress(function(e) {
@@ -281,5 +291,4 @@ $(document).ready(function() {
 		}
 
 	});
-
 });

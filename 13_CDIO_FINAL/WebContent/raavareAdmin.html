@@ -32,16 +32,16 @@
 
 	</nav>
 
-	<div class="container" id="raavareAdmin">
-		<table class="table table-striped" id="raavareTable">
+	<div class="container" id="raavareAdminTable">
+		<table class="table table-striped">
 			<thead class="thead">
 			<tr>
-				<th class="col-1" scope="col">Råvare ID</th>
-				<th class="col" scope="col">Råvare navn</th>
+				<th class="col-1" scope="col">Raavare ID</th>
+				<th class="col" scope="col">Raavare navn</th>
 				<th class="col" scope="col">Leverandør</th>
-				<th class="col-1 text-right" scope="col" colspan="2">
+				<th class="col-1 text-right" scope="col" colspan="3">
 					<button type="button" class="btn btn-primary add"
-							data-toggle="modal" data-target="#addModal">+</button>
+							data-toggle="modal" data-target="#addKompModal">+</button>
 				</th>
 			</tr>
 			</thead>
@@ -59,7 +59,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="showMoreModalTitle">Vil du
-						opdatere denne råvare?</h5>
+						opdatere denne raavare?</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -81,7 +81,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="addTitle">Tilføj råvare</h5>
+					<h5 class="modal-title" id="addTitle">Tilføj raavare</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -90,19 +90,19 @@
 				<div class="modal-body">
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="inputRåvareID">RåvareID</label>
+							<label class="col-sm-2 control-label" for="inputRaavareID">RaavareID</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputRåvareID"
-									placeholder="Råvare ID" />
+								<input type="text" class="form-control" id="inputRaavareID"
+									placeholder="Raavare ID" />
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="inputRåvareNavn">Råvare
+							<label class="col-sm-2 control-label" for="inputRaavareNavn">Raavare
 								navn</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputRåvareNavn"
-									placeholder="Råvare navn" />
+								<input type="text" class="form-control" id="inputRaavareNavn"
+									placeholder="Raavare navn" />
 							</div>
 						</div>
 
@@ -132,7 +132,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="deleteModalTitle">Vil du slette
-						denne råvare?</h5>
+						denne raavare?</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -153,18 +153,18 @@
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="showMoreTitle">Råvarebatches</h5>
+					<h5 class="modal-title" id="showMoreTitle">Raavarebatches</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<table class="table table-striped" id="råvareBatchTable">
+					<table class="table table-striped" id="raavareBatchTable">
 						<thead class="thead">
 							<tr>
-								<th scope="col">RåvareBatchID</th>
-								<th scope="col">RåvareID</th>
+								<th scope="col">RaavareBatchID</th>
+								<th scope="col">RaavareID</th>
 								<th scope="col">Mængde</th>
 								<th class="col" scope="col">
 									<button type="button" class="btn btn-primary add"
@@ -191,7 +191,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="addTitle">Tilføj råvarebatch</h5>
+					<h5 class="modal-title" id="addTitle">Tilføj raavarebatch</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -204,15 +204,15 @@
 								ID</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputRBID"
-									placeholder="Råvare Batch ID" />
+									placeholder="Raavare Batch ID" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm control-label" for="inputRaavareID">Råvare
+							<label class="col-sm control-label" for="inputRaavareID">Raavare
 								ID</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputRaavareID"
-									placeholder="Råvare ID" />
+									placeholder="Raavare ID" />
 							</div>
 						</div>
 
@@ -244,7 +244,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="deleteKompModalTitle">Vil du
-						slette denne råvare batch?</h5>
+						slette denne raavare batch?</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -265,7 +265,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="showMoreModalTitle">Vil du
-						opdatere denne råvare batch?</h5>
+						opdatere denne raavare batch?</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
