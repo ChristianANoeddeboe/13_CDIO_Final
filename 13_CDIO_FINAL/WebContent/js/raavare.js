@@ -189,7 +189,7 @@ $(document).ready(function() {
 			type : 'DELETE', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres naar data er hentet
 				$('#deleteKompModal').modal('hide');
-				$.notify("Produktbatch komponenten blev slettet", "success");
+				$.notify("Råvare batchen blev slettet", "success");
 				loadRaavareBatch();
 			},
 			error : function(data){
@@ -214,7 +214,7 @@ $(document).ready(function() {
 			type : 'PUT', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres naar data er hentet
 				$('#updateKompModal').modal('hide');
-				$.notify("Produktbatch komponenten blev opdateret", "success");
+				$.notify("Råvare batchen blev opdateret", "success");
 				loadRaavareBatch();
 			},
 			error : function(data){
@@ -241,8 +241,8 @@ $(document).ready(function() {
 		return 	'<tr><th scope ="row">' + raavareBatch.rbId + '</th>' +
 		'<th scope = "row">'+raavareBatch.raavareId + '</th>' +
 		'<td><input type="text" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+"_mængde"+'"class="form-control-plaintext" value="' + raavareBatch.maengde + '"></td></td>' +
-        '<td><button type="button" id = "'+raavareBatch.rbId+'" class="btn btn-primary updateKomp"><i class="fas fa-sync" id =  "'+raavareBatch.rbId+"_mængde"+'"></i></button>'+'</td>' +
-		'<td><button type="button" id =  "'+raavareBatch.rbId+"_mængde"+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id ="'+raavareBatch.rbId+"_mængde"+'"></i></button>'+'</td>' +
+        '<td><button type="button" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"class="btn btn-primary updateKomp"><i class="fas fa-sync" id = "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"></i></button>'+'</td>' +
+		'<td><button type="button" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 

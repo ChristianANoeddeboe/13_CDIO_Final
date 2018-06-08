@@ -68,7 +68,8 @@ $(document).ready(function() {
                 oprId : $("#inputID")["0"].value,
                 fornavn : $("#inputFornavn")["0"].value,
                 efternavn : $("#inputEfternavn")["0"].value,
-                cpr : $("#inputCPR")["0"].value
+                cpr : $("#inputCPR")["0"].value,
+                roles : "Administrator"
             }),
             contentType : "application/JSON",
             type : 'POST', //Typen af HTTP requestet (GET er default)
@@ -94,9 +95,9 @@ $(document).ready(function() {
                 oprId : res[0],
                 fornavn : $(("#"+res[0]+"_fornavn"))["0"].value,
                 efternavn : $(("#"+res[0]+"_efternavn"))["0"].value,
-                cpr : $(("#"+res[0]+"_cpr"))["0"].value,
-                roles : " ",
-                aktiv : $(("#"+res[0]+"_aktiv"))["0"].value
+                cpr : $(("#"+res[0]+"_cpr"))["0"].textContent,
+                roles : "Administrator",
+                aktiv : $(("#"+res[0]+"_status"))["0"].value
                 
             }),
             contentType : "application/json",
@@ -159,7 +160,7 @@ $(document).ready(function() {
         return 	'<tr><th scope ="row">' + operatoer.oprId + '</th>' +
             '<td><input type="text" id = "'+operatoer.oprId+"_fornavn"+'" class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
             '<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'" class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
-            '<td><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></td></td>' +
+            '<th scope = "row"><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></th></td>' +
             '<td><select class="" name="' + operatoer.oprId + '_aktiv" id="' + operatoer.oprId + '_status"><option value="' + status[0] + '">' + status[0]  + '</option><option value="' + status[1] + '">' + status[1] + '</option>></select></td></td>' +
             '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update"><i class="fas fa-sync" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
             '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
