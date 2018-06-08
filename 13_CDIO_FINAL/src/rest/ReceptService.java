@@ -24,6 +24,7 @@ import dao.DAOReceptKomp;
 import dto.DTORecept;
 import dto.DTOReceptKomp;
 import exception.DALException;
+import interfaces.IReceptService;
 
 @Path("recept")
 @Produces(MediaType.APPLICATION_JSON)

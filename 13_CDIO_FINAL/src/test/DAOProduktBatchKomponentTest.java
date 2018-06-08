@@ -107,9 +107,15 @@ class DAOProduktBatchKomponentTest {
     void testCreateProduktBatchKomp() {
         int lastid;
         try {
-            prodBatchKomp.createProduktBatchKomp(new DTOProduktBatchKomp(1, 10, 1.0, 1.0, 1));
+            prodBatchKomp.createProduktBatchKomp(new DTOProduktBatchKomp(1, 6, 1.0, 1.0, 1));
         } catch (Exception e) {
             fail("Something went wrong creating a product batch component");
+        }finally {
+            try{
+                prodBatchKomp.deleteProduktBatchKomp(1,6);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 

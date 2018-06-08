@@ -1,4 +1,4 @@
-package rest;
+package interfaces;
 
 import java.util.List;
 
