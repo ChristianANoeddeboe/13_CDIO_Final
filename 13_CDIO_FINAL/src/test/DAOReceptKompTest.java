@@ -1,9 +1,12 @@
 package test;
 
 import connector.MySQLConnector;
+import dao.DAORecept;
 import dao.DAOReceptKomp;
+import dto.DTORecept;
 import exception.DALException;
 import dto.DTOReceptKomp;
+import interfaces.IDAORecept;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -45,10 +48,10 @@ class DAOReceptKompTest {
             assertEquals(1, actual, "Raavare ID was " + actual);
 
             actual = receptKompDTO.getNomNetto();
-            assertEquals(1.0, actual, "NomNetto was " + actual);
+            assertEquals(10.0, actual, "NomNetto was " + actual);
 
             actual = receptKompDTO.getTolerance();
-            assertEquals(1.0, actual, "Tolerance was " + actual);
+            assertEquals(0.1, actual, "Tolerance was " + actual);
         } catch (DALException e) {
             System.out.println("Query could not be resolved.");
             e.printStackTrace();
@@ -92,24 +95,35 @@ class DAOReceptKompTest {
 
     @Test
     void createReceptKomp() {
-        int lastid = 0;
+        int last_index = 0, last_recept_id = 0, last_raavare_id = 0, last_recept_index = 0, test_recept_id = 1;
         DTOReceptKomp compare;
+        IDAORecept daoRecept = new DAORecept();
         try {
-            lastid = receptkompDAO.getReceptKompList().size() - 1;
-            lastid = receptkompDAO.getReceptKompList().get(lastid).getReceptId();
-            receptKompDTO = new DTOReceptKomp(lastid + 1, 1, 10, 0.1);
+            // Creating a recept we can use for testing.
+            last_recept_index = daoRecept.getReceptList().size() - 1;
+            last_recept_id = daoRecept.getReceptList().get(last_recept_index).getReceptId();
+            test_recept_id = last_recept_id + 1;
+            DTORecept dtoRecept = new DTORecept(test_recept_id, "test");
+            daoRecept.createRecept(dtoRecept);
+
+            // Now we can create a recept kompoennt, without destroy current data
+            receptKompDTO = new DTOReceptKomp(test_recept_id, 1, 10, 0.1);
             receptkompDAO.createReceptKomp(receptKompDTO);
+
             compare = receptkompDAO.getReceptKomp(receptKompDTO.getReceptId(), receptKompDTO.getRaavareId());
+
             assertEquals(receptKompDTO.getReceptId(), compare.getReceptId(), "Recept ID was not " + compare.getReceptId());
             assertEquals(receptKompDTO.getRaavareId(), compare.getRaavareId(), "Raavare ID was not " + compare.getRaavareId());
             assertEquals(receptKompDTO.getNomNetto(), compare.getNomNetto(), "Nom Netto was not " + compare.getNomNetto());
             assertEquals(receptKompDTO.getTolerance(), compare.getTolerance(), "Tolerance was not " + compare.getTolerance());
+
         } catch (DALException e) {
             e.printStackTrace();
             fail("Could not create new Raavare");
         } finally {
             try {
-                MySQLConnector.doQuery("CALL deleteReceptKomp('" + (lastid + 1) + "','" + 1 + "');");
+                MySQLConnector.doQuery("CALL deleteReceptKomp('" + test_recept_id + "','" + 1 + "');");
+                MySQLConnector.doQuery("CALL deleteRecept('" + test_recept_id + "');");
             } catch (Exception e) {
                 e.printStackTrace();
             }
