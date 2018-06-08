@@ -1,7 +1,9 @@
+ $("#raavareAdminTable").hide();
 $(document).ready(function() {
 	var id,id2;
 	var value;
 	const enterkey = 13;
+	$(".loader").show();
 	function loadProdukt(){
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/raavare/all', //specificerer endpointet
@@ -25,6 +27,8 @@ $(document).ready(function() {
                     id = e.target.id;
                     $('#updateModal').modal('show');
                 });
+                $(".loader").hide();
+                $("#raavareAdminTable").show();
 			},
 			error : function(data){
 				$.notify(data.responseText, "error");

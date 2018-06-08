@@ -1,9 +1,11 @@
+$("#operatoerAdminTable").hide();
 $(document).ready(function() {
     var id;
     var value;
     var rolle;
     var statuss;
     const enterkey = 13;
+    $(".loader").show();
     function loadOperatoer(){
         loadStatus();
         $.ajax({ //Indleder et asynkront ajax kald
@@ -23,6 +25,8 @@ $(document).ready(function() {
                     id = e.target.id;
                     $('#updateModal').modal('show');
                 });
+                $(".loader").hide();
+                $("#operatoerAdminTable").show();
             },
             error : function(data){
                 $.notify(data.responseText, "error");

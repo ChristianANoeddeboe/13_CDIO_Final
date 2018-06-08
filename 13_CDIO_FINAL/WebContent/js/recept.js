@@ -1,4 +1,6 @@
+$("#receptAdminTable").hide();
 $(document).ready(function() {
+	$(".loader").show();
 	var id,id2;
 	var value;
 	var rolle;
@@ -28,6 +30,8 @@ $(document).ready(function() {
                     id = e.target.id;
                     $('#updateModal').modal('show');
                 });
+                $(".loader").hide();
+                $("#receptAdminTable").show();
 			},
 			error : function(data){
 				$.notify(data.responseText, "error");
