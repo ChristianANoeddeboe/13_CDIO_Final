@@ -28,7 +28,8 @@ $(document).ready(function() {
                 $.notify(data.responseText, "error");
             }
         });
-    };
+    }
+
     loadOperatoer();
 
     function loadStatus() {
@@ -113,8 +114,7 @@ $(document).ready(function() {
                 loadOperatoer();
             }
         });
-
-    })
+    });
 
     $(".btn-primaryDelete").click(function(e){
         $.ajax({ //Indleder et asynkront ajax kald
@@ -157,10 +157,10 @@ $(document).ready(function() {
         //     }
         // });
 
-        return 	'<tr><th scope ="row">' + operatoer.oprId + '</th>' +
+        return 	'<tr><td scope ="row">' + operatoer.oprId + '</td>' +
             '<td><input type="text" id = "'+operatoer.oprId+"_fornavn"+'" class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
             '<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'" class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
-            '<th scope = "row"><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></th></td>' +
+            '<td scope = "row"><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></td></td>' +
             '<td><select class="" name="' + operatoer.oprId + '_aktiv" id="' + operatoer.oprId + '_status"><option value="' + status[0] + '">' + status[0]  + '</option><option value="' + status[1] + '">' + status[1] + '</option>></select></td></td>' +
             '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update"><i class="fas fa-sync" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
             '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
@@ -169,7 +169,7 @@ $(document).ready(function() {
     
     function clearOperatoerTable(){
         $("#operatoerAdminTable tbody").empty();
-    };
+    }
     
     
     $(document).keypress(function(e) {

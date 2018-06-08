@@ -228,7 +228,7 @@ $(document).ready(function() {
 	
 	//Convenience function for generating html
 	function generateRaavareHTML(raavare) {
-		return 	'<tr><th scope ="row">' + raavare.raavareId + '</th>' +
+		return 	'<tr><td scope ="row">' + raavare.raavareId + '</td>' +
 		'<td><input type="text" id = "'+raavare.raavareId +"_navn"+'" class="form-control-plaintext" value="' + raavare.raavareNavn + '"></td></td>' +
 		'<td><input type="text" id = "'+raavare.raavareId +"_leverandør"+'" class="form-control-plaintext" value="' + raavare.leverandoer + '"></td></td>' +
 		'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary vis">▼</button>'+'</td>' +
@@ -238,8 +238,8 @@ $(document).ready(function() {
 	}
 
 	function generateRaavareBatchKompHTML(raavareBatch) {
-		return 	'<tr><th scope ="row">' + raavareBatch.rbId + '</th>' +
-		'<th scope = "row">'+raavareBatch.raavareId + '</th>' +
+		return 	'<tr><td scope ="row">' + raavareBatch.rbId + '</td>' +
+		'<td scope = "row">'+raavareBatch.raavareId + '</td>' +
 		'<td><input type="text" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+"_mængde"+'"class="form-control-plaintext" value="' + raavareBatch.maengde + '"></td></td>' +
         '<td><button type="button" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"class="btn btn-primary updateKomp"><i class="fas fa-sync" id = "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"></i></button>'+'</td>' +
 		'<td><button type="button" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"></i></button>'+'</td>' +

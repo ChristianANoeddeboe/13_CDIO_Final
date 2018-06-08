@@ -36,11 +36,10 @@
 		<table class="table table-striped" id="produktTable">
 			<thead class="thead">
 			<tr>
-				<th class="col-1" scope="col">Produkt Batch ID</th>
+				<th class="col" scope="col">Produkt Batch ID</th>
 				<th class="col" scope="col">Status</th>
 				<th class="col" scope="col">Recept ID</th>
-				
-				<th class="col-1 text-right" scope="col" colspan="3">
+				<th class="col" scope="col" colspan="3">
 					<button type="button" class="btn btn-primary add"
 							data-toggle="modal" data-target="#addModal">+</button>
 				</th>
@@ -165,7 +164,7 @@
 	<!-- Modal -->
 	<div class="modal fade" id="showMoreModal" tabindex="-1" role="dialog"
 		 aria-labelledby="showMoreTitle" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="showMoreTitle">Produktbatch komponenter</h5>
@@ -183,8 +182,7 @@
 							<th scope="col">Tara</th>
 							<th scope="col">Netto</th>
 							<th scope="col">Operatoer ID</th>
-							<th class="col" scope = "col"> </th>
-							<th class="col" scope="col">
+							<th class="col" scope="col" colspan="2">
 								<button type="button" class="btn btn-primary add"
 										data-toggle="modal" data-target="#addKompModal">+</button>
 							</th>

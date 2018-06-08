@@ -14,27 +14,27 @@ body {
 
 .table {
     box-shadow: -1px 3px 5px #8888888c;
-    margin: 0px auto;
+    margin: 0 auto;
     margin-top: 2em;
     max-width: 60%;
 }
 
-.modal-lg {
-    max-width: 60%;
+.table td, .table th {
+    width: inherit;
 }
 
 *:focus *:active {
     outline: none;
 }
-
+/*
 .modal-content {
     overflow: auto;
 }
 
-.form-control-plaintext {
-    width: auto;
-    padding: 0;
+.modal-lg {
+    max-width: 60%;
 }
+*/
 
 .btn {
     padding: .12rem .5rem .02rem .5rem;
@@ -44,6 +44,7 @@ body {
     color: #c51137;
     background-color: transparent;
     border: none;
+    float: right;
 }
 
 .btn-primary:hover {
@@ -81,4 +82,15 @@ select {
     border-bottom: 1px #c51137;
     background-color: transparent;
     outline: none;
+}
+
+.modal-dialog { /* Width */
+    max-width: 1000px;
+    width: auto !important;
+    margin: 0px auto;
+    margin-top: 10%;
+}
+
+.modal.in{
+    text-align: center;
 }
