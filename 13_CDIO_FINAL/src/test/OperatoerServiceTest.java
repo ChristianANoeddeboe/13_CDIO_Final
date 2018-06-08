@@ -33,7 +33,7 @@ import exception.DALException;
 public class OperatoerServiceTest {
 	static OperatoerController controller = new OperatoerController(new DAOOperatoer());
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/operatoer/";
-	
+
 	//Testdata
 	int id = 1;
 	String fornavn = "Fornavn";
@@ -41,12 +41,12 @@ public class OperatoerServiceTest {
 	String cpr = "1919239950";
 	Roller roles = Roller.Administrator;
 	Aktiv status = Aktiv.aktiv;
-	
-    @BeforeAll
-    static void setUp() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-    	
+
+	@BeforeAll
+	static void setUp() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+
 		new MySQLConnector();
-		
+
 		Unirest.setObjectMapper(new ObjectMapper() {
 			private com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper
 			= new com.fasterxml.jackson.databind.ObjectMapper();
@@ -67,12 +67,12 @@ public class OperatoerServiceTest {
 				}
 			}
 		});
-    }
+	}
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		Unirest.shutdown();
 	}
-	
+
 	@Test
 	void testGetOperatoerList() {
 		try {
@@ -115,26 +115,24 @@ public class OperatoerServiceTest {
 
 	@Test
 	void testCreateOperatoer() {
-
-		
 		try {
 			Unirest.post(baseUrl+"create")
-					  .header("Content-Type", "application/json")
-					  .body(new DTOOperatoer(id, fornavn, efternavn, cpr, roles, status))
-					  .asJson();
-			
+			.header("Content-Type", "application/json")
+			.body(new DTOOperatoer(id, fornavn, efternavn, cpr, roles, status))
+			.asJson();
+
 			List<DTOOperatoer> sqlResponse = controller.getOperatoerList();
 			for(int i = 0; i >= sqlResponse.size(); i++) {
-				if(sqlResponse.get(i).getCpr() == cpr) {
+				if(sqlResponse.get(i).getCpr().equals(cpr)) {
 					id = sqlResponse.get(i).getOprId();
 					DTOOperatoer opr = controller.getOperatoer(id);
-					if(!(opr.getFornavn() == fornavn)) {
+					if(!(opr.getFornavn().equals(fornavn))) {
 						fail("Not same value");
 					}
-					if(!(opr.getEfternavn() == efternavn)) {
+					if(!(opr.getEfternavn().equals(efternavn))) {
 						fail("Not same value");
 					}
-					if(!(opr.getCpr() == cpr)) {
+					if(!(opr.getCpr().equals(cpr))) {
 						fail("Not same value");
 					}
 					if(!(opr.getRoles() == roles)) {
@@ -146,40 +144,35 @@ public class OperatoerServiceTest {
 					break;
 				}
 			}
+			MySQLConnector.doQuery("CALL adminDeleteOperator(" + cpr + ");");
 		} catch (UnirestException e) {
 			e.printStackTrace();
 			fail("Unirest");
 		} catch (DALException e) {
+			e.printStackTrace();
 			fail("DALExeption");
-			e.printStackTrace();
 		}
-		
-		try {
-			MySQLConnector.doQuery("CALL adminDeleteOperator('" + cpr + "');");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 	}
+
 
 	@Test
 	void testUpdateOperatoer() {
 		try {
 			Unirest.post(baseUrl+"create")
-					  .header("Content-Type", "application/json")
-					  .body(new DTOOperatoer(id, fornavn, efternavn, cpr, roles, status))
-					  .asJson();
-			
+			.header("Content-Type", "application/json")
+			.body(new DTOOperatoer(id, fornavn, efternavn, cpr, roles, status))
+			.asJson();
+
 			List<DTOOperatoer> sqlResponse = controller.getOperatoerList();
 			for(int i = 0; i >= sqlResponse.size(); i++) {
-				if(sqlResponse.get(i).getCpr() == cpr) {
+				if(sqlResponse.get(i).getCpr().equals(cpr)) {
 					id = sqlResponse.get(i).getOprId();
 					DTOOperatoer opr = controller.getOperatoer(id);
-					
+
 					Unirest.post(baseUrl+"update")
-					  .header("Content-Type", "application/json")
-					  .body(new DTOOperatoer(opr.getOprId(), "NytFornavn", "NytEfternavn", "0987654321", opr.getRoles(), opr.getAktiv()))
-					  .asJson();
+					.header("Content-Type", "application/json")
+					.body(new DTOOperatoer(opr.getOprId(), "NytFornavn", "NytEfternavn", opr.getCpr(), opr.getRoles(), opr.getAktiv()))
+					.asJson();
 				}
 			}
 		} catch (UnirestException e) {
@@ -189,87 +182,34 @@ public class OperatoerServiceTest {
 			fail("DALExeption");
 			e.printStackTrace();
 		}
-		
-		try {
-		List<DTOOperatoer> sqlResponse = controller.getOperatoerList();
-		for(int i = 0; i >= sqlResponse.size(); i++) {
-			if(sqlResponse.get(i).getCpr() == "0987654321") {
-				id = sqlResponse.get(i).getOprId();
-				DTOOperatoer opr = controller.getOperatoer(id);
-			
-				if(!(opr.getFornavn() == "NytFornavn")) {
-					fail("Not same value");
-				}
-				if(!(opr.getEfternavn() == "NytEfternavn")) {
-					fail("Not same value");
-				}
-				if(!(opr.getCpr() == "0987654321")) {
-					fail("Not same value");
-				}
-				if(!(opr.getRoles() == Roller.Administrator)) {
-					fail("Not same value");
-				}
-				if(!(opr.getAktiv() == Aktiv.aktiv)) {
-					fail("Not same value");
-				}
-				break;
-			}
-		}
-	} catch (DALException e) {
-		fail("DALExeption");
-		e.printStackTrace();
-	}
-		try {
-			MySQLConnector.doQuery("CALL adminDeleteOperator('" + cpr + "');");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
-	@Test
-	void testDeleteOperatoer() {
 		try {
-			Unirest.post(baseUrl+"create")
-					  .header("Content-Type", "application/json")
-					  .body(new DTOOperatoer(id, fornavn, efternavn, cpr, roles, status))
-					  .asJson();
-			
 			List<DTOOperatoer> sqlResponse = controller.getOperatoerList();
 			for(int i = 0; i >= sqlResponse.size(); i++) {
-				if(sqlResponse.get(i).getCpr() == cpr) {
+				if(sqlResponse.get(i).getCpr().equals(cpr)) {
 					id = sqlResponse.get(i).getOprId();
-					
-					try {
-						controller.deleteOperatoer(id);
-					} catch(DALException e) {
-						fail("DALExeption");
+					DTOOperatoer opr = controller.getOperatoer(id);
+
+					if(!(opr.getFornavn().equals("NytFornavn"))) {
+						fail("Not same value");
 					}
+					if(!(opr.getEfternavn().equals("NytEfternavn"))) {
+						fail("Not same value");
+					}
+					if(!(opr.getRoles() == Roller.Administrator)) {
+						fail("Not same value");
+					}
+					if(!(opr.getAktiv() == Aktiv.aktiv)) {
+						fail("Not same value");
+					}
+					break;
 				}
 			}
-		} catch (UnirestException e) {
-			e.printStackTrace();
-			fail("Unirest");
+			MySQLConnector.doQuery("CALL adminDeleteOperator(" + cpr + ");");
 		} catch (DALException e) {
 			fail("DALExeption");
 			e.printStackTrace();
 		}
-		boolean failed = false;
-		try {
-			controller.getOperatoer(id);
-		} catch(DALException e) {
-			failed = true;
-		}
-		if(!failed) {
-			fail("Failed");
-		}
-		
-		
-		///////
-		try {
-			MySQLConnector.doQuery("CALL adminDeleteOperator('" + cpr + "');");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+
 	}
 }
