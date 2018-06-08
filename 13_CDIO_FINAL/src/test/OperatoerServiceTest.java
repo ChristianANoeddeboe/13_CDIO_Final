@@ -27,6 +27,7 @@ import dao.DAORecept;
 import dto.Aktiv;
 import dto.DTOOperatoer;
 import dto.DTORecept;
+import dto.Roller;
 import exception.DALException;
 
 public class OperatoerServiceTest {
@@ -38,7 +39,7 @@ public class OperatoerServiceTest {
 	String fornavn = "Fornavn";
 	String efternavn = "Efternavn";
 	String cpr = "1919239950";
-	String roles = "Administrator";
+	Roller roles = Roller.Administrator;
 	Aktiv status = Aktiv.aktiv;
 	
     @BeforeAll
@@ -205,7 +206,7 @@ public class OperatoerServiceTest {
 				if(!(opr.getCpr() == "0987654321")) {
 					fail("Not same value");
 				}
-				if(!(opr.getRoles() == "Administrator")) {
+				if(!(opr.getRoles() == Roller.Administrator)) {
 					fail("Not same value");
 				}
 				if(!(opr.getAktiv() == Aktiv.aktiv)) {
