@@ -123,7 +123,7 @@ $(document).ready(function() {
             type : 'DELETE', //Typen af HTTP requestet (GET er default)
             success : function(data) {//Funktion der skal udføres når data er hentet
                 $('#deleteModal').modal('hide');
-                $.notify("Operatoeren blev slettet", "success");
+                $.notify("Operatoeren blev ændret til inaktiv", "success");
                 loadOperatoer();
             },
             error : function(data){
