@@ -19,6 +19,7 @@ import dto.DTOOperatoer;
 import java.sql.SQLException;
 import java.util.List;
 import exception.DALException;
+import interfaces.IOperatoerService;
 
 @Path("operatoer")
 @Produces(MediaType.APPLICATION_JSON)

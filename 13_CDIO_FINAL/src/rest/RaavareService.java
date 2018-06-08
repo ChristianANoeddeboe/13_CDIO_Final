@@ -22,6 +22,7 @@ import dto.DTORaavareBatch;
 import java.sql.SQLException;
 import java.util.List;
 import exception.DALException;
+import interfaces.IRaavareService;
 
 @Path("raavare")
 @Produces(MediaType.APPLICATION_JSON)
