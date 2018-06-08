@@ -232,7 +232,7 @@ $(document).ready(function() {
 		'<td><input type="text" id = "'+raavare.raavareId +"_navn"+'" class="form-control-plaintext" value="' + raavare.raavareNavn + '"></td></td>' +
 		'<td><input type="text" id = "'+raavare.raavareId +"_leverandør"+'" class="form-control-plaintext" value="' + raavare.leverandoer + '"></td></td>' +
 		'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary vis">▼</button>'+'</td>' +
-        '<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary update"><i class="fas fa-sync"></i></button>'+'</td>' +
+        '<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary update"><i class="fas fa-sync" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
 		'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
@@ -241,7 +241,7 @@ $(document).ready(function() {
 		return 	'<tr><th scope ="row">' + raavareBatch.rbId + '</th>' +
 		'<th scope = "row">'+raavareBatch.raavareId + '</th>' +
 		'<td><input type="text" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+"_mængde"+'"class="form-control-plaintext" value="' + raavareBatch.maengde + '"></td></td>' +
-        '<td><button type="button" id = "'+raavareBatch.rbId+'" class="btn btn-primary updateKomp"><i class="fas fa-sync"></i></button>'+'</td>' +
+        '<td><button type="button" id = "'+raavareBatch.rbId+'" class="btn btn-primary updateKomp"><i class="fas fa-sync" id =  "'+raavareBatch.rbId+"_mængde"+'"></i></button>'+'</td>' +
 		'<td><button type="button" id =  "'+raavareBatch.rbId+"_mængde"+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id ="'+raavareBatch.rbId+"_mængde"+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}

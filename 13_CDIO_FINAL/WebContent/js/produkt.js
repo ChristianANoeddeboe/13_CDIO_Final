@@ -260,7 +260,7 @@ $(document).ready(function () {
             '<td><select name="' + produkt.pbId + '_status" id="' + produkt.pbId + '_status"><option value="' + status[0] + '">' + status[0] + '</option><option value="' + status[1] + '">' + status[1] + '</option><option value="' + status[2] + '">' + status[2] + '</option></select></td></td>' +
             '<td><input type="text" id = "' + produkt.pbId + "_recept" + '" class="form-control-plaintext" value="' + produkt.receptId + '"></td></td>' +
             '<td><button type="button" id = "' + produkt.pbId + '" class="btn btn-primary vis">▼</button>' + '</td>' +
-            '<td><button type="button" id = "'+produkt.pbId+'" class="btn btn-primary update"><i class="fas fa-sync"></i></button>'+'</td>' +
+            '<td><button type="button" id = "'+produkt.pbId+'" class="btn btn-primary update"><i class="fas fa-sync" id = "'+produkt.pbId+'"></i></button>'+'</td>' +
             '<td><button type="button" id = "' + produkt.pbId + '" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "' + produkt.pbId + '"></i></button>' + '</td>' +
             '</td></tr>';
     }
@@ -272,7 +272,7 @@ $(document).ready(function () {
             '<td><input type="text" id = "' + produktKomp.pbId + "_" + produktKomp.rbId + "_tara" + '" class="form-control-plaintext" value="' + produktKomp.tara + '"></td></td>' +
             '<td><input type="text" id =  "' + produktKomp.pbId + "_" + produktKomp.rbId + "_netto" + '" class="form-control-plaintext" value="' + produktKomp.netto + '"></td></td>' +
             '<td><input type="text" id =  "' + produktKomp.pbId + "_" + produktKomp.rbId + "_operatoer" + '" class="form-control-plaintext" value="' + produktKomp.oprId + '"></td></td>' +
-            '<td><button type="button" id = "'+produktKomp.pbId+'" class="btn btn-primary updateKomp"><i class="fas fa-sync"></i></button>'+'</td>' +
+            '<td><button type="button" id =  "' + produktKomp.pbId + "_" + produktKomp.rbId + '" class="btn btn-primary updateKomp"><i class="fas fa-sync" id =  "' + produktKomp.pbId + "_" + produktKomp.rbId + '"></i></button>'+'</td>' +
             '<td><button type="button" id =  "' + produktKomp.pbId + "_" + produktKomp.rbId + '" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id = "' + produktKomp.pbId + "_" + produktKomp.rbId + '"></i></button>' + '</td>' +
             '</td></tr>';
     }
