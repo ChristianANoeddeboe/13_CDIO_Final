@@ -41,7 +41,6 @@ public class Controller {
 	DTOProduktBatch produktBatch;
 	List<DTOReceptKomp> receptKompList;
 	DTORaavare raavare;
-	//HashMap<Integer, PreparedStatement> preparedstatementsContainer = new HashMap<>();
 	public Controller(WeightSocket socket) {
 		this.socket = socket;
 		this.operatoer = new DTOOperatoer();
@@ -154,7 +153,7 @@ public class Controller {
 				pbkController.createProdBatchKomp(tempProduktBatchKomp);
 			} while(weightAmount>0.00001);
 
-			requestInput("", "Tøm vægten.", "");
+			requestInput("", "Tï¿½m vï¿½gten.", "");
 			while(!bruttokontrol(tara)) {
 				requestInput("", "Bruttokontrol fejlet.", "");
 			}
@@ -171,7 +170,7 @@ public class Controller {
 		String str = null;
 		log.info("Client: "+msg.replace("\n", "\\n"));
 
-		/*Der skal sleepes før den vil vise beskeden for some reason.*/
+		/*Der skal sleepes fï¿½r den vil vise beskeden for some reason.*/
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
@@ -388,7 +387,7 @@ public class Controller {
 	}
 
 	private void showMsg(String msg, int mili) throws IOException {
-		/*Der skal sleepes før den vil vise beskeden for some reason.*/
+		/*Der skal sleepes fï¿½r den vil vise beskeden for some reason.*/
 		try {
 			Thread.sleep(100);
 			String str = "D \""+msg+"\"\n";
@@ -396,7 +395,7 @@ public class Controller {
 			Thread.sleep(mili);
 			socket.write("DW\n");
 		} catch (InterruptedException e) {
-			// En trådet system, bør ikke kunne interruptes.
+			// En trï¿½det system, bï¿½r ikke kunne interruptes.
 			e.printStackTrace();
 		}
 	}
