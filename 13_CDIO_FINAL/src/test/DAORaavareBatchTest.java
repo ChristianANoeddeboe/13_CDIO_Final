@@ -42,7 +42,7 @@ public class DAORaavareBatchTest {
             testRaavareBatchDTO = testRaavareBatchDAO.getRaavareBatch(1);
             assertEquals(1, testRaavareBatchDTO.getRbId());
             assertEquals(1, testRaavareBatchDTO.getRaavareId());
-            assertEquals(1000, testRaavareBatchDTO.getMaengde(), 0.5);
+            assertEquals(102, testRaavareBatchDTO.getMaengde(), 0.5);
         } catch (DALException e) {
             System.out.println("Query could not be resolved.");
             e.printStackTrace();
@@ -81,10 +81,11 @@ public class DAORaavareBatchTest {
         List<DTORaavareBatch> testList;
         try {
             testRaavareBatchDAO.createRaavareBatch(testRaavareBatchDTO);
-            testList = testRaavareBatchDAO.getRaavareBatchList();
-            expectedID = testList.get((testList.size()-1 )).getRbId();
+            expectedID = 0;
             compare = testRaavareBatchDAO.getRaavareBatch(expectedID);
             assertEquals(expectedID, compare.getRbId(), "Batch id was not same");
+            System.out.println(compare.toString());
+            System.out.println((testRaavareBatchDTO.toString()));
             assertEquals(testRaavareBatchDTO.getRaavareId(), compare.getRaavareId(), "raavare id was not same");
             assertEquals(testRaavareBatchDTO.getMaengde(), compare.getMaengde(), "Maengde was not same");
         } catch (DALException e) {
@@ -93,8 +94,7 @@ public class DAORaavareBatchTest {
         }finally {
             try {
                 testList = testRaavareBatchDAO.getRaavareBatchList();
-                expectedID = testList.get((testList.size()-1 )).getRbId();
-                MySQLConnector.doQuery("CALL deleteRaavareBatch('" + expectedID + "');");
+                MySQLConnector.doQuery("CALL deleteRaavareBatch('" + 0 + "');");
             } catch (Exception e) {
                 e.printStackTrace();
             }
