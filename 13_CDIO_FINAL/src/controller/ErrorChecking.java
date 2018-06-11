@@ -1,5 +1,7 @@
 package controller;
 
+import dto.Status;
+
 public class ErrorChecking {
     final static String ERROR1 = "1 Teksten er for lang.";
     final static String ERROR2 = "2 Invalid data";
@@ -24,8 +26,7 @@ public class ErrorChecking {
         }
     }
 
-    public static String checkStatus(Enum input) {
-        String status = input.name();
+    public static String checkStatus(Status input) {
         Object[] obj = input.getDeclaringClass().getEnumConstants();
         System.out.println(obj);
         for (Object object : obj) {

@@ -69,7 +69,7 @@ class DAOProduktBatchtest {
     void testGetProduktBatchInvalid() {
         boolean valid = true;
         try {
-            DTOProduktBatch prodBatchReturn = prodBatch.getProduktBatch(1234);
+			prodBatch.getProduktBatch(1234);
         } catch (DALException e) {
             valid = false;
         } catch (Exception e) {
