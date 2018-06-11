@@ -30,7 +30,10 @@ import lombok.extern.slf4j.Slf4j;
 public class AseController {
 	private WeightSocket socket;
 	
-	public AseController(String ip, )
+	public AseController(String ip, int port) {
+		socket = new WeightSocket(ip, port);
+	}
+	
 	public void run() {
 		List<DTOReceptKomp> receptkompList = null;
 		DTOProduktBatch pb = null;
