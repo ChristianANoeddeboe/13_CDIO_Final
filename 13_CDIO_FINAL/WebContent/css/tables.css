@@ -29,8 +29,7 @@ body {
 
 .table {
     box-shadow: -1px 3px 5px #8888888c;
-    margin: 0 auto;
-    margin-top: 2em;
+    margin: 2em auto 0;
     max-width: 60%;
 }
 

@@ -261,7 +261,7 @@ $(document).ready(function () {
 		return '<tr><td scope ="row">' + produkt.pbId + '</td>' +
 		'<td><select name="' + produkt.pbId + '_status" id="' + produkt.pbId + '_status"><option value="' + status[0] + '">' + status[0] + '</option><option value="' + status[1] + '">' + status[1] + '</option><option value="' + status[2] + '">' + status[2] + '</option></select></td></td>' +
 		'<td><input type="text" id = "' + produkt.pbId + "_recept" + '" class="form-control-plaintext" value="' + produkt.receptId + '"></td></td>' +
-		'<td><button type="button" id = "' + produkt.pbId + '" class="btn btn-primary vis"><i class="fas fa-folder-open"></i></button>' + '</td>' +
+		'<td><button type="button" id = "' + produkt.pbId + '" class="btn btn-primary vis"><i class="fas fa-folder-open" id = "'+produkt.pbId+'"></i></button>' + '</td>' +
 		'<td><button type="button" id = "'+produkt.pbId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+produkt.pbId+'"></i></button>'+'</td>' +
 		'<td><button type="button" id = "' + produkt.pbId + '" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "' + produkt.pbId + '"></i></button>' + '</td>' +
 		'</td></tr>';
