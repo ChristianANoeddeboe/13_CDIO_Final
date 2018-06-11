@@ -36,20 +36,12 @@ body {
 
 .table td, .table th {
     width: inherit;
+    vertical-align: middle;
 }
 
 *:focus *:active {
     outline: none;
 }
-/*
-.modal-content {
-    overflow: auto;
-}
-
-.modal-lg {
-    max-width: 60%;
-}
-*/
 
 .btn {
     padding: .12rem .5rem .02rem .5rem;
@@ -102,10 +94,9 @@ select {
 .modal-dialog { /* Width */
     max-width: 1000px;
     width: auto !important;
-    margin: 0px auto;
-    margin-top: 10%;
+    margin: 0 auto;
 }
 
-.modal.in{
+.in{
     text-align: center;
 }
