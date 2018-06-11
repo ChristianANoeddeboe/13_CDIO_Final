@@ -60,7 +60,6 @@ $(document).ready(function() {
         }
     });
 
-
     $(".btn-primaryAdd").click(function(){
         $.ajax({ //Indleder et asynkront ajax kald
             url : 'rest/operatoer/create', //specificerer endpointet
@@ -146,13 +145,10 @@ $(document).ready(function() {
         $("#operatoerAdminTable tbody").empty();
     }
     
-    
     $(document).keypress(function(e) {
 		if(e.which === enterkey) {
 			id = e.target.id;
 			$('#updateModal').modal('show');
 		}
-
 	});
-    
 });

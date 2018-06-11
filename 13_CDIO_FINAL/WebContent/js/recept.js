@@ -4,7 +4,7 @@ $(document).ready(function() {
 	var id,id2;
 	var value;
 	var rolle;
-	const enterkey = 13;
+    const enterkey = 13;
 	function loadRecepts(){
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/recept/all', //specificerer endpointet

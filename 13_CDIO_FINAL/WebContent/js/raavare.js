@@ -34,7 +34,8 @@ $(document).ready(function() {
 				$.notify(data.responseText, "error");
 			}
 		});
-	};
+	}
+
 	loadProdukt();
 
     $("#menuLoader").load("menu.html", null, function () {
@@ -101,8 +102,7 @@ $(document).ready(function() {
 				loadProdukt();
 			}
 		});
-
-	})
+	});
 	
 	$(".btn-primaryDelete").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
@@ -154,13 +154,11 @@ $(document).ready(function() {
 			}
 		});
 	
-	};
+	}
 	
 	$('#showMoreModal').on('shown.bs.modal', function () {
 		loadRaavareBatch();
 	});
-	
-
 
 	$(".btn-primaryAddKomp").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
@@ -202,7 +200,6 @@ $(document).ready(function() {
 				loadRaavareBatch();
 			}
 		});
-
 	});
 	
 	$(".btn-primaryUpdateKomp").click(function(){
@@ -227,8 +224,7 @@ $(document).ready(function() {
 				loadRaavareBatch();
 			}
 		});
-
-	})
+	});
 	
 	//Convenience function for generating html
 	function generateRaavareHTML(raavare) {
@@ -252,25 +248,23 @@ $(document).ready(function() {
 
 	function clearRaavareTable(){
 		$("#raavareAdminTable tbody").empty();
-	};
+	}
 
 	function clearRaavareBatchTable(){
 		$("#raavareBatchTable tbody").empty();
-	};
+	}
 
 
 	$(document).keypress(function(e) {
-		if(e.which == enterkey) {
+		if(e.which === enterkey) {
 			id = e.target.id;
 			value = e.target.value;
 			var res = id.split("_");
-			if(res.length == 2){
+			if(res.length === 2){
 				$('#updateModal').modal('show');
 			}else{
 				$('#updateKompModal').modal('show');
 			}
 		}
-
 	});
-
 });
