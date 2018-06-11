@@ -1,7 +1,5 @@
 package interfaces;
 
-import java.util.List;
-
 import javax.ws.rs.core.Response;
 
 import dto.DTORecept;

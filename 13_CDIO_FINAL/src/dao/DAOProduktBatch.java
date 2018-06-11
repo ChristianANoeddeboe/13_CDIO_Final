@@ -10,9 +10,7 @@ import exception.DALException;
 import interfaces.IDAOProduktBatch;
 import dto.DTOProduktBatch;
 import dto.Status;
-import logging.LogHandler;
 import lombok.NoArgsConstructor;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

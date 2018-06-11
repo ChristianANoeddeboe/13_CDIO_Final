@@ -5,7 +5,6 @@ import dao.DAORaavare;
 import exception.DALException;
 import dto.DTORaavare;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;

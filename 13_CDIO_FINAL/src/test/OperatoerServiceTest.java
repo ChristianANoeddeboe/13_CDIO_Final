@@ -1,6 +1,5 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
@@ -13,19 +12,15 @@ import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import connector.MySQLConnector;
 import controller.OperatoerController;
-import controller.ReceptController;
 import dao.DAOOperatoer;
-import dao.DAORecept;
 import dto.Aktiv;
 import dto.DTOOperatoer;
-import dto.DTORecept;
 import dto.Roller;
 import exception.DALException;
 

@@ -9,9 +9,7 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.IDAORecept;
 import dto.DTORecept;
-import logging.LogHandler;
 import lombok.NoArgsConstructor;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
