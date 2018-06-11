@@ -58,7 +58,6 @@ public class DTOOperatoer {
      *
      * @param name the name
      * @return the initials
-     * @throws DALException
      */
     public String initials(String name) {
         String[] name_array = name.split(" ");
