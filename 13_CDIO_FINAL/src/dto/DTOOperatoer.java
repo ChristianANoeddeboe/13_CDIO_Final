@@ -72,13 +72,20 @@ public class DTOOperatoer {
         ini = ini.toUpperCase();
         return ini;
     }
-
+    
+    public String getFornavn() {
+    	return trimmer(fornavn);
+    }
+    
+    public String getEfternavn() {
+    	return trimmer(efternavn);
+    }
     /**
      * Method for trimming strings.
      * @param str
      * @return
      */
-    public String trimmer(String str) {
+    private String trimmer(String str) {
         String[] str_array = str.split(" ");
         String trimmed = null;
 
