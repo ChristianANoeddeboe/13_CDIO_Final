@@ -120,7 +120,7 @@ $(document).ready(function() {
         var status = new Array();
         status.push(operatoer.aktiv);
 
-        if(statuss[0] == status[0]){
+        if(statuss[0] === status[0]){
             status[1] = statuss[1];
         }else{
             status[1] = statuss[0];
@@ -138,7 +138,7 @@ $(document).ready(function() {
             '<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'" class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
             '<td scope = "row"><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></td></td>' +
             '<td><select class="" name="' + operatoer.oprId + '_aktiv" id="' + operatoer.oprId + '_status"><option value="' + status[0] + '">' + status[0]  + '</option><option value="' + status[1] + '">' + status[1] + '</option>></select></td></td>' +
-            '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update"><i class="fas fa-sync" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
+            '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
             '</td></tr>';
     }
     
@@ -148,7 +148,7 @@ $(document).ready(function() {
     
     
     $(document).keypress(function(e) {
-		if(e.which == enterkey) {
+		if(e.which === enterkey) {
 			id = e.target.id;
 			$('#updateModal').modal('show');
 		}
