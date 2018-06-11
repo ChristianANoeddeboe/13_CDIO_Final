@@ -277,7 +277,7 @@ class ReceptServiceTest {
 			header("Content-Type", "application/json").
 			body(new DTOReceptKomp(9999, 1, 1, 1)).asJson();
 			
-			Unirest.delete(baseUrl + "batch/{id}")
+			Unirest.delete(baseUrl + "komponent/{id}/{id2}")
 			.header("Content-Type", "application/json")
 			.routeParam("id", "9999")
 			.routeParam("id2", "1")

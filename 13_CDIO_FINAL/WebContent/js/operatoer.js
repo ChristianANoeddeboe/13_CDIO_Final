@@ -1,9 +1,11 @@
+$("#operatoerAdminTable").hide();
 $(document).ready(function() {
     var id;
     var value;
     var rolle;
     var statuss;
     const enterkey = 13;
+    $(".loader").show();
     function loadOperatoer(){
         loadStatus();
         $.ajax({ //Indleder et asynkront ajax kald
@@ -14,21 +16,19 @@ $(document).ready(function() {
                 $.each(data,function(i,element){
                     $('#operatoerAdminTable').children().append(generateOperatoerHTML(data[i]));
                 });
-                $(".slet").click(function(e){
-                    id = e.target.id;
-                    $('#deleteModal').modal('show');
-                    e.preventDefault();
-                });
                 $(".update").click(function(e){
                     id = e.target.id;
                     $('#updateModal').modal('show');
                 });
+                $(".loader").hide();
+                $("#operatoerAdminTable").show();
             },
             error : function(data){
                 $.notify(data.responseText, "error");
             }
         });
-    };
+    }
+
     loadOperatoer();
 
     function loadStatus() {
@@ -113,30 +113,6 @@ $(document).ready(function() {
                 loadOperatoer();
             }
         });
-
-    })
-
-    $(".btn-primaryDelete").click(function(e){
-        $.ajax({ //Indleder et asynkront ajax kald
-            url : 'rest/operatoer/'+id, //specificerer endpointet
-            contentType : "plain/text",
-            type : 'DELETE', //Typen af HTTP requestet (GET er default)
-            success : function(data) {//Funktion der skal udføres når data er hentet
-                $('#deleteModal').modal('hide');
-                $.notify("Operatoeren blev slettet", "success");
-                loadOperatoer();
-            },
-            error : function(data){
-                $('#deleteModal').modal('hide');
-                $.notify(data.responseText, "error");
-                loadOperatoer();
-            }
-        });
-        e.preventDefault();
-    });
-
-    $(".btn-secondaryDelete").click(function(){
-        $('#deleteModal').modal('hide');
     });
 
     //Convenience function for generating html
@@ -157,19 +133,19 @@ $(document).ready(function() {
         //     }
         // });
 
-        return 	'<tr><th scope ="row">' + operatoer.oprId + '</th>' +
+        return 	'<tr><td scope ="row">' + operatoer.oprId + '</td>' +
             '<td><input type="text" id = "'+operatoer.oprId+"_fornavn"+'" class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
             '<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'" class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
-            '<th scope = "row"><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></th></td>' +
+            '<td scope = "row"><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></td></td>' +
             '<td><select class="" name="' + operatoer.oprId + '_aktiv" id="' + operatoer.oprId + '_status"><option value="' + status[0] + '">' + status[0]  + '</option><option value="' + status[1] + '">' + status[1] + '</option>></select></td></td>' +
             '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update"><i class="fas fa-sync" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
-            '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
+            //'<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
             '</td></tr>';
     }
     
     function clearOperatoerTable(){
         $("#operatoerAdminTable tbody").empty();
-    };
+    }
     
     
     $(document).keypress(function(e) {

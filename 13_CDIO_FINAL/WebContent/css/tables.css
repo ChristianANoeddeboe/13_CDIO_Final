@@ -1,3 +1,18 @@
+.loader {
+    border: 16px solid #c51137;
+    border-top: 16px solid #f8f9fa;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin: 4em auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 body {
     display: flex;
     align-items: center;
@@ -14,27 +29,27 @@ body {
 
 .table {
     box-shadow: -1px 3px 5px #8888888c;
-    margin: 0px auto;
+    margin: 0 auto;
     margin-top: 2em;
     max-width: 60%;
 }
 
-.modal-lg {
-    max-width: 60%;
+.table td, .table th {
+    width: inherit;
 }
 
 *:focus *:active {
     outline: none;
 }
-
+/*
 .modal-content {
     overflow: auto;
 }
 
-.form-control-plaintext {
-    width: auto;
-    padding: 0;
+.modal-lg {
+    max-width: 60%;
 }
+*/
 
 .btn {
     padding: .12rem .5rem .02rem .5rem;
@@ -44,6 +59,7 @@ body {
     color: #c51137;
     background-color: transparent;
     border: none;
+    float: right;
 }
 
 .btn-primary:hover {
@@ -81,4 +97,15 @@ select {
     border-bottom: 1px #c51137;
     background-color: transparent;
     outline: none;
+}
+
+.modal-dialog { /* Width */
+    max-width: 1000px;
+    width: auto !important;
+    margin: 0px auto;
+    margin-top: 10%;
+}
+
+.modal.in{
+    text-align: center;
 }

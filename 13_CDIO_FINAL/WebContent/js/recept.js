@@ -1,4 +1,6 @@
+$("#receptAdminTable").hide();
 $(document).ready(function() {
+	$(".loader").show();
 	var id,id2;
 	var value;
 	var rolle;
@@ -28,6 +30,8 @@ $(document).ready(function() {
                     id = e.target.id;
                     $('#updateModal').modal('show');
                 });
+                $(".loader").hide();
+                $("#receptAdminTable").show();
 			},
 			error : function(data){
 				$.notify(data.responseText, "error");
@@ -77,12 +81,13 @@ $(document).ready(function() {
 	});
 
 
-	$(".btn-primaryUpdate").click(function(){		
+	$(".btn-primaryUpdate").click(function(){	
+		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/recept/update', //specificerer endpointet
 			data : JSON.stringify({
-				receptId : id,
-				receptNavn : value
+				receptId : res[0],
+				receptNavn : $("#"+id[0]+"_Name")["0"].value
 			}),
 			contentType : "application/json",
 			type : 'PUT', //Typen af HTTP requestet (GET er default)
@@ -100,31 +105,11 @@ $(document).ready(function() {
 
 	})
 	
-	
-
-
-	$(".btn-primaryDelete").click(function(e){
-		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/'+id, //specificerer endpointet
-			contentType : "plain/text",
-			type : 'DELETE', //Typen af HTTP requestet (GET er default)
-			success : function(data) {//Funktion der skal udføres når data er hentet
-				$('#deleteModal').modal('hide');
-				$.notify("Recepten blev slettet", "success");
-				loadRecepts();
-			},
-			error : function(data){
-				$('#deleteModal').modal('hide');
-				$.notify(data.responseText, "error");
-				loadRecepts();
-			}
-		});
-		e.preventDefault();
-	});
-	
+		
 	$(".btn-primaryDelete").click(function(){
+		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/'+id, //specificerer endpointet
+			url : 'rest/recept/'+id[0], //specificerer endpointet
 			contentType : "plain/text",
 			type : 'DELETE', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
@@ -249,8 +234,8 @@ $(document).ready(function() {
 	
 	//Convenience function for generating html
 	function generateReceptHTML(recept) {
-		return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
-		'<td><input type="text" id = "'+recept.receptId +' " class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
+		return 	'<tr><td scope ="row">' + recept.receptId + '</td>' +
+		'<td><input type="text" id = "'+recept.receptId +"_Name"+'" class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
 		'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary vis">▼</button>'+'</td>' +
         '<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary update"><i class="fas fa-sync" id = "'+recept.receptId+'"></i></button>'+'</td>' +
 		'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+recept.receptId+'"></i></button>'+'</td>' +
@@ -258,8 +243,8 @@ $(document).ready(function() {
 	}
 
 	function generateReceptKompHTML(receptKomp) {
-		return 	'<tr><th scope ="row">' + receptKomp.receptId + '</th>' +
-		'<th scope = "row">'+receptKomp.raavareId + '</th>' +		
+		return 	'<tr><td scope ="row">' + receptKomp.receptId + '</td>' +
+		'<td scope = "row">'+receptKomp.raavareId + '</td>' +
 		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_netto"+'" class="form-control-plaintext" value="' + receptKomp.nomNetto + '"></td></td>' +
 		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_tolerance"+'" class="form-control-plaintext" value="' + receptKomp.tolerance + '"></td></td>' +
         '<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary updateKomp"><i class="fas fa-sync" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
