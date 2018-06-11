@@ -8,25 +8,6 @@ $(document).ready(function() {
     $(".loader").show();
     function loadOperatoer(){
         loadStatus();
-        $.ajax({ //Indleder et asynkront ajax kald
-            url : 'rest/operatoer/all', //specificerer endpointet
-            type : 'GET', //Typen af HTTP requestet (GET er default)
-            success : function(data) {//Funktion der skal udføres når data er hentet
-                clearOperatoerTable();
-                $.each(data,function(i,element){
-                    $('#operatoerAdminTable').children().append(generateOperatoerHTML(data[i]));
-                });
-                $(".update").click(function(e){
-                    id = e.target.id;
-                    $('#updateModal').modal('show');
-                });
-                $(".loader").hide();
-                $("#operatoerAdminTable").show();
-            },
-            error : function(data){
-                $.notify(data.responseText, "error");
-            }
-        });
     }
 
     loadOperatoer();
@@ -37,6 +18,25 @@ $(document).ready(function() {
             type: 'GET', //Typen af HTTP requestet (GET er default)
             success: function (data) {//Funktion der skal udføres når data er hentet
                 statuss = data;
+                $.ajax({ //Indleder et asynkront ajax kald
+                    url : 'rest/operatoer/all', //specificerer endpointet
+                    type : 'GET', //Typen af HTTP requestet (GET er default)
+                    success : function(data) {//Funktion der skal udføres når data er hentet
+                        clearOperatoerTable();
+                        $.each(data,function(i,element){
+                            $('#operatoerAdminTable').children().append(generateOperatoerHTML(data[i]));
+                        });
+                        $(".update").click(function(e){
+                            id = e.target.id;
+                            $('#updateModal').modal('show');
+                        });
+                        $(".loader").hide();
+                        $("#operatoerAdminTable").show();
+                    },
+                    error : function(data){
+                        $.notify(data.responseText, "error");
+                    }
+                });
             },
             error: function (data) {
                 $.notify(data.responseText, "error");

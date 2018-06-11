@@ -8,37 +8,7 @@ $(document).ready(function () {
 	function loadProdukt() {
 		clearProduktTable();
 		loadStatus();
-		$.ajax({ //Indleder et asynkront ajax kald
-			url: 'rest/produktbatch/all', //specificerer endpointet
-			type: 'GET', //Typen af HTTP requestet (GET er default)
-			success: function (data) {//Funktion der skal udføres når data er hentet
-				clearProduktTable();
-				$.each(data, function (i, element) {
-					$('#produktAdminTable').children().append(generateProduktHTML(data[i]));
-				});
-				$(".slet").click(function (e) {
-					id = e.target.id;
-					$('#deleteModal').modal('show');
-					e.preventDefault();
-				});
-				$(".vis").click(function (e) {
-					id = e.target.id;
-					$('#showMoreModal').modal('show');
-					e.preventDefault();
-				});
-				$(".update").click(function(e){
-					id = e.target.id;
-					$('#updateModal').modal('show');
-				});
-				$(".loader").hide();
-				$("#produktAdminTable").show();
-			},
-
-			error: function (data) {
-				$.notify(data.responseText, "error");
-			}
-		});
-	};
+	}
 	loadProdukt();
 
 	function loadStatus() {
@@ -47,6 +17,36 @@ $(document).ready(function () {
 			type: 'GET', //Typen af HTTP requestet (GET er default)
 			success: function (data) {//Funktion der skal udføres når data er hentet
 				statuss = data;
+                $.ajax({ //Indleder et asynkront ajax kald
+                    url: 'rest/produktbatch/all', //specificerer endpointet
+                    type: 'GET', //Typen af HTTP requestet (GET er default)
+                    success: function (data) {//Funktion der skal udføres når data er hentet
+                        clearProduktTable();
+                        $.each(data, function (i, element) {
+                            $('#produktAdminTable').children().append(generateProduktHTML(data[i]));
+                        });
+                        $(".slet").click(function (e) {
+                            id = e.target.id;
+                            $('#deleteModal').modal('show');
+                            e.preventDefault();
+                        });
+                        $(".vis").click(function (e) {
+                            id = e.target.id;
+                            $('#showMoreModal').modal('show');
+                            e.preventDefault();
+                        });
+                        $(".update").click(function(e){
+                            id = e.target.id;
+                            $('#updateModal').modal('show');
+                        });
+                        $(".loader").hide();
+                        $("#produktAdminTable").show();
+                    },
+
+                    error: function (data) {
+                        $.notify(data.responseText, "error");
+                    }
+                });
 			},
 			error: function (data) {
 				$.notify(data.responseText, "error");
@@ -254,8 +254,8 @@ $(document).ready(function () {
 		var status = new Array();
 		status.push(produkt.status);
 
-		statuss.forEach((st) => {
-			if (st != status[0]) {
+		statuss.forEach(function(st) {
+			if (st !== status[0]) {
 				status.push(st);
 			}
 		});
