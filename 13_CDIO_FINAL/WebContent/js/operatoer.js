@@ -14,12 +14,12 @@ $(document).ready(function() {
 
     function loadStatus() {
         $.ajax({ //Indleder et asynkront ajax kald
-            url: 'rest/other/status_operatoer', //specificerer endpointet
+            url: 'rest/enum/status_operatoer', //specificerer endpointet
             type: 'GET', //Typen af HTTP requestet (GET er default)
             success: function (data) {//Funktion der skal udføres når data er hentet
                 statuss = data;
                 $.ajax({ //Indleder et asynkront ajax kald
-                    url : 'rest/operatoer/all', //specificerer endpointet
+                    url : 'rest/operatoer', //specificerer endpointet
                     type : 'GET', //Typen af HTTP requestet (GET er default)
                     success : function(data) {//Funktion der skal udføres når data er hentet
                         clearOperatoerTable();
@@ -63,7 +63,7 @@ $(document).ready(function() {
 
     $(".btn-primaryAdd").click(function(){
         $.ajax({ //Indleder et asynkront ajax kald
-            url : 'rest/operatoer/create', //specificerer endpointet
+            url : 'rest/operatoer', //specificerer endpointet
             data : JSON.stringify({
                 oprId : $("#inputID")["0"].value,
                 fornavn : $("#inputFornavn")["0"].value,
@@ -90,7 +90,7 @@ $(document).ready(function() {
     $(".btn-primaryUpdate").click(function(){
     	var res = id.split("_");
         $.ajax({ //Indleder et asynkront ajax kald
-            url : 'rest/operatoer/update', //specificerer endpointet
+            url : 'rest/operatoer', //specificerer endpointet
             data : JSON.stringify({
                 oprId : res[0],
                 fornavn : $(("#"+res[0]+"_fornavn"))["0"].value,

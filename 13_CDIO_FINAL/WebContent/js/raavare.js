@@ -6,7 +6,7 @@ $(document).ready(function() {
 	$(".loader").show();
 	function loadProdukt(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/raavare/all', //specificerer endpointet
+			url : 'rest/raavare', //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres naar data er hentet
 				clearRaavareTable();
@@ -56,7 +56,7 @@ $(document).ready(function() {
 
 	$(".btn-primaryAdd").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/raavare/create', //specificerer endpointet
+			url : 'rest/raavare', //specificerer endpointet
 			data : JSON.stringify({
 				raavareId : $("#inputRaavareID")["0"].value,
 				raavareNavn : $("#inputRaavareNavn")["0"].value,
@@ -82,7 +82,7 @@ $(document).ready(function() {
 		var actualId = id.split("_");
 		
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/raavare/update', //specificerer endpointet
+			url : 'rest/raavare', //specificerer endpointet
 			data : JSON.stringify({
 				raavareId : actualId[0],
 				raavareNavn : $("#"+actualId[0]+"_navn")["0"].value,
@@ -131,7 +131,7 @@ $(document).ready(function() {
 	function loadRaavareBatch(){
 		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/raavare/batch/list/'+res[0], //specificerer endpointet
+			url : 'rest/raavare/batch/'+res[0], //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres naar data er hentet
 				clearRaavareBatchTable();
@@ -164,7 +164,7 @@ $(document).ready(function() {
 
 	$(".btn-primaryAddKomp").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/raavare/batch/create', //specificerer endpointet
+			url : 'rest/raavare/batch', //specificerer endpointet
 			data : JSON.stringify({
 				rbId : $("#inputRBID")["0"].value,
 				raavareId : $("#inputRaavareID")["0"].value,
@@ -208,7 +208,7 @@ $(document).ready(function() {
 	$(".btn-primaryUpdateKomp").click(function(){
 		var res = id.split("_")
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/raavare/batch/update', //specificerer endpointet
+			url : 'rest/raavare/batch', //specificerer endpointet
 			data : JSON.stringify({
 				rbId : res[0],
 				raavareId : res[1],

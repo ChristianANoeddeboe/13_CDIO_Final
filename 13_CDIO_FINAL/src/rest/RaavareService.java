@@ -31,7 +31,6 @@ public class RaavareService implements IRaavareService {
 	static RaavareBatchController rbController = new RaavareBatchController(new DAORaavareBatch());
 	
 	@GET
-	@Path("all")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getRaavareList() throws DALException {
@@ -61,7 +60,6 @@ public class RaavareService implements IRaavareService {
 	}
 
 	@POST
-	@Path("create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createRaavare(DTORaavare raavare) throws DALException {
 		try {
@@ -89,7 +87,6 @@ public class RaavareService implements IRaavareService {
 	}
 
 	@PUT
-	@Path("update")
 	public Response updateRaavare(DTORaavare raavare) throws DALException {
 		try {
 			new MySQLConnector();
@@ -142,67 +139,10 @@ public class RaavareService implements IRaavareService {
 		return Response.ok().build();
 	}
 
+
+
 	@GET
 	@Path("batch/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getRaavareBatch(@PathParam("id") int rbId) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch(InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch(IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch(ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch(SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		DTORaavareBatch result = null;
-		try {
-			result = rbController.getRaavareBatch(rbId);
-		} catch(DALException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
-		}
-		return Response.ok(result, MediaType.APPLICATION_JSON).build();
-	}
-
-	@GET
-	@Path("batch/list/all")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getRaavareBatchList() throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
-		List<DTORaavareBatch> result = null;
-		try {
-			result = rbController.getRaavareBatchList();
-		} catch(DALException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
-		}
-        return Response.ok(result, MediaType.APPLICATION_JSON).build();
-	}
-
-	@GET
-	@Path("batch/list/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getRaavareBatchList(@PathParam("id") int raavareId) throws DALException {
@@ -232,7 +172,7 @@ public class RaavareService implements IRaavareService {
 	}
 
 	@POST
-	@Path("batch/create")
+	@Path("batch")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createRaavareBatch(DTORaavareBatch raavarebatch) throws DALException {
 		try {
@@ -260,7 +200,7 @@ public class RaavareService implements IRaavareService {
 	}
 
 	@PUT
-	@Path("batch/update")
+	@Path("batch")
 	public Response updateRaavareBatch(DTORaavareBatch raavarebatch) throws DALException {
 		try {
 			new MySQLConnector();

@@ -13,7 +13,6 @@ public interface IRaavareService {
 	Response updateRaavare(DTORaavare raavare) throws DALException;
 	Response deleteRaavare(int raavareId) throws DALException;
 	//Råvarebatch
-	Response getRaavareBatchList() throws DALException;
 	Response getRaavareBatchList(int raavareId) throws DALException;
 	Response createRaavareBatch(DTORaavareBatch raavarebatch) throws DALException;
 	Response updateRaavareBatch(DTORaavareBatch raavarebatch) throws DALException;

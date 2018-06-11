@@ -7,10 +7,10 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("other")
+@Path("enum")
 @Produces(MediaType.APPLICATION_JSON)
 
-public class OtherServices {
+public class EnumServices {
 
 
     @GET

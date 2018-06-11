@@ -14,7 +14,6 @@ public interface IReceptService {
 	Response deleteRecept(int input_id) throws DALException;
 	//Recept komponent
 	Response getReceptKompList(int receptId) throws DALException;
-	Response getReceptKompList() throws DALException;
 	Response createReceptKomp(DTOReceptKomp receptkomponent) throws DALException;
 	Response updateReceptKomp(DTOReceptKomp receptkomponent) throws DALException;
 	Response deleteReceptKomp(int recept_id, int raavare_id) throws DALException;

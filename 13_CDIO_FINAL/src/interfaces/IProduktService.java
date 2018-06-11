@@ -14,7 +14,6 @@ public interface IProduktService {
 	Response deleteProduktBatch(int pbID) throws DALException;
 	//Produkt batch komponent
 	Response getProduktBatchKompList(int pbId) throws DALException;
-	Response getProduktBatchKompList() throws DALException;
 	Response createProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException;
 	Response updateProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException;
 	Response deleteProduktBatchKomp(int productBatch_ID, int raavareBatch_ID) throws DALException;

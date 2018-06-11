@@ -7,7 +7,7 @@ $(document).ready(function() {
 	const enterkey = 13;
 	function loadRecepts(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/all', //specificerer endpointet
+			url : 'rest/recept', //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				clearReceptTable();
@@ -60,7 +60,7 @@ $(document).ready(function() {
 
 	$(".btn-primaryAdd").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/create', //specificerer endpointet
+			url : 'rest/recept', //specificerer endpointet
 			data : JSON.stringify({
 				receptId : $("#inputID")["0"].value,
 				receptNavn : $("#inputName")["0"].value
@@ -84,7 +84,7 @@ $(document).ready(function() {
 	$(".btn-primaryUpdate").click(function(){	
 		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/update', //specificerer endpointet
+			url : 'rest/recept', //specificerer endpointet
 			data : JSON.stringify({
 				receptId : res[0],
 				receptNavn : $("#"+id[0]+"_Name")["0"].value
@@ -133,7 +133,7 @@ $(document).ready(function() {
 	function loadReceptKomps(){
 		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/komponent/list/'+res[0], //specificerer endpointet
+			url : 'rest/recept/komponent/'+res[0], //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				clearReceptKompTable();
@@ -164,7 +164,7 @@ $(document).ready(function() {
 
 	$(".btn-primaryAddKomp").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/komponent/create', //specificerer endpointet
+			url : 'rest/recept/komponent', //specificerer endpointet
 			data : JSON.stringify({
 				receptId : $("#inputReceptID")["0"].value,
 				raavareId : $("#inputRaavareID")["0"].value,
@@ -209,7 +209,7 @@ $(document).ready(function() {
 	$(".btn-primaryUpdateKomp").click(function(){
 		var res = id.split("_")
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/komponent/update', //specificerer endpointet
+			url : 'rest/recept/komponent', //specificerer endpointet
 			data : JSON.stringify({
 				receptId : res[0],
 				raavareId : res[1],

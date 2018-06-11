@@ -13,12 +13,12 @@ $(document).ready(function () {
 
 	function loadStatus() {
 		$.ajax({ //Indleder et asynkront ajax kald
-			url: 'rest/other/status_produktbatch', //specificerer endpointet
+			url: 'rest/enum/status_produktbatch', //specificerer endpointet
 			type: 'GET', //Typen af HTTP requestet (GET er default)
 			success: function (data) {//Funktion der skal udføres når data er hentet
 				statuss = data;
                 $.ajax({ //Indleder et asynkront ajax kald
-                    url: 'rest/produktbatch/all', //specificerer endpointet
+                    url: 'rest/produktbatch', //specificerer endpointet
                     type: 'GET', //Typen af HTTP requestet (GET er default)
                     success: function (data) {//Funktion der skal udføres når data er hentet
                         clearProduktTable();
@@ -73,7 +73,7 @@ $(document).ready(function () {
 
 	$(".btn-primaryAdd").click(function () {
 		$.ajax({ //Indleder et asynkront ajax kald
-			url: 'rest/produktbatch/create', //specificerer endpointet
+			url: 'rest/produktbatch', //specificerer endpointet
 			data: JSON.stringify({
 				pbId: $("#inputID")["0"].value,
 				status: $("input:checked").val(),
@@ -99,7 +99,7 @@ $(document).ready(function () {
 		var actualId = id.split("_");
 
 		$.ajax({ //Indleder et asynkront ajax kald
-			url: 'rest/produktbatch/update', //specificerer endpointet
+			url: 'rest/produktbatch', //specificerer endpointet
 			data: JSON.stringify({
 				pbId: actualId[0],
 				status: $("#" + actualId[0] + "_status")["0"].value,
@@ -148,7 +148,7 @@ $(document).ready(function () {
 	function loadProduktBatchKomps() {
 		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url: 'rest/produktbatch/komponent/list/' + res[0], //specificerer endpointet
+			url: 'rest/produktbatch/komponent/' + res[0], //specificerer endpointet
 			type: 'GET', //Typen af HTTP requestet (GET er default)
 			success: function (data) {//Funktion der skal udføres når data er hentet
 				clearProduktBatchKompTable();
@@ -179,7 +179,7 @@ $(document).ready(function () {
 
 	$(".btn-primaryAddKomp").click(function () {
 		$.ajax({ //Indleder et asynkront ajax kald
-			url: 'rest/produktbatch/komponent/create', //specificerer endpointet
+			url: 'rest/produktbatch/komponent', //specificerer endpointet
 			data: JSON.stringify({
 				pbId: $("#inputPBID")["0"].value,
 				rbId: $("#inputRBID")["0"].value,
@@ -225,7 +225,7 @@ $(document).ready(function () {
 	$(".btn-primaryUpdateKomp").click(function () {
 		var res = id.split("_")
 		$.ajax({ //Indleder et asynkront ajax kald
-			url: 'rest/produktbatch/komponent/update', //specificerer endpointet
+			url: 'rest/produktbatch/komponent', //specificerer endpointet
 			data: JSON.stringify({
 				pbId: res[0],
 				rbId: res[1],
