@@ -1,10 +1,8 @@
 package ase;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.util.List;
-
 import connector.MySQLConnector;
 import controller.*;
 import dao.*;
@@ -43,6 +41,7 @@ public class AseController {
 		afvejning(receptkompList, pb, operatoer);
 	}
 
+	@SuppressWarnings("null")
 	private DTOOperatoer validerOperatoer() {
 		log.info("Hent operatør.");
 		OperatoerController controller = new OperatoerController(new DAOOperatoer());
@@ -70,6 +69,7 @@ public class AseController {
 		return operatoer;
 	}
 
+	@SuppressWarnings("null")
 	private DTOProduktBatch getProduktbatch(){
 		DTOProduktBatch produktbatch = null;
 		ProduktBatchController pbcontroller = new ProduktBatchController(new DAOProduktBatch());
