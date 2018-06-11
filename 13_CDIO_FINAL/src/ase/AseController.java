@@ -57,7 +57,7 @@ public class AseController {
 		
 	}
 
-	private static void validerOperatoer() {
+	private void validerOperatoer() {
 		log.info("Hent operatør.");
 		OperatoerController controller = new OperatoerController(new DAOOperatoer());
 		int operatorId;
@@ -83,7 +83,7 @@ public class AseController {
 		} while(str.length()!=0);
 	}
 	
-	private static DTOProduktBatch getProduktbatch(){
+	private DTOProduktBatch getProduktbatch(){
 		DTOProduktBatch produktbatch = null;
 		ProduktBatchController pbcontroller = new ProduktBatchController(new DAOProduktBatch());
 		ReceptController rcontroller = new ReceptController(new DAORecept());
@@ -112,7 +112,7 @@ public class AseController {
 		return produktbatch;
 	}
 	
-	private static void opdaterPbStatus(DTOProduktBatch pb) {
+	private void opdaterPbStatus(DTOProduktBatch pb) {
 		if(pb.getStatus()!=Status.Klar) {
 			socket.rm20("Afvejning er påbegyndt.", "", "");
 			socket.disconnect();
@@ -132,7 +132,7 @@ public class AseController {
 		}
 	}
 	
-	private static List<DTOReceptKomp> getReceptkompliste(DTOProduktBatch pb) {
+	private List<DTOReceptKomp> getReceptkompliste(DTOProduktBatch pb) {
 		ReceptKompController controller = new ReceptKompController(new DAOReceptKomp());
 		double netto;
 		List<DTOReceptKomp> list = null;
@@ -159,7 +159,7 @@ public class AseController {
 		return list;
 	}
 	
-	private static double getRaavareMaengde(int raavareId) {
+	private double getRaavareMaengde(int raavareId) {
 		RaavareBatchController controller = new RaavareBatchController(new DAORaavareBatch());
 		double maengde = 0;
 		try {
@@ -177,7 +177,7 @@ public class AseController {
 		return maengde;	
 	}
 	
-	private static void afvejning() {
+	private void afvejning() {
 		double tara, nomnetto;
 		DTOProduktBatchKomp tempPBK = null;
 		DTORaavareBatch tempRB = null;
