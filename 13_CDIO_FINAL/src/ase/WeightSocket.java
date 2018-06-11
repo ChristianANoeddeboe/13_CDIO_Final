@@ -100,7 +100,7 @@ public class WeightSocket {
 		}
 	}
 
-	private double readWeight() throws IOException{
+	public double readWeight() throws IOException{
 		double weight = 0;
 		String str;
 
@@ -155,22 +155,13 @@ public class WeightSocket {
 				if(str.contains("RM20 C")) {
 					log.info("Server: "+str);
 					showMsg("Bye", 1000);
-					try {
-						disconnect();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					disconnect();
 					System.exit(0);
 				}
 			}
 		} catch(IOException e) {
 			log.warn(e.getMessage());
-			try {
-				disconnect();
-			} catch (IOException e1) {
-				log.warn(e.getMessage());
-			}
+			disconnect();
 			System.exit(0);
 		}
 
@@ -185,5 +176,15 @@ public class WeightSocket {
 			return strArr[1];
 		}
 		return strArr[1];
+	}
+	
+	public double tarer() throws IOException {
+		String str;
+		write("T\n");
+		log.info("Client: T");
+		str = read();
+		log.info("Server: "+str);
+		String[] strArr = str.split(" ");
+		return Double.parseDouble(strArr[6]);
 	}
 }
