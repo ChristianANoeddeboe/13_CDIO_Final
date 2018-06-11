@@ -4,7 +4,7 @@ $(document).ready(function() {
 	var id,id2;
 	var value;
 	var rolle;
-	const enterkey = 13;
+    const enterkey = 13;
 	function loadRecepts(){
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/recept', //specificerer endpointet
@@ -207,7 +207,7 @@ $(document).ready(function() {
 	});
 	
 	$(".btn-primaryUpdateKomp").click(function(){
-		var res = id.split("_")
+		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
 			url : 'rest/recept/komponent', //specificerer endpointet
 			data : JSON.stringify({
@@ -236,8 +236,8 @@ $(document).ready(function() {
 	function generateReceptHTML(recept) {
 		return 	'<tr><td scope ="row">' + recept.receptId + '</td>' +
 		'<td><input type="text" id = "'+recept.receptId +"_Name"+'" class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
-		'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary vis">▼</button>'+'</td>' +
-        '<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary update"><i class="fas fa-sync" id = "'+recept.receptId+'"></i></button>'+'</td>' +
+		'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary vis"><i class="fas fa-folder-open"></i></button>'+'</td>' +
+        '<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+recept.receptId+'"></i></button>'+'</td>' +
 		'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+recept.receptId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
@@ -247,7 +247,7 @@ $(document).ready(function() {
 		'<td scope = "row">'+receptKomp.raavareId + '</td>' +
 		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_netto"+'" class="form-control-plaintext" value="' + receptKomp.nomNetto + '"></td></td>' +
 		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_tolerance"+'" class="form-control-plaintext" value="' + receptKomp.tolerance + '"></td></td>' +
-        '<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary updateKomp"><i class="fas fa-sync" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
+        '<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary updateKomp"><i class="fas fa-save" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
 		'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
