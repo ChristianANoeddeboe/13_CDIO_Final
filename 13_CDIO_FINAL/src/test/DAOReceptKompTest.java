@@ -95,7 +95,7 @@ class DAOReceptKompTest {
 
     @Test
     void createReceptKomp() {
-        int last_index = 0, last_recept_id = 0, last_raavare_id = 0, last_recept_index = 0, test_recept_id = 1;
+        int last_recept_id = 0, last_recept_index = 0, test_recept_id = 1;
         DTOReceptKomp compare;
         IDAORecept daoRecept = new DAORecept();
         try {

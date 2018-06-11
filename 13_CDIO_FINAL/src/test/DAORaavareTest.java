@@ -74,9 +74,7 @@ class DAORaavareTest {
         testRaavareDTO = new DTORaavare("Smør", "Arla");
         DTORaavare compare;
         int expectedID;
-        List<DTORaavare> testList;
         try {
-            testList = testRaavareDAO.getRaavareList();
             expectedID = 0;
             testRaavareDAO.createRaavare(testRaavareDTO);
             compare = testRaavareDAO.getRaavare(expectedID);
