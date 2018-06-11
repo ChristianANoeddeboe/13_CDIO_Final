@@ -27,10 +27,11 @@ import exception.DALException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class Main {
-	private static WeightSocket socket = new WeightSocket("169.254.2.2", 8000);
+public class AseController {
+	private WeightSocket socket;
 	
-	public static void main(String[] args) {
+	public AseController(String ip, )
+	public void run() {
 		List<DTOReceptKomp> receptkompList = null;
 		DTOProduktBatch pb = null;
 
