@@ -110,13 +110,21 @@ public class WeightSocket {
 		str = read();
 		log.info("Server: "+str);
 
-		if(str.contains("-")) {
-			String[] strArr = str.split(" ");
-			weight = Double.parseDouble(strArr[5]); 
-		}
-		else {
-			String[] strArr = str.split(" ");
-			weight = Double.parseDouble(strArr[6]); 
+		try{
+			if(str.contains("-")) {
+				String[] strArr = str.split(" ");
+				weight = Double.parseDouble(strArr[5]);
+			}
+			else {
+				String[] strArr = str.split(" ");
+				weight = Double.parseDouble(strArr[6]);
+			}
+
+		} catch(ArrayIndexOutOfBoundsException e){
+			rm20("Fejl.", "", "");
+			log.error(e.getMessage()+ "\n" + str);
+			disconnect();
+			System.exit(0);
 		}
 		return weight;
 	}
