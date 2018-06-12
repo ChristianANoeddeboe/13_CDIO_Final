@@ -33,7 +33,17 @@ public class AseController {
 			socket.disconnect();
 			System.exit(0);
 		}
-
+		
+		try {
+			log.info("Flush input stream.");
+			while(socket.skipInput(100)!=0) {}
+		} catch (IOException e) {
+			System.out.println("Fejl i opstart, kontakt administrator.");
+			System.out.println("System afsluttes.");
+			socket.disconnect();
+			System.exit(0);
+		}
+		
 		DTOOperatoer operatoer = validerOperatoer();
 		pb = getProduktbatch();
 		opdaterPbStatus(pb);
