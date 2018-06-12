@@ -77,7 +77,7 @@ public class AseController {
 
     private DTOOperatoer validerOperatoer() {
         log.info("Hent operatør.");
-        OperatoerController controller = new OperatoerController(new DAOOperatoer());
+        OperatoerController controller = OperatoerController.getInstance();
         int operatorId;
         DTOOperatoer operatoer = null;
         String str = null;
@@ -105,8 +105,8 @@ public class AseController {
 
     private DTOProduktBatch getProduktbatch() {
         DTOProduktBatch produktbatch = null;
-        ProduktBatchController pbcontroller = new ProduktBatchController(new DAOProduktBatch());
-        ReceptController rcontroller = new ReceptController(new DAORecept());
+        ProduktBatchController pbcontroller =  ProduktBatchController.getInstance();
+        ReceptController rcontroller = ReceptController.getInstance();
         String str = null;
         while (true) {
             try {
@@ -143,7 +143,7 @@ public class AseController {
             return false;
         } else {
             pb.setStatus(Status.Igang);
-            ProduktBatchController pbcontroller = new ProduktBatchController(new DAOProduktBatch());
+            ProduktBatchController pbcontroller = ProduktBatchController.getInstance();
             try {
                 pbcontroller.updateProduktBatch(pb);
             } catch (DALException e) {
@@ -156,7 +156,7 @@ public class AseController {
     }
 
     private List<DTOReceptKomp> getReceptkompliste(DTOProduktBatch pb) {
-        ReceptKompController controller = new ReceptKompController(new DAOReceptKomp());
+        ReceptKompController controller = ReceptKompController.getInstance();
         double netto;
         List<DTOReceptKomp> list = null;
         try {
@@ -181,7 +181,7 @@ public class AseController {
     }
 
     private double getRaavareMaengde(int raavareId) {
-        RaavareBatchController controller = new RaavareBatchController(new DAORaavareBatch());
+        RaavareBatchController controller = RaavareBatchController.getInstance();
         double maengde = 0;
         try {
             List<DTORaavareBatch> raavareBatches = controller.getRaavareBatchList(raavareId);
@@ -201,8 +201,8 @@ public class AseController {
         DTORaavare raavare = null;
         DTOProduktBatchKomp tempPBK = null;
         DTORaavareBatch tempRB = null;
-        ProduktBatchKompController pbkController = new ProduktBatchKompController(new DAOProduktBatchKomp());
-        RaavareBatchController rbController = new RaavareBatchController(new DAORaavareBatch());
+        ProduktBatchKompController pbkController = ProduktBatchKompController.getInstance();
+        RaavareBatchController rbController = RaavareBatchController.getInstance();
         List<DTORaavareBatch> raavareBatches = null;
         String str = null;
 
@@ -288,7 +288,7 @@ public class AseController {
     }
 
     private DTORaavare retreiveRaavare(int raavareID) {
-        RaavareController rController = new RaavareController(new DAORaavare());
+        RaavareController rController = RaavareController.getInstance();
         DTORaavare raavare = null;
         try {
             raavare = rController.getRaavare(raavareID);
