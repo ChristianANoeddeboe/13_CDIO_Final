@@ -27,8 +27,8 @@ import interfaces.IRaavareService;
 @Path("raavare")
 @Produces(MediaType.APPLICATION_JSON)
 public class RaavareService implements IRaavareService {
-	static RaavareController rController = new RaavareController(new DAORaavare());
-	static RaavareBatchController rbController = new RaavareBatchController(new DAORaavareBatch());
+	RaavareController rController = RaavareController.getInstance();
+	RaavareBatchController rbController = RaavareBatchController.getInstance();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

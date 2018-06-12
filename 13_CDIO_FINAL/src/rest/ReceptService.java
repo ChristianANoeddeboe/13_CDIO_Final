@@ -27,8 +27,8 @@ import interfaces.IReceptService;
 @Produces(MediaType.APPLICATION_JSON)
 public class ReceptService implements IReceptService {
 	
-	static ReceptController controller = new ReceptController(new DAORecept());
-	static ReceptKompController kompController = new ReceptKompController(new DAOReceptKomp());
+	ReceptController controller = ReceptController.getInstance();
+	ReceptKompController kompController = ReceptKompController.getInstance();
 	
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -26,8 +26,8 @@ import exception.DALException;
 
 class ProduktServiceTest {
 
-	static ProduktBatchController controller = new ProduktBatchController(new DAOProduktBatch());
-	static ProduktBatchKompController controllerKomp = new ProduktBatchKompController(new DAOProduktBatchKomp());
+	ProduktBatchController controller = ProduktBatchController.getInstance();
+	ProduktBatchKompController controllerKomp = ProduktBatchKompController.getInstance();
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/produktbatch/";
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -59,7 +59,7 @@ class ProduktServiceTest {
 	@Test
 	void testGetProduktBatchList() {
 		try {
-			HttpResponse<DTOProduktBatch[]> response = Unirest.get(baseUrl+"all").asObject(DTOProduktBatch[].class);
+			HttpResponse<DTOProduktBatch[]> response = Unirest.get(baseUrl).asObject(DTOProduktBatch[].class);
 			DTOProduktBatch[] responseArray = response.getBody();		
 			List<DTOProduktBatch> sqlResponseArray = controller.getProduktBatchList();
 			if(responseArray.length == sqlResponseArray.size()) {
@@ -85,7 +85,7 @@ class ProduktServiceTest {
 	@Test
 	void testCreateProduktBatch() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTOProduktBatch(9999,Status.Klar,1))
 			.asJson();
@@ -109,13 +109,13 @@ class ProduktServiceTest {
 	@Test
 	void testUpdateProduktBatch() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json")
 			.body(new DTOProduktBatch(9999,Status.Klar,1))
 			.asJson();
 			DTOProduktBatch temp = controller.getProduktBatch(9999);
 			if(temp.getPbId() == 9999 && temp.getStatus() == Status.Klar && temp.getReceptId() == 1) {
-				Unirest.put(baseUrl + "update")
+				Unirest.put(baseUrl)
 				.header("Content-Type", "application/json")
 				.body(new DTOProduktBatch(9999,Status.Igang,1))
 				.asJson();
@@ -124,7 +124,7 @@ class ProduktServiceTest {
 				if(temp2.getPbId() == 9999 && temp2.getStatus() == Status.Igang && temp.getReceptId() == 1) {
 					controller.deleteProduktBatch(9999);
 				}else {
-					fail("The product batch was not updater properly");
+					fail("The product batch was not updated properly");
 				}
 			}else {
 				fail("The created product batch was not found or did not match the one created with rest");
@@ -142,7 +142,7 @@ class ProduktServiceTest {
 	@Test
 	void testDeleteProduktBatch() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTOProduktBatch(9999,Status.Klar,1))
 			.asJson();	
@@ -174,7 +174,7 @@ class ProduktServiceTest {
 	@Test
 	void testGetProduktBatchKompList() {
 		try {
-			HttpResponse<DTOProduktBatchKomp[]> response = Unirest.get(baseUrl+"komponent/list/"+1).asObject(DTOProduktBatchKomp[].class);
+			HttpResponse<DTOProduktBatchKomp[]> response = Unirest.get(baseUrl+"komponent/"+1).asObject(DTOProduktBatchKomp[].class);
 			DTOProduktBatchKomp[] responseArray = response.getBody();		
 			List<DTOProduktBatchKomp> sqlResponseArray = controllerKomp.getProduktBatchKomponentList(1);
 			if(responseArray.length == sqlResponseArray.size()) {
@@ -202,12 +202,12 @@ class ProduktServiceTest {
 	@Test
 	void testCreateProduktBatchKomp() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTOProduktBatch(9999,Status.Klar,1))
 			.asJson();
 			
-			Unirest.post(baseUrl+"komponent/create").
+			Unirest.post(baseUrl+"komponent").
 			header("Content-Type", "application/json").
 			body(new DTOProduktBatchKomp(9999, 1, 1, 1, 1)).asJson();
 		
@@ -232,18 +232,18 @@ class ProduktServiceTest {
 	@Test
 	void testUpdateProduktBatchKomp() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTOProduktBatch(9999,Status.Klar,1))
 			.asJson();
 			
-			Unirest.post(baseUrl+"komponent/create").
+			Unirest.post(baseUrl+"komponent").
 			header("Content-Type", "application/json").
 			body(new DTOProduktBatchKomp(9999, 1, 1, 1, 1)).asJson();
 		
 			DTOProduktBatchKomp tempKomp = controllerKomp.getProduktBatchKomp(9999, 1);
 			if(tempKomp.getNetto() == 1 && tempKomp.getTara() == 1) {
-				Unirest.put(baseUrl + "komponent/update")
+				Unirest.put(baseUrl + "komponent")
 				.header("Content-Type", "application/json")
 				.body(new DTOProduktBatchKomp(9999, 1, 2, 2, 1))
 				.asJson();
@@ -254,7 +254,7 @@ class ProduktServiceTest {
 					controllerKomp.deleteProdBatchKomp(9999, 1);
 					controller.deleteProduktBatch(9999);
 				}else {
-					fail("The productbatchkomp was not updater properly");
+					fail("The productbatchkomp was not updated properly");
 				}
 			}else {
 				fail("The created productbatchkomp was not found or did not match the one created with rest");
@@ -272,12 +272,12 @@ class ProduktServiceTest {
 	@Test
 	void testDeleteProduktBatchKomp() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTOProduktBatch(9999,Status.Klar,1))
 			.asJson();
 			
-			Unirest.post(baseUrl+"komponent/create").
+			Unirest.post(baseUrl+"komponent").
 			header("Content-Type", "application/json").
 			body(new DTOProduktBatchKomp(9999, 1, 1, 1, 1)).asJson();
 			

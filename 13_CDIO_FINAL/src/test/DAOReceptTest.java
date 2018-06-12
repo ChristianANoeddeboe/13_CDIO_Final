@@ -97,5 +97,16 @@ class DAOReceptTest {
         if (dto.getReceptId() != list.size() - 1 && !dto.getReceptNavn().equals(name)) {
             fail("Recept wasns't created with expected values.");
         }
+        
+        try {
+        	for (DTORecept dtoRecept : list) {
+				if(dtoRecept.getReceptNavn().equals("test")) {
+					receptDAO.deleteRecept(dtoRecept.getReceptId());
+					break;
+				}
+			}
+        } catch (DALException e) {
+        	fail("DALException caught.");
+        }
     }
 }

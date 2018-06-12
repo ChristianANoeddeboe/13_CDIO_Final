@@ -101,13 +101,14 @@ public class WeightSocket {
 
 	public double readWeight() throws IOException{
 		double weight = 0;
-		String str;
-
-		write("S\n");
-		log.info("Client: S\\n");
-
-		str = read();
-		log.info("Server: "+str);
+		String str = null;
+		
+		do {
+			write("S\n");
+			log.info("Client: S\\n");
+			str = read();
+			log.info("Server: "+str);			
+		} while(str.equals("S I"));
 
 		try{
 			if(str.contains("-")) {
@@ -158,12 +159,14 @@ public class WeightSocket {
 			//wait until we actually get the return msg.
 			while (!(str = read()).contains("RM20 A")) {
 				log.info("Server: "+str);
-
+				
 				if(str.contains("RM20 C")) {
 					log.info("Server: "+str);
-					showMsg("Bye", 1000);
-					disconnect();
-					System.exit(0);
+					return "RM20 C";
+				}
+				if(str.equalsIgnoreCase("exit")) {
+					log.info("Server: "+str);
+					return "exit";
 				}
 			}
 		} catch(IOException e) {
@@ -193,5 +196,12 @@ public class WeightSocket {
 		log.info("Server: "+str);
 		String[] strArr = str.split(" ");
 		return Double.parseDouble(strArr[6]);
+	}
+	
+	public void flushInput() throws IOException {
+		log.info("Flush inputstream.");
+		while(input.ready()) {
+			input.readLine();
+		}
 	}
 }

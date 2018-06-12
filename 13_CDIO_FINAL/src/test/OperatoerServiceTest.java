@@ -25,7 +25,7 @@ import dto.Roller;
 import exception.DALException;
 
 public class OperatoerServiceTest {
-	static OperatoerController controller = new OperatoerController(new DAOOperatoer());
+	OperatoerController controller = OperatoerController.getInstance();
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/operatoer/";
 
 	//Testdata
@@ -70,7 +70,7 @@ public class OperatoerServiceTest {
 	@Test
 	void testGetOperatoerList() {
 		try {
-			HttpResponse<DTOOperatoer[]> response = Unirest.get(baseUrl+"all").asObject(DTOOperatoer[].class);
+			HttpResponse<DTOOperatoer[]> response = Unirest.get(baseUrl).asObject(DTOOperatoer[].class);
 			DTOOperatoer[] responseArray = response.getBody();		
 			List<DTOOperatoer> sqlResponseArray = controller.getOperatoerList();
 			if(responseArray.length == sqlResponseArray.size()) {
@@ -110,7 +110,7 @@ public class OperatoerServiceTest {
 	@Test
 	void testCreateOperatoer() {
 		try {
-			Unirest.post(baseUrl+"create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json")
 			.body(new DTOOperatoer(id, fornavn, efternavn, cpr, roles, status))
 			.asJson();
@@ -152,7 +152,7 @@ public class OperatoerServiceTest {
 	@Test
 	void testUpdateOperatoer() {
 		try {
-			Unirest.post(baseUrl+"create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json")
 			.body(new DTOOperatoer(id, fornavn, efternavn, cpr, roles, status))
 			.asJson();
@@ -163,7 +163,7 @@ public class OperatoerServiceTest {
 					id = sqlResponse.get(i).getOprId();
 					DTOOperatoer opr = controller.getOperatoer(id);
 
-					Unirest.post(baseUrl+"update")
+					Unirest.post(baseUrl)
 					.header("Content-Type", "application/json")
 					.body(new DTOOperatoer(opr.getOprId(), "NytFornavn", "NytEfternavn", opr.getCpr(), opr.getRoles(), opr.getAktiv()))
 					.asJson();

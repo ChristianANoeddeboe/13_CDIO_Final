@@ -23,8 +23,8 @@ import dto.DTOReceptKomp;
 import exception.DALException;
 
 class ReceptServiceTest {
-	static ReceptController controller = new ReceptController(new DAORecept());
-	static ReceptKompController controllerKomp = new ReceptKompController(new DAOReceptKomp());
+	ReceptController controller = ReceptController.getInstance();
+	ReceptKompController controllerKomp = ReceptKompController.getInstance();
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/recept/";
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -56,7 +56,7 @@ class ReceptServiceTest {
 	@Test
 	void testGetReceptList() {		
 		try {
-			HttpResponse<DTORecept[]> response = Unirest.get(baseUrl+"all").asObject(DTORecept[].class);
+			HttpResponse<DTORecept[]> response = Unirest.get(baseUrl).asObject(DTORecept[].class);
 			DTORecept[] responseArray = response.getBody();		
 			List<DTORecept> sqlResponseArray = controller.getReceptList();
 			if(responseArray.length == sqlResponseArray.size()) {
@@ -81,7 +81,7 @@ class ReceptServiceTest {
 	@Test
 	void testCreateRecept() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTORecept(9999, "Test"))
 			.asJson();
@@ -105,13 +105,13 @@ class ReceptServiceTest {
 	@Test
 	void testUpdateRecept() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json")
 			.body(new DTORecept(9999, "Test"))
 			.asJson();
 			DTORecept temp = controller.getRecept(9999);
 			if(temp.getReceptId() == 9999 && temp.getReceptNavn().equals("Test")) {
-				Unirest.put(baseUrl + "update")
+				Unirest.put(baseUrl)
 				.header("Content-Type", "application/json")
 				.body(new DTORecept(9999, "Test2"))
 				.asJson();
@@ -137,7 +137,7 @@ class ReceptServiceTest {
 	@Test
 	void testDeleteRecept() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTORecept(9999, "Test"))
 			.asJson();	
@@ -170,7 +170,7 @@ class ReceptServiceTest {
 	@Test
 	void testGetReceptKompList() {
 		try {
-			HttpResponse<DTOReceptKomp[]> response = Unirest.get(baseUrl+"komponent/list/"+1).asObject(DTOReceptKomp[].class);
+			HttpResponse<DTOReceptKomp[]> response = Unirest.get(baseUrl+"komponent/"+1).asObject(DTOReceptKomp[].class);
 			DTOReceptKomp[] responseArray = response.getBody();		
 			List<DTOReceptKomp> sqlResponseArray = controllerKomp.getReceptKompList(1);
 			if(responseArray.length == sqlResponseArray.size()) {
@@ -197,12 +197,12 @@ class ReceptServiceTest {
 	@Test
 	void testCreateReceptKomp() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTORecept(9999, "Test"))
 			.asJson();
 			
-			Unirest.post(baseUrl+"komponent/create").
+			Unirest.post(baseUrl+"komponent").
 			header("Content-Type", "application/json").
 			body(new DTOReceptKomp(9999, 1, 1, 1)).asJson();
 		
@@ -227,19 +227,19 @@ class ReceptServiceTest {
 	@Test
 	void testUpdateReceptKomp() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json")
 			.body(new DTORecept(9999, "Test"))
 			.asJson();
 			
-			Unirest.post(baseUrl+"komponent/create")
+			Unirest.post(baseUrl+"komponent")
 			.header("Content-Type", "application/json")
 			.body(new DTOReceptKomp(9999, 1, 1, 1))
 			.asJson();
 		
 			DTOReceptKomp tempKomp = controllerKomp.getReceptKomp(9999, 1);
 			if(tempKomp.getTolerance() == 1 && tempKomp.getNomNetto() == 1) {
-				Unirest.put(baseUrl + "komponent/update")
+				Unirest.put(baseUrl + "komponent")
 				.header("Content-Type", "application/json")
 				.body(new DTOReceptKomp(9999, 1, 2, 2))
 				.asJson();
@@ -268,12 +268,12 @@ class ReceptServiceTest {
 	@Test
 	void testDeleteReceptKomp() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTORecept(9999, "Test"))
 			.asJson();
 			
-			Unirest.post(baseUrl+"komponent/create").
+			Unirest.post(baseUrl+"komponent").
 			header("Content-Type", "application/json").
 			body(new DTOReceptKomp(9999, 1, 1, 1)).asJson();
 			

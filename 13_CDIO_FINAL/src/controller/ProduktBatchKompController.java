@@ -2,6 +2,8 @@ package controller;
 
 import java.util.List;
 
+import dao.DAOProduktBatch;
+import dao.DAOProduktBatchKomp;
 import dto.DTOProduktBatchKomp;
 import exception.DALException;
 import interfaces.IDAOProduktBatchKomp;
@@ -11,7 +13,17 @@ import lombok.extern.java.Log;
 @Log
 @AllArgsConstructor
 public class ProduktBatchKompController {
-	private IDAOProduktBatchKomp dao;
+	private static IDAOProduktBatchKomp dao;
+	private static ProduktBatchKompController instance;
+	
+	public static ProduktBatchKompController getInstance() {
+		if(instance == null) {
+			dao = new DAOProduktBatchKomp();
+			instance =  new ProduktBatchKompController();
+			return instance;
+		}
+		return instance;
+	}
 	
 	public DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException{
 		return dao.getProduktBatchKomp(pbId, rbId);

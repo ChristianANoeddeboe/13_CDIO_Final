@@ -26,7 +26,7 @@ import interfaces.IOperatoerService;
 
 public class OperatoerService implements IOperatoerService {
 	
-	static OperatoerController controller = new OperatoerController(new DAOOperatoer());
+	OperatoerController controller = OperatoerController.getInstance();
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)

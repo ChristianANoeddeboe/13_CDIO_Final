@@ -18,7 +18,7 @@ public class EnumServices {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getStatusProduktBatch() {
-        Object[] arr = Status.values();
+        Status[] arr = Status.values();
 
         return Response.ok(arr, MediaType.APPLICATION_JSON).build();
     }
@@ -28,7 +28,7 @@ public class EnumServices {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getStatusOperatoer() {
-        Object[] arr = Aktiv.values();
+        Aktiv[] arr = Aktiv.values();
 
         return Response.ok(arr, MediaType.APPLICATION_JSON).build();
     }
@@ -38,7 +38,7 @@ public class EnumServices {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getRoller() {
-        Object[] arr = Roller.values();
+        Roller[] arr = Roller.values();
 
         return Response.ok(arr, MediaType.APPLICATION_JSON).build();
     }

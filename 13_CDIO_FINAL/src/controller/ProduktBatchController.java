@@ -8,11 +8,24 @@ import lombok.extern.java.Log;
 
 import java.util.List;
 
+import dao.DAOOperatoer;
+import dao.DAOProduktBatch;
+
 @Log
 @AllArgsConstructor
 public class ProduktBatchController {
-    private IDAOProduktBatch dao;
-
+    private static IDAOProduktBatch dao;
+    private static ProduktBatchController instance;
+	
+	public static ProduktBatchController getInstance() {
+		if(instance == null) {
+			dao = new DAOProduktBatch();
+			instance =  new ProduktBatchController();
+			return instance;
+		}
+		return instance;
+	}
+    
     public DTOProduktBatch getProduktBatch(int pbID) throws DALException{
         return dao.getProduktBatch(pbID);
     }

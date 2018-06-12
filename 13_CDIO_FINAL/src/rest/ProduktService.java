@@ -28,8 +28,8 @@ import interfaces.IProduktService;
 @Produces(MediaType.APPLICATION_JSON)
 
 public class ProduktService implements IProduktService {
-	static ProduktBatchController controller = new ProduktBatchController(new DAOProduktBatch());
-	static ProduktBatchKompController kompController = new ProduktBatchKompController(new DAOProduktBatchKomp());
+	ProduktBatchController controller = ProduktBatchController.getInstance();
+	ProduktBatchKompController kompController = ProduktBatchKompController.getInstance();
 	
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)

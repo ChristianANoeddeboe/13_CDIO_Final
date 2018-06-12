@@ -53,12 +53,6 @@ public class DTOOperatoer {
         temp.concat(cpr.substring(6));
     }
 
-    /**
-     * Returns initials
-     *
-     * @param name the name
-     * @return the initials
-     */
     public String initials(String name) {
         String[] name_array = name.split(" ");
         String ini = "";
@@ -80,10 +74,11 @@ public class DTOOperatoer {
     public String getEfternavn() {
     	return trimmer(efternavn);
     }
+
     /**
-     * Method for trimming strings.
+     * Removes additional spaces from the input string.
      * @param str
-     * @return
+     * @return String
      */
     private String trimmer(String str) {
         String[] str_array = str.split(" ");

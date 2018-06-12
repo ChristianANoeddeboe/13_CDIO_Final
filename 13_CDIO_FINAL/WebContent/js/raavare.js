@@ -1,7 +1,7 @@
- $("#raavareAdminTable").hide();
+var id;
+$("#raavareAdminTable").hide();
 $(document).ready(function() {
-	var id,id2;
-	var value;
+	var id2,value;
 	const enterkey = 13;
 	$(".loader").show();
 	function loadProdukt(){
@@ -158,6 +158,10 @@ $(document).ready(function() {
 	
 	$('#showMoreModal').on('shown.bs.modal', function () {
 		loadRaavareBatch();
+	});
+
+	$('#addKompModal').on('shown.bs.modal', function(){
+		$("#inputRBID")["0"].value = id;
 	});
 
 	$(".btn-primaryAddKomp").click(function(){

@@ -1,9 +1,6 @@
 $("#operatoerAdminTable").hide();
 $(document).ready(function() {
-    var id;
-    var value;
-    var rolle;
-    var statuss;
+    var id, value, rolle, statuss;
     const enterkey = 13;
     $(".loader").show();
     function loadOperatoer(){
