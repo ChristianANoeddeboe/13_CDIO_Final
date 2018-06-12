@@ -1,9 +1,7 @@
 var id;
 $("#produktAdminTable").hide();
 $(document).ready(function () {
-	var id2;
-	var value;
-	var statuss;
+	var id2,value,statuss;
 	const enterkey = 13;
 	$(".loader").show();
 	function loadProdukt() {

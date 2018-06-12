@@ -1,8 +1,7 @@
 var id;
 $("#raavareAdminTable").hide();
 $(document).ready(function() {
-	var id2;
-	var value;
+	var id2,value;
 	const enterkey = 13;
 	$(".loader").show();
 	function loadProdukt(){

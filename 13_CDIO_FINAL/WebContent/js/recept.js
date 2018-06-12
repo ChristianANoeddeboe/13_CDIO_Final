@@ -2,9 +2,7 @@ var id;
 $("#receptAdminTable").hide();
 $(document).ready(function() {
 	$(".loader").show();
-	var id2;
-	var value;
-	var rolle;
+	var id2,value,rolle;
     const enterkey = 13;
 	function loadRecepts(){
 		$.ajax({ //Indleder et asynkront ajax kald
