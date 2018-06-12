@@ -49,6 +49,8 @@ public class AseController {
 		opdaterPbStatus(pb);
 		receptkompList = getReceptkompliste(pb);
 		afvejning(receptkompList, pb, operatoer);
+		socket.rm20("Äfvejning godkendt.", "", "");
+		socket.disconnect();
 	}
 
 	@SuppressWarnings("null")
@@ -74,7 +76,7 @@ public class AseController {
 		}
 
 		do {
-			socket.rm20(operatoer.initials(operatoer.getFornavn()+" "+operatoer.getEfternavn()), "", "");
+			str = socket.rm20(operatoer.initials(operatoer.getFornavn()+" "+operatoer.getEfternavn()), "", "Confirm.");
 		} while(str.length()!=0);
 		return operatoer;
 	}
@@ -99,7 +101,7 @@ public class AseController {
 
 			try {
 				DTORecept recept = rcontroller.getRecept(produktbatch.getReceptId());
-				socket.rm20(recept.getReceptNavn(), "", "Bekræft.");
+				str = socket.rm20(recept.getReceptNavn(), "", "Confirm.");
 				if(str.length()==0) break;
 			} catch (DALException e) {
 				log.warn(e.getMessage());
@@ -111,7 +113,7 @@ public class AseController {
 
 	private void opdaterPbStatus(DTOProduktBatch pb) {
 		if(pb.getStatus()!=Status.Klar) {
-			socket.rm20("Afvejning er påbegyndt.", "", "");
+			socket.rm20("Status: ikke klar.", "", "");
 			socket.disconnect();
 			System.exit(0);
 		}
@@ -186,7 +188,6 @@ public class AseController {
 		List<DTORaavareBatch> raavareBatches = null;
 
 		for(DTOReceptKomp receptKomp : receptkompList) {
-
 			try {
 				do {
 					socket.rm20("Toem vaegt", "", "");
@@ -220,7 +221,7 @@ public class AseController {
 			upperbound = receptKomp.getNomNetto()*(1+(receptKomp.getTolerance()/100));
 			
 			do {
-				socket.rm20("Placer netto.", "", "");
+				socket.rm20("Placer netto: "+receptKomp.getNomNetto()+"kg.", "", "");
 				try {
 					weight = socket.readWeight();
 				} catch (IOException e) {
@@ -261,12 +262,15 @@ public class AseController {
 				socket.disconnect();
 				System.exit(0);
 			}
-			
+
+			socket.rm20("Toem vaegt.", "", "");
 			while(!bruttokontrol(tara)) {
 				socket.rm20("", "Bruttokontrol fejlet.", "");
 			}
 				try {
+					socket.rm20("Bruttokontrol godkendt.", "", "");
 					socket.tarer();
+					index=0;
 				} catch (IOException e) {
 					System.out.println("Fejl under bruttokontrol, kontakt administrator.");
 					System.out.println("System afsluttes.");
@@ -281,7 +285,6 @@ public class AseController {
 		double afvejning = 0;
 		try {
 			afvejning = socket.readWeight()*-1;
-			
 		} catch (IOException e) {
 			System.out.println("Opstod fejl, kontakt administrator.");
 			System.out.println("Sytem afsluttes.");
