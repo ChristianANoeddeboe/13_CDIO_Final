@@ -51,7 +51,7 @@ class DAOReceptKompTest {
             assertEquals(10.0, actual, "NomNetto was " + actual);
 
             actual = receptKompDTO.getTolerance();
-            assertEquals(0.1, actual, "Tolerance was " + actual);
+            assertEquals(10.0, actual, "Tolerance was " + actual);
         } catch (DALException e) {
             System.out.println("Query could not be resolved.");
             e.printStackTrace();
@@ -107,7 +107,7 @@ class DAOReceptKompTest {
             daoRecept.createRecept(dtoRecept);
 
             // Now we can create a recept kompoennt, without destroy current data
-            receptKompDTO = new DTOReceptKomp(test_recept_id, 1, 10, 0.1);
+            receptKompDTO = new DTOReceptKomp(test_recept_id, 1, 10, 10.0);
             receptkompDAO.createReceptKomp(receptKompDTO);
 
             compare = receptkompDAO.getReceptKomp(receptKompDTO.getReceptId(), receptKompDTO.getRaavareId());
