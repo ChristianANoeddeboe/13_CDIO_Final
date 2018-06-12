@@ -112,9 +112,11 @@ public class AseController {
 			} catch(NumberFormatException e) {
 				log.info("Ikke gyldigt PB ID.");
 				socket.rm20("", "Ikke gyldigt PB ID.", "");
+				continue;
 			} catch(DALException e) {
 				log.warn(e.getMessage());
 				socket.rm20("", "PB findes ikke.", "");
+				continue;
 			}
 
 			try {
@@ -196,7 +198,7 @@ public class AseController {
 	}
 
 	private void afvejning(List<DTOReceptKomp> receptkompList, DTOProduktBatch produktbatch, DTOOperatoer operatoer) {
-		double lowerbound, upperbound, weight=0, tara = 0, diffWeight=0;
+		double lowerbound, upperbound, weight=0, tara = 0, diffWeight=0, tempweight = 0;
 		int index = 0;
 		DTORaavare raavare = null;
 		DTOProduktBatchKomp tempPBK = null;
@@ -223,8 +225,11 @@ public class AseController {
 				raavare = rController.getRaavare(receptKomp.getRaavareId());
 				socket.rm20(raavare.getRaavareId()+"; "+raavare.getRaavareNavn(), "", "");
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error(e.getMessage());
+				log.info("Fejl i afvejning, kontakt administrator.");
+				log.info("System afsluttes.");
+				socket.disconnect();
+				System.exit(0);
 			}
 
 			socket.rm20("Placer tara.", "", "");
@@ -246,29 +251,61 @@ public class AseController {
 					str = socket.rm20("Angiv raavarebatch ID", "", "");
 					if(str.contains("RM20 C") || str.contains("exit")) socket.rm20("What to do...", "", ""); 
 					tempRB = rbController.getRaavareBatch(Integer.parseInt(str));
+					if(tempRB.getRaavareId()!=raavare.getRaavareId()) continue;
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					log.warn("Ikke gyldig vægt");
+					continue;
 				} catch (DALException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
-				socket.rm20("Current RB: "+tempRB.getMaengde()+"kg.", "", receptKomp.getNomNetto()+"kg.");
+				socket.rm20("Current RB: "+tempRB.getMaengde()+"kg.", "", (receptKomp.getNomNetto()-weight)+"kg.");
 				try {
-					weight = socket.readWeight();
+
+					tempweight = afvej();
+					while(tempweight-weight>tempRB.getMaengde()) {
+						log.info("Afvejet mængde overstiger mængden i råvarebatch.");
+						socket.rm20("Afvejet overstiger RB.", "", "Fejl.");
+						tempweight = afvej();
+						continue;
+					}	
+					
+					while(upperbound<tempweight) {
+						log.info("Afvejet mængde overstiger nomnetto.");
+						socket.rm20("Afvejet>nomnetto.", "", "Fejl.");
+						tempweight = afvej();
+						continue;
+					}
+					
+					weight = tempweight;
 					diffWeight = weight-diffWeight;
-					tempRB.setMaengde(tempRB.getMaengde()-diffWeight);
-					tempPBK = new DTOProduktBatchKomp(produktbatch.getPbId(), tempRB.getRaavareId(), tara, diffWeight, operatoer.getOprId());
+					
+					tempRB.setMangde(tempRB.getMaengde()-diffWeight);
+					log.info(tempRB.getRaavareId()+" "+tempRB.getRbId()+" "+tempRB.getMaengde());
+					rbController.updateRaavareBatch(tempRB);
+
+					tempPBK = new DTOProduktBatchKomp(produktbatch.getPbId(), tempRB.getRbId(), tara, diffWeight, operatoer.getOprId());
+					log.warn(tempPBK.toString());
 					pbkController.createProdBatchKomp(tempPBK);
+
+					if(lowerbound>weight || upperbound<weight) {
+						socket.rm20(tempRB.getRbId()+" afvejet, mangler: "+(receptKomp.getNomNetto()-weight)+"kg.", "", "");
+					}
 				} catch (IOException e) {
-					System.out.println("Fejl i afvejning, kontakt administrator.");
-					System.out.println("System afsluttes.");
+					e.getStackTrace();
+					log.error(e.getMessage());
+					log.info("Fejl i afvejning, kontakt administrator.");
+					log.info("System afsluttes.");
 					socket.disconnect();
 					System.exit(0);
 				} catch (DALException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error(e.getStackTrace().toString());
+					log.error(e.getMessage());
+					log.info("Fejl i afvejning, kontakt administrator.");
+					log.info("System afsluttes.");
+					socket.disconnect();
+					System.exit(0);
 				}
 			} while(lowerbound>weight || upperbound<weight);
 
@@ -279,7 +316,11 @@ public class AseController {
 			try {
 				socket.rm20("Bruttokontrol godkendt.", "", "");
 				socket.tarer();
+				weight = 0;
+				tempweight = 0;
+				diffWeight = 0;
 				index=0;
+				str = null;
 			} catch (IOException e) {
 				System.out.println("Fejl under bruttokontrol, kontakt administrator.");
 				System.out.println("System afsluttes.");
@@ -303,5 +344,16 @@ public class AseController {
 		}
 		if(Math.abs(afvejning-tara)<0.00001) return true;
 		return false;
+	}
+	
+	private double afvej() throws IOException {
+		double tempweight = 0;
+		String str;
+		do {
+			socket.rm20("Se vaegt.", "", "");
+			tempweight = socket.readWeight();
+			str = socket.rm20("Vaegt ok?", "", tempweight+"kg.");
+		} while(str.contains("RM20 C"));
+		return tempweight;
 	}
 }
