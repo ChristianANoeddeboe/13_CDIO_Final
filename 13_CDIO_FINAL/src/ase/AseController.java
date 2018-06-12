@@ -33,7 +33,7 @@ public class AseController {
 			socket.disconnect();
 			System.exit(0);
 		}
-		
+
 		try {
 			socket.flushInput();
 		} catch (IOException e) {
@@ -42,27 +42,27 @@ public class AseController {
 			socket.disconnect();
 			System.exit(0);
 		}
-		
+
 		DTOOperatoer operatoer = validerOperatoer();
 		if(operatoer==null) {
 			log.info("Cancel: operatør.");
 			socket.disconnect();
 			return;
 		}
-		
+
 		pb = getProduktbatch();
 		if(pb==null) {
 			log.info("Cancel: Produktbatch.");
 			socket.disconnect();
 			return;
 		}
-		
+
 		if(!opdaterPbStatus(pb)) {
 			log.info("Cancel: Opdater produktbatch.");
 			socket.disconnect();
 			return;
 		}
-		
+
 		receptkompList = getReceptkompliste(pb);
 		afvejning(receptkompList, pb, operatoer);
 		socket.rm20("Afvejning godkendt.", "", "");
@@ -81,7 +81,7 @@ public class AseController {
 			try {
 				str = socket.rm20("Input operator ID", "ID", "");
 				if(str.contains("C") || str.contains("exit")) return null;
-				
+
 				operatorId = Integer.parseInt(str);
 				operatoer = controller.getOperatoer(operatorId);
 				str = socket.rm20(operatoer.initials(operatoer.getFornavn()+" "+operatoer.getEfternavn()), "", "Confirm.");
@@ -116,7 +116,7 @@ public class AseController {
 				log.warn(e.getMessage());
 				socket.rm20("", "PB findes ikke.", "");
 			}
-			
+
 			try {
 				DTORecept recept = rcontroller.getRecept(produktbatch.getReceptId());
 				str = socket.rm20(recept.getReceptNavn(), "", "Confirm.");
@@ -206,7 +206,7 @@ public class AseController {
 		RaavareBatchController rbController = new RaavareBatchController(new DAORaavareBatch());
 		List<DTORaavareBatch> raavareBatches = null;
 		String str = null;
-		
+
 		for(DTOReceptKomp receptKomp : receptkompList) {
 			try {
 				do {
@@ -236,10 +236,10 @@ public class AseController {
 				socket.disconnect();
 				System.exit(0);
 			}
-			
+
 			lowerbound = receptKomp.getNomNetto()*(1-(receptKomp.getTolerance()/100));
 			upperbound = receptKomp.getNomNetto()*(1+(receptKomp.getTolerance()/100));
-			
+
 			//TODO fix this.
 			do {
 				try {
@@ -253,69 +253,43 @@ public class AseController {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 				socket.rm20("Current RB: "+tempRB.getMaengde()+"kg.", "", receptKomp.getNomNetto()+"kg.");
 				try {
 					weight = socket.readWeight();
-					diffWeight += weight;
-					tempPBK = new DTOProduktBatchKomp(produktbatch.getPbId(), tempRB.getRbId(), tara, tempRB.getMaengde(), operatoer.getOprId());
+					diffWeight = weight-diffWeight;
+					tempRB.setMaengde(tempRB.getMaengde()-diffWeight);
+					tempPBK = new DTOProduktBatchKomp(produktbatch.getPbId(), tempRB.getRaavareId(), tara, diffWeight, operatoer.getOprId());
+					pbkController.createProdBatchKomp(tempPBK);
 				} catch (IOException e) {
 					System.out.println("Fejl i afvejning, kontakt administrator.");
 					System.out.println("System afsluttes.");
 					socket.disconnect();
 					System.exit(0);
+				} catch (DALException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			} while(lowerbound>weight || upperbound<weight);
-			
-			try {
-				raavareBatches = rbController.getRaavareBatchList(raavare.getRaavareId());
-				do {
-					tempRB = raavareBatches.get(index++);
-					if(tempRB.getMaengde()<weight) {
-						weight-=tempRB.getMaengde();
-						tempPBK = new DTOProduktBatchKomp(produktbatch.getPbId(), tempRB.getRbId(), tara, tempRB.getMaengde(), operatoer.getOprId());
-						tempRB.setMaengde(0);
-						try {
-							rbController.updateRaavareBatch(tempRB);
-						} catch (DALException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-					else {
-						tempPBK = new DTOProduktBatchKomp(produktbatch.getPbId(), tempRB.getRbId(), tara, weight, operatoer.getOprId());
-						tempRB.setMaengde(tempRB.getMaengde()-weight);
-						rbController.updateRaavareBatch(tempRB);
-						weight = 0;
-					}
-					pbkController.createProdBatchKomp(tempPBK);
-				} while(weight>0.00001);
-			} catch (DALException e) {
-				socket.rm20("Opstod fejl under afvejning", "", "");
-				socket.rm20("System afsluttes.", "", "");
-				log.error(e.getMessage());
-				socket.disconnect();
-				System.exit(0);
-			}
 
 			socket.rm20("Toem vaegt.", "", "");
 			while(!bruttokontrol(tara)) {
 				socket.rm20("", "Bruttokontrol fejlet.", "");
 			}
-				try {
-					socket.rm20("Bruttokontrol godkendt.", "", "");
-					socket.tarer();
-					index=0;
-				} catch (IOException e) {
-					System.out.println("Fejl under bruttokontrol, kontakt administrator.");
-					System.out.println("System afsluttes.");
-					log.error(e.getMessage());
-					socket.disconnect();
-					System.exit(0);
-				}
+			try {
+				socket.rm20("Bruttokontrol godkendt.", "", "");
+				socket.tarer();
+				index=0;
+			} catch (IOException e) {
+				System.out.println("Fejl under bruttokontrol, kontakt administrator.");
+				System.out.println("System afsluttes.");
+				log.error(e.getMessage());
+				socket.disconnect();
+				System.exit(0);
+			}
 		}
 	}
-	
+
 	private boolean bruttokontrol(double tara) {
 		double afvejning = 0;
 		try {
