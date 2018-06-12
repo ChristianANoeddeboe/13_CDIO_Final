@@ -28,7 +28,6 @@ public class ErrorChecking {
 
     public static String checkStatus(Status input) {
         Object[] obj = input.getDeclaringClass().getEnumConstants();
-        System.out.println(obj);
         for (Object object : obj) {
             if (object.toString().equals(input.toString())) {
                 return null;

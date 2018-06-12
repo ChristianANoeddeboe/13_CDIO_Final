@@ -195,4 +195,8 @@ public class WeightSocket {
 		String[] strArr = str.split(" ");
 		return Double.parseDouble(strArr[6]);
 	}
+	
+	public int skipInput(int skip) throws IOException {
+		return (int)input.skip(skip);
+	}
 }
