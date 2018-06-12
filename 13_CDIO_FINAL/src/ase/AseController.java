@@ -35,21 +35,37 @@ public class AseController {
 		}
 		
 		try {
-			log.info("Flush input stream.");
-			while(socket.skipInput(100)!=0) {}
+			socket.flushInput();
 		} catch (IOException e) {
-			System.out.println("Fejl i opstart, kontakt administrator.");
-			System.out.println("System afsluttes.");
+			log.info("Fejl i opstart, kontakt administrator.");
+			log.info("System afsluttes.");
 			socket.disconnect();
 			System.exit(0);
 		}
 		
 		DTOOperatoer operatoer = validerOperatoer();
+		if(operatoer==null) {
+			log.info("Cancel: operatør.");
+			socket.disconnect();
+			return;
+		}
+		
 		pb = getProduktbatch();
-		opdaterPbStatus(pb);
+		if(pb==null) {
+			log.info("Cancel: Produktbatch.");
+			socket.disconnect();
+			return;
+		}
+		
+		if(!opdaterPbStatus(pb)) {
+			log.info("Cancel: Opdater produktbatch.");
+			socket.disconnect();
+			return;
+		}
+		
 		receptkompList = getReceptkompliste(pb);
 		afvejning(receptkompList, pb, operatoer);
-		socket.rm20("Äfvejning godkendt.", "", "");
+		socket.rm20("Afvejning godkendt.", "", "");
 		socket.disconnect();
 	}
 
@@ -58,13 +74,18 @@ public class AseController {
 		log.info("Hent operatør.");
 		OperatoerController controller = new OperatoerController(new DAOOperatoer());
 		int operatorId;
-		DTOOperatoer operatoer;
+		DTOOperatoer operatoer = null;
 		String str = null;
 
 		while(true) {
 			try {
-				operatorId = Integer.parseInt(socket.rm20("Input operator ID", "ID", ""));
+				str = socket.rm20("Input operator ID", "ID", "");
+				if(str.contains("C") || str.contains("exit")) return null;
+				
+				operatorId = Integer.parseInt(str);
 				operatoer = controller.getOperatoer(operatorId);
+				str = socket.rm20(operatoer.initials(operatoer.getFornavn()+" "+operatoer.getEfternavn()), "", "Confirm.");
+				if(str.contains("C") || str.contains("exit")) return null;
 				break;
 			}catch(NumberFormatException e) {
 				log.warn("Ikke gyldigt ID");
@@ -74,10 +95,6 @@ public class AseController {
 				log.warn(e.getMessage());
 			}
 		}
-
-		do {
-			str = socket.rm20(operatoer.initials(operatoer.getFornavn()+" "+operatoer.getEfternavn()), "", "Confirm.");
-		} while(str.length()!=0);
 		return operatoer;
 	}
 
@@ -90,6 +107,7 @@ public class AseController {
 		while(true){
 			try {
 				String batchID = socket.rm20("Input batch ID","1-9999999","");
+				if(batchID.contains("RM20 C") || batchID.contains("exit")) return null;				
 				produktbatch = pbcontroller.getProduktBatch(Integer.parseInt(batchID));
 			} catch(NumberFormatException e) {
 				log.info("Ikke gyldigt PB ID.");
@@ -98,11 +116,13 @@ public class AseController {
 				log.warn(e.getMessage());
 				socket.rm20("", "PB findes ikke.", "");
 			}
-
+			
 			try {
 				DTORecept recept = rcontroller.getRecept(produktbatch.getReceptId());
 				str = socket.rm20(recept.getReceptNavn(), "", "Confirm.");
-				if(str.length()==0) break;
+				if(str.contains("RM20 C")) continue;
+				if(str.equals("exit")) return null;
+				break;
 			} catch (DALException e) {
 				log.warn(e.getMessage());
 				socket.rm20("", e.getMessage(), "");
@@ -111,11 +131,10 @@ public class AseController {
 		return produktbatch;
 	}
 
-	private void opdaterPbStatus(DTOProduktBatch pb) {
+	private boolean opdaterPbStatus(DTOProduktBatch pb) {
 		if(pb.getStatus()!=Status.Klar) {
 			socket.rm20("Status: ikke klar.", "", "");
-			socket.disconnect();
-			System.exit(0);
+			return false;
 		}
 		else {
 			pb.setStatus(Status.Igang);
@@ -125,10 +144,10 @@ public class AseController {
 			} catch (DALException e) {
 				socket.rm20(e.getMessage(), "", "");
 				log.error(e.getMessage());
-				socket.disconnect();
-				System.exit(0);
+				return false;
 			}
 		}
+		return true;
 	}
 
 	private List<DTOReceptKomp> getReceptkompliste(DTOProduktBatch pb) {
@@ -177,7 +196,7 @@ public class AseController {
 	}
 
 	private void afvejning(List<DTOReceptKomp> receptkompList, DTOProduktBatch produktbatch, DTOOperatoer operatoer) {
-		double lowerbound, upperbound, weight=0, tara = 0;
+		double lowerbound, upperbound, weight=0, tara = 0, diffWeight=0;
 		int index = 0;
 		DTORaavare raavare = null;
 		DTOProduktBatchKomp tempPBK = null;
@@ -186,7 +205,8 @@ public class AseController {
 		RaavareController rController = new RaavareController(new DAORaavare());
 		RaavareBatchController rbController = new RaavareBatchController(new DAORaavareBatch());
 		List<DTORaavareBatch> raavareBatches = null;
-
+		String str = null;
+		
 		for(DTOReceptKomp receptKomp : receptkompList) {
 			try {
 				do {
@@ -220,10 +240,25 @@ public class AseController {
 			lowerbound = receptKomp.getNomNetto()*(1-(receptKomp.getTolerance()/100));
 			upperbound = receptKomp.getNomNetto()*(1+(receptKomp.getTolerance()/100));
 			
+			//TODO fix this.
 			do {
-				socket.rm20("Placer netto: "+receptKomp.getNomNetto()+"kg.", "", "");
+				try {
+					str = socket.rm20("Angiv raavarebatch ID", "", "");
+					if(str.contains("RM20 C") || str.contains("exit")) socket.rm20("What to do...", "", ""); 
+					tempRB = rbController.getRaavareBatch(Integer.parseInt(str));
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (DALException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				socket.rm20("Current RB: "+tempRB.getMaengde()+"kg.", "", "2 kg.");
 				try {
 					weight = socket.readWeight();
+					diffWeight += weight;
+					tempPBK = new DTOProduktBatchKomp(produktbatch.getPbId(), tempRB.getRbId(), tara, tempRB.getMaengde(), operatoer.getOprId());
 				} catch (IOException e) {
 					System.out.println("Fejl i afvejning, kontakt administrator.");
 					System.out.println("System afsluttes.");
