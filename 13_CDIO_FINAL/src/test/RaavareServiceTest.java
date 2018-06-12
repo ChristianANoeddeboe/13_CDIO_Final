@@ -56,7 +56,7 @@ class RaavareServiceTest {
 	@Test
 	void testGetRaavareList() {
 		try {
-			HttpResponse<DTORaavare[]> response = Unirest.get(baseUrl+"all").asObject(DTORaavare[].class);
+			HttpResponse<DTORaavare[]> response = Unirest.get(baseUrl).asObject(DTORaavare[].class);
 			DTORaavare[] responseArray = response.getBody();		
 			List<DTORaavare> sqlResponseArray = controller.getRaavreList();
 			if(responseArray.length == sqlResponseArray.size()) {
@@ -82,7 +82,7 @@ class RaavareServiceTest {
 	@Test
 	void testCreateRaavare() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTORaavare(9999,"Test","TestLeverandoer"))
 			.asJson();
@@ -106,13 +106,13 @@ class RaavareServiceTest {
 	@Test
 	void testUpdateRaavare() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTORaavare(9999,"Test","TestLeverandoer"))
 			.asJson();
 			DTORaavare temp = controller.getRaavare(9999);
 			if(temp.getRaavareId() == 9999 && temp.getRaavareNavn().equals("Test") && temp.getLeverandoer().equals("TestLeverandoer")) {
-				Unirest.put(baseUrl + "update")
+				Unirest.put(baseUrl)
 				.header("Content-Type", "application/json")
 				.body(new DTORaavare(9999,"TestUpdate","TestLUpdate"))
 				.asJson();
@@ -139,7 +139,7 @@ class RaavareServiceTest {
 	@Test
 	void testDeleteRaavare() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTORaavare(9999,"Test","TestLeverandoer"))
 			.asJson();
@@ -172,7 +172,7 @@ class RaavareServiceTest {
 	@Test
 	void testGetRaavareBatchList() {
 		try {
-			HttpResponse<DTORaavareBatch[]> response = Unirest.get(baseUrl+"batch/list/"+1).asObject(DTORaavareBatch[].class);
+			HttpResponse<DTORaavareBatch[]> response = Unirest.get(baseUrl+"batch/"+1).asObject(DTORaavareBatch[].class);
 			DTORaavareBatch[] responseArray = response.getBody();		
 			List<DTORaavareBatch> sqlResponseArray = controllerKomp.getRaavareBatchList(1);
 			if(responseArray.length == sqlResponseArray.size()) {
@@ -198,12 +198,12 @@ class RaavareServiceTest {
 	@Test
 	void testCreateRaavareBatch() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTORaavare(9999,"Test","TestLeverandoer"))
 			.asJson();
 			
-			Unirest.post(baseUrl+"batch/create").
+			Unirest.post(baseUrl+"batch").
 			header("Content-Type", "application/json").
 			body(new DTORaavareBatch(9999, 1, 1000)).asJson();
 		
@@ -228,18 +228,18 @@ class RaavareServiceTest {
 	@Test
 	void testUpdateRaavareBatch() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTORaavare(9999,"Test","TestLeverandoer"))
 			.asJson();
 			
-			Unirest.post(baseUrl+"batch/create").
+			Unirest.post(baseUrl+"batch").
 			header("Content-Type", "application/json").
 			body(new DTORaavareBatch(9999, 1, 1000)).asJson();
 		
 			DTORaavareBatch tempKomp = controllerKomp.getRaavareBatch(9999);
 			if(tempKomp.getMaengde() == 1000 && tempKomp.getRaavareId() == 1) {
-				Unirest.put(baseUrl + "batch/update")
+				Unirest.put(baseUrl + "batch")
 				.header("Content-Type", "application/json")
 				.body(new DTORaavareBatch(9999, 1, 100))
 				.asJson();
@@ -268,12 +268,12 @@ class RaavareServiceTest {
 	@Test
 	void testDeleteRaavareBatch() {
 		try {
-			Unirest.post(baseUrl + "create")
+			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json").
 			body(new DTORaavare(9999,"Test","TestLeverandoer"))
 			.asJson();
 			
-			Unirest.post(baseUrl+"batch/create").
+			Unirest.post(baseUrl+"batch").
 			header("Content-Type", "application/json").
 			body(new DTORaavareBatch(9999, 1, 1000)).asJson();
 			
