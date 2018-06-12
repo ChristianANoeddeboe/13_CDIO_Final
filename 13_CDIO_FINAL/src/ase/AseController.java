@@ -254,7 +254,7 @@ public class AseController {
 					e1.printStackTrace();
 				}
 				
-				socket.rm20("Current RB: "+tempRB.getMaengde()+"kg.", "", "2 kg.");
+				socket.rm20("Current RB: "+tempRB.getMaengde()+"kg.", "", receptKomp.getNomNetto()+"kg.");
 				try {
 					weight = socket.readWeight();
 					diffWeight += weight;
