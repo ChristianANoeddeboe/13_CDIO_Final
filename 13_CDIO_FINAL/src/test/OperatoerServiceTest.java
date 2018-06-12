@@ -25,7 +25,7 @@ import dto.Roller;
 import exception.DALException;
 
 public class OperatoerServiceTest {
-	static OperatoerController controller = new OperatoerController(new DAOOperatoer());
+	OperatoerController controller = OperatoerController.getInstance();
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/operatoer/";
 
 	//Testdata

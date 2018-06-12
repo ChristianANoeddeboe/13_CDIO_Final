@@ -8,11 +8,23 @@ import lombok.extern.java.Log;
 
 import java.util.List;
 
+import dao.DAOProduktBatchKomp;
+import dao.DAORaavareBatch;
+
 @Log
 @AllArgsConstructor
 public class RaavareBatchController {
-    private IDAORaavareBatch dao;
-
+    private static IDAORaavareBatch dao;
+    private static RaavareBatchController instance;
+	
+	public static RaavareBatchController getInstance() {
+		if(instance == null) {
+			dao = new DAORaavareBatch();
+			instance =  new RaavareBatchController();
+			return instance;
+		}
+		return instance;
+	}
     public DTORaavareBatch getRaavareBatch(int rbID) throws DALException {
         return dao.getRaavareBatch(rbID);
     }

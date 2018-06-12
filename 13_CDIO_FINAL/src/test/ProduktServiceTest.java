@@ -26,8 +26,8 @@ import exception.DALException;
 
 class ProduktServiceTest {
 
-	static ProduktBatchController controller = new ProduktBatchController(new DAOProduktBatch());
-	static ProduktBatchKompController controllerKomp = new ProduktBatchKompController(new DAOProduktBatchKomp());
+	ProduktBatchController controller = ProduktBatchController.getInstance();
+	ProduktBatchKompController controllerKomp = ProduktBatchKompController.getInstance();
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/produktbatch/";
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {

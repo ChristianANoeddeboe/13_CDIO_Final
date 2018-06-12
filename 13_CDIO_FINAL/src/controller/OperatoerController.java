@@ -5,6 +5,7 @@ import lombok.extern.java.Log;
 
 import java.util.List;
 
+import dao.DAOOperatoer;
 import dto.DTOOperatoer;
 import exception.DALException;
 import interfaces.IDAOOperatoer;
@@ -12,7 +13,18 @@ import interfaces.IDAOOperatoer;
 @Log
 @AllArgsConstructor
 public class OperatoerController {
-	private IDAOOperatoer dao;
+	private static IDAOOperatoer dao;
+	private static OperatoerController instance;
+	
+	public static OperatoerController getInstance() {
+		if(instance == null) {
+			dao = new DAOOperatoer();
+			instance =  new OperatoerController();
+			return instance;
+		}
+		return instance;
+	}
+	
 	
 	public DTOOperatoer getOperatoer(int oprId) throws DALException {
 		return dao.getOperatoer(oprId);

@@ -8,11 +8,23 @@ import lombok.extern.java.Log;
 
 import java.util.List;
 
+import dao.DAORaavare;
+import dao.DAORecept;
+
 @Log
 @AllArgsConstructor
 public class ReceptController {
-    private IDAORecept dao;
+    private static IDAORecept dao;
+    private static ReceptController instance;
 
+	public static ReceptController getInstance() {
+		if(instance == null) {
+			dao = new DAORecept();
+			instance =  new ReceptController();
+			return instance;
+		}
+		return instance;
+	}
     public DTORecept getRecept(int receptID) throws DALException {
         return dao.getRecept(receptID);
     }

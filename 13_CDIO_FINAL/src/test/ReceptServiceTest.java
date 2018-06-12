@@ -23,8 +23,8 @@ import dto.DTOReceptKomp;
 import exception.DALException;
 
 class ReceptServiceTest {
-	static ReceptController controller = new ReceptController(new DAORecept());
-	static ReceptKompController controllerKomp = new ReceptKompController(new DAOReceptKomp());
+	ReceptController controller = ReceptController.getInstance();
+	ReceptKompController controllerKomp = ReceptKompController.getInstance();
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/recept/";
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {

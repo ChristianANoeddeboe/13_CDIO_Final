@@ -3,11 +3,11 @@ package controller;
 import dto.Status;
 
 public class ErrorChecking {
-    final static String ERROR1 = "1 Teksten er for lang.";
-    final static String ERROR2 = "2 Invalid data";
-    final static String ERROR3 = "3 Nummeret er uden for domænet.";
-    final static String ERROR4 = "4 Status invalid";
-    final static String ERROR5 = "5 Nummeret er for stort eller småt.";
+    private final static String ERROR1 = "1 Teksten er for lang.";
+    private final static String ERROR2 = "2 Invalid data";
+    private final static String ERROR3 = "3 Nummeret er uden for domænet.";
+    private final static String ERROR4 = "4 Status invalid";
+    private final static String ERROR5 = "5 Nummeret er for stort eller småt.";
 
 
     public static String checkStrSize(String str) {
