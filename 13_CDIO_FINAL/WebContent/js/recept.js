@@ -1,7 +1,8 @@
+var id;
 $("#receptAdminTable").hide();
 $(document).ready(function() {
 	$(".loader").show();
-	var id,id2;
+	var id2;
 	var value;
 	var rolle;
     const enterkey = 13;
@@ -129,6 +130,11 @@ $(document).ready(function() {
 	$(".btn-secondaryDelete").click(function(){
 		$('#deleteModal').modal('hide');
 	});
+	
+	$('#addKompModal').on('shown.bs.modal', function(){
+		$("#inputReceptID")["0"].value = id;
+	});
+	
 	//Recept komp stuff starts here
 	function loadReceptKomps(){
 		var res = id.split("_");

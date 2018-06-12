@@ -1,6 +1,7 @@
+var id;
 $("#produktAdminTable").hide();
 $(document).ready(function () {
-	var id, id2;
+	var id2;
 	var value;
 	var statuss;
 	const enterkey = 13;
@@ -33,7 +34,6 @@ $(document).ready(function () {
                         $(".vis").click(function (e) {
                             id = e.target.id;
                             $('#showMoreModal').modal('show');
-                            e.preventDefault();
                         });
                         $(".update").click(function(e){
                             id = e.target.id;
@@ -173,6 +173,10 @@ $(document).ready(function () {
 
 	$('#showMoreModal').on('shown.bs.modal', function () {
 		loadProduktBatchKomps();
+	});
+	
+	$('#addKompModal').on('shown.bs.modal', function(){
+		$("#inputPBID")["0"].value = id;
 	});
 
 
