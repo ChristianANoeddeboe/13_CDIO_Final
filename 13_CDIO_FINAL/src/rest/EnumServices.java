@@ -1,21 +1,16 @@
 package rest;
 
-import connector.MySQLConnector;
 import dto.Aktiv;
-import dto.DTOProduktBatch;
 import dto.Roller;
 import dto.Status;
-import exception.DALException;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.sql.SQLException;
 
-@Path("other")
+@Path("enum")
 @Produces(MediaType.APPLICATION_JSON)
 
-public class OtherServices {
+public class EnumServices {
 
 
     @GET

@@ -1,7 +1,6 @@
 package rest;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -14,8 +13,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-
 import connector.MySQLConnector;
 import controller.ReceptController;
 import controller.ReceptKompController;
@@ -34,7 +31,6 @@ public class ReceptService implements IReceptService {
 	static ReceptKompController kompController = new ReceptKompController(new DAOReceptKomp());
 	
 	@GET
-	@Path("all")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response getReceptList() throws DALException {
@@ -64,7 +60,6 @@ public class ReceptService implements IReceptService {
 	}
 	
 	@POST
-	@Path("create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response createRecept(DTORecept recept) throws DALException {		
@@ -93,7 +88,6 @@ public class ReceptService implements IReceptService {
 	}
 	
 	@PUT
-	@Path("update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public Response updateRecept(DTORecept recept) throws DALException {		
@@ -149,38 +143,10 @@ public class ReceptService implements IReceptService {
 		return Response.status(Response.Status.OK).build();
 	}
 	
-	@GET
-	@Path("komponent/{receptId}/{raavareId}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getReceptKomp(@PathParam("receptId") int receptId,@PathParam("raavareId") int raavareId) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		DTOReceptKomp result = null;
-		try {
-			result = kompController.getReceptKomp(receptId, raavareId);
-		} catch(DALException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
-		}
-		return Response.ok(result, MediaType.APPLICATION_JSON).build();
-	}
-	
+
 	
 	@GET
-	@Path("komponent/list/{receptId}")
+	@Path("komponent/{receptId}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
@@ -210,38 +176,8 @@ public class ReceptService implements IReceptService {
         return Response.ok(result, MediaType.APPLICATION_JSON).build();
 	}
 
-	@GET
-	@Path("komponent/list/all")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Override
-	public Response getReceptKompList() throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
-		List<DTOReceptKomp> result = null;
-		try {
-			result = kompController.getReceptKompList();
-		} catch(DALException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
-		}
-        return Response.ok(result, MediaType.APPLICATION_JSON).build();
-	}
-
 	@POST
-	@Path("komponent/create")
+	@Path("komponent")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createReceptKomp(DTOReceptKomp receptkomponent) throws DALException {
 		try {
@@ -269,7 +205,7 @@ public class ReceptService implements IReceptService {
 	}
 
 	@PUT
-	@Path("komponent/update")
+	@Path("komponent")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateReceptKomp(DTOReceptKomp receptkomponent) throws DALException {
 		try {

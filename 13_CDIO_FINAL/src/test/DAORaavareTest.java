@@ -5,7 +5,6 @@ import dao.DAORaavare;
 import exception.DALException;
 import dto.DTORaavare;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
@@ -75,9 +74,7 @@ class DAORaavareTest {
         testRaavareDTO = new DTORaavare("Smør", "Arla");
         DTORaavare compare;
         int expectedID;
-        List<DTORaavare> testList;
         try {
-            testList = testRaavareDAO.getRaavareList();
             expectedID = 0;
             testRaavareDAO.createRaavare(testRaavareDTO);
             compare = testRaavareDAO.getRaavare(expectedID);

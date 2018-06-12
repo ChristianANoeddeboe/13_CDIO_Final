@@ -28,7 +28,6 @@ public class OperatoerService implements IOperatoerService {
 	
 	static OperatoerController controller = new OperatoerController(new DAOOperatoer());
 	@GET
-	@Path("all")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getOperatoerList() throws DALException {
@@ -59,7 +58,6 @@ public class OperatoerService implements IOperatoerService {
 	}
 
 	@POST
-	@Path("create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createOperatoer(DTOOperatoer opr) throws DALException {
 		try {
@@ -89,7 +87,6 @@ public class OperatoerService implements IOperatoerService {
 
 	@Override
 	@PUT
-	@Path("update")
 	public Response updateOperatoer(DTOOperatoer opr) throws DALException {
 		try {
 			new MySQLConnector();

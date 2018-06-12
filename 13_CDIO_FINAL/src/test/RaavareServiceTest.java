@@ -21,8 +21,6 @@ import dao.DAORaavare;
 import dao.DAORaavareBatch;
 import dto.DTORaavare;
 import dto.DTORaavareBatch;
-import dto.DTORecept;
-import dto.DTOReceptKomp;
 import exception.DALException;
 
 class RaavareServiceTest {

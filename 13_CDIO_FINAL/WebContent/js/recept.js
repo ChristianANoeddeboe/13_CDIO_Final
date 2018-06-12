@@ -4,10 +4,10 @@ $(document).ready(function() {
 	var id,id2;
 	var value;
 	var rolle;
-	const enterkey = 13;
+    const enterkey = 13;
 	function loadRecepts(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/all', //specificerer endpointet
+			url : 'rest/recept', //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				clearReceptTable();
@@ -60,7 +60,7 @@ $(document).ready(function() {
 
 	$(".btn-primaryAdd").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/create', //specificerer endpointet
+			url : 'rest/recept', //specificerer endpointet
 			data : JSON.stringify({
 				receptId : $("#inputID")["0"].value,
 				receptNavn : $("#inputName")["0"].value
@@ -84,7 +84,7 @@ $(document).ready(function() {
 	$(".btn-primaryUpdate").click(function(){	
 		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/update', //specificerer endpointet
+			url : 'rest/recept', //specificerer endpointet
 			data : JSON.stringify({
 				receptId : res[0],
 				receptNavn : $("#"+id[0]+"_Name")["0"].value
@@ -133,7 +133,7 @@ $(document).ready(function() {
 	function loadReceptKomps(){
 		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/komponent/list/'+res[0], //specificerer endpointet
+			url : 'rest/recept/komponent/'+res[0], //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres når data er hentet
 				clearReceptKompTable();
@@ -164,7 +164,7 @@ $(document).ready(function() {
 
 	$(".btn-primaryAddKomp").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/komponent/create', //specificerer endpointet
+			url : 'rest/recept/komponent', //specificerer endpointet
 			data : JSON.stringify({
 				receptId : $("#inputReceptID")["0"].value,
 				raavareId : $("#inputRaavareID")["0"].value,
@@ -207,9 +207,9 @@ $(document).ready(function() {
 	});
 	
 	$(".btn-primaryUpdateKomp").click(function(){
-		var res = id.split("_")
+		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/recept/komponent/update', //specificerer endpointet
+			url : 'rest/recept/komponent', //specificerer endpointet
 			data : JSON.stringify({
 				receptId : res[0],
 				raavareId : res[1],
@@ -236,8 +236,8 @@ $(document).ready(function() {
 	function generateReceptHTML(recept) {
 		return 	'<tr><td scope ="row">' + recept.receptId + '</td>' +
 		'<td><input type="text" id = "'+recept.receptId +"_Name"+'" class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
-		'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary vis">▼</button>'+'</td>' +
-        '<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary update"><i class="fas fa-sync" id = "'+recept.receptId+'"></i></button>'+'</td>' +
+		'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary vis"><i class="fas fa-folder-open" id = "'+recept.receptId+'"></i></button>'+'</td>' +
+        '<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+recept.receptId+'"></i></button>'+'</td>' +
 		'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+recept.receptId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
@@ -247,7 +247,7 @@ $(document).ready(function() {
 		'<td scope = "row">'+receptKomp.raavareId + '</td>' +
 		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_netto"+'" class="form-control-plaintext" value="' + receptKomp.nomNetto + '"></td></td>' +
 		'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_tolerance"+'" class="form-control-plaintext" value="' + receptKomp.tolerance + '"></td></td>' +
-        '<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary updateKomp"><i class="fas fa-sync" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
+        '<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary updateKomp"><i class="fas fa-save" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
 		'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}

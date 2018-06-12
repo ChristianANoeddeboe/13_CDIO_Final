@@ -1,11 +1,13 @@
 package ase;
 
-import exception.DALException;
+import connector.MySQLConnector;
 
-public class Main {
-	public static void main(String[] args) {
-		WeightSocket weightSocket = new WeightSocket("169.254.2.2");
-		Controller controller = new Controller(weightSocket);
-		controller.run();
-	}   
+class Main{
+	public static void main (String[] args) {
+//		AseController ase = new AseController("169.254.2.2", 8000);
+		AseController ase = new AseController("62.79.16.17", 8000);
+		while(true){
+            ase.run();
+		}
+	}
 }

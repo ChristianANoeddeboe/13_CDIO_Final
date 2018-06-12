@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.sql.SQLException;
 import java.util.List;
 
-import lombok.extern.java.Log;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -74,7 +73,7 @@ class DAOProduktBatchKomponentTest {
     void testGetProduktBatchKompInvalid() {
         boolean valid = true;
         try {
-            DTOProduktBatchKomp prodBatchKompReturn = prodBatchKomp.getProduktBatchKomp(9999, 9999);
+            prodBatchKomp.getProduktBatchKomp(9999, 9999);
         } catch (DALException e) {
             valid = false;
         } catch (Exception e) {
@@ -105,7 +104,6 @@ class DAOProduktBatchKomponentTest {
 
     @Test
     void testCreateProduktBatchKomp() {
-        int lastid;
         try {
             prodBatchKomp.createProduktBatchKomp(new DTOProduktBatchKomp(1, 6, 1.0, 1.0, 1));
         } catch (Exception e) {

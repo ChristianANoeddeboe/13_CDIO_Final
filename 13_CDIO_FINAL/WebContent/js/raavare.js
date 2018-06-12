@@ -6,7 +6,7 @@ $(document).ready(function() {
 	$(".loader").show();
 	function loadProdukt(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/raavare/all', //specificerer endpointet
+			url : 'rest/raavare', //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres naar data er hentet
 				clearRaavareTable();
@@ -34,7 +34,8 @@ $(document).ready(function() {
 				$.notify(data.responseText, "error");
 			}
 		});
-	};
+	}
+
 	loadProdukt();
 
     $("#menuLoader").load("menu.html", null, function () {
@@ -56,7 +57,7 @@ $(document).ready(function() {
 
 	$(".btn-primaryAdd").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/raavare/create', //specificerer endpointet
+			url : 'rest/raavare', //specificerer endpointet
 			data : JSON.stringify({
 				raavareId : $("#inputRaavareID")["0"].value,
 				raavareNavn : $("#inputRaavareNavn")["0"].value,
@@ -82,7 +83,7 @@ $(document).ready(function() {
 		var actualId = id.split("_");
 		
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/raavare/update', //specificerer endpointet
+			url : 'rest/raavare', //specificerer endpointet
 			data : JSON.stringify({
 				raavareId : actualId[0],
 				raavareNavn : $("#"+actualId[0]+"_navn")["0"].value,
@@ -101,8 +102,7 @@ $(document).ready(function() {
 				loadProdukt();
 			}
 		});
-
-	})
+	});
 	
 	$(".btn-primaryDelete").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
@@ -131,7 +131,7 @@ $(document).ready(function() {
 	function loadRaavareBatch(){
 		var res = id.split("_");
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/raavare/batch/list/'+res[0], //specificerer endpointet
+			url : 'rest/raavare/batch/'+res[0], //specificerer endpointet
 			type : 'GET', //Typen af HTTP requestet (GET er default)
 			success : function(data) {//Funktion der skal udføres naar data er hentet
 				clearRaavareBatchTable();
@@ -154,17 +154,15 @@ $(document).ready(function() {
 			}
 		});
 	
-	};
+	}
 	
 	$('#showMoreModal').on('shown.bs.modal', function () {
 		loadRaavareBatch();
 	});
-	
-
 
 	$(".btn-primaryAddKomp").click(function(){
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/raavare/batch/create', //specificerer endpointet
+			url : 'rest/raavare/batch', //specificerer endpointet
 			data : JSON.stringify({
 				rbId : $("#inputRBID")["0"].value,
 				raavareId : $("#inputRaavareID")["0"].value,
@@ -202,13 +200,12 @@ $(document).ready(function() {
 				loadRaavareBatch();
 			}
 		});
-
 	});
 	
 	$(".btn-primaryUpdateKomp").click(function(){
 		var res = id.split("_")
 		$.ajax({ //Indleder et asynkront ajax kald
-			url : 'rest/raavare/batch/update', //specificerer endpointet
+			url : 'rest/raavare/batch', //specificerer endpointet
 			data : JSON.stringify({
 				rbId : res[0],
 				raavareId : res[1],
@@ -227,16 +224,15 @@ $(document).ready(function() {
 				loadRaavareBatch();
 			}
 		});
-
-	})
+	});
 	
 	//Convenience function for generating html
 	function generateRaavareHTML(raavare) {
 		return 	'<tr><td scope ="row">' + raavare.raavareId + '</td>' +
 		'<td><input type="text" id = "'+raavare.raavareId +"_navn"+'" class="form-control-plaintext" value="' + raavare.raavareNavn + '"></td></td>' +
 		'<td><input type="text" id = "'+raavare.raavareId +"_leverandør"+'" class="form-control-plaintext" value="' + raavare.leverandoer + '"></td></td>' +
-		'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary vis">▼</button>'+'</td>' +
-        '<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary update"><i class="fas fa-sync" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
+		'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary vis"><i class="fas fa-folder-open" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
+        '<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
 		'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
@@ -244,33 +240,31 @@ $(document).ready(function() {
 	function generateRaavareBatchKompHTML(raavareBatch) {
 		return 	'<tr><td scope ="row">' + raavareBatch.rbId + '</td>' +
 		'<td scope = "row">'+raavareBatch.raavareId + '</td>' +
-		'<td><input type="text" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+"_mængde"+'"class="form-control-plaintext" value="' + raavareBatch.maengde + '"></td></td>' +
-        '<td><button type="button" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"class="btn btn-primary updateKomp"><i class="fas fa-sync" id = "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"></i></button>'+'</td>' +
-		'<td><button type="button" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"></i></button>'+'</td>' +
+		'<td><input type="text" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+"_mængde"+'" class="form-control-plaintext" value="' + raavareBatch.maengde + '"></td></td>' +
+        '<td><button type="button" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'" class="btn btn-primary updateKomp"><i class="fas fa-save" id = "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"></i></button>'+'</td>' +
+		'<td><button type="button" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id =  "'+raavareBatch.rbId+"_"+raavareBatch.raavareId+'"></i></button>'+'</td>' +
 		'</td></tr>';
 	}
 
 	function clearRaavareTable(){
 		$("#raavareAdminTable tbody").empty();
-	};
+	}
 
 	function clearRaavareBatchTable(){
 		$("#raavareBatchTable tbody").empty();
-	};
+	}
 
 
 	$(document).keypress(function(e) {
-		if(e.which == enterkey) {
+		if(e.which === enterkey) {
 			id = e.target.id;
 			value = e.target.value;
 			var res = id.split("_");
-			if(res.length == 2){
+			if(res.length === 2){
 				$('#updateModal').modal('show');
 			}else{
 				$('#updateKompModal').modal('show');
 			}
 		}
-
 	});
-
 });

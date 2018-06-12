@@ -29,8 +29,7 @@ html, body {
 }
 
 input:focus {
-    border-bottom: 1px solid;
-    border-bottom-color: #c51137;
+    border-bottom: 1px solid #c51137;
     color: #c51137;
     -moz-transition: 0.5s;
     -o-transition: 0.5s;

@@ -8,35 +8,35 @@ $(document).ready(function() {
     $(".loader").show();
     function loadOperatoer(){
         loadStatus();
-        $.ajax({ //Indleder et asynkront ajax kald
-            url : 'rest/operatoer/all', //specificerer endpointet
-            type : 'GET', //Typen af HTTP requestet (GET er default)
-            success : function(data) {//Funktion der skal udføres når data er hentet
-                clearOperatoerTable();
-                $.each(data,function(i,element){
-                    $('#operatoerAdminTable').children().append(generateOperatoerHTML(data[i]));
-                });
-                $(".update").click(function(e){
-                    id = e.target.id;
-                    $('#updateModal').modal('show');
-                });
-                $(".loader").hide();
-                $("#operatoerAdminTable").show();
-            },
-            error : function(data){
-                $.notify(data.responseText, "error");
-            }
-        });
     }
 
     loadOperatoer();
 
     function loadStatus() {
         $.ajax({ //Indleder et asynkront ajax kald
-            url: 'rest/other/status_operatoer', //specificerer endpointet
+            url: 'rest/enum/status_operatoer', //specificerer endpointet
             type: 'GET', //Typen af HTTP requestet (GET er default)
             success: function (data) {//Funktion der skal udføres når data er hentet
                 statuss = data;
+                $.ajax({ //Indleder et asynkront ajax kald
+                    url : 'rest/operatoer', //specificerer endpointet
+                    type : 'GET', //Typen af HTTP requestet (GET er default)
+                    success : function(data) {//Funktion der skal udføres når data er hentet
+                        clearOperatoerTable();
+                        $.each(data,function(i,element){
+                            $('#operatoerAdminTable').children().append(generateOperatoerHTML(data[i]));
+                        });
+                        $(".update").click(function(e){
+                            id = e.target.id;
+                            $('#updateModal').modal('show');
+                        });
+                        $(".loader").hide();
+                        $("#operatoerAdminTable").show();
+                    },
+                    error : function(data){
+                        $.notify(data.responseText, "error");
+                    }
+                });
             },
             error: function (data) {
                 $.notify(data.responseText, "error");
@@ -60,10 +60,9 @@ $(document).ready(function() {
         }
     });
 
-
     $(".btn-primaryAdd").click(function(){
         $.ajax({ //Indleder et asynkront ajax kald
-            url : 'rest/operatoer/create', //specificerer endpointet
+            url : 'rest/operatoer', //specificerer endpointet
             data : JSON.stringify({
                 oprId : $("#inputID")["0"].value,
                 fornavn : $("#inputFornavn")["0"].value,
@@ -90,7 +89,7 @@ $(document).ready(function() {
     $(".btn-primaryUpdate").click(function(){
     	var res = id.split("_");
         $.ajax({ //Indleder et asynkront ajax kald
-            url : 'rest/operatoer/update', //specificerer endpointet
+            url : 'rest/operatoer', //specificerer endpointet
             data : JSON.stringify({
                 oprId : res[0],
                 fornavn : $(("#"+res[0]+"_fornavn"))["0"].value,
@@ -120,7 +119,7 @@ $(document).ready(function() {
         var status = new Array();
         status.push(operatoer.aktiv);
 
-        if(statuss[0] == status[0]){
+        if(statuss[0] === status[0]){
             status[1] = statuss[1];
         }else{
             status[1] = statuss[0];
@@ -138,8 +137,7 @@ $(document).ready(function() {
             '<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'" class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
             '<td scope = "row"><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></td></td>' +
             '<td><select class="" name="' + operatoer.oprId + '_aktiv" id="' + operatoer.oprId + '_status"><option value="' + status[0] + '">' + status[0]  + '</option><option value="' + status[1] + '">' + status[1] + '</option>></select></td></td>' +
-            '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update"><i class="fas fa-sync" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
-            //'<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
+            '<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
             '</td></tr>';
     }
     
@@ -147,13 +145,10 @@ $(document).ready(function() {
         $("#operatoerAdminTable tbody").empty();
     }
     
-    
     $(document).keypress(function(e) {
-		if(e.which == enterkey) {
+		if(e.which === enterkey) {
 			id = e.target.id;
 			$('#updateModal').modal('show');
 		}
-
 	});
-    
 });

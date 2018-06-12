@@ -4,9 +4,7 @@ import connector.MySQLConnector;
 import exception.DALException;
 import interfaces.IDAORaavareBatch;
 import dto.DTORaavareBatch;
-import logging.LogHandler;
 import lombok.NoArgsConstructor;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.ResultSet;

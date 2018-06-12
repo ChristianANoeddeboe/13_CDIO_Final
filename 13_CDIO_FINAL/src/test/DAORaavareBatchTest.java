@@ -4,14 +4,10 @@ import connector.MySQLConnector;
 import dao.DAORaavareBatch;
 import exception.DALException;
 import dto.DTORaavareBatch;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DAORaavareBatchTest {
@@ -78,7 +74,6 @@ public class DAORaavareBatchTest {
         testRaavareBatchDTO = new DTORaavareBatch(1, 10.5);
         DTORaavareBatch compare;
         int expectedID;
-        List<DTORaavareBatch> testList;
         try {
             testRaavareBatchDAO.createRaavareBatch(testRaavareBatchDTO);
             expectedID = 0;
@@ -93,7 +88,7 @@ public class DAORaavareBatchTest {
             fail("Could not create new Raavare Batch");
         }finally {
             try {
-                testList = testRaavareBatchDAO.getRaavareBatchList();
+            	testRaavareBatchDAO.getRaavareBatchList();
                 MySQLConnector.doQuery("CALL deleteRaavareBatch('" + 0 + "');");
             } catch (Exception e) {
                 e.printStackTrace();
