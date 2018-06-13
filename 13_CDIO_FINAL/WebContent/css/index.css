@@ -24,6 +24,10 @@ html, body {
     width: 70%;
 }
 
+form {
+    font-family: 'Questrial', sans-serif!important;
+}
+
 .btn {
     margin-top: 1em;
 }

@@ -1,0 +1,17 @@
+html, body {
+    height: 100%;
+    font-family: 'Questrial', sans-serif;
+}
+
+.masthead {
+    height: 100vh;
+    color: #5c5c5c;
+}
+
+.text-muted {
+    padding: 12px 8px 8px 8px;
+    background-color: #c51137!important;
+    color: white!important;
+    border-radius: 5px;
+}
+
