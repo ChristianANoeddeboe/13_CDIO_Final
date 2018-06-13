@@ -16,8 +16,6 @@ import javax.ws.rs.core.Response;
 import connector.MySQLConnector;
 import controller.ReceptController;
 import controller.ReceptKompController;
-import dao.DAORecept;
-import dao.DAOReceptKomp;
 import dto.DTORecept;
 import dto.DTOReceptKomp;
 import exception.DALException;

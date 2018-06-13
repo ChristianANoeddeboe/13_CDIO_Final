@@ -17,8 +17,6 @@ import javax.ws.rs.core.Response;
 import connector.MySQLConnector;
 import controller.ProduktBatchController;
 import controller.ProduktBatchKompController;
-import dao.DAOProduktBatchKomp;
-import dao.DAOProduktBatch;
 import dto.DTOProduktBatch;
 import dto.DTOProduktBatchKomp;
 import exception.DALException;
