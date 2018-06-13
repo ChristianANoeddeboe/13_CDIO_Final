@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import dto.Roller;
@@ -10,30 +9,26 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
+import controller.OperatoerController;
 import dao.DAOOperatoer;
 import dto.DTOOperatoer;
 import dto.Aktiv;
 import exception.DALException;
 
 class DAOOperatoerTest {
-	static DAOOperatoer operatoer;
+	static OperatoerController testOperatoerController;
 	static DTOOperatoer initialOperatoer;
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		try { new MySQLConnector(); }
-		catch (InstantiationException e) { e.printStackTrace(); }
-		catch (IllegalAccessException e) { e.printStackTrace(); }
-		catch (ClassNotFoundException e) { e.printStackTrace(); }
-		catch (SQLException e) { e.printStackTrace(); }
-		operatoer = new DAOOperatoer();
-		initialOperatoer = operatoer.getOperatoer(1);
+		testOperatoerController = OperatoerController.getInstance();
+		initialOperatoer = testOperatoerController.getOperatoer(1);
 	}
 
 	@Test
 	void testGetOperatoerValid() {
 		boolean valid = true;
 		try {
-			DTOOperatoer operatoerReturn = operatoer.getOperatoer(1);
+			DTOOperatoer operatoerReturn = testOperatoerController.getOperatoer(1);
 			if(!operatoerReturn.getAktiv().equals(initialOperatoer.getAktiv())) { valid = false;}
 			if(!operatoerReturn.getCpr().equals(initialOperatoer.getCpr())) {valid = false;}
 			if(!operatoerReturn.getEfternavn().equals(initialOperatoer.getEfternavn())) {valid = false;}
@@ -54,7 +49,7 @@ class DAOOperatoerTest {
 	void testGetOperatoerInvalid() {
 		boolean valid = true;
 		try {
-			DTOOperatoer operatoerReturn = operatoer.getOperatoer(Integer.MAX_VALUE);
+			DTOOperatoer operatoerReturn = testOperatoerController.getOperatoer(Integer.MAX_VALUE);
 			if(!operatoerReturn.getAktiv().equals(initialOperatoer.getAktiv())) { valid = false;}
 			if(!operatoerReturn.getCpr().equals(initialOperatoer.getCpr())) {valid = false;}
 			if(!operatoerReturn.getEfternavn().equals(initialOperatoer.getEfternavn())) {valid = false;}
@@ -73,7 +68,7 @@ class DAOOperatoerTest {
 	@Test
 	void testCreateOperatoer() {
 		try {
-			operatoer.createOperatoer(new DTOOperatoer("test", "testEfternavn", "1234561210", Roller.Administrator, Aktiv.aktiv));
+			testOperatoerController.createOperatoer(new DTOOperatoer(999,"test", "testEfternavn", "1234561210", Roller.Administrator, Aktiv.aktiv));
 		}catch (Exception e) {
 			fail("Something went wrong creating an operator");
 		}finally {
@@ -89,7 +84,7 @@ class DAOOperatoerTest {
 	void testUpdateOperatoerValid() {
 		boolean valid = true;
 		try {
-			operatoer.updateOperatoer(new DTOOperatoer(1,"testUpdated", "testEfternavn", "7070707007", Roller.Administrator, Aktiv.aktiv));
+			testOperatoerController.updateOperatoer(new DTOOperatoer(1,"testUpdated", "testEfternavn", "7070707007", Roller.Administrator, Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 			fail("Invalid parameters");
@@ -104,7 +99,7 @@ class DAOOperatoerTest {
 	void testUpdateOperatoerInvalid() {
 		boolean valid = true;
 		try {
-			operatoer.updateOperatoer(new DTOOperatoer(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", Roller.Administrator, Aktiv.aktiv));
+			testOperatoerController.updateOperatoer(new DTOOperatoer(Integer.MAX_VALUE,"testUpdated", "testEfternavn", "123456-1234", Roller.Administrator, Aktiv.aktiv));
 		}catch (DALException e) {
 			valid = false;
 		}catch (Exception e) {
@@ -117,10 +112,19 @@ class DAOOperatoerTest {
 	@Test
 	void testGetOperatoerList() {
 		try {
-			List<DTOOperatoer> list = operatoer.getOperatoerList();
+			List<DTOOperatoer> list = testOperatoerController.getOperatoerList();
 			assertTrue(list.size() >0);
 		} catch (DALException e) {
 			fail("Something went wrong fecthing operatoer list in the test");
+		} catch (InstantiationException e) {
+			fail("InstantationException");
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			fail("InstantationException");
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			fail("InstantationException");
+			e.printStackTrace();
 		}
 	}
 

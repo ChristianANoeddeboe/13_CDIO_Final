@@ -11,11 +11,11 @@ import exception.DALException;
 import interfaces.IDAOOperatoer;
 
 @Log
-@AllArgsConstructor
 public class OperatoerController {
 	private static IDAOOperatoer dao;
 	private static OperatoerController instance;
-	
+	private OperatoerController() {
+	}
 	public static OperatoerController getInstance() {
 		if(instance == null) {
 			dao = new DAOOperatoer();

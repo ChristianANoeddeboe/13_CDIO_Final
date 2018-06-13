@@ -12,11 +12,11 @@ import dao.DAOProduktBatchKomp;
 import dao.DAORaavareBatch;
 
 @Log
-@AllArgsConstructor
 public class RaavareBatchController {
     private static IDAORaavareBatch dao;
     private static RaavareBatchController instance;
-	
+	private RaavareBatchController() {
+	}
 	public static RaavareBatchController getInstance() {
 		if(instance == null) {
 			dao = new DAORaavareBatch();
@@ -33,7 +33,7 @@ public class RaavareBatchController {
         return dao.getRaavareBatchList();
     }
 
-    public void createRaavsareBatch(DTORaavareBatch raavareBatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
+    public void createRaavareBatch(DTORaavareBatch raavareBatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
         validateData(raavareBatch);
         dao.createRaavareBatch(raavareBatch);
     }

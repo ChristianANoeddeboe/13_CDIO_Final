@@ -38,9 +38,6 @@ public class OperatoerServiceTest {
 
 	@BeforeAll
 	static void setUp() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-
-		new MySQLConnector();
-
 		Unirest.setObjectMapper(new ObjectMapper() {
 			private com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper
 			= new com.fasterxml.jackson.databind.ObjectMapper();
@@ -104,6 +101,15 @@ public class OperatoerServiceTest {
 			e.printStackTrace();
 			fail("Database fejl: DALException");
 
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -145,6 +151,15 @@ public class OperatoerServiceTest {
 		} catch (DALException e) {
 			e.printStackTrace();
 			fail("DALExeption");
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -175,6 +190,15 @@ public class OperatoerServiceTest {
 		} catch (DALException e) {
 			fail("DALExeption");
 			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 
 		try {
@@ -203,6 +227,15 @@ public class OperatoerServiceTest {
 		} catch (DALException e) {
 			fail("DALExeption");
 			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 
 	}

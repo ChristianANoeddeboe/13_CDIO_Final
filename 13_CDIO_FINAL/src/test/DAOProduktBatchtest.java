@@ -9,13 +9,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
+import controller.ProduktBatchController;
 import dao.DAOProduktBatch;
 import exception.DALException;
 import dto.DTOProduktBatch;
 import dto.Status;
 
 class DAOProduktBatchtest {
-    static DAOProduktBatch prodBatch;
+    static ProduktBatchController prodBatch;
     static DTOProduktBatch initialProdBatch;
 
     /**
@@ -23,18 +24,7 @@ class DAOProduktBatchtest {
      */
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
-        try {
-            new MySQLConnector();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        prodBatch = new DAOProduktBatch();
+        prodBatch = ProduktBatchController.getInstance();
         initialProdBatch = prodBatch.getProduktBatch(1);
     }
     /**
@@ -86,7 +76,7 @@ class DAOProduktBatchtest {
         try {
             List<DTOProduktBatch> list = prodBatch.getProduktBatchList();
             assertTrue(list.size() > 0);
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             fail("Something went wrong fecthing product batch list in the test");
         }
     }

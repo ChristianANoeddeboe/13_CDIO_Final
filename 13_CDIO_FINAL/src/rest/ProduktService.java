@@ -32,7 +32,6 @@ public class ProduktService implements IProduktService {
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getProduktBatchList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		new MySQLConnector();
 
 
 		List<DTOProduktBatch> result = null;
@@ -47,7 +46,6 @@ public class ProduktService implements IProduktService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createProduktBatch(DTOProduktBatch produktbatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		new MySQLConnector();
 		try {
 			controller.createProduktBatch(produktbatch);
 		} catch(DALException e) {
@@ -59,8 +57,6 @@ public class ProduktService implements IProduktService {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateProduktBatch(DTOProduktBatch produktbatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		new MySQLConnector();
-
 		try {
 			controller.updateProduktBatch(produktbatch);
 		} catch(DALException e) {
@@ -72,7 +68,6 @@ public class ProduktService implements IProduktService {
 	@DELETE
 	@Path("{id}")
 	public Response deleteProduktBatch(@PathParam("id") int pbID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		new MySQLConnector();
 		try {
 			controller.deleteProduktBatch(pbID);
 		} catch(DALException e) {
@@ -90,8 +85,6 @@ public class ProduktService implements IProduktService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getProduktBatchKompList(@PathParam("pbId")int pbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		new MySQLConnector();
-
 		List<DTOProduktBatchKomp> result = null;
 		try {
 			result = kompController.getProduktBatchKomponentList(pbId);
@@ -105,8 +98,6 @@ public class ProduktService implements IProduktService {
 	@Path("komponent")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		new MySQLConnector();
-
 		try {
 			kompController.createProdBatchKomp(produktbatchkomponent);
 		} catch(DALException e) {
@@ -119,8 +110,6 @@ public class ProduktService implements IProduktService {
 	@Path("komponent")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		new MySQLConnector();
-
 		try {
 			kompController.updateProdBatchKomp(produktbatchkomponent);
 		} catch(DALException e) {
@@ -132,7 +121,6 @@ public class ProduktService implements IProduktService {
 	@DELETE
 	@Path("komponent/{pbid}/{rbid}")
 	public Response deleteProduktBatchKomp(@PathParam("pbid") int productBatch_ID, @PathParam("rbid") int raavareBatch_ID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		new MySQLConnector();
 		try {
 			kompController.deleteProdBatchKomp(productBatch_ID, raavareBatch_ID);
 		} catch(DALException e) {

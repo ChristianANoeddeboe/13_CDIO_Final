@@ -10,11 +10,11 @@ import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
-@AllArgsConstructor
 public class ReceptKompController {
 	private static IDAOReceptKomp dao;
 	private static ReceptKompController instance;
-
+	private ReceptKompController() {
+	}
 	public static ReceptKompController getInstance() {
 		if(instance == null) {
 			dao = new DAOReceptKomp();

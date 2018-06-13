@@ -28,9 +28,6 @@ class ReceptServiceTest {
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/recept/";
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-
-		new MySQLConnector();
-
 		Unirest.setObjectMapper(new ObjectMapper() {
 			private com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper
 			= new com.fasterxml.jackson.databind.ObjectMapper();
@@ -75,6 +72,15 @@ class ReceptServiceTest {
 		} catch (DALException e) {
 			fail("DalException");
 			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 
 	}
@@ -99,6 +105,15 @@ class ReceptServiceTest {
 			e.printStackTrace();
 			fail("DalException");
 
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 
 	}
@@ -132,6 +147,15 @@ class ReceptServiceTest {
 		} catch (DALException e) {
 			e.printStackTrace();
 			fail("DalException");
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 	@Test
@@ -162,7 +186,15 @@ class ReceptServiceTest {
 		} catch (DALException e) {
 			e.printStackTrace();
 			fail("DalException");
-
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -191,6 +223,15 @@ class ReceptServiceTest {
 		} catch (DALException e) {
 			fail("DalException");
 			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -221,6 +262,15 @@ class ReceptServiceTest {
 			e.printStackTrace();
 			fail("DalException");
 
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -262,6 +312,15 @@ class ReceptServiceTest {
 		} catch (DALException e) {
 			e.printStackTrace();
 			fail("DalException");
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -295,6 +354,15 @@ class ReceptServiceTest {
 		} catch (DALException e) {
 			e.printStackTrace();
 			fail("Dalexception");
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 

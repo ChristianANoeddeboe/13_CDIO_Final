@@ -28,15 +28,14 @@ public class AseController {
 
         socket.connect();
 
-        try {
-            new MySQLConnector();
-            MySQLConnector.getConn().setAutoCommit(false);
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-            socket.rm20("Kontakt administrator", "", "Error.");
-            log.error(e.getMessage());
-            socket.disconnect();
-            System.exit(0);
-        }
+//        try {
+//            MySQLConnector.getInstance().setAutoCommit(false);
+//        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+//            socket.rm20("Kontakt administrator", "", "Error.");
+//            log.error(e.getMessage());
+//            socket.disconnect();
+//            System.exit(0);
+//        }
 
         try {
             socket.flushInput();
@@ -96,7 +95,7 @@ public class AseController {
                 str = socket.rm20(operatoer.initials(operatoer.getFornavn() + " " + operatoer.getEfternavn()), "", "Confirm.");
                 if (str.contains("C") || str.contains("exit")) return null;
                 break;
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException  | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                 log.warn("Ikke gyldigt ID");
                 socket.rm20("", "Ikke gyldigt ID", "");
             } catch (DALException e) {
@@ -121,7 +120,7 @@ public class AseController {
                 log.info("Ikke gyldigt PB ID.");
                 socket.rm20("", "Ikke gyldigt PB ID.", "");
                 continue;
-            } catch (DALException e) {
+            } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                 log.warn(e.getMessage());
                 socket.rm20("", "PB findes ikke.", "");
                 continue;
@@ -134,7 +133,7 @@ public class AseController {
                 if (str.contains("RM20 C")) continue;
                 if (str.equals("exit")) return null;
                 break;
-            } catch (DALException e) {
+            } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                 log.warn(e.getMessage());
                 socket.rm20("", e.getMessage(), "");
             }
@@ -146,15 +145,12 @@ public class AseController {
         if (pb.getStatus() != Status.Klar) {
             socket.rm20("Status: ikke klar.", "", "");
             return false;
-        }else if(pb.getStatus() != Status.Afsluttet){
-            socket.rm20("Status: Afsluttet.", "", "");
-            return false;
         }else {
             pb.setStatus(Status.Igang);
             ProduktBatchController pbcontroller = ProduktBatchController.getInstance();
             try {
                 pbcontroller.updateProduktBatch(pb);
-            } catch (DALException e) {
+            } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                 socket.rm20(e.getMessage(), "", "");
                 log.error(e.getMessage());
                 return false;
@@ -169,7 +165,7 @@ public class AseController {
         List<DTOReceptKomp> list = null;
         try {
             list = controller.getReceptKompList(pb.getReceptId());
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             socket.rm20("receptkomp ikke fudnet.", "", "");
             socket.rm20("System afsluttes.", "", "");
             log.error(e.getMessage());
@@ -196,7 +192,7 @@ public class AseController {
             for (DTORaavareBatch rb : raavareBatches) {
                 maengde += rb.getMaengde();
             }
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             socket.rm20("Raavarebatch ikke fundet", "", "");
             socket.rm20("System afsluttes", "", "");
             abort("Raavarebatch ikke fundet.", e);
@@ -230,7 +226,7 @@ public class AseController {
                     if (str.contains("RM20 C") || str.contains("exit")) socket.rm20("Not allowed", "", "");
                     tempRB = rbController.getRaavareBatch(Integer.parseInt(str));
                     if (tempRB.getRaavareId() != raavare.getRaavareId()) continue;
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                     log.warn("Ikke gyldig vægt");
                     continue;
                 } catch (DALException e) {
@@ -272,7 +268,7 @@ public class AseController {
                     }
                 } catch (IOException e) {
                     abort("IOException.", e);
-                } catch (DALException e) {
+                } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                     socket.rm20("Database fejl.", "", "");
                     abort("Databasefejl.", e);
                 }
@@ -302,7 +298,7 @@ public class AseController {
         try {
             raavare = rController.getRaavare(raavareID);
             socket.rm20(raavare.getRaavareId() + "; " + raavare.getRaavareNavn(), "", "");
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             socket.rm20("Database fejl.", "", "");
             abort("Database fejl", e);
         }

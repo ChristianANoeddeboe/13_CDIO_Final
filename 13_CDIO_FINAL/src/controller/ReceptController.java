@@ -12,11 +12,11 @@ import dao.DAORaavare;
 import dao.DAORecept;
 
 @Log
-@AllArgsConstructor
 public class ReceptController {
     private static IDAORecept dao;
     private static ReceptController instance;
-
+    private ReceptController() {
+	}
 	public static ReceptController getInstance() {
 		if(instance == null) {
 			dao = new DAORecept();

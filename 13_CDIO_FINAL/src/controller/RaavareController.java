@@ -12,11 +12,11 @@ import dao.DAORaavare;
 import dao.DAORaavareBatch;
 
 @Log
-@AllArgsConstructor
 public class RaavareController {
 	private static IDAORaavare dao;
 	private static RaavareController instance;
-
+	private RaavareController() {
+	}
 	public static RaavareController getInstance() {
 		if(instance == null) {
 			dao = new DAORaavare();
