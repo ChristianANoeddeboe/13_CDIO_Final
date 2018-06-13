@@ -19,17 +19,7 @@ class DAOReceptTest {
     //Test.
     @BeforeAll
     static void setup() {
-        try {
-            new MySQLConnector();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Test

@@ -38,9 +38,6 @@ public class OperatoerServiceTest {
 
 	@BeforeAll
 	static void setUp() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-
-		new MySQLConnector();
-
 		Unirest.setObjectMapper(new ObjectMapper() {
 			private com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper
 			= new com.fasterxml.jackson.databind.ObjectMapper();

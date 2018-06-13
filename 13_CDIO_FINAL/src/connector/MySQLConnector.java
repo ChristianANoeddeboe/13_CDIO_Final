@@ -54,7 +54,7 @@ public class MySQLConnector {
 		this(Constant.server, Constant.port, Constant.database,
 				Constant.username, Constant.password);
 	}
-	private static Connection getInstance() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public static Connection getInstance() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		if(conn == null) {
 			new MySQLConnector();
 			return conn;

@@ -28,9 +28,6 @@ class ReceptServiceTest {
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/recept/";
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-
-		new MySQLConnector();
-
 		Unirest.setObjectMapper(new ObjectMapper() {
 			private com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper
 			= new com.fasterxml.jackson.databind.ObjectMapper();
