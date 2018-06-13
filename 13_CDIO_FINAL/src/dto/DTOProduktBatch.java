@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DTOProduktBatch {
-    private int pbId;                     // i omraadet 1-99999999
+    private int pbId;
     private Status status;
     private int receptId;
  }

@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DTORaavareBatch {
-    private int rbId;                     // i omraadet 1-99999999
-    private int raavareId;             // i omraadet 1-99999999
-    private double maengde;             // kan vaere negativ
+    private int rbId;
+    private int raavareId;
+    private double maengde;
 
     public DTORaavareBatch(int raavareId, double maengde) {
         this.raavareId = raavareId;
@@ -20,7 +20,7 @@ public class DTORaavareBatch {
     }
     
     public void setMangde(double m) {
-    	DecimalFormat df = new DecimalFormat("#.####");
+    	DecimalFormat df = new DecimalFormat("#,####");
     	maengde = Double.parseDouble(df.format(m));
     }
 }

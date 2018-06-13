@@ -19,6 +19,9 @@ public class AseController {
         socket = new WeightSocket(ip, port);
     }
 
+    /**
+     * Opretter forbindelse mellem vaegt, system og database, samt paabegynder afvejningsprocessen.
+     */
     public void run() {
         List<DTOReceptKomp> receptkompList = null;
         DTOProduktBatch pb = null;
@@ -65,11 +68,12 @@ public class AseController {
         }
 
         receptkompList = getReceptkompliste(pb);
-        if(receptkompList == null){
+        if (receptkompList == null) {
             log.info("Cancel: Get recept komponent");
             socket.disconnect();
             return;
         }
+
         afvejning(receptkompList, pb, operatoer);
         socket.rm20("Afvejning godkendt.", "", "");
         socket.disconnect();
@@ -105,7 +109,7 @@ public class AseController {
 
     private DTOProduktBatch getProduktbatch() {
         DTOProduktBatch produktbatch = null;
-        ProduktBatchController pbcontroller =  ProduktBatchController.getInstance();
+        ProduktBatchController pbcontroller = ProduktBatchController.getInstance();
         ReceptController rcontroller = ReceptController.getInstance();
         String str = null;
         while (true) {
@@ -123,6 +127,7 @@ public class AseController {
                 continue;
             }
 
+            // Henter det recept, produktbatched tilhører, for at faa navnet paa vores produktbatch.
             try {
                 DTORecept recept = rcontroller.getRecept(produktbatch.getReceptId());
                 str = socket.rm20(recept.getReceptNavn(), "", "Confirm.");
@@ -141,7 +146,10 @@ public class AseController {
         if (pb.getStatus() != Status.Klar) {
             socket.rm20("Status: ikke klar.", "", "");
             return false;
-        } else {
+        }else if(pb.getStatus() != Status.Afsluttet){
+            socket.rm20("Status: Afsluttet.", "", "");
+            return false;
+        }else {
             pb.setStatus(Status.Igang);
             ProduktBatchController pbcontroller = ProduktBatchController.getInstance();
             try {
@@ -209,16 +217,17 @@ public class AseController {
         for (DTOReceptKomp receptKomp : receptkompList) {
 
             emptyWeight();
-            retreiveRaavare(receptKomp.getRaavareId());
+            raavare = retreiveRaavare(receptKomp.getRaavareId());
             tara = retreiveTara();
 
+            // Specificerer den tolerence vi tillader, i form af 2 vaerdier til senere tjek.
             lowerbound = receptKomp.getNomNetto() * (1 - (receptKomp.getTolerance() / 100));
             upperbound = receptKomp.getNomNetto() * (1 + (receptKomp.getTolerance() / 100));
 
             do {
                 try {
                     str = socket.rm20("Angiv raavarebatch ID", "", "");
-                    if (str.contains("RM20 C") || str.contains("exit")) socket.rm20("What to do...", "", "");
+                    if (str.contains("RM20 C") || str.contains("exit")) socket.rm20("Not allowed", "", "");
                     tempRB = rbController.getRaavareBatch(Integer.parseInt(str));
                     if (tempRB.getRaavareId() != raavare.getRaavareId()) continue;
                 } catch (NumberFormatException e) {
@@ -351,7 +360,7 @@ public class AseController {
         }
     }
 
-    private void abort(String msg, Exception e){
+    private void abort(String msg, Exception e) {
         log.error(msg);
         log.error("System afsluttes.");
         log.error(e.getMessage());

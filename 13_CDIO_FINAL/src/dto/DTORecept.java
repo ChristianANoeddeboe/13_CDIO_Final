@@ -14,8 +14,7 @@ public class DTORecept {
     public DTORecept(String receptNavn) {
         this.receptNavn = receptNavn;
     }
-    
-    
+
     public String toString() {
     	return "{\"receptId\":"+"\"" + this.getReceptId() +"\",\"receptNavn\": \""+this.getReceptNavn()+"\"}";
     }

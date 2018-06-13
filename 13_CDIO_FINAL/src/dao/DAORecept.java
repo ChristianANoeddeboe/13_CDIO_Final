@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 public class DAORecept implements IDAORecept {
 
-    /*Return a single recept based on the recept ID.*/
     @Override
     public DTORecept getRecept(int receptId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         //Select the entry from receptView that matches the ID.
@@ -31,7 +30,6 @@ public class DAORecept implements IDAORecept {
         }
     }
 
-    /*Return the entire lists of recepts.*/
     @Override
     public List<DTORecept> getReceptList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         List<DTORecept> list = new ArrayList<DTORecept>();

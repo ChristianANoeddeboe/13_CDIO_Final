@@ -44,7 +44,6 @@ public class DAOReceptKomp implements IDAOReceptKomp {
             log.warn(e.toString());
             throw new DALException(e);
         }
-
     }
 
     @Override
@@ -74,7 +73,6 @@ public class DAOReceptKomp implements IDAOReceptKomp {
             log.warn(errMsg);
             throw new DALException(errMsg);
         }
-
     }
 
     @Override
