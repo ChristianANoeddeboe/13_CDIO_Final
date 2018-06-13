@@ -221,6 +221,7 @@ public class AseController {
             retreiveRaavare(receptKomp.getRaavareId());
             tara = retreiveTara();
 
+            // Specificerer den tolerence vi tillader, i form af 2 vaerdier til senere tjek.
             lowerbound = receptKomp.getNomNetto() * (1 - (receptKomp.getTolerance() / 100));
             upperbound = receptKomp.getNomNetto() * (1 + (receptKomp.getTolerance() / 100));
 
