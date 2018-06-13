@@ -244,7 +244,7 @@ function generateRaavareHTML(raavare) {
 	'<td><input type="text" id = "'+raavare.raavareId +"_leverandør"+'" class="form-control-plaintext" value="' + raavare.leverandoer + '"></td></td>' +
 	'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary vis"><i class="fas fa-folder-open" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
     '<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
-	'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary slet"><i class="fas fa-trash-alt" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
 	'</td></tr>';
 }
 
@@ -253,7 +253,7 @@ function generateRaavareBatchKompHTML(raavareBatch) {
 	'<th scope = "row">'+raavareBatch.raavareId + '</th>' +
 	'<td><input type="text" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+"_mængde"+'" class="form-control-plaintext" value="' + raavareBatch.maengde + '"></td></td>' +
     '<td><button type="button" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'" class="btn btn-primary updateKomp"><i class="fas fa-save" id = "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'"></i></button>'+'</td>' +
-	'<td><button type="button" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'" class="btn btn-primary sletKomp"><i class="fas fa-trash-alt" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'"></i></button>'+'</td>' +
 	'</td></tr>';
 }
 
