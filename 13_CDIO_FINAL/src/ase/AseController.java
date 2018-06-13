@@ -65,7 +65,7 @@ public class AseController {
         }
 
         receptkompList = getReceptkompliste(pb);
-        if(receptkompList == null){
+        if (receptkompList == null) {
             log.info("Cancel: Get recept komponent");
             socket.disconnect();
             return;
@@ -105,7 +105,7 @@ public class AseController {
 
     private DTOProduktBatch getProduktbatch() {
         DTOProduktBatch produktbatch = null;
-        ProduktBatchController pbcontroller =  ProduktBatchController.getInstance();
+        ProduktBatchController pbcontroller = ProduktBatchController.getInstance();
         ReceptController rcontroller = ReceptController.getInstance();
         String str = null;
         while (true) {
@@ -209,7 +209,7 @@ public class AseController {
         for (DTOReceptKomp receptKomp : receptkompList) {
 
             emptyWeight();
-            retreiveRaavare(receptKomp.getRaavareId());
+            raavare = retreiveRaavare(receptKomp.getRaavareId());
             tara = retreiveTara();
 
             lowerbound = receptKomp.getNomNetto() * (1 - (receptKomp.getTolerance() / 100));
@@ -218,7 +218,7 @@ public class AseController {
             do {
                 try {
                     str = socket.rm20("Angiv raavarebatch ID", "", "");
-                    if (str.contains("RM20 C") || str.contains("exit")) socket.rm20("What to do...", "", "");
+                    if (str.contains("RM20 C") || str.contains("exit")) socket.rm20("Not allowed", "", "");
                     tempRB = rbController.getRaavareBatch(Integer.parseInt(str));
                     if (tempRB.getRaavareId() != raavare.getRaavareId()) continue;
                 } catch (NumberFormatException e) {
@@ -351,7 +351,7 @@ public class AseController {
         }
     }
 
-    private void abort(String msg, Exception e){
+    private void abort(String msg, Exception e) {
         log.error(msg);
         log.error("System afsluttes.");
         log.error(e.getMessage());
