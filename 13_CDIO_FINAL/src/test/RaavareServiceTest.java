@@ -76,6 +76,15 @@ class RaavareServiceTest {
 		} catch (DALException e) {
 			fail("DalException");
 			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -100,6 +109,15 @@ class RaavareServiceTest {
 			e.printStackTrace();
 			fail("DalException");
 
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -133,6 +151,15 @@ class RaavareServiceTest {
 		} catch (DALException e) {
 			e.printStackTrace();
 			fail("DalException");
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -165,6 +192,15 @@ class RaavareServiceTest {
 			e.printStackTrace();
 			fail("DalException");
 
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -192,6 +228,15 @@ class RaavareServiceTest {
 		} catch (DALException e) {
 			fail("DalException");
 			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -222,6 +267,15 @@ class RaavareServiceTest {
 			e.printStackTrace();
 			fail("DalException");
 
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -262,6 +316,15 @@ class RaavareServiceTest {
 		} catch (DALException e) {
 			e.printStackTrace();
 			fail("DalException");
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -294,6 +357,15 @@ class RaavareServiceTest {
 		} catch (DALException e) {
 			e.printStackTrace();
 			fail("Dalexception");
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 

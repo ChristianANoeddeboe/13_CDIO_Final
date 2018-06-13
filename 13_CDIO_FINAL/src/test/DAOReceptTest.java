@@ -49,7 +49,7 @@ class DAOReceptTest {
 
             if (!recept.toString().equals(expected)) fail("Error toString.");
 
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             fail("SQL exception caught");
         }
     }
@@ -62,7 +62,7 @@ class DAOReceptTest {
         boolean caught = false;
         try {
             receptDAO.getRecept(100);
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             caught = true;
         } finally {
             if (caught) assertTrue(caught);
@@ -76,7 +76,7 @@ class DAOReceptTest {
         try {
             List<DTORecept> recepts = receptDAO.getReceptList();
             if (recepts.isEmpty()) fail("List is empty");
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             fail("getReceptListTEST DALException");
         }
     }
@@ -87,26 +87,32 @@ class DAOReceptTest {
         DTORecept test = new DTORecept(name);
         try {
             receptDAO.createRecept(test);
-        } catch (DALException e) {
-            fail("DALException caught.");
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+            fail("Exception caught.");
         }
 
-        List<DTORecept> list = receptDAO.getReceptList();
-        DTORecept dto = list.get(list.size() - 1);
-
-        if (dto.getReceptId() != list.size() - 1 && !dto.getReceptNavn().equals(name)) {
-            fail("Recept wasns't created with expected values.");
-        }
-        
-        try {
-        	for (DTORecept dtoRecept : list) {
-				if(dtoRecept.getReceptNavn().equals("test")) {
-					receptDAO.deleteRecept(dtoRecept.getReceptId());
-					break;
+        List<DTORecept> list;
+		try {
+			list = receptDAO.getReceptList();
+			DTORecept dto = list.get(list.size() - 1);
+	        
+	        if (dto.getReceptId() != list.size() - 1 && !dto.getReceptNavn().equals(name)) {
+	            fail("Recept wasns't created with expected values.");
+	        }
+	        
+	        try {
+	        	for (DTORecept dtoRecept : list) {
+					if(dtoRecept.getReceptNavn().equals("test")) {
+						receptDAO.deleteRecept(dtoRecept.getReceptId());
+						break;
+					}
 				}
-			}
-        } catch (DALException e) {
-        	fail("DALException caught.");
-        }
+	        } catch (DALException e) {
+	        	fail("DALException caught.");
+	        }
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e1) {
+			fail("Exception caught.");
+		}
+        
     }
 }

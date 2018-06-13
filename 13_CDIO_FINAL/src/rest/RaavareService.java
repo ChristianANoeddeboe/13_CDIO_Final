@@ -97,7 +97,7 @@ public class RaavareService implements IRaavareService {
 		
 		
 		try {
-			rbController.createRaavsareBatch(raavarebatch);
+			rbController.createRaavareBatch(raavarebatch);
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}

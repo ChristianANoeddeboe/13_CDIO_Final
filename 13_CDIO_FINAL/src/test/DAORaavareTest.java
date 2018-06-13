@@ -1,6 +1,7 @@
 package test;
 
 import connector.MySQLConnector;
+import controller.RaavareController;
 import dao.DAORaavare;
 import exception.DALException;
 import dto.DTORaavare;
@@ -13,23 +14,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DAORaavareTest {
 
-    DTORaavare testRaavareDTO;
-    DAORaavare testRaavareDAO  = new DAORaavare();
+    private DTORaavare testRaavareDTO;
+    private static RaavareController testRaavareController;
 
     @BeforeAll
     static void setUp() {
-        try { new MySQLConnector(); }
-        catch (InstantiationException e) { e.printStackTrace(); }
-        catch (IllegalAccessException e) { e.printStackTrace(); }
-        catch (ClassNotFoundException e) { e.printStackTrace(); }
-        catch (SQLException e) { e.printStackTrace(); }
+    	testRaavareController  = RaavareController.getInstance();
     }
 
     @Test
     void getRaavarePositive() {
         try {
             Object actual;
-            testRaavareDTO = testRaavareDAO.getRaavare(1);
+            testRaavareDTO = testRaavareController.getRaavare(1);
 
             actual = testRaavareDTO.getRaavareId();
             assertEquals(1, actual, "Raavare ID was " + actual);
@@ -39,7 +36,7 @@ class DAORaavareTest {
 
             actual = testRaavareDTO.getLeverandoer();
             assertEquals("Wawelka", actual, "Leverandoer was " + actual);
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             System.out.println("Query could not be resolved.");
             e.printStackTrace();
         }
@@ -49,9 +46,9 @@ class DAORaavareTest {
     void getRaavareNegative() {
         int raavareID = -10;
         try {
-            testRaavareDTO = testRaavareDAO.getRaavare(raavareID);
+            testRaavareDTO = testRaavareController.getRaavare(raavareID);
             fail("Raavare existed");
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             if (!e.getMessage().contains("Raavaren " + raavareID + " findes ikke.")) {
                 fail(e.getMessage());
             }
@@ -61,8 +58,8 @@ class DAORaavareTest {
     @Test
     void getRaavareList() {
         try {
-            assertFalse(testRaavareDAO.getRaavareList().isEmpty());
-        } catch (DALException e) {
+            assertFalse(testRaavareController.getRaavreList().isEmpty());
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             System.out.println("Query could not be resolved.");
             e.printStackTrace();
         }
@@ -70,22 +67,22 @@ class DAORaavareTest {
 
     @Test
     void createRaavarePositive() {
-        testRaavareDTO = new DTORaavare("Smør", "Arla");
+        testRaavareDTO = new DTORaavare(999,"Smør", "Arla");
         DTORaavare compare;
         int expectedID;
         try {
-            expectedID = 0;
-            testRaavareDAO.createRaavare(testRaavareDTO);
-            compare = testRaavareDAO.getRaavare(expectedID);
+            expectedID = 999;
+            testRaavareController.createRaavare(testRaavareDTO);
+            compare = testRaavareController.getRaavare(expectedID);
             assertEquals(expectedID, compare.getRaavareId(), "Batch id was not " + compare.getRaavareId());
             assertEquals(testRaavareDTO.getRaavareNavn(), compare.getRaavareNavn(), "Raavare navn was not " + compare.getRaavareNavn());
             assertEquals(testRaavareDTO.getLeverandoer(), compare.getLeverandoer(), "Leverandoer was not " + compare.getLeverandoer());
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             e.printStackTrace();
             fail("Could not create new Raavare");
         }finally {
             try {
-                int delID = 0;
+                int delID = 999;
                 MySQLConnector.doQuery("CALL deleteRaavare('" + delID + "');");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -98,13 +95,13 @@ class DAORaavareTest {
         String originalNavn;
         int raavareID = 1;
         try {
-            testRaavareDTO = testRaavareDAO.getRaavare(raavareID);
+            testRaavareDTO = testRaavareController.getRaavare(raavareID);
             originalNavn = testRaavareDTO.getRaavareNavn();
-            testRaavareDAO.updateRaavare(new DTORaavare(raavareID,"Tester12",testRaavareDTO.getLeverandoer()));
-            testRaavareDTO = testRaavareDAO.getRaavare(raavareID);
+            testRaavareController.updateRaavare(new DTORaavare(raavareID,"Tester12",testRaavareDTO.getLeverandoer()));
+            testRaavareDTO = testRaavareController.getRaavare(raavareID);
             assertEquals("Tester12", testRaavareDTO.getRaavareNavn());
             testRaavareDTO.setRaavareNavn(originalNavn);
-            testRaavareDAO.updateRaavare(testRaavareDTO);
+            testRaavareController.updateRaavare(testRaavareDTO);
         }catch (DALException e) {
             fail("Invalid raavare id: " + raavareID);
         }catch (Exception e) {
@@ -117,13 +114,13 @@ class DAORaavareTest {
         String originalLeverandoer;
         int raavareID = 1;
         try {
-            testRaavareDTO = testRaavareDAO.getRaavare(raavareID);
+            testRaavareDTO = testRaavareController.getRaavare(raavareID);
             originalLeverandoer = testRaavareDTO.getLeverandoer();
-            testRaavareDAO.updateRaavare(new DTORaavare(raavareID,testRaavareDTO.getRaavareNavn(),"Tester12"));
-            testRaavareDTO = testRaavareDAO.getRaavare(raavareID);
+            testRaavareController.updateRaavare(new DTORaavare(raavareID,testRaavareDTO.getRaavareNavn(),"Tester12"));
+            testRaavareDTO = testRaavareController.getRaavare(raavareID);
             assertEquals("Tester12", testRaavareDTO.getLeverandoer());
             testRaavareDTO.setLeverandoer(originalLeverandoer);
-            testRaavareDAO.updateRaavare(testRaavareDTO);
+            testRaavareController.updateRaavare(testRaavareDTO);
         }catch (DALException e) {
             fail("Invalid raavare id: " + raavareID);
         }catch (Exception e) {
@@ -134,9 +131,9 @@ class DAORaavareTest {
     @Test
     public void updateRaavareNegative() {
         try {
-            testRaavareDAO.updateRaavare(new DTORaavare(9999,"test","test"));
+            testRaavareController.updateRaavare(new DTORaavare(9999,"test","test"));
             fail("Batch existed.");
-        }catch (DALException e) {
+        }catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             if (!e.getMessage().contains("No rows updated in \"Raavare\"")) {
                 fail(e.getMessage());
             }

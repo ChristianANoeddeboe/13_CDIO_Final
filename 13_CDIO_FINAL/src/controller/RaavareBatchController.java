@@ -33,7 +33,7 @@ public class RaavareBatchController {
         return dao.getRaavareBatchList();
     }
 
-    public void createRaavsareBatch(DTORaavareBatch raavareBatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
+    public void createRaavareBatch(DTORaavareBatch raavareBatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
         validateData(raavareBatch);
         dao.createRaavareBatch(raavareBatch);
     }

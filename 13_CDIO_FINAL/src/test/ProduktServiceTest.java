@@ -79,6 +79,15 @@ class ProduktServiceTest {
 		} catch (DALException e) {
 			fail("DalException");
 			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -103,6 +112,15 @@ class ProduktServiceTest {
 			e.printStackTrace();
 			fail("DalException");
 
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -136,6 +154,15 @@ class ProduktServiceTest {
 		} catch (DALException e) {
 			e.printStackTrace();
 			fail("DalException");
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -167,7 +194,15 @@ class ProduktServiceTest {
 		} catch (DALException e) {
 			e.printStackTrace();
 			fail("DalException");
-
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -196,6 +231,15 @@ class ProduktServiceTest {
 		} catch (DALException e) {
 			fail("DalException");
 			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -226,6 +270,15 @@ class ProduktServiceTest {
 			e.printStackTrace();
 			fail("DalException");
 
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -266,6 +319,15 @@ class ProduktServiceTest {
 		} catch (DALException e) {
 			e.printStackTrace();
 			fail("DalException");
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 
@@ -296,10 +358,18 @@ class ProduktServiceTest {
 		} catch (UnirestException e) {
 			e.printStackTrace();
 			fail("UniRestexception");
-
 		} catch (DALException e) {
 			e.printStackTrace();
 			fail("DALException");
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			fail("InstantationException");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			fail("IllegalAccessException");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			fail("ClassNotFoundException");
 		}
 	}
 

@@ -1,6 +1,7 @@
 package test;
 
 import connector.MySQLConnector;
+import controller.ReceptKompController;
 import dao.DAORecept;
 import dao.DAOReceptKomp;
 import dto.DTORecept;
@@ -16,30 +17,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DAOReceptKompTest {
 
-    DAOReceptKomp receptkompDAO;
+    ReceptKompController receptKompController;
     DTOReceptKomp receptKompDTO;
 
     @BeforeEach
     void setUp() {
-        try {
-            new MySQLConnector();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        receptkompDAO = new DAOReceptKomp();
+        receptKompController = ReceptKompController.getInstance();
     }
 
     @Test
     void getReceptKompPositiv() {
         try {
             Object actual;
-            receptKompDTO = receptkompDAO.getReceptKomp(1, 1);
+            receptKompDTO = receptKompController.getReceptKomp(1, 1);
 
             actual = receptKompDTO.getReceptId();
             assertEquals(1, actual, "Recept ID was " + actual);
@@ -52,7 +42,7 @@ class DAOReceptKompTest {
 
             actual = receptKompDTO.getTolerance();
             assertEquals(10.0, actual, "Tolerance was " + actual);
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             System.out.println("Query could not be resolved.");
             e.printStackTrace();
         }
@@ -63,9 +53,9 @@ class DAOReceptKompTest {
         int receptID = -10;
         int raavareID = 5;
         try {
-            receptKompDTO = receptkompDAO.getReceptKomp(receptID, raavareID);
+            receptKompDTO = receptKompController.getReceptKomp(receptID, raavareID);
             fail("Recept Komp existed");
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             if (!e.getMessage().contains("Recept komponenet med recept ID " + receptID + " og raavare ID " + raavareID + " findes ikke.")) {
                 fail(e.getMessage());
             }
@@ -75,8 +65,8 @@ class DAOReceptKompTest {
     @Test
     void getReceptKompList() {
         try {
-            assertFalse(receptkompDAO.getReceptKompList().isEmpty());
-        } catch (DALException e) {
+            assertFalse(receptKompController.getReceptKompList().isEmpty());
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             System.out.println("Query could not be resolved.");
             e.printStackTrace();
         }
@@ -86,8 +76,8 @@ class DAOReceptKompTest {
     @Test
     void getReceptKompList1() {
         try {
-            assertFalse(receptkompDAO.getReceptKompList(1).isEmpty());
-        } catch (DALException e) {
+            assertFalse(receptKompController.getReceptKompList(1).isEmpty());
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             System.out.println("Query could not be resolved.");
             e.printStackTrace();
         }
@@ -108,16 +98,16 @@ class DAOReceptKompTest {
 
             // Now we can create a recept kompoennt, without destroy current data
             receptKompDTO = new DTOReceptKomp(test_recept_id, 1, 10, 10.0);
-            receptkompDAO.createReceptKomp(receptKompDTO);
+            receptKompController.createReceptKomp(receptKompDTO);
 
-            compare = receptkompDAO.getReceptKomp(receptKompDTO.getReceptId(), receptKompDTO.getRaavareId());
+            compare = receptKompController.getReceptKomp(receptKompDTO.getReceptId(), receptKompDTO.getRaavareId());
 
             assertEquals(receptKompDTO.getReceptId(), compare.getReceptId(), "Recept ID was not " + compare.getReceptId());
             assertEquals(receptKompDTO.getRaavareId(), compare.getRaavareId(), "Raavare ID was not " + compare.getRaavareId());
             assertEquals(receptKompDTO.getNomNetto(), compare.getNomNetto(), "Nom Netto was not " + compare.getNomNetto());
             assertEquals(receptKompDTO.getTolerance(), compare.getTolerance(), "Tolerance was not " + compare.getTolerance());
 
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             e.printStackTrace();
             fail("Could not create new Raavare");
         } finally {
@@ -136,14 +126,14 @@ class DAOReceptKompTest {
         int raavareID = 1;
         int receptID = 1;
         try {
-            receptKompDTO = receptkompDAO.getReceptKomp(receptID, raavareID);
+            receptKompDTO = receptKompController.getReceptKomp(receptID, raavareID);
             originalNetto = receptKompDTO.getNomNetto();
             receptKompDTO.setNomNetto(100);
-            receptkompDAO.updateReceptKomp(receptKompDTO);
-            receptKompDTO = receptkompDAO.getReceptKomp(receptID, raavareID);
+            receptKompController.updateReceptKomp(receptKompDTO);
+            receptKompDTO = receptKompController.getReceptKomp(receptID, raavareID);
             assertEquals(100.0, receptKompDTO.getNomNetto());
             receptKompDTO.setNomNetto(originalNetto);
-            receptkompDAO.updateReceptKomp(receptKompDTO);
+            receptKompController.updateReceptKomp(receptKompDTO);
         } catch (DALException e) {
             fail("Invalid recept or raavare id: " + receptID + ", " + raavareID);
         } catch (Exception e) {
@@ -154,9 +144,9 @@ class DAOReceptKompTest {
     @Test
     void updateReceptKompNegativ() {
         try {
-            receptkompDAO.updateReceptKomp(new DTOReceptKomp(9999, 9999, 1, 1));
+            receptKompController.updateReceptKomp(new DTOReceptKomp(9999, 9999, 1, 1));
             fail("Batch existed.");
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             if (!e.getMessage().contains("No rows updated in \"Recept komponent\"")) {
                 fail(e.getMessage());
             }
