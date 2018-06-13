@@ -29,7 +29,6 @@ public class DAORaavareBatch implements IDAORaavareBatch {
         }
     }
 
-
     @Override
     public List<DTORaavareBatch> getRaavareBatchList() throws DALException {
         List<DTORaavareBatch> list = new ArrayList<>();

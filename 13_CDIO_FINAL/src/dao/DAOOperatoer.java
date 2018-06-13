@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 public class DAOOperatoer implements IDAOOperatoer {
 
-    //Get operator with specific ID
+    @Override
     public DTOOperatoer getOperatoer(int oprId) throws DALException {
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId); // View
         try {
@@ -29,9 +29,9 @@ public class DAOOperatoer implements IDAOOperatoer {
             log.warn(e.toString());
             throw new DALException(e);
         }
-
     }
 
+    @Override
     public void createOperatoer(DTOOperatoer opr) throws DALException {
         opr.formatCPR();
         if (MySQLConnector.doUpdate("CALL createOperator('" + opr.getCpr() + "','" + opr.getRoles() +
@@ -42,6 +42,7 @@ public class DAOOperatoer implements IDAOOperatoer {
         }
     }
 
+    @Override
     public void updateOperatoer(DTOOperatoer opr) throws DALException {
         opr.formatCPR();
         if (MySQLConnector.doUpdate("CALL updateOperator(" + opr.getOprId() + "," + opr.getCpr() + ",'" + opr.getRoles() + "','" + opr.getFornavn() + "','" + opr.getEfternavn() + "','" + opr.getAktiv() + "')") == 0) {
@@ -51,6 +52,7 @@ public class DAOOperatoer implements IDAOOperatoer {
         }
     }
 
+    @Override
     public List<DTOOperatoer> getOperatoerList() throws DALException {
         List<DTOOperatoer> list = new ArrayList<DTOOperatoer>();
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM operatoer");

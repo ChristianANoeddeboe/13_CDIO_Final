@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
 
-
     @Override
     public DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException {
         try {
