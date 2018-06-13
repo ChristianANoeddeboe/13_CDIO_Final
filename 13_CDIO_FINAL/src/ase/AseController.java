@@ -28,14 +28,14 @@ public class AseController {
 
         socket.connect();
 
-        try {
-            MySQLConnector.getInstance().setAutoCommit(false);
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-            socket.rm20("Kontakt administrator", "", "Error.");
-            log.error(e.getMessage());
-            socket.disconnect();
-            System.exit(0);
-        }
+//        try {
+//            MySQLConnector.getInstance().setAutoCommit(false);
+//        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+//            socket.rm20("Kontakt administrator", "", "Error.");
+//            log.error(e.getMessage());
+//            socket.disconnect();
+//            System.exit(0);
+//        }
 
         try {
             socket.flushInput();
@@ -144,9 +144,6 @@ public class AseController {
     private boolean opdaterPbStatus(DTOProduktBatch pb) {
         if (pb.getStatus() != Status.Klar) {
             socket.rm20("Status: ikke klar.", "", "");
-            return false;
-        }else if(pb.getStatus() != Status.Afsluttet){
-            socket.rm20("Status: Afsluttet.", "", "");
             return false;
         }else {
             pb.setStatus(Status.Igang);
