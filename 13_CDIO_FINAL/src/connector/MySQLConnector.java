@@ -23,7 +23,7 @@ public class MySQLConnector {
 	 * @throws InstantiationException
 	 * @throws SQLException
 	 */
-	public static Connection connectToDatabase(String url, String username, String password)
+	private static Connection connectToDatabase(String url, String username, String password)
 			throws InstantiationException, IllegalAccessException,
 			ClassNotFoundException, SQLException {
 		// call the driver class' no argument constructor
@@ -35,8 +35,8 @@ public class MySQLConnector {
 
 	private static Connection conn;
 	private static Statement stm;
-
-	public MySQLConnector(String server, int port, String database,
+	
+	private MySQLConnector(String server, int port, String database,
 			String username, String password)
 					throws InstantiationException, IllegalAccessException,
 					ClassNotFoundException, SQLException {
@@ -45,11 +45,11 @@ public class MySQLConnector {
 		stm = conn.createStatement();
 	}
 
-	public static Connection getConn() {
+	private static Connection getConn() {
 		return conn;
 	}
 
-	public MySQLConnector() throws InstantiationException, IllegalAccessException,
+	private MySQLConnector() throws InstantiationException, IllegalAccessException,
 	ClassNotFoundException, SQLException {
 		this(Constant.server, Constant.port, Constant.database,
 				Constant.username, Constant.password);
