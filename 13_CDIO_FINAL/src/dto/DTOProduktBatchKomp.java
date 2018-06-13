@@ -12,9 +12,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class DTOProduktBatchKomp {
-    private int pbId;      // produktbatchets id
-    private int rbId;        // i omraadet 1-99999999
+    private int pbId;
+    private int rbId;
     private double tara;
     private double netto;
-    private int oprId;                    // operatoer-nummer
+    private int oprId;
 }
