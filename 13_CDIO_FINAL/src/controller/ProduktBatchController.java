@@ -12,11 +12,12 @@ import dao.DAOOperatoer;
 import dao.DAOProduktBatch;
 
 @Log
-@AllArgsConstructor
 public class ProduktBatchController {
     private static IDAOProduktBatch dao;
     private static ProduktBatchController instance;
-	
+	private ProduktBatchController() {
+		
+	}
 	public static ProduktBatchController getInstance() {
 		if(instance == null) {
 			dao = new DAOProduktBatch();

@@ -11,11 +11,12 @@ import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
-@AllArgsConstructor
+
 public class ProduktBatchKompController {
 	private static IDAOProduktBatchKomp dao;
 	private static ProduktBatchKompController instance;
-	
+	private ProduktBatchKompController() {
+	}
 	public static ProduktBatchKompController getInstance() {
 		if(instance == null) {
 			dao = new DAOProduktBatchKomp();

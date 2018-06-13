@@ -1,0 +1,696 @@
+[WARN] 2018-06-13 14:25:34,810 dao.DAOProduktBatchKomp updateProduktBatchKomp - No rows updated in "Produkt batch komponent".
+[WARN] 2018-06-13 14:25:45,829 dao.DAOProduktBatch updateProduktBatch - No rows updated in "Produkt batch".
+[WARN] 2018-06-13 14:27:51,441 dao.DAORaavare updateRaavare - No rows updated in "Raavare".
+[WARN] 2018-06-13 14:28:23,810 dao.DAOReceptKomp updateReceptKomp - No rows updated in "Recept komponent".
+[WARN] 2018-06-13 14:47:04,373 dao.DAOProduktBatchKomp updateProduktBatchKomp - No rows updated in "Produkt batch komponent".
+[WARN] 2018-06-13 14:47:11,351 dao.DAOProduktBatch updateProduktBatch - No rows updated in "Produkt batch".
+[WARN] 2018-06-13 14:47:20,919 dao.DAORaavareBatch updateRaavareBatch - No rows updated in "Raavare batch".
+[WARN] 2018-06-13 14:47:32,775 dao.DAORaavareBatch updateRaavareBatch - No rows updated in "Raavare batch".
+[WARN] 2018-06-13 14:48:43,013 dao.DAORaavareBatch updateRaavareBatch - No rows updated in "Raavare batch".
+[WARN] 2018-06-13 14:48:54,580 dao.DAORaavareBatch updateRaavareBatch - No rows updated in "Raavare batch".
+[WARN] 2018-06-13 14:52:26,589 dao.DAORaavareBatch updateRaavareBatch - No rows updated in "Raavare batch".
+[WARN] 2018-06-13 14:52:44,129 dao.DAORaavare updateRaavare - No rows updated in "Raavare".
+[WARN] 2018-06-13 14:53:07,352 dao.DAORaavare updateRaavare - No rows updated in "Raavare".
+[WARN] 2018-06-13 14:53:14,314 dao.DAOReceptKomp updateReceptKomp - No rows updated in "Recept komponent".
+[DEBUG] 2018-06-13 14:54:45,990 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:54:45,997 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:54:46,013 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 0 of 20; total allocated: 0 of 200]
+[DEBUG] 2018-06-13 14:54:46,044 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:54:46,044 org.apache.http.impl.execchain.MainClientExec execute - Opening connection {}->http://207.154.253.254:8080
+[DEBUG] 2018-06-13 14:54:46,044 org.apache.http.impl.conn.HttpClientConnectionOperator connect - Connecting to /207.154.253.254:8080
+[DEBUG] 2018-06-13 14:54:46,075 org.apache.http.impl.conn.HttpClientConnectionOperator connect - Connection established 10.16.172.175:61715<->207.154.253.254:8080
+[DEBUG] 2018-06-13 14:54:46,075 org.apache.http.impl.execchain.MainClientExec execute - Executing request POST /13_CDIO_FINAL/rest/operatoer/ HTTP/1.1
+[DEBUG] 2018-06-13 14:54:46,075 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:54:46,075 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:54:46,075 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> POST /13_CDIO_FINAL/rest/operatoer/ HTTP/1.1
+[DEBUG] 2018-06-13 14:54:46,075 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:54:46,075 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:54:46,075 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:54:46,075 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 114
+[DEBUG] 2018-06-13 14:54:46,075 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:54:46,091 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:54:46,091 org.apache.http.wire wire - http-outgoing-0 >> "POST /13_CDIO_FINAL/rest/operatoer/ HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,091 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,091 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,091 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,091 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 114[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,091 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,091 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,091 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,091 org.apache.http.wire wire - http-outgoing-0 >> "{"oprId":1,"fornavn":"Fornavn","efternavn":"Efternavn","cpr":"1919239950","roles":"Administrator","aktiv":"aktiv"}"
+[DEBUG] 2018-06-13 14:54:46,794 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,794 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,794 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,794 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:54:45 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,810 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:54:46,810 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 200 OK
+[DEBUG] 2018-06-13 14:54:46,810 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:54:46,810 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:54:46,810 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:54:45 GMT
+[DEBUG] 2018-06-13 14:54:46,810 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:54:46,825 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:54:46,825 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:54:46,825 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:54:47,013 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:54:47,022 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:54:47,022 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:54:47,023 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:54:47,023 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.impl.execchain.MainClientExec execute - Executing request GET /13_CDIO_FINAL/rest/operatoer/ HTTP/1.1
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> GET /13_CDIO_FINAL/rest/operatoer/ HTTP/1.1
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.wire wire - http-outgoing-0 >> "GET /13_CDIO_FINAL/rest/operatoer/ HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,038 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,116 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,116 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,116 org.apache.http.wire wire - http-outgoing-0 << "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,116 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 229[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,116 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:54:45 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,116 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,116 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 200 OK
+[DEBUG] 2018-06-13 14:54:47,116 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:54:47,116 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Type: application/json
+[DEBUG] 2018-06-13 14:54:47,116 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 229
+[DEBUG] 2018-06-13 14:54:47,132 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:54:45 GMT
+[DEBUG] 2018-06-13 14:54:47,132 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:54:47,132 org.apache.http.wire wire - http-outgoing-0 << "[{"oprId":1,"fornavn":"testUpdated","efternavn":"testEfternavn","cpr":"7070707007","roles":"Administrator","aktiv":"aktiv"},{"oprId":2,"fornavn":"tt","efternavn":"aa","cpr":"1234561234","roles":"Administrator","aktiv":"inaktiv"}]"
+[DEBUG] 2018-06-13 14:54:47,132 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:54:47,132 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:54:47,179 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:54:47,241 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:54:47,241 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:54:47,241 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:54:47,241 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:54:47,241 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:54:47,257 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:54:47,257 org.apache.http.impl.execchain.MainClientExec execute - Executing request POST /13_CDIO_FINAL/rest/operatoer/ HTTP/1.1
+[DEBUG] 2018-06-13 14:54:47,257 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:54:47,257 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:54:47,257 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> POST /13_CDIO_FINAL/rest/operatoer/ HTTP/1.1
+[DEBUG] 2018-06-13 14:54:47,257 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:54:47,257 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:54:47,257 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:54:47,257 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 114
+[DEBUG] 2018-06-13 14:54:47,257 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:54:47,257 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:54:47,273 org.apache.http.wire wire - http-outgoing-0 >> "POST /13_CDIO_FINAL/rest/operatoer/ HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,273 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,273 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,273 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,273 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 114[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,273 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,273 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,273 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,273 org.apache.http.wire wire - http-outgoing-0 >> "{"oprId":1,"fornavn":"Fornavn","efternavn":"Efternavn","cpr":"1919239950","roles":"Administrator","aktiv":"aktiv"}"
+[DEBUG] 2018-06-13 14:54:47,523 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,523 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,523 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,523 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:54:45 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,523 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:54:47,523 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 200 OK
+[DEBUG] 2018-06-13 14:54:47,523 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:54:47,523 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:54:47,523 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:54:45 GMT
+[DEBUG] 2018-06-13 14:54:47,538 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:54:47,538 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:54:47,538 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:54:47,538 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:54:47,663 org.apache.http.impl.conn.PoolingHttpClientConnectionManager shutdown - Connection manager is shutting down
+[DEBUG] 2018-06-13 14:54:47,663 org.apache.http.impl.conn.DefaultManagedHttpClientConnection close - http-outgoing-0: Close connection
+[DEBUG] 2018-06-13 14:54:47,663 org.apache.http.impl.conn.DefaultManagedHttpClientConnection close - http-outgoing-0: Close connection
+[DEBUG] 2018-06-13 14:54:47,663 org.apache.http.impl.conn.PoolingHttpClientConnectionManager shutdown - Connection manager shut down
+[DEBUG] 2018-06-13 14:59:10,513 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:10,524 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:10,540 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 0 of 20; total allocated: 0 of 200]
+[DEBUG] 2018-06-13 14:59:10,571 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:10,571 org.apache.http.impl.execchain.MainClientExec execute - Opening connection {}->http://207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:10,571 org.apache.http.impl.conn.HttpClientConnectionOperator connect - Connecting to /207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:10,602 org.apache.http.impl.conn.HttpClientConnectionOperator connect - Connection established 10.16.172.175:62089<->207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:10,602 org.apache.http.impl.execchain.MainClientExec execute - Executing request POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:10,602 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:10,602 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:10,602 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:10,602 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:10,602 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:10,602 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:10,602 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 37
+[DEBUG] 2018-06-13 14:59:10,602 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:10,618 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:10,618 org.apache.http.wire wire - http-outgoing-0 >> "POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,618 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,618 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,618 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,618 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 37[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,618 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,618 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,618 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,618 org.apache.http.wire wire - http-outgoing-0 >> "{"receptId":9999,"receptNavn":"Test"}"
+[DEBUG] 2018-06-13 14:59:10,946 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 201 Created[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,946 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,946 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,946 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:09 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,962 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,962 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 201 Created
+[DEBUG] 2018-06-13 14:59:10,962 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:10,962 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:10,962 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:09 GMT
+[DEBUG] 2018-06-13 14:59:10,962 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:10,977 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:10,977 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:10,977 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:10,977 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:10,977 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:10,977 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:10,977 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:10,977 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.impl.execchain.MainClientExec execute - Executing request POST /13_CDIO_FINAL/rest/recept/komponent HTTP/1.1
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> POST /13_CDIO_FINAL/rest/recept/komponent HTTP/1.1
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 62
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.wire wire - http-outgoing-0 >> "POST /13_CDIO_FINAL/rest/recept/komponent HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 62[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:10,993 org.apache.http.wire wire - http-outgoing-0 >> "{"receptId":9999,"raavareId":1,"nomNetto":1.0,"tolerance":1.0}"
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:09 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 200 OK
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:09 GMT
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:11,087 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:11,149 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:11,149 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:11,149 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:11,149 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:11,149 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.impl.execchain.MainClientExec execute - Executing request PUT /13_CDIO_FINAL/rest/recept/komponent HTTP/1.1
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> PUT /13_CDIO_FINAL/rest/recept/komponent HTTP/1.1
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 62
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.wire wire - http-outgoing-0 >> "PUT /13_CDIO_FINAL/rest/recept/komponent HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 62[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,165 org.apache.http.wire wire - http-outgoing-0 >> "{"receptId":9999,"raavareId":1,"nomNetto":2.0,"tolerance":2.0}"
+[DEBUG] 2018-06-13 14:59:11,462 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,462 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,477 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,477 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:09 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,477 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,477 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 200 OK
+[DEBUG] 2018-06-13 14:59:11,477 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:11,477 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:11,477 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:09 GMT
+[DEBUG] 2018-06-13 14:59:11,477 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:11,477 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:11,477 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:11,477 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:11,680 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:11,682 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:11,682 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:11,683 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:11,683 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.impl.execchain.MainClientExec execute - Executing request POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 37
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.wire wire - http-outgoing-0 >> "POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 37[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,684 org.apache.http.wire wire - http-outgoing-0 >> "{"receptId":9999,"receptNavn":"Test"}"
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 201 Created[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:09 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 201 Created
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:09 GMT
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:11,762 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:11,856 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:11,856 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:11,856 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:11,856 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:11,856 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.impl.execchain.MainClientExec execute - Executing request GET /13_CDIO_FINAL/rest/recept/komponent/1 HTTP/1.1
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> GET /13_CDIO_FINAL/rest/recept/komponent/1 HTTP/1.1
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.wire wire - http-outgoing-0 >> "GET /13_CDIO_FINAL/rest/recept/komponent/1 HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,871 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.wire wire - http-outgoing-0 << "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 183[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:10 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 200 OK
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 183
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:10 GMT
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.wire wire - http-outgoing-0 << "[{"receptId":1,"raavareId":1,"nomNetto":10.0,"tolerance":10.0},{"receptId":1,"raavareId":2,"nomNetto":2.0,"tolerance":5.0},{"receptId":1,"raavareId":3,"nomNetto":2.0,"tolerance":2.0}]"
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:11,965 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:11,996 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:12,043 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:12,043 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:12,043 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,043 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,043 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.impl.execchain.MainClientExec execute - Executing request POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 37
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.wire wire - http-outgoing-0 >> "POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 37[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,059 org.apache.http.wire wire - http-outgoing-0 >> "{"receptId":9999,"receptNavn":"Test"}"
+[DEBUG] 2018-06-13 14:59:12,309 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 201 Created[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,313 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,313 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,313 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:10 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,317 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,317 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 201 Created
+[DEBUG] 2018-06-13 14:59:12,317 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:12,317 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:12,317 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:10 GMT
+[DEBUG] 2018-06-13 14:59:12,321 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:12,321 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:12,321 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,321 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:12,361 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:12,361 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:12,361 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,361 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,361 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.impl.execchain.MainClientExec execute - Executing request PUT /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> PUT /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 38
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.wire wire - http-outgoing-0 >> "PUT /13_CDIO_FINAL/rest/recept/ HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 38[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,376 org.apache.http.wire wire - http-outgoing-0 >> "{"receptId":9999,"receptNavn":"Test2"}"
+[DEBUG] 2018-06-13 14:59:12,454 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,454 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,470 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,470 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:10 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,470 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,470 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 200 OK
+[DEBUG] 2018-06-13 14:59:12,470 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:12,470 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:12,470 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:10 GMT
+[DEBUG] 2018-06-13 14:59:12,470 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:12,470 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:12,470 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,470 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:12,564 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:12,564 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:12,564 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,564 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,579 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.impl.execchain.MainClientExec execute - Executing request POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 37
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.wire wire - http-outgoing-0 >> "POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 37[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,595 org.apache.http.wire wire - http-outgoing-0 >> "{"receptId":9999,"receptNavn":"Test"}"
+[DEBUG] 2018-06-13 14:59:12,657 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 201 Created[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,657 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,657 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,657 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:10 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,657 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,657 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 201 Created
+[DEBUG] 2018-06-13 14:59:12,657 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:12,657 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:12,657 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:10 GMT
+[DEBUG] 2018-06-13 14:59:12,657 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:12,673 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:12,673 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,673 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:12,720 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:12,731 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:12,731 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,731 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,732 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.impl.execchain.MainClientExec execute - Executing request DELETE /13_CDIO_FINAL/rest/recept/9999 HTTP/1.1
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> DELETE /13_CDIO_FINAL/rest/recept/9999 HTTP/1.1
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 0
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.wire wire - http-outgoing-0 >> "DELETE /13_CDIO_FINAL/rest/recept/9999 HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,733 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:10 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 200 OK
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:10 GMT
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,936 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:12,983 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:12,983 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:12,983 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,983 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:12,983 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.impl.execchain.MainClientExec execute - Executing request POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 37
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.wire wire - http-outgoing-0 >> "POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 37[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:12,999 org.apache.http.wire wire - http-outgoing-0 >> "{"receptId":9999,"receptNavn":"Test"}"
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 201 Created[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:11 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 201 Created
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:11 GMT
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,093 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.impl.execchain.MainClientExec execute - Executing request POST /13_CDIO_FINAL/rest/recept/komponent HTTP/1.1
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> POST /13_CDIO_FINAL/rest/recept/komponent HTTP/1.1
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 62
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.wire wire - http-outgoing-0 >> "POST /13_CDIO_FINAL/rest/recept/komponent HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 62[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,108 org.apache.http.wire wire - http-outgoing-0 >> "{"receptId":9999,"raavareId":1,"nomNetto":1.0,"tolerance":1.0}"
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:11 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 200 OK
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:11 GMT
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,202 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:13,358 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:13,358 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:13,358 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,358 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,358 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.impl.execchain.MainClientExec execute - Executing request GET /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> GET /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.wire wire - http-outgoing-0 >> "GET /13_CDIO_FINAL/rest/recept/ HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,374 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.wire wire - http-outgoing-0 << "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 193[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:11 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 200 OK
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 193
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:11 GMT
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.wire wire - http-outgoing-0 << "[{"receptId":1,"receptNavn":"margherita"},{"receptId":2,"receptNavn":"prosciuta"},{"receptId":3,"receptNavn":"capricc"},{"receptId":4,"receptNavn":"Testherita"},{"receptId":5,"receptNavn":"b"}]"
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:13,665 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,680 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:13,727 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:13,730 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:13,730 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,730 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,730 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.impl.execchain.MainClientExec execute - Executing request POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 37
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.wire wire - http-outgoing-0 >> "POST /13_CDIO_FINAL/rest/recept/ HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 37[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,731 org.apache.http.wire wire - http-outgoing-0 >> "{"receptId":9999,"receptNavn":"Test"}"
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 201 Created[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:11 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 201 Created
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:11 GMT
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,809 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.impl.execchain.MainClientExec execute - Executing request POST /13_CDIO_FINAL/rest/recept/komponent HTTP/1.1
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> POST /13_CDIO_FINAL/rest/recept/komponent HTTP/1.1
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 62
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.wire wire - http-outgoing-0 >> "POST /13_CDIO_FINAL/rest/recept/komponent HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 62[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,825 org.apache.http.wire wire - http-outgoing-0 >> "{"receptId":9999,"raavareId":1,"nomNetto":1.0,"tolerance":1.0}"
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:11 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 200 OK
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:11 GMT
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.client.protocol.RequestAddCookies process - CookieSpec selected: best-match
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.client.protocol.RequestAuthCache process - Auth cache not set in the context
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.impl.conn.PoolingHttpClientConnectionManager requestConnection - Connection request: [route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.impl.conn.PoolingHttpClientConnectionManager leaseConnection - Connection leased: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 0; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,903 org.apache.http.impl.execchain.MainClientExec execute - Stale connection check
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.wire wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.impl.execchain.MainClientExec execute - Executing request DELETE /13_CDIO_FINAL/rest/recept/komponent/9999/1 HTTP/1.1
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.impl.execchain.MainClientExec execute - Target auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.impl.execchain.MainClientExec execute - Proxy auth state: UNCHALLENGED
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> DELETE /13_CDIO_FINAL/rest/recept/komponent/9999/1 HTTP/1.1
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> accept-encoding: gzip
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Type: application/json
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> user-agent: unirest-java/1.3.11
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Content-Length: 0
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Host: 207.154.253.254:8080
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.headers onRequestSubmitted - http-outgoing-0 >> Connection: Keep-Alive
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.wire wire - http-outgoing-0 >> "DELETE /13_CDIO_FINAL/rest/recept/komponent/9999/1 HTTP/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.wire wire - http-outgoing-0 >> "accept-encoding: gzip[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.wire wire - http-outgoing-0 >> "Content-Type: application/json[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.wire wire - http-outgoing-0 >> "user-agent: unirest-java/1.3.11[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.wire wire - http-outgoing-0 >> "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.wire wire - http-outgoing-0 >> "Host: 207.154.253.254:8080[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.wire wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,919 org.apache.http.wire wire - http-outgoing-0 >> "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.wire wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.wire wire - http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.wire wire - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.wire wire - http-outgoing-0 << "Date: Wed, 13 Jun 2018 12:59:11 GMT[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.wire wire - http-outgoing-0 << "[\r][\n]"
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.headers onResponseReceived - http-outgoing-0 << HTTP/1.1 200 OK
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.headers onResponseReceived - http-outgoing-0 << Server: Apache-Coyote/1.1
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.headers onResponseReceived - http-outgoing-0 << Content-Length: 0
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.headers onResponseReceived - http-outgoing-0 << Date: Wed, 13 Jun 2018 12:59:11 GMT
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.impl.execchain.MainClientExec execute - Connection can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection [id: 0][route: {}->http://207.154.253.254:8080] can be kept alive indefinitely
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.impl.conn.PoolingHttpClientConnectionManager releaseConnection - Connection released: [id: 0][route: {}->http://207.154.253.254:8080][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 200]
+[DEBUG] 2018-06-13 14:59:13,981 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
