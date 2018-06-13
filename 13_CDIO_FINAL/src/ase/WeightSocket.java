@@ -146,7 +146,7 @@ public class WeightSocket {
 		String str = null;
 		log.info("Client: "+msg.replace("\n", "\\n"));
 
-		/*Der skal sleepes f�r den vil vise beskeden for some reason.*/
+		/*Der skal sleepes foer den vil vise beskeden for some reason.*/
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
@@ -197,7 +197,11 @@ public class WeightSocket {
 		String[] strArr = str.split(" ");
 		return Double.parseDouble(strArr[6]);
 	}
-	
+
+	/**
+	 * Rydder input stream, da gammel data kan gemme sig i det.
+	 * @throws IOException
+	 */
 	public void flushInput() throws IOException {
 		log.info("Flush inputstream.");
 		while(input.ready()) {
