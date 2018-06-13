@@ -31,23 +31,7 @@ public class RaavareService implements IRaavareService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getRaavareList() throws DALException {
-		try {
-			new MySQLConnector();
-		} catch(InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch(IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch(ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch(SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response getRaavareList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		List<DTORaavare> result = null;
 		try {
 			result = rController.getRaavreList();
@@ -59,23 +43,7 @@ public class RaavareService implements IRaavareService {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createRaavare(DTORaavare raavare) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response createRaavare(DTORaavare raavare) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		try {
 			rController.createRaavare(raavare);
 		} catch(DALException e) {
@@ -85,23 +53,7 @@ public class RaavareService implements IRaavareService {
 	}
 
 	@PUT
-	public Response updateRaavare(DTORaavare raavare) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response updateRaavare(DTORaavare raavare) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		try {
 			rController.updateRaavare(raavare);
 		} catch(DALException e) {
@@ -112,22 +64,7 @@ public class RaavareService implements IRaavareService {
 
 	@DELETE
 	@Path("{id}")
-	public Response deleteRaavare(@PathParam("id") int raavareId) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
+	public Response deleteRaavare(@PathParam("id") int raavareId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		
 		try {
 			rController.deleteRaavare(raavareId);
@@ -143,23 +80,7 @@ public class RaavareService implements IRaavareService {
 	@Path("batch/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getRaavareBatchList(@PathParam("id") int raavareId) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response getRaavareBatchList(@PathParam("id") int raavareId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		List<DTORaavareBatch> result = null;
 		try {
 			result = rbController.getRaavareBatchList(raavareId);
@@ -172,22 +93,8 @@ public class RaavareService implements IRaavareService {
 	@POST
 	@Path("batch")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createRaavareBatch(DTORaavareBatch raavarebatch) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
+	public Response createRaavareBatch(DTORaavareBatch raavarebatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+		
 		
 		try {
 			rbController.createRaavsareBatch(raavarebatch);
@@ -199,23 +106,7 @@ public class RaavareService implements IRaavareService {
 
 	@PUT
 	@Path("batch")
-	public Response updateRaavareBatch(DTORaavareBatch raavarebatch) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response updateRaavareBatch(DTORaavareBatch raavarebatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		try {
 			rbController.updateRaavareBatch(raavarebatch);
 		} catch(DALException e) {
@@ -226,22 +117,7 @@ public class RaavareService implements IRaavareService {
 
 	@DELETE
 	@Path("batch/{id}")
-	public Response deleteRaavareBatch(@PathParam("id") int raavarebatch_ID) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
+	public Response deleteRaavareBatch(@PathParam("id") int raavarebatch_ID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		
 		try {
 			rbController.deleteRaavareBatch(raavarebatch_ID);

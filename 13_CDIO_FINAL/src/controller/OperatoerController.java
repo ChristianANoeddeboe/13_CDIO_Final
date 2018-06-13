@@ -26,25 +26,25 @@ public class OperatoerController {
 	}
 	
 	
-	public DTOOperatoer getOperatoer(int oprId) throws DALException {
+	public DTOOperatoer getOperatoer(int oprId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		return dao.getOperatoer(oprId);
 	}
 	
-	public List<DTOOperatoer> getOperatoerList() throws DALException{
+	public List<DTOOperatoer> getOperatoerList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		return dao.getOperatoerList();
 	}
 	
-	public void createOperatoer(DTOOperatoer operatoerDTO) throws DALException {
+	public void createOperatoer(DTOOperatoer operatoerDTO) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		validateData(operatoerDTO);
 		dao.createOperatoer(operatoerDTO);
 	}
 	
-	public void updateOperatoer(DTOOperatoer operatoerDTO) throws DALException{
+	public void updateOperatoer(DTOOperatoer operatoerDTO) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		validateData(operatoerDTO);
 		dao.updateOperatoer(operatoerDTO);
 	}
 	
-	public void deleteOperatoer(int oprId) throws DALException {
+	public void deleteOperatoer(int oprId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		dao.deleteOperatoer(oprId);
 	}
 	

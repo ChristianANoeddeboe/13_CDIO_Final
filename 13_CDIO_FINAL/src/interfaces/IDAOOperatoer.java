@@ -6,9 +6,9 @@ import exception.DALException;
 import dto.DTOOperatoer;
 
 public interface IDAOOperatoer {
-	DTOOperatoer getOperatoer(int oprId) throws DALException;
-	List<DTOOperatoer> getOperatoerList() throws DALException;
-	void createOperatoer(DTOOperatoer opr) throws DALException;
-	void updateOperatoer(DTOOperatoer opr) throws DALException;
-	void deleteOperatoer(int opr_id) throws DALException;
+	DTOOperatoer getOperatoer(int oprId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	List<DTOOperatoer> getOperatoerList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	void createOperatoer(DTOOperatoer opr) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	void updateOperatoer(DTOOperatoer opr) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	void deleteOperatoer(int opr_id) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
 }

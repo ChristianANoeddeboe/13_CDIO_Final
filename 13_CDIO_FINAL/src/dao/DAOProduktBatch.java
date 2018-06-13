@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DAOProduktBatch implements IDAOProduktBatch {
 
     @Override
-    public DTOProduktBatch getProduktBatch(int pbId) throws DALException {
+    public DTOProduktBatch getProduktBatch(int pbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM produktbatchview WHERE pb_id = " + pbId); // View
         try {
             if (!rs.first()) throw new DALException("Produktbatchet " + pbId + " findes ikke");
@@ -31,7 +31,7 @@ public class DAOProduktBatch implements IDAOProduktBatch {
     }
 
     @Override
-    public List<DTOProduktBatch> getProduktBatchList() throws DALException {
+    public List<DTOProduktBatch> getProduktBatchList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         List<DTOProduktBatch> list = new ArrayList<DTOProduktBatch>();
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM produktbatchview");
         try {
@@ -47,7 +47,7 @@ public class DAOProduktBatch implements IDAOProduktBatch {
     }
 
     @Override
-    public void createProduktBatch(DTOProduktBatch produktbatch) throws DALException {
+    public void createProduktBatch(DTOProduktBatch produktbatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (MySQLConnector.doUpdate("call createProductBatch("+produktbatch.getPbId()+",'"+produktbatch.getStatus() + "'," +
                 produktbatch.getReceptId() + ")") == 0) {
             String errMsg = "Couldn't add tuple to \"Produkt batch\".";
@@ -57,7 +57,7 @@ public class DAOProduktBatch implements IDAOProduktBatch {
     }
 
     @Override
-    public void updateProduktBatch(DTOProduktBatch produktbatch) throws DALException {
+    public void updateProduktBatch(DTOProduktBatch produktbatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (MySQLConnector.doUpdate("call updateProductBatch(" + produktbatch.getPbId() + ",'" +
                 produktbatch.getStatus().toString() + "'," + produktbatch.getReceptId() + ")") == 0) {
             String errMsg = "No rows updated in \"Produkt batch\".";
@@ -67,7 +67,7 @@ public class DAOProduktBatch implements IDAOProduktBatch {
     }
 
     @Override
-    public void deleteProduktBatch(int pbID) throws DALException {
+    public void deleteProduktBatch(int pbID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (MySQLConnector.doUpdate("call deleteProductBatch(" + pbID + ")") == 0) {
             String errMsg = "No rows updated in \"Produkt batch\".";
             log.warn(errMsg);

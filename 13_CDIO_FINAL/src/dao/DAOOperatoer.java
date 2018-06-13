@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DAOOperatoer implements IDAOOperatoer {
 
     //Get operator with specific ID
-    public DTOOperatoer getOperatoer(int oprId) throws DALException {
+    public DTOOperatoer getOperatoer(int oprId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId); // View
         try {
             if (!rs.first()) throw new DALException("Operatoeren " + oprId + " findes ikke.");
@@ -32,7 +32,7 @@ public class DAOOperatoer implements IDAOOperatoer {
 
     }
 
-    public void createOperatoer(DTOOperatoer opr) throws DALException {
+    public void createOperatoer(DTOOperatoer opr) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         opr.formatCPR();
         if (MySQLConnector.doUpdate("CALL createOperator('" + opr.getCpr() + "','" + opr.getRoles() +
                 "','" + opr.getFornavn() + "','" + opr.getEfternavn() + "','aktiv')") == 0) {
@@ -42,7 +42,7 @@ public class DAOOperatoer implements IDAOOperatoer {
         }
     }
 
-    public void updateOperatoer(DTOOperatoer opr) throws DALException {
+    public void updateOperatoer(DTOOperatoer opr) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         opr.formatCPR();
         if (MySQLConnector.doUpdate("CALL updateOperator(" + opr.getOprId() + "," + opr.getCpr() + ",'" + opr.getRoles() + "','" + opr.getFornavn() + "','" + opr.getEfternavn() + "','" + opr.getAktiv() + "')") == 0) {
             String errMsg = "No rows updated in \"Operatoer\".";
@@ -51,7 +51,7 @@ public class DAOOperatoer implements IDAOOperatoer {
         }
     }
 
-    public List<DTOOperatoer> getOperatoerList() throws DALException {
+    public List<DTOOperatoer> getOperatoerList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         List<DTOOperatoer> list = new ArrayList<DTOOperatoer>();
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM operatoer");
         try {
@@ -69,7 +69,7 @@ public class DAOOperatoer implements IDAOOperatoer {
     }
 
     @Override
-    public void deleteOperatoer(int opr_id) throws DALException {
+    public void deleteOperatoer(int opr_id) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (MySQLConnector.doUpdate("CALL deleteOperator('" + opr_id + "')") == 0) {
             String errMsg = "Couldn't add tuple to \"Operatoer\".";
             log.warn(errMsg);

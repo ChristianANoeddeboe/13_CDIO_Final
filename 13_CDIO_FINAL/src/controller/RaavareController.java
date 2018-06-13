@@ -25,25 +25,25 @@ public class RaavareController {
 		}
 		return instance;
 	}
-	public DTORaavare getRaavare(int raavareID) throws DALException {
+	public DTORaavare getRaavare(int raavareID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		return dao.getRaavare(raavareID);
 	}
 
-	public List<DTORaavare> getRaavreList() throws DALException {
+	public List<DTORaavare> getRaavreList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		return dao.getRaavareList();
 	}
 
-	public void createRaavare(DTORaavare raavare) throws DALException {
+	public void createRaavare(DTORaavare raavare) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		validateData(raavare);
 		dao.createRaavare(raavare);
 	}
 
-	public void updateRaavare(DTORaavare raavare) throws DALException{
+	public void updateRaavare(DTORaavare raavare) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		validateData(raavare);
 		dao.updateRaavare(raavare);
 	}
 
-	public void deleteRaavare(int raavareID) throws DALException{
+	public void deleteRaavare(int raavareID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		dao.deleteRaavare(raavareID);
 	}
 

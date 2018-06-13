@@ -6,11 +6,11 @@ import exception.DALException;
 import dto.DTOProduktBatchKomp;
 
 public interface IDAOProduktBatchKomp {
-	DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException; // Retuner et produkt batch komponent
-	List<DTOProduktBatchKomp> getProduktBatchKompList(int pbId) throws DALException;
-	List<DTOProduktBatchKomp> getProduktBatchKompList() throws DALException;
-	void createProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException;
-	void updateProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException;
-	void deleteProduktBatchKomp(int productBatch_ID, int raavareBatch_ID) throws DALException;
+	DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException; // Retuner et produkt batch komponent
+	List<DTOProduktBatchKomp> getProduktBatchKompList(int pbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	List<DTOProduktBatchKomp> getProduktBatchKompList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	void createProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	void updateProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	void deleteProduktBatchKomp(int productBatch_ID, int raavareBatch_ID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
 }
 
