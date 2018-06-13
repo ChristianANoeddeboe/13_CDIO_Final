@@ -19,6 +19,9 @@ public class AseController {
         socket = new WeightSocket(ip, port);
     }
 
+    /**
+     * Opretter forbindelse mellem vaegt, system og database, samt paabegynder afvejningsprocessen.
+     */
     public void run() {
         List<DTOReceptKomp> receptkompList = null;
         DTOProduktBatch pb = null;
@@ -75,6 +78,10 @@ public class AseController {
         socket.disconnect();
     }
 
+    /**
+     * Tillader at der indtastes brugerid paa vaegten, og tjekker om id'et passer til en gyldig bruger.
+     * @return DTOOperatoer objektet, for den brugers id.
+     */
     private DTOOperatoer validerOperatoer() {
         log.info("Hent operatør.");
         OperatoerController controller = OperatoerController.getInstance();
@@ -123,6 +130,7 @@ public class AseController {
                 continue;
             }
 
+            // Henter det recept, produktbatched tilhører, for at faa navnet paa vores produktbatch.
             try {
                 DTORecept recept = rcontroller.getRecept(produktbatch.getReceptId());
                 str = socket.rm20(recept.getReceptNavn(), "", "Confirm.");
@@ -137,6 +145,7 @@ public class AseController {
         return produktbatch;
     }
 
+    //TODO Hvad hvis den er status 'afsluttet'?
     private boolean opdaterPbStatus(DTOProduktBatch pb) {
         if (pb.getStatus() != Status.Klar) {
             socket.rm20("Status: ikke klar.", "", "");
