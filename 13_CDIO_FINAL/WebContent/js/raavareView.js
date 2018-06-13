@@ -13,6 +13,7 @@ $(document).ready(function() {
 	clickDeleteKompHandler();
 	clickUpdateKompHandler();
 });
+
 function clickUpdateKompHandler(){
 	$(".btn-primaryUpdateKomp").click(function(){
 		put('rest/raavare/batch/',
@@ -222,7 +223,7 @@ function hideLoader(){
 	$("#raavareAdminTable").show();
 }
 function generateRaavareHTML(raavare) {
-	return 	'<tr><td scope ="row">' + raavare.raavareId + '</td>' +
+	return 	'<tr><th scope ="row">' + raavare.raavareId + '</th>' +
 	'<td><input type="text" id = "'+raavare.raavareId +"_navn"+'" class="form-control-plaintext" value="' + raavare.raavareNavn + '"></td></td>' +
 	'<td><input type="text" id = "'+raavare.raavareId +"_leverandør"+'" class="form-control-plaintext" value="' + raavare.leverandoer + '"></td></td>' +
 	'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary vis"><i class="fas fa-folder-open" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
@@ -231,8 +232,8 @@ function generateRaavareHTML(raavare) {
 	'</td></tr>';
 };
 function generateRaavareBatchKompHTML(raavareBatch) {
-	return 	'<tr><td scope ="row">' + raavareBatch.rbId + '</td>' +
-	'<td scope = "row">'+raavareBatch.raavareId + '</td>' +
+	return 	'<tr><th scope ="row">' + raavareBatch.rbId + '</th>' +
+	'<th scope = "row">'+raavareBatch.raavareId + '</th>' +
 	'<td><input type="text" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+"_mængde"+'" class="form-control-plaintext" value="' + raavareBatch.maengde + '"></td></td>' +
     '<td><button type="button" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'" class="btn btn-primary updateKomp"><i class="fas fa-save" id = "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'"></i></button>'+'</td>' +
 	'<td><button type="button" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'"></i></button>'+'</td>' +
