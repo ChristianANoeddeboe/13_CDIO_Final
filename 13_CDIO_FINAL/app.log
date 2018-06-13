@@ -1812,3 +1812,4 @@
 [DEBUG] 2018-06-12 10:22:48,983 org.apache.http.impl.execchain.MainClientExec cancel - Cancelling request execution
 [WARN] 2018-06-12 10:27:31,233 dao.DAOOperatoer updateOperatoer - No rows updated in "Operatoer".
 [WARN] 2018-06-12 10:27:40,682 dao.DAOProduktBatchKomp updateProduktBatchKomp - No rows updated in "Produkt batch komponent".
+[WARN] 2018-06-13 09:27:20,935 dao.DAOOperatoer updateOperatoer - No rows updated in "Operatoer".
