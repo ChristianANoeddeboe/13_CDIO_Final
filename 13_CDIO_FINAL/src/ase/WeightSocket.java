@@ -27,8 +27,6 @@ public class WeightSocket {
 
 	/**
 	 * Sets up the socket and readers/writers
-	 * @throws IOException
-	 * @throws UnknownHostException
 	 */
 	public void connect(){
 		try {
@@ -52,7 +50,6 @@ public class WeightSocket {
 
 	/**
 	 * Closes connections properly
-	 * @throws IOException
 	 */
 	public void disconnect() {
 		try {
@@ -132,10 +129,6 @@ public class WeightSocket {
 	/**
 	 * Used to send rm20 messages to the weight.
 	 * These require some sort of user input.
-	 * @param string1
-	 * @param string2
-	 * @param string3
-	 * @return
 	 */
 	public String rm20(String string1, String string2, String string3) {
 		//Format string to the weight format.
@@ -150,8 +143,7 @@ public class WeightSocket {
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("InterruptedException", e);
 		}
 
 		try {
@@ -200,7 +192,6 @@ public class WeightSocket {
 
 	/**
 	 * Rydder input stream, da gammel data kan gemme sig i det.
-	 * @throws IOException
 	 */
 	public void flushInput() throws IOException {
 		log.info("Flush inputstream.");

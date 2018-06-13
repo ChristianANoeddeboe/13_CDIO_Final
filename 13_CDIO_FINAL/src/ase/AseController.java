@@ -73,15 +73,12 @@ public class AseController {
             socket.disconnect();
             return;
         }
+
         afvejning(receptkompList, pb, operatoer);
         socket.rm20("Afvejning godkendt.", "", "");
         socket.disconnect();
     }
 
-    /**
-     * Tillader at der indtastes brugerid paa vaegten, og tjekker om id'et passer til en gyldig bruger.
-     * @return DTOOperatoer objektet, for den brugers id.
-     */
     private DTOOperatoer validerOperatoer() {
         log.info("Hent operatør.");
         OperatoerController controller = OperatoerController.getInstance();
@@ -145,12 +142,14 @@ public class AseController {
         return produktbatch;
     }
 
-    //TODO Hvad hvis den er status 'afsluttet'?
     private boolean opdaterPbStatus(DTOProduktBatch pb) {
         if (pb.getStatus() != Status.Klar) {
             socket.rm20("Status: ikke klar.", "", "");
             return false;
-        } else {
+        }else if(pb.getStatus() != Status.Afsluttet){
+            socket.rm20("Status: Afsluttet.", "", "");
+            return false;
+        }else {
             pb.setStatus(Status.Igang);
             ProduktBatchController pbcontroller = ProduktBatchController.getInstance();
             try {
