@@ -14,8 +14,6 @@ import javax.ws.rs.core.Response;
 import connector.MySQLConnector;
 import controller.RaavareController;
 import controller.RaavareBatchController;
-import dao.DAORaavare;
-import dao.DAORaavareBatch;
 import dto.DTORaavare;
 import dto.DTORaavareBatch;
 

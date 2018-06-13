@@ -13,7 +13,6 @@ import javax.ws.rs.core.Response;
 
 import connector.MySQLConnector;
 import controller.*;
-import dao.DAOOperatoer;
 import dto.DTOOperatoer;
 
 import java.sql.SQLException;
