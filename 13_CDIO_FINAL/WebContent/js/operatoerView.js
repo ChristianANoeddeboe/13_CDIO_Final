@@ -1,4 +1,4 @@
-var id, rolle, statuss;
+var id, statuss;
 $(document).ready(function() {
 	showLoader();
 	loadOperators();
@@ -9,15 +9,17 @@ $(document).ready(function() {
 	
 });
 
+
 function addEnterHandler(){
-	$(document).keypress(function(e) {
+	$(document).keypress(function(e) { //show modal on enter.
 		if(e.which === enterkey) {
 			id = e.target.id;
 			$('#updateModal').modal('show');
 		}
 	});
-};
-function clickUpdateHandler(){
+}
+
+function clickUpdateHandler(){ // Tilfoejer funktion til at aabne confirmation modal for update og paabegynder genindlaesningen af data for operatoer.
 	$(".btn-primaryUpdate").click(function(){
 		put('rest/operatoer',
 			JSON.stringify({
@@ -27,7 +29,6 @@ function clickUpdateHandler(){
 			cpr : $(("#"+id.split("_")[0]+"_cpr"))["0"].textContent,
 			roles : "Administrator",
 			aktiv : $(("#"+id.split("_")[0]+"_status"))["0"].value
-
 		}),
 		function(data){
 			$('#updateModal').modal('hide');
@@ -40,9 +41,10 @@ function clickUpdateHandler(){
 			loadOperators();
 		})
 	});
-};
+}
+
 function clickAddHandler(){
-	$(".btn-primaryAdd").click(function(){
+	$(".btn-primaryAdd").click(function(){ // Tilfoejer funktion til at aabne add modal når add knap trykkes.
 		post('rest/operatoer',
 			JSON.stringify({
 			oprId : $("#inputID")["0"].value,
@@ -63,7 +65,9 @@ function clickAddHandler(){
 		});
 		addOperators();
 	});
-};
+}
+
+// Indlaeser data for operatoererne og genindlaeser tabellen.
 function loadOperators(){
 	getEnum('rest/enum/status_operatoer',function(){
 		get('rest/operatoer',function(data){
@@ -78,27 +82,32 @@ function loadOperators(){
 	}, function(){
 		$.notify(data.responseText, "error");
 	});
-};
+}
+
 function hideLoader(){
 	$(".loader").hide();
 	$("#operatoerAdminTable").show();
-};
+}
+
 function showLoader(){
 	$("#operatoerAdminTable").hide();
 	$(".loader").show();
-};
+}
+
 function appendToTable(data){
 	$.each(data,function(i,element){
 		$('#operatoerAdminTable').children().append(generateOperatoerHTML(data[i]));
 	});
 }
-function generateClickForTable(){
+
+function generateClickForTable(){ // Tilfoejer funktion til at aabne update modal når update knap trykkes.
 	$(".update").click(function(e){
 		id = e.target.id;
 		$('#updateModal').modal('show');
 	});	
-};
-function generateOperatoerHTML(operatoer) {
+}
+
+function generateOperatoerHTML(operatoer) { //Tilfoejer indholder i tabellen.
 	var status = new Array();
 	status.push(operatoer.aktiv);
 
@@ -115,7 +124,8 @@ function generateOperatoerHTML(operatoer) {
 	'<td><select class="" name="' + operatoer.oprId + '_aktiv" id="' + operatoer.oprId + '_status"><option value="' + status[0] + '">' + status[0]  + '</option><option value="' + status[1] + '">' + status[1] + '</option>></select></td></td>' +
 	'<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
 	'</td></tr>';
-};
+}
+
 function clearOperatoerTable(){
 	$("#operatoerAdminTable tbody").empty();
-};
+}
