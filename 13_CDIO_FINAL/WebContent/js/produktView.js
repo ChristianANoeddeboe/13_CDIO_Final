@@ -231,7 +231,7 @@ function generateProduktHTML(produkt) {
 		}
 	});
 
-	return '<tr><td scope ="row">' + produkt.pbId + '</td>' +
+	return '<tr><th scope ="row">' + produkt.pbId + '</th>' +
 	'<td><select name="' + produkt.pbId + '_status" id="' + produkt.pbId + '_status"><option value="' + status[0] + '">' + status[0] + '</option><option value="' + status[1] + '">' + status[1] + '</option><option value="' + status[2] + '">' + status[2] + '</option></select></td></td>' +
 	'<td><input type="text" id = "' + produkt.pbId + "_recept" + '" class="form-control-plaintext" value="' + produkt.receptId + '"></td></td>' +
 	'<td><button type="button" id = "' + produkt.pbId + '" class="btn btn-primary vis"><i class="fas fa-folder-open" id = "'+produkt.pbId+'"></i></button>' + '</td>' +
@@ -240,8 +240,8 @@ function generateProduktHTML(produkt) {
 	'</td></tr>';
 }
 function generateProduktBatchKompHTML(produktKomp) {
-	return '<tr><td scope ="row">' + produktKomp.pbId + '</td>' +
-	'<td scope = "row">' + produktKomp.rbId + '</td>' +
+	return '<tr><th scope ="row">' + produktKomp.pbId + '</th>' +
+	'<th scope = "row">' + produktKomp.rbId + '</th>' +
 	'<td><input type="text" id = "' + produktKomp.pbId + "_" + produktKomp.rbId + "_tara" + '" class="form-control-plaintext" value="' + produktKomp.tara + '"></td></td>' +
 	'<td><input type="text" id =  "' + produktKomp.pbId + "_" + produktKomp.rbId + "_netto" + '" class="form-control-plaintext" value="' + produktKomp.netto + '"></td></td>' +
 	'<td><input type="text" id =  "' + produktKomp.pbId + "_" + produktKomp.rbId + "_operatoer" + '" class="form-control-plaintext" value="' + produktKomp.oprId + '"></td></td>' +
