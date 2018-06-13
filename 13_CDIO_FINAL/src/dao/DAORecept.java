@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DAORecept implements IDAORecept {
 
     @Override
-    public DTORecept getRecept(int receptId) throws DALException {
+    public DTORecept getRecept(int receptId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         //Select the entry from receptView that matches the ID.
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM receptView WHERE recept_id=" + receptId);
 
@@ -31,7 +31,7 @@ public class DAORecept implements IDAORecept {
     }
 
     @Override
-    public List<DTORecept> getReceptList() throws DALException {
+    public List<DTORecept> getReceptList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         List<DTORecept> list = new ArrayList<DTORecept>();
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM receptView");
 
@@ -47,7 +47,7 @@ public class DAORecept implements IDAORecept {
     }
 
     @Override
-    public void createRecept(DTORecept recept) throws DALException {
+    public void createRecept(DTORecept recept) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (MySQLConnector.doUpdate("CALL createRecept("+recept.getReceptId()+ ",'" + recept.getReceptNavn() + "');") == 0) {
             String errMsg = "Couldn't add tuple to \"Recept\".";
             log.warn(errMsg);
@@ -56,7 +56,7 @@ public class DAORecept implements IDAORecept {
     }
 
     @Override
-    public void updateRecept(DTORecept recept) throws DALException {
+    public void updateRecept(DTORecept recept) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (MySQLConnector.doUpdate("CALL updateRecept(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "');") == 0) {
             String errMsg = "No rows updated in \"Recept\".";
             log.warn(errMsg);
@@ -65,7 +65,7 @@ public class DAORecept implements IDAORecept {
     }
 
     @Override
-    public void deleteRecept(int receptID) throws DALException {
+    public void deleteRecept(int receptID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (MySQLConnector.doUpdate("CALL deleteRecept(" + receptID + ");") == 0) {
             String eerMsg = "No rows deleted in \"Recept\".";
             log.warn(eerMsg);

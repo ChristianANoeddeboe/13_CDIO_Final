@@ -1,39 +1,93 @@
-var id;
-$("#produktAdminTable").hide();
+var id,id2,value,statuss;
 $(document).ready(function () {
-	var id2,value,statuss;
-	const enterkey = 13;
-	$(".loader").show();
+	showLoader();
 	loadProducts();
-
-	$("#menuLoader").load("menu.html", null, function () {
-		rolle = localStorage.getItem('rolle');
-		if (rolle === "Laborant") {
-			$("#operatoerAdmin").hide();
-			$("#receptAdmin").hide();
-			$("#raavareAdmin").hide();
-		}
-		if (rolle === "Værksfører") {
-			$("#receptAdmin").hide();
-			$("#operatoerAdmin").hide()
-		}
-		if (rolle === "Pharmaceut") {
-			$("#operatoerAdmin").hide();
-		}
+	loadMenu();
+	clickAddHandler();
+	clickUpdateHandler();
+	clickDeleteHandler();
+	clickDismissDeleteHandler();
+	addEnterHandler();
+	clickShowMoreHandler();
+	clickAddKompHandler();
+	clickDeleteKompHandler();
+	clickUpdateKompHandler();
+});
+function clickUpdateKompHandler(){
+	$(".btn-primaryUpdateKomp").click(function () {
+		put('rest/produktbatch/komponent',JSON.stringify({
+			pbId: id.split("_")[0],
+			rbId: id.split("_")[1],
+			tara: $(("#" + id.split("_")[0] + "_" + id.split("_")[1] + "_tara"))["0"].value,
+			netto: $(("#" + id.split("_")[0] + "_" + id.split("_")[1] + "_netto"))["0"].value,
+			oprId: $(("#" + id.split("_")[0] + "_" + id.split("_")[1] + "_operatoer"))["0"].value
+		}),
+		function(){
+			$('#updateKompModal').modal('hide');
+			$.notify("Produktbatch komponenten blev opdateret", "success");
+			loadProductBatchKomps();
+		},
+		function(){
+			$('#updateKompModal').modal('hide');
+			$.notify(data.responseText, "error");
+			loadProductBatchKomps();
+		});
 	});
-
-	$(".btn-secondaryDelete").click(function () {
-		$('#deleteModal').modal('hide');
+}
+function clickDeleteKompHandler(){
+	$(".btn-primaryDeleteKomp").click(function () {
+		Delete('rest/produktbatch/komponent/'+id2.split("_")[0]+"/"+id2.split("_")[1],
+		function(data){
+			$('#deleteKompModal').modal('hide');
+			$.notify("Produktbatch komponenten blev slettet", "success");
+			loadProductBatchKomps();
+		},
+		function(data){
+			$('#deleteKompModal').modal('hide');
+			$.notify(data.responseText, "error");
+			loadProductBatchKomps();
+		})
 	});
-
-	$('#showMoreModal').on('shown.bs.modal', function () {
-		loadProduktBatchKomps();
-	});
-
+};
+function clickAddKompHandler(){
 	$('#addKompModal').on('shown.bs.modal', function(){
 		$("#inputPBIDKomp")["0"].value = id;
 	});
-
+	$(".btn-primaryAddKomp").click(function () {
+		post('rest/produktbatch/komponent',JSON.stringify({
+			pbId: $("#inputPBIDKomp")["0"].value,
+			rbId: $("#inputRBIDKomp")["0"].value,
+			tara: $("#inputTaraKomp")["0"].value,
+			netto: $("#inputNettoKomp")["0"].value,
+			oprId: $("#inputOprKomp")["0"].value
+		}),function(data){
+			$('#addKompModal').modal('hide');
+			$.notify("Produktbatch komponenten blev operettet", "success");
+			loadProductBatchKomps();
+		},function(data){
+			$('#addKompModal').modal('hide');
+			$.notify("Fejl ved oprettelse af produktbatch komponenten", "error");
+			loadProduktBatchKomps()
+		});
+	});
+};
+function clickShowMoreHandler(){
+	$('#showMoreModal').on('shown.bs.modal', function () {
+		loadProductBatchKomps();
+	});
+};
+function loadProductBatchKomps(){
+	get('rest/produktbatch/komponent/'+id.split("_")[0],
+			function(data){
+		clearProduktBatchKompTable();
+		appendToSubTable(data)
+		generateClickForSubTable();
+	}, function(data){
+		$.notify(data.responseText, "error");
+		
+	});
+};
+function addEnterHandler(){
 	$(document).keypress(function (e) {
 		if (e.which === enterkey) {
 			id = e.target.id;
@@ -47,8 +101,126 @@ $(document).ready(function () {
 		}
 
 	});
+};
+function clickDismissDeleteHandler(){
+	$(".btn-secondaryDelete").click(function () {
+		$('#deleteModal').modal('hide');
+	});
+};
+function clickDeleteHandler(){
+	$(".btn-primaryDelete").click(function (e) {
+		Delete('rest/produktbatch/'+id,
+		function(data){
+			$('#deleteModal').modal('hide');
+			$.notify("Produktbatchet blev slettet", "success");
+			loadProducts();
+		},
+		function(data){
+			$('#deleteModal').modal('hide');
+			$.notify(data.responseText, "error");
+			loadProducts();
+		});
+	});
+};
+function clickAddHandler(){
+	$(".btn-primaryAdd").click(function () {
+		post('rest/produktbatch',
+				JSON.stringify({
+			pbId: $("#inputID")["0"].value,
+			status: $("input:checked").val(),
+			receptId: $("#inputReceptId")["0"].value
+		}),
+		function(data){
+			$('#addModal').modal('hide');
+			$.notify("Produkt batchet blev operettet", "success");
+			loadProducts();
+		},
+		function(data){
+			$('#addModal').modal('hide');
+			$.notify("Fejl ved oprettelse af produkt batchet", "error");
+			loadProducts();
+		});
+	});
+};
+function clickUpdateHandler(){
+	$(".btn-primaryUpdate").click(function () {
+		put('rest/produktbatch',
+		JSON.stringify({
+			pbId: id.split("_")[0],
+			status: $("#" +  id.split("_")[0] + "_status")["0"].value,
+			receptId: $("#" +  id.split("_")[0] + "_recept")["0"].value
+		}),
+		function(data){
+			$('#updateModal').modal('hide');
+			$.notify("ProduktBatchet blev opdateret", "success");
+			loadProducts();
+		}, 
+		function(data){
+			$('#updateModal').modal('hide');
+			$.notify(data.responseText, "error");
+			loadProducts();
+		});
+	});
+}
+function loadProducts() {
+	getEnum('rest/enum/status_produktbatch',function(){
+		get('rest/produktbatch',function(data){
+			clearProduktTable();
+			appendToTable(data);
+			generateClickForTable();
+			hideLoader()
+		},function(data){
+			$.notify(data.responseText, "error");
+		});
+	},function(data){
+		$.notify(data.responseText, "error");
+	});
+};
+function showLoader(){
+	$("#produktAdminTable").hide();
+	$(".loader").show();
+};
+function hideLoader(){
+	$(".loader").hide();
+	$("#produktAdminTable").show();
+};
+function appendToTable(data){
+	$.each(data, function (i, element) {
+		$('#produktAdminTable').children().append(generateProduktHTML(data[i]));
+	});
+};
+function appendToSubTable(data){
+	$.each(data, function (i, element) {
+		$('#produktBatchKompTable').append(generateProduktBatchKompHTML(data[i]));
 
-});
+	});
+}
+function generateClickForSubTable(){
+	$(".sletKomp").click(function (e) {
+		id2 = e.target.id;
+		$('#deleteKompModal').modal('show');
+		e.preventDefault();
+	});
+	$(".updateKomp").click(function(e){
+		id = e.target.id;
+		$('#updateKompModal').modal('show');
+	});
+};
+function generateClickForTable(){
+	$(".slet").click(function (e) {
+		id = e.target.id;
+		$('#deleteModal').modal('show');
+		e.preventDefault();
+	});
+	$(".vis").click(function (e) {
+		id = e.target.id;
+		$('#showMoreModal').modal('show');
+	});
+	$(".update").click(function(e){
+		id = e.target.id;
+		$('#updateModal').modal('show');
+	});
+};
 function generateProduktHTML(produkt) {
 	var status = new Array();
 	status.push(produkt.status);
@@ -77,11 +249,9 @@ function generateProduktBatchKompHTML(produktKomp) {
 	'<td><button type="button" id =  "' + produktKomp.pbId + "_" + produktKomp.rbId + '" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id = "' + produktKomp.pbId + "_" + produktKomp.rbId + '"></i></button>' + '</td>' +
 	'</td></tr>';
 }
-
 function clearProduktTable() {
 	$("#produktTable>tbody").empty();
 }
-
 function clearProduktBatchKompTable() {
 	$("#produktBatchKompTable>tbody").empty();
-}
+};

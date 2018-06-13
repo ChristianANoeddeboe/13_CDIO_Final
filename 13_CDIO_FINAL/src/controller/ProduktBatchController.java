@@ -26,25 +26,25 @@ public class ProduktBatchController {
 		return instance;
 	}
     
-    public DTOProduktBatch getProduktBatch(int pbID) throws DALException{
+    public DTOProduktBatch getProduktBatch(int pbID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
         return dao.getProduktBatch(pbID);
     }
 
-    public List<DTOProduktBatch> getProduktBatchList() throws DALException{
+    public List<DTOProduktBatch> getProduktBatchList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
         return dao.getProduktBatchList();
     }
 
-    public void createProduktBatch(DTOProduktBatch produktBatch) throws DALException{
+    public void createProduktBatch(DTOProduktBatch produktBatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
         validateData(produktBatch);
         dao.createProduktBatch(produktBatch);
     }
 
-    public void updateProduktBatch(DTOProduktBatch produktBatch) throws DALException{
+    public void updateProduktBatch(DTOProduktBatch produktBatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
         validateData(produktBatch);
         dao.updateProduktBatch(produktBatch);
     }
 
-    public void deleteProduktBatch(int pbID) throws DALException{
+    public void deleteProduktBatch(int pbID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
         dao.deleteProduktBatch(pbID);
     }
 

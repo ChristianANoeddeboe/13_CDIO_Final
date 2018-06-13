@@ -28,54 +28,26 @@ import interfaces.IProduktService;
 public class ProduktService implements IProduktService {
 	ProduktBatchController controller = ProduktBatchController.getInstance();
 	ProduktBatchKompController kompController = ProduktBatchKompController.getInstance();
-	
+
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getProduktBatchList() throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response getProduktBatchList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		new MySQLConnector();
+
+
 		List<DTOProduktBatch> result = null;
 		try {
 			result = controller.getProduktBatchList();
 		} catch(DALException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
 		}
-        return Response.ok(result, MediaType.APPLICATION_JSON).build();
+		return Response.ok(result, MediaType.APPLICATION_JSON).build();
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createProduktBatch(DTOProduktBatch produktbatch) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response createProduktBatch(DTOProduktBatch produktbatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		new MySQLConnector();
 		try {
 			controller.createProduktBatch(produktbatch);
 		} catch(DALException e) {
@@ -86,23 +58,9 @@ public class ProduktService implements IProduktService {
 
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateProduktBatch(DTOProduktBatch produktbatch) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response updateProduktBatch(DTOProduktBatch produktbatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		new MySQLConnector();
+
 		try {
 			controller.updateProduktBatch(produktbatch);
 		} catch(DALException e) {
@@ -113,23 +71,8 @@ public class ProduktService implements IProduktService {
 
 	@DELETE
 	@Path("{id}")
-	public Response deleteProduktBatch(@PathParam("id") int pbID) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response deleteProduktBatch(@PathParam("id") int pbID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		new MySQLConnector();
 		try {
 			controller.deleteProduktBatch(pbID);
 		} catch(DALException e) {
@@ -139,59 +82,31 @@ public class ProduktService implements IProduktService {
 	}
 
 	//KOMPONENTER
-	
+
 
 
 	@GET
 	@Path("komponent/{pbId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getProduktBatchKompList(@PathParam("pbId")int pbId) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response getProduktBatchKompList(@PathParam("pbId")int pbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		new MySQLConnector();
+
 		List<DTOProduktBatchKomp> result = null;
 		try {
 			result = kompController.getProduktBatchKomponentList(pbId);
 		} catch(DALException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
 		}
-        return Response.ok(result, MediaType.APPLICATION_JSON).build();
+		return Response.ok(result, MediaType.APPLICATION_JSON).build();
 	}
 
 	@POST
 	@Path("komponent")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response createProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		new MySQLConnector();
+
 		try {
 			kompController.createProdBatchKomp(produktbatchkomponent);
 		} catch(DALException e) {
@@ -203,23 +118,9 @@ public class ProduktService implements IProduktService {
 	@PUT
 	@Path("komponent")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response updateProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		new MySQLConnector();
+
 		try {
 			kompController.updateProdBatchKomp(produktbatchkomponent);
 		} catch(DALException e) {
@@ -230,23 +131,8 @@ public class ProduktService implements IProduktService {
 
 	@DELETE
 	@Path("komponent/{pbid}/{rbid}")
-	public Response deleteProduktBatchKomp(@PathParam("pbid") int productBatch_ID, @PathParam("rbid") int raavareBatch_ID) throws DALException {
-		try {
-			new MySQLConnector();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Instationtion fejl, tjek server log").build();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Illegal access fejl, tjek server log").build();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Klasse ikke fundet, tjek server log").build();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database SQL fejl kode: "+e.getErrorCode()+" - "+e.getSQLState()).build();
-		}
-		
+	public Response deleteProduktBatchKomp(@PathParam("pbid") int productBatch_ID, @PathParam("rbid") int raavareBatch_ID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		new MySQLConnector();
 		try {
 			kompController.deleteProdBatchKomp(productBatch_ID, raavareBatch_ID);
 		} catch(DALException e) {

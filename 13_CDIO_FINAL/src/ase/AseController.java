@@ -68,20 +68,17 @@ public class AseController {
         }
 
         receptkompList = getReceptkompliste(pb);
-        if(receptkompList == null){
+        if (receptkompList == null) {
             log.info("Cancel: Get recept komponent");
             socket.disconnect();
             return;
         }
+
         afvejning(receptkompList, pb, operatoer);
         socket.rm20("Afvejning godkendt.", "", "");
         socket.disconnect();
     }
 
-    /**
-     * Tillader at der indtastes brugerid paa vaegten, og tjekker om id'et passer til en gyldig bruger.
-     * @return DTOOperatoer objektet, for den brugers id.
-     */
     private DTOOperatoer validerOperatoer() {
         log.info("Hent operatør.");
         OperatoerController controller = OperatoerController.getInstance();
@@ -112,7 +109,7 @@ public class AseController {
 
     private DTOProduktBatch getProduktbatch() {
         DTOProduktBatch produktbatch = null;
-        ProduktBatchController pbcontroller =  ProduktBatchController.getInstance();
+        ProduktBatchController pbcontroller = ProduktBatchController.getInstance();
         ReceptController rcontroller = ReceptController.getInstance();
         String str = null;
         while (true) {
@@ -145,12 +142,14 @@ public class AseController {
         return produktbatch;
     }
 
-    //TODO Hvad hvis den er status 'afsluttet'?
     private boolean opdaterPbStatus(DTOProduktBatch pb) {
         if (pb.getStatus() != Status.Klar) {
             socket.rm20("Status: ikke klar.", "", "");
             return false;
-        } else {
+        }else if(pb.getStatus() != Status.Afsluttet){
+            socket.rm20("Status: Afsluttet.", "", "");
+            return false;
+        }else {
             pb.setStatus(Status.Igang);
             ProduktBatchController pbcontroller = ProduktBatchController.getInstance();
             try {
@@ -218,7 +217,7 @@ public class AseController {
         for (DTOReceptKomp receptKomp : receptkompList) {
 
             emptyWeight();
-            retreiveRaavare(receptKomp.getRaavareId());
+            raavare = retreiveRaavare(receptKomp.getRaavareId());
             tara = retreiveTara();
 
             // Specificerer den tolerence vi tillader, i form af 2 vaerdier til senere tjek.
@@ -228,7 +227,7 @@ public class AseController {
             do {
                 try {
                     str = socket.rm20("Angiv raavarebatch ID", "", "");
-                    if (str.contains("RM20 C") || str.contains("exit")) socket.rm20("What to do...", "", "");
+                    if (str.contains("RM20 C") || str.contains("exit")) socket.rm20("Not allowed", "", "");
                     tempRB = rbController.getRaavareBatch(Integer.parseInt(str));
                     if (tempRB.getRaavareId() != raavare.getRaavareId()) continue;
                 } catch (NumberFormatException e) {
@@ -361,7 +360,7 @@ public class AseController {
         }
     }
 
-    private void abort(String msg, Exception e){
+    private void abort(String msg, Exception e) {
         log.error(msg);
         log.error("System afsluttes.");
         log.error(e.getMessage());

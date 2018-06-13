@@ -1,31 +1,29 @@
-var id;
-$("#receptAdminTable").hide();
+var id,id2,value,rolle;
+
 $(document).ready(function() {
-	$(".loader").show();
-	var id2,value,rolle;
-    const enterkey = 13;
+	showLoader();
 	loadRecepts();
 
-    $("#menuLoader").load("menu.html", null, function () {
-        rolle = localStorage.getItem('rolle');
-        if (rolle === "Laborant") {
-            $("#operatoerAdmin").hide();
-            $("#receptAdmin").hide();
-            $("#raavareAdmin").hide();
-        }
-        if (rolle === "Værksfører") {
-            $("#receptAdmin").hide();
-            $("#operatoerAdmin").hide()
-        }
-        if (rolle === "Pharmaceut") {
-            $("#operatoerAdmin").hide();
-        }
-    });
-    
-    $(".btn-secondaryDelete").click(function(){
+	$("#menuLoader").load("menu.html", null, function () {
+		rolle = localStorage.getItem('rolle');
+		if (rolle === "Laborant") {
+			$("#operatoerAdmin").hide();
+			$("#receptAdmin").hide();
+			$("#raavareAdmin").hide();
+		}
+		if (rolle === "Værksfører") {
+			$("#receptAdmin").hide();
+			$("#operatoerAdmin").hide()
+		}
+		if (rolle === "Pharmaceut") {
+			$("#operatoerAdmin").hide();
+		}
+	});
+
+	$(".btn-secondaryDelete").click(function(){
 		$('#deleteModal').modal('hide');
 	});
-	
+
 	$('#addKompModal').on('shown.bs.modal', function(){
 		$("#inputReceptIDKomp")["0"].value = id;
 	});
@@ -33,7 +31,7 @@ $(document).ready(function() {
 	$('#showMoreModal').on('shown.bs.modal', function () {
 		loadReceptKomps();
 	});
-	
+
 	$(document).keypress(function(e) {
 		if(e.which == enterkey) {
 			id = e.target.id;
@@ -49,7 +47,51 @@ $(document).ready(function() {
 	});
 
 });
+function appendToTable(data){
+	$.each(data,function(i,element){
+		$('#receptAdminTable').children().append(generateReceptHTML(data[i]));
 
+	});
+};
+function generateClickForTable(){
+	$(".slet").click(function(e){
+		id = e.target.id;
+		$('#deleteModal').modal('show');
+		e.preventDefault();
+	});
+	$(".vis").click(function(e){
+		id = e.target.id;
+		$('#showMoreModal').modal('show');
+		e.preventDefault();
+
+	});
+	$(".update").click(function(e){
+		id = e.target.id;
+		$('#updateModal').modal('show');
+	});
+};
+function loadRecepts(){
+	get('rest/recept',
+	function(data){
+		clearReceptTable();
+		appendToTable(data);
+		generateClickForTable();
+		hideLoader();
+	},
+	function(data){
+		$.notify(data.responseText, "error");
+
+	});
+	
+}
+function hideLoader(){
+	$(".loader").hide();
+	$("#receptAdminTable").show();
+}
+function showLoader(){
+	$("#receptAdminTable").hide();
+	$(".loader").show();
+};
 //Convenience function for generating html
 function generateReceptHTML(recept) {
 	return 	'<tr><td scope ="row">' + recept.receptId + '</td>' +

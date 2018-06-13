@@ -1,38 +1,103 @@
-$("#operatoerAdminTable").hide();
+var id, rolle, statuss;
 $(document).ready(function() {
-	var id, value, rolle, statuss;
-	const enterkey = 13;
-	$(".loader").show();
-	
+	showLoader();
 	loadOperators();
+	loadMenu();
+	clickAddHandler();
+	clickUpdateHandler();
+	addEnterHandler();
+	
+});
 
-	$("#menuLoader").load("menu.html", null, function () {
-		rolle = localStorage.getItem('rolle');
-		if (rolle === "Laborant") {
-			$("#operatoerAdmin").hide();
-			$("#receptAdmin").hide();
-			$("#raavareAdmin").hide();
-		}
-		if (rolle === "Værksfører") {
-			$("#receptAdmin").hide();
-			$("#operatoerAdmin").hide()
-		}
-		if (rolle === "Pharmaceut") {
-			$("#operatoerAdmin").hide();
-		}
-	});
-
+function addEnterHandler(){
 	$(document).keypress(function(e) {
 		if(e.which === enterkey) {
 			id = e.target.id;
 			$('#updateModal').modal('show');
 		}
 	});
+};
+function clickUpdateHandler(){
+	$(".btn-primaryUpdate").click(function(){
+		put('rest/operatoer',
+			JSON.stringify({
+			oprId : id.split("_")[0],
+			fornavn : $(("#"+id.split("_")[0]+"_fornavn"))["0"].value,
+			efternavn : $(("#"+id.split("_")[0]+"_efternavn"))["0"].value,
+			cpr : $(("#"+id.split("_")[0]+"_cpr"))["0"].textContent,
+			roles : "Administrator",
+			aktiv : $(("#"+id.split("_")[0]+"_status"))["0"].value
 
+		}),
+		function(data){
+			$('#updateModal').modal('hide');
+			$.notify("Operatoeren blev opdateret", "success");
+			loadOperators();
+		},
+		function(data){
+			$('#updateModal').modal('hide');
+			$.notify(data.responseText, "error");
+			loadOperators();
+		})
+	});
+};
+function clickAddHandler(){
+	$(".btn-primaryAdd").click(function(){
+		post('rest/operatoer',
+			JSON.stringify({
+			oprId : $("#inputID")["0"].value,
+			fornavn : $("#inputFornavn")["0"].value,
+			efternavn : $("#inputEfternavn")["0"].value,
+			cpr : $("#inputCPR")["0"].value,
+			roles : "Administrator"
+		}),
+		function(){
+			$('#addModal').modal('hide');
+			$.notify("Operatoeren blev operettet", "success");
+			loadOperators();
+		}, 
+		function(){
+			$('#addModal').modal('hide');
+			$.notify("Fejl ved oprettelse af operatoeren", "error");
+			loadOperators();
+		});
+		addOperators();
+	});
+};
+function loadOperators(){
+	getEnum('rest/enum/status_operatoer',function(){
+		get('rest/operatoer',function(data){
+			clearOperatoerTable();
+			appendToTable(data);
+			generateClickForTable();
+			hideLoader();
+		}, function(data){
+			$.notify(data.responseText, "error");
 
-
-});
-
+		});
+	}, function(){
+		$.notify(data.responseText, "error");
+	});
+};
+function hideLoader(){
+	$(".loader").hide();
+	$("#operatoerAdminTable").show();
+};
+function showLoader(){
+	$("#operatoerAdminTable").hide();
+	$(".loader").show();
+};
+function appendToTable(data){
+	$.each(data,function(i,element){
+		$('#operatoerAdminTable').children().append(generateOperatoerHTML(data[i]));
+	});
+}
+function generateClickForTable(){
+	$(".update").click(function(e){
+		id = e.target.id;
+		$('#updateModal').modal('show');
+	});	
+};
 function generateOperatoerHTML(operatoer) {
 	var status = new Array();
 	status.push(operatoer.aktiv);
@@ -43,15 +108,14 @@ function generateOperatoerHTML(operatoer) {
 		status[1] = statuss[0];
 	}
 
-	return 	'<tr><td scope ="row">' + operatoer.oprId + '</td>' +
+	return 	'<tr><th scope ="row">' + operatoer.oprId + '</th>' +
 	'<td><input type="text" id = "'+operatoer.oprId+"_fornavn"+'" class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
 	'<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'" class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
-	'<td scope = "row"><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></td></td>' +
+	'<th scope = "row"><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></th></td>' +
 	'<td><select class="" name="' + operatoer.oprId + '_aktiv" id="' + operatoer.oprId + '_status"><option value="' + status[0] + '">' + status[0]  + '</option><option value="' + status[1] + '">' + status[1] + '</option>></select></td></td>' +
 	'<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
 	'</td></tr>';
 };
-
 function clearOperatoerTable(){
 	$("#operatoerAdminTable tbody").empty();
 };

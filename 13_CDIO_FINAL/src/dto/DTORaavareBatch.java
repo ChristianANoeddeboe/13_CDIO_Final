@@ -20,7 +20,7 @@ public class DTORaavareBatch {
     }
     
     public void setMangde(double m) {
-    	DecimalFormat df = new DecimalFormat("#.####");
+    	DecimalFormat df = new DecimalFormat("#,####");
     	maengde = Double.parseDouble(df.format(m));
     }
 }

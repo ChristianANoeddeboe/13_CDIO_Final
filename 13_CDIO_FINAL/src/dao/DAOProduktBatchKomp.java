@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
 
     @Override
-    public DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException {
+    public DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         try {
             ResultSet rs = MySQLConnector.doQuery("SELECT * FROM produktbatchkomp WHERE pb_id =" + pbId + " AND rb_id =" + rbId);
             if (!rs.first())
@@ -30,7 +30,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
     }
 
     @Override
-    public List<DTOProduktBatchKomp> getProduktBatchKompList(int pbId) throws DALException {
+    public List<DTOProduktBatchKomp> getProduktBatchKompList(int pbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         List<DTOProduktBatchKomp> list = new ArrayList<DTOProduktBatchKomp>();
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM produktbatchkomp where pb_id=" + pbId);
         try {
@@ -46,7 +46,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
     }
 
     @Override
-    public List<DTOProduktBatchKomp> getProduktBatchKompList() throws DALException {
+    public List<DTOProduktBatchKomp> getProduktBatchKompList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         List<DTOProduktBatchKomp> list = new ArrayList<DTOProduktBatchKomp>();
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM produktbatchkomp");
         try {
@@ -62,7 +62,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
     }
 
     @Override
-    public void createProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException {
+    public void createProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (MySQLConnector.doUpdate("CALL createProduktBatchKomp(" + produktbatchkomponent.getPbId() + "," + produktbatchkomponent.getRbId() + "," + produktbatchkomponent.getTara() + ""
                 + "," + produktbatchkomponent.getNetto() + "," + produktbatchkomponent.getOprId() + ")") == 0) {
             String errMsg = "Couldn't add tuple to \"Produkt batch komponent\".";
@@ -72,7 +72,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
     }
 
     @Override
-    public void updateProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException {
+    public void updateProduktBatchKomp(DTOProduktBatchKomp produktbatchkomponent) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (MySQLConnector.doUpdate("CALL updateProduktBatchKomp(" + produktbatchkomponent.getPbId() + "," + produktbatchkomponent.getRbId() + ","
                 + "" + produktbatchkomponent.getTara() + "," + produktbatchkomponent.getNetto() + "," + produktbatchkomponent.getOprId() + ")") == 0) {
             String errMsg = "No rows updated in \"Produkt batch komponent\".";
@@ -82,7 +82,7 @@ public class DAOProduktBatchKomp implements IDAOProduktBatchKomp {
     }
 
     @Override
-    public void deleteProduktBatchKomp(int productBatch_ID, int raavareBatch_ID) throws DALException {
+    public void deleteProduktBatchKomp(int productBatch_ID, int raavareBatch_ID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (MySQLConnector.doUpdate("CALL deleteProductBatchKomp(" + productBatch_ID + "," + raavareBatch_ID + ")") == 0) {
             String errMsg = "No rows updated in \"Produkt batch komponent\".";
             log.warn(errMsg);
