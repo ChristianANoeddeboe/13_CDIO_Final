@@ -21,10 +21,12 @@ import dao.DAOReceptKomp;
 import dto.DTORecept;
 import dto.DTOReceptKomp;
 import exception.DALException;
+import interfaces.IReceptController;
+import interfaces.IReceptKompController;
 
 class ReceptServiceTest {
-	ReceptController controller = ReceptController.getInstance();
-	ReceptKompController controllerKomp = ReceptKompController.getInstance();
+	IReceptController controller = ReceptController.getInstance();
+	IReceptKompController controllerKomp = ReceptKompController.getInstance();
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/recept/";
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {

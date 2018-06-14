@@ -3,22 +3,23 @@ package controller;
 import dto.DTOProduktBatch;
 import exception.DALException;
 import interfaces.IDAOProduktBatch;
+import interfaces.IProduktBatchController;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 import java.util.List;
 
-import dao.DAOOperatoer;
+import dao.DAOBruger;
 import dao.DAOProduktBatch;
 
 @Log
-public class ProduktBatchController {
+public class ProduktBatchController implements IProduktBatchController {
     private static IDAOProduktBatch dao;
-    private static ProduktBatchController instance;
+    private static IProduktBatchController instance;
 	private ProduktBatchController() {
 		
 	}
-	public static ProduktBatchController getInstance() {
+	public static IProduktBatchController getInstance() {
 		if(instance == null) {
 			dao = new DAOProduktBatch();
 			instance =  new ProduktBatchController();

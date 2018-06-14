@@ -21,7 +21,7 @@ function addEnterHandler(){
 
 function clickUpdateHandler(){ // Tilfoejer funktion til at aabne confirmation modal for update og paabegynder genindlaesningen af data for operatoer.
 	$(".btn-primaryUpdate").click(function(){
-		put('rest/operatoer',
+		put('rest/bruger',
 			JSON.stringify({
 			oprId : id.split("_")[0],
 			fornavn : $(("#"+id.split("_")[0]+"_fornavn"))["0"].value,
@@ -45,7 +45,7 @@ function clickUpdateHandler(){ // Tilfoejer funktion til at aabne confirmation m
 
 function clickAddHandler(){
 	$(".btn-primaryAdd").click(function(){ // Tilfoejer funktion til at aabne add modal når add knap trykkes.
-		post('rest/operatoer',
+		post('rest/bruger',
 			JSON.stringify({
 			oprId : $("#inputID")["0"].value,
 			fornavn : $("#inputFornavn")["0"].value,
@@ -70,7 +70,7 @@ function clickAddHandler(){
 // Indlaeser data for operatoererne og genindlaeser tabellen.
 function loadOperators(){
 	getEnum('rest/enum/status_operatoer',function(){
-		get('rest/operatoer',function(data){
+		get('rest/bruger',function(data){
 			clearOperatoerTable();
 			appendToTable(data);
 			generateClickForTable();

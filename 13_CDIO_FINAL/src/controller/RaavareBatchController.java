@@ -3,6 +3,7 @@ package controller;
 import dto.DTORaavareBatch;
 import exception.DALException;
 import interfaces.IDAORaavareBatch;
+import interfaces.IRaavareBatchController;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
@@ -12,12 +13,12 @@ import dao.DAOProduktBatchKomp;
 import dao.DAORaavareBatch;
 
 @Log
-public class RaavareBatchController {
+public class RaavareBatchController implements IRaavareBatchController {
     private static IDAORaavareBatch dao;
-    private static RaavareBatchController instance;
+    private static IRaavareBatchController instance;
 	private RaavareBatchController() {
 	}
-	public static RaavareBatchController getInstance() {
+	public static IRaavareBatchController getInstance() {
 		if(instance == null) {
 			dao = new DAORaavareBatch();
 			instance =  new RaavareBatchController();

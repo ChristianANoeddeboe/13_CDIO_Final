@@ -17,16 +17,17 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import connector.MySQLConnector;
-import controller.OperatoerController;
-import dao.DAOOperatoer;
+import controller.BrugerController;
+import dao.DAOBruger;
 import dto.Aktiv;
-import dto.DTOOperatoer;
+import dto.DTOBruger;
 import dto.Roller;
 import exception.DALException;
+import interfaces.IBrugerController;
 
 public class OperatoerServiceTest {
-	OperatoerController controller = OperatoerController.getInstance();
-	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/operatoer/";
+	IBrugerController controller = BrugerController.getInstance();
+	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/bruger/";
 
 	//Testdata
 	int id = 1;
@@ -65,11 +66,11 @@ public class OperatoerServiceTest {
 	}
 
 	@Test
-	void testGetOperatoerList() {
+	void testGetBrugerList() {
 		try {
-			HttpResponse<DTOOperatoer[]> response = Unirest.get(baseUrl).asObject(DTOOperatoer[].class);
-			DTOOperatoer[] responseArray = response.getBody();		
-			List<DTOOperatoer> sqlResponseArray = controller.getOperatoerList();
+			HttpResponse<DTOBruger[]> response = Unirest.get(baseUrl).asObject(DTOBruger[].class);
+			DTOBruger[] responseArray = response.getBody();		
+			List<DTOBruger> sqlResponseArray = controller.getBrugerList();
 			if(responseArray.length == sqlResponseArray.size()) {
 				for (int i = 0; i < responseArray.length; i++) {
 					if(!(responseArray[i].getCpr().equals(sqlResponseArray.get(i).getCpr()))) {
@@ -114,18 +115,18 @@ public class OperatoerServiceTest {
 	}
 
 	@Test
-	void testCreateOperatoer() {
+	void testBrugerOperatoer() {
 		try {
 			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json")
-			.body(new DTOOperatoer(id, fornavn, efternavn, cpr, roles, status))
+			.body(new DTOBruger(id, fornavn, efternavn, cpr, roles, status))
 			.asJson();
 
-			List<DTOOperatoer> sqlResponse = controller.getOperatoerList();
+			List<DTOBruger> sqlResponse = controller.getBrugerList();
 			for(int i = 0; i >= sqlResponse.size(); i++) {
 				if(sqlResponse.get(i).getCpr().equals(cpr)) {
 					id = sqlResponse.get(i).getOprId();
-					DTOOperatoer opr = controller.getOperatoer(id);
+					DTOBruger opr = controller.getBruger(id);
 					if(!(opr.getFornavn().equals(fornavn))) {
 						fail("Not same value");
 					}
@@ -165,22 +166,22 @@ public class OperatoerServiceTest {
 
 
 	@Test
-	void testUpdateOperatoer() {
+	void testUpdateBruger() {
 		try {
 			Unirest.post(baseUrl)
 			.header("Content-Type", "application/json")
-			.body(new DTOOperatoer(id, fornavn, efternavn, cpr, roles, status))
+			.body(new DTOBruger(id, fornavn, efternavn, cpr, roles, status))
 			.asJson();
 
-			List<DTOOperatoer> sqlResponse = controller.getOperatoerList();
+			List<DTOBruger> sqlResponse = controller.getBrugerList();
 			for(int i = 0; i >= sqlResponse.size(); i++) {
 				if(sqlResponse.get(i).getCpr().equals(cpr)) {
 					id = sqlResponse.get(i).getOprId();
-					DTOOperatoer opr = controller.getOperatoer(id);
+					DTOBruger opr = controller.getBruger(id);
 
 					Unirest.post(baseUrl)
 					.header("Content-Type", "application/json")
-					.body(new DTOOperatoer(opr.getOprId(), "NytFornavn", "NytEfternavn", opr.getCpr(), opr.getRoles(), opr.getAktiv()))
+					.body(new DTOBruger(opr.getOprId(), "NytFornavn", "NytEfternavn", opr.getCpr(), opr.getRoles(), opr.getAktiv()))
 					.asJson();
 				}
 			}
@@ -202,11 +203,11 @@ public class OperatoerServiceTest {
 		}
 
 		try {
-			List<DTOOperatoer> sqlResponse = controller.getOperatoerList();
+			List<DTOBruger> sqlResponse = controller.getBrugerList();
 			for(int i = 0; i >= sqlResponse.size(); i++) {
 				if(sqlResponse.get(i).getCpr().equals(cpr)) {
 					id = sqlResponse.get(i).getOprId();
-					DTOOperatoer opr = controller.getOperatoer(id);
+					DTOBruger opr = controller.getBruger(id);
 
 					if(!(opr.getFornavn().equals("NytFornavn"))) {
 						fail("Not same value");

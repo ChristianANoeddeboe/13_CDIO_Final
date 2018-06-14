@@ -5,50 +5,56 @@ import lombok.extern.java.Log;
 
 import java.util.List;
 
-import dao.DAOOperatoer;
-import dto.DTOOperatoer;
+import dao.DAOBruger;
+import dto.DTOBruger;
 import exception.DALException;
+import interfaces.IBrugerController;
 import interfaces.IDAOOperatoer;
 
 @Log
-public class OperatoerController {
+public class BrugerController implements IBrugerController {
 	private static IDAOOperatoer dao;
-	private static OperatoerController instance;
-	private OperatoerController() {
+	private static IBrugerController instance;
+	private BrugerController() {
 	}
-	public static OperatoerController getInstance() {
+	public static IBrugerController getInstance() {
 		if(instance == null) {
-			dao = new DAOOperatoer();
-			instance =  new OperatoerController();
+			dao = new DAOBruger();
+			instance =  new BrugerController();
 			return instance;
 		}
 		return instance;
 	}
 	
-	
-	public DTOOperatoer getOperatoer(int oprId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+		
+	public DTOBruger getBruger(int oprId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		return dao.getOperatoer(oprId);
 	}
 	
-	public List<DTOOperatoer> getOperatoerList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
+
+	public List<DTOBruger> getBrugerList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		return dao.getOperatoerList();
 	}
 	
-	public void createOperatoer(DTOOperatoer operatoerDTO) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+
+	
+	public void createBruger(DTOBruger operatoerDTO) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		validateData(operatoerDTO);
 		dao.createOperatoer(operatoerDTO);
 	}
 	
-	public void updateOperatoer(DTOOperatoer operatoerDTO) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
+
+	public void updateBruger(DTOBruger operatoerDTO) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		validateData(operatoerDTO);
 		dao.updateOperatoer(operatoerDTO);
 	}
 	
-	public void deleteOperatoer(int oprId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+
+	public void deleteBruger(int oprId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		dao.deleteOperatoer(oprId);
 	}
 	
-	private void validateData(DTOOperatoer operatoer) throws DALException{
+	private void validateData(DTOBruger operatoer) throws DALException{
 		String errMsg;
 		errMsg = ErrorChecking.checkId(operatoer.getOprId());
 		throwException(errMsg);

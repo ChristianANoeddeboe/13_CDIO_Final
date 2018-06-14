@@ -23,11 +23,13 @@ import dto.DTOProduktBatch;
 import dto.DTOProduktBatchKomp;
 import dto.Status;
 import exception.DALException;
+import interfaces.IProduktBatchController;
+import interfaces.IProduktBatchKompController;
 
 class ProduktServiceTest {
 
-	ProduktBatchController controller = ProduktBatchController.getInstance();
-	ProduktBatchKompController controllerKomp = ProduktBatchKompController.getInstance();
+	IProduktBatchController controller = ProduktBatchController.getInstance();
+	IProduktBatchKompController controllerKomp = ProduktBatchKompController.getInstance();
 	String baseUrl = "http://207.154.253.254:8080/13_CDIO_FINAL/rest/produktbatch/";
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {

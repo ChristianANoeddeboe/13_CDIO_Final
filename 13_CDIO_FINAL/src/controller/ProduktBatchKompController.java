@@ -7,17 +7,18 @@ import dao.DAOProduktBatchKomp;
 import dto.DTOProduktBatchKomp;
 import exception.DALException;
 import interfaces.IDAOProduktBatchKomp;
+import interfaces.IProduktBatchKompController;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
 
-public class ProduktBatchKompController {
+public class ProduktBatchKompController implements IProduktBatchKompController {
 	private static IDAOProduktBatchKomp dao;
-	private static ProduktBatchKompController instance;
+	private static IProduktBatchKompController instance;
 	private ProduktBatchKompController() {
 	}
-	public static ProduktBatchKompController getInstance() {
+	public static IProduktBatchKompController getInstance() {
 		if(instance == null) {
 			dao = new DAOProduktBatchKomp();
 			instance =  new ProduktBatchKompController();

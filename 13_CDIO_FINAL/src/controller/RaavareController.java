@@ -3,6 +3,7 @@ package controller;
 import dto.DTORaavare;
 import exception.DALException;
 import interfaces.IDAORaavare;
+import interfaces.IRaavareController;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
@@ -12,12 +13,12 @@ import dao.DAORaavare;
 import dao.DAORaavareBatch;
 
 @Log
-public class RaavareController {
+public class RaavareController implements IRaavareController {
 	private static IDAORaavare dao;
-	private static RaavareController instance;
+	private static IRaavareController instance;
 	private RaavareController() {
 	}
-	public static RaavareController getInstance() {
+	public static IRaavareController getInstance() {
 		if(instance == null) {
 			dao = new DAORaavare();
 			instance =  new RaavareController();

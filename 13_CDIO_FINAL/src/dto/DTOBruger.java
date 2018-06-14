@@ -6,7 +6,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DTOOperatoer {
+public class DTOBruger {
     private int oprId;
     private String fornavn;
     private String efternavn;
@@ -14,7 +14,7 @@ public class DTOOperatoer {
     private Roller roles;
     private Aktiv aktiv;
 
-    public DTOOperatoer(String fornavn, String efternavn, String cpr, Roller roles, Aktiv aktiv) {
+    public DTOBruger(String fornavn, String efternavn, String cpr, Roller roles, Aktiv aktiv) {
         this.fornavn = fornavn;
         this.efternavn = efternavn;
         this.cpr = cpr;

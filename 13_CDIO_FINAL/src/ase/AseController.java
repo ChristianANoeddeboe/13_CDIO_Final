@@ -9,6 +9,13 @@ import controller.*;
 import dao.*;
 import dto.*;
 import exception.DALException;
+import interfaces.IBrugerController;
+import interfaces.IProduktBatchController;
+import interfaces.IProduktBatchKompController;
+import interfaces.IRaavareBatchController;
+import interfaces.IRaavareController;
+import interfaces.IReceptController;
+import interfaces.IReceptKompController;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -25,7 +32,7 @@ public class AseController {
     public void run() {
         List<DTOReceptKomp> receptkompList = null;
         DTOProduktBatch pb = null;
-        ProduktBatchController pbController;
+        IProduktBatchController pbController;
 
         socket.connect();
 
@@ -47,7 +54,7 @@ public class AseController {
             System.exit(0);
         }
 
-        DTOOperatoer operatoer = validerOperatoer();
+        DTOBruger operatoer = validerOperatoer();
         if (operatoer == null) {
             log.info("Cancel: operatør.");
             socket.disconnect();
@@ -88,11 +95,11 @@ public class AseController {
         socket.disconnect();
     }
 
-    private DTOOperatoer validerOperatoer() {
+    private DTOBruger validerOperatoer() {
         log.info("Hent operatør.");
-        OperatoerController controller = OperatoerController.getInstance();
+        IBrugerController controller = BrugerController.getInstance();
         int operatorId;
-        DTOOperatoer operatoer = null;
+        DTOBruger operatoer = null;
         String str = null;
 
         while (true) {
@@ -101,7 +108,7 @@ public class AseController {
                 if (str.contains("C") || str.contains("exit")) return null;
 
                 operatorId = Integer.parseInt(str);
-                operatoer = controller.getOperatoer(operatorId);
+                operatoer = controller.getBruger(operatorId);
                 str = socket.rm20(operatoer.initials(operatoer.getFornavn() + " " + operatoer.getEfternavn()), "", "Confirm.");
                 if (str.contains("C") || str.contains("exit")) return null;
                 break;
@@ -118,8 +125,8 @@ public class AseController {
 
     private DTOProduktBatch getProduktbatch() {
         DTOProduktBatch produktbatch = null;
-        ProduktBatchController pbcontroller = ProduktBatchController.getInstance();
-        ReceptController rcontroller = ReceptController.getInstance();
+        IProduktBatchController pbcontroller = ProduktBatchController.getInstance();
+        IReceptController rcontroller = ReceptController.getInstance();
         String str = null;
         while (true) {
             try {
@@ -157,7 +164,7 @@ public class AseController {
             return false;
         }else {
             pb.setStatus(Status.Igang);
-            ProduktBatchController pbcontroller = ProduktBatchController.getInstance();
+            IProduktBatchController pbcontroller = ProduktBatchController.getInstance();
             try {
                 pbcontroller.updateProduktBatch(pb);
             } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
@@ -170,7 +177,7 @@ public class AseController {
     }
 
     private List<DTOReceptKomp> getReceptkompliste(DTOProduktBatch pb) {
-        ReceptKompController controller = ReceptKompController.getInstance();
+        IReceptKompController controller = ReceptKompController.getInstance();
         double netto;
         List<DTOReceptKomp> list = null;
         try {
@@ -195,7 +202,7 @@ public class AseController {
     }
 
     private double getRaavareMaengde(int raavareId) {
-        RaavareBatchController controller = RaavareBatchController.getInstance();
+        IRaavareBatchController controller = RaavareBatchController.getInstance();
         double maengde = 0;
         try {
             List<DTORaavareBatch> raavareBatches = controller.getRaavareBatchList(raavareId);
@@ -210,13 +217,13 @@ public class AseController {
         return maengde;
     }
 
-    private void afvejning(List<DTOReceptKomp> receptkompList, DTOProduktBatch produktbatch, DTOOperatoer operatoer) {
+    private void afvejning(List<DTOReceptKomp> receptkompList, DTOProduktBatch produktbatch, DTOBruger operatoer) {
         double lowerbound, upperbound, weight = 0, tara = 0, diffWeight = 0, tempweight = 0;
         DTORaavare raavare = null;
         DTOProduktBatchKomp tempPBK = null;
         DTORaavareBatch tempRB = null;
-        ProduktBatchKompController pbkController = ProduktBatchKompController.getInstance();
-        RaavareBatchController rbController = RaavareBatchController.getInstance();
+        IProduktBatchKompController pbkController = ProduktBatchKompController.getInstance();
+        IRaavareBatchController rbController = RaavareBatchController.getInstance();
         List<DTORaavareBatch> raavareBatches = null;
         String str = null;
 
@@ -302,7 +309,7 @@ public class AseController {
     }
 
     private DTORaavare retreiveRaavare(int raavareID) {
-        RaavareController rController = RaavareController.getInstance();
+        IRaavareController rController = RaavareController.getInstance();
         DTORaavare raavare = null;
         try {
             raavare = rController.getRaavare(raavareID);

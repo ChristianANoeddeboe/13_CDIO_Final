@@ -3,6 +3,7 @@ package controller;
 import dto.DTORecept;
 import exception.DALException;
 import interfaces.IDAORecept;
+import interfaces.IReceptController;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
@@ -12,12 +13,12 @@ import dao.DAORaavare;
 import dao.DAORecept;
 
 @Log
-public class ReceptController {
+public class ReceptController implements IReceptController {
     private static IDAORecept dao;
-    private static ReceptController instance;
+    private static IReceptController instance;
     private ReceptController() {
 	}
-	public static ReceptController getInstance() {
+	public static IReceptController getInstance() {
 		if(instance == null) {
 			dao = new DAORecept();
 			instance =  new ReceptController();
