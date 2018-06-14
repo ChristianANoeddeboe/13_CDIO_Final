@@ -1,17 +1,14 @@
-function loadMenu(){
-	$("#menuLoader").load("menu.html", null, function () {
+function loadMenu(callbackfunc){
+    var rolle;
+	$("#menuLoader").load("menu.html", null, function () { //Tilføjer menu.html til nuvaerende side, og fjerner de menu items, som den valgte rolle ikke har tilladelse til.
 		rolle = localStorage.getItem('rolle');
-		if (rolle === "Laborant") {
-			$("#operatoerAdmin").hide();
-			$("#receptAdmin").hide();
-			$("#raavareAdmin").hide();
-		}
-		if (rolle === "Værksfører") {
+		if (rolle === "Produktionsleder") {
 			$("#receptAdmin").hide();
 			$("#operatoerAdmin").hide()
 		}
-		if (rolle === "Pharmaceut") {
+		if (rolle === "Farmaceut") {
 			$("#operatoerAdmin").hide();
 		}
+		callbackfunc(rolle)
 	});
-};
+}

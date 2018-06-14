@@ -14,7 +14,7 @@ $(document).ready(function() {
 	clickUpdateKompHandler();
 });
 
-function clickUpdateKompHandler(){
+function clickUpdateKompHandler(){ //Tilfoejer funktion til at bekraefte opdateringen af et raavare batch, via en modal.
 	$(".btn-primaryUpdateKomp").click(function(){
 		put('rest/raavare/batch/',
 			JSON.stringify({
@@ -34,7 +34,8 @@ function clickUpdateKompHandler(){
 			});
 	});
 }
-function clickDeleteKompHandler(){
+
+function clickDeleteKompHandler(){ //Tilfoejer funktion til at bekraefte delete af et raavare batch, via en modal.
 	$(".btn-primaryDeleteKomp").click(function(){
 		Delete('rest/raavare/batch/'+id2.split("_")[1],
 		function(){
@@ -49,6 +50,7 @@ function clickDeleteKompHandler(){
 		});
 	});
 }
+
 function loadRaavareBatch(){
 	get('rest/raavare/batch/'+id.split("_")[0],
 	function(data){
@@ -60,7 +62,8 @@ function loadRaavareBatch(){
 		$.notify(data.responseText, "error");
 	});
 }
-function clickAddKompHandler(){
+
+function clickAddKompHandler(){ //Funktion til at tilfoeje den indtastede information når et raavare batch tilfoejes.
 	$('#addKompModal').on('shown.bs.modal', function(){
 		$("#inputRaavareIDKomp")["0"].value = id;
 	});
@@ -82,13 +85,15 @@ function clickAddKompHandler(){
 				loadRaavareBatch();
 		});
 	});
-};
+}
+
 function clickShowMoreHandler(){
 	$('#showMoreModal').on('shown.bs.modal', function () {
 		loadRaavareBatch();
 	});
-};
-function addEnterHandler(){
+}
+
+function addEnterHandler(){ //Tilfoejer funktionalitet til at aabne update modal for den raavare der er markeret, naar 'Enter' trykkes.
 	$(document).keypress(function(e) {
 		if(e.which === enterkey) {
 			id = e.target.id;
@@ -102,7 +107,8 @@ function addEnterHandler(){
 		}
 	});
 }
-function clickUpdateHandler(){	
+
+function clickUpdateHandler(){	//Funktion til at haandtere opdatering af en raavare.
 	$(".btn-primaryUpdate").click(function(){
 		put('rest/raavare',
 			JSON.stringify({
@@ -122,12 +128,14 @@ function clickUpdateHandler(){
 		});
 	});
 }
-function clickDismissDeleteHandler(){
+
+function clickDismissDeleteHandler(){ //Haandterer hvis man ikke vil slette alligevel.
 	$(".btn-secondaryDelete").click(function(){
 		$('#deleteModal').modal('hide');
 	});
-};
-function clickDeleteHandler(){
+}
+
+function clickDeleteHandler(){ //Tilfoejer funktion til at slette en raavare naar slet bekraeftes.
 	$(".btn-primaryDelete").click(function(){
 		Delete('rest/raavare/'+id,
 		function(data){
@@ -142,7 +150,8 @@ function clickDeleteHandler(){
 		});
 	});
 }
-function clickAddHandler(){
+
+function clickAddHandler(){ //Tilfoejer funktion til at tilfoeje en raavare, naar tilfoej knappen trykkes.
 	$(".btn-primaryAdd").click(function(){
 		post('rest/raavare',
 		JSON.stringify({
@@ -163,7 +172,8 @@ function clickAddHandler(){
 		
 	});
 }
-function generateClickForSubTable(){
+
+function generateClickForSubTable() { //Funktion til at vise modal for opdatering eller slet, baseret på hvilken knap trykkes.
 	$(".sletKomp").click(function(e){
 		id2 = e.target.id;
 		$('#deleteKompModal').modal('show');
@@ -174,7 +184,7 @@ function generateClickForSubTable(){
         $('#updateKompModal').modal('show');
     });
 };
-function generateClickForTable(){
+function generateClickForTable() { //Funktion til at vise den tilsvareende modal for den knap der trykkes paa.
 	$(".slet").click(function(e){
 		id = e.target.id;
 		$('#deleteModal').modal('show');
@@ -190,18 +200,21 @@ function generateClickForTable(){
 		id = e.target.id;
 		$('#updateModal').modal('show');
 	});
-};
+}
+
 function appendToSubTable(data){
 	$.each(data,function(i,element){
 		$('#raavareBatchTable').append(generateRaavareBatchKompHTML(data[i]));
 
 	});
-};
+}
+
 function appendToTable(data){
 	$.each(data,function(i,element){
 		$('#raavareAdminTable').children().append(generateRaavareHTML(data[i]));
 	});
 }
+
 function loadRaavare(){
 	get('rest/raavare',
 	function(data){
@@ -214,34 +227,40 @@ function loadRaavare(){
 		$.notify(data.responseText, "error");
 	});
 }
+
 function showLoader(){
 	$("#raavareAdminTable").hide();
 	$(".loader").show();
-};
+}
+
 function hideLoader(){
 	$(".loader").hide();
 	$("#raavareAdminTable").show();
 }
+
 function generateRaavareHTML(raavare) {
 	return 	'<tr><th scope ="row">' + raavare.raavareId + '</th>' +
 	'<td><input type="text" id = "'+raavare.raavareId +"_navn"+'" class="form-control-plaintext" value="' + raavare.raavareNavn + '"></td></td>' +
 	'<td><input type="text" id = "'+raavare.raavareId +"_leverandør"+'" class="form-control-plaintext" value="' + raavare.leverandoer + '"></td></td>' +
 	'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary vis"><i class="fas fa-folder-open" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
     '<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
-	'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary slet"><i class="fas fa-trash-alt" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
 	'</td></tr>';
-};
+}
+
 function generateRaavareBatchKompHTML(raavareBatch) {
 	return 	'<tr><th scope ="row">' + raavareBatch.rbId + '</th>' +
 	'<th scope = "row">'+raavareBatch.raavareId + '</th>' +
 	'<td><input type="text" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+"_mængde"+'" class="form-control-plaintext" value="' + raavareBatch.maengde + '"></td></td>' +
     '<td><button type="button" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'" class="btn btn-primary updateKomp"><i class="fas fa-save" id = "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'"></i></button>'+'</td>' +
-	'<td><button type="button" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'" class="btn btn-primary sletKomp"><i class="fas fa-trash-alt" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'"></i></button>'+'</td>' +
 	'</td></tr>';
-};
+}
+
 function clearRaavareTable(){
 	$("#raavareAdminTable tbody").empty();
-};
+}
+
 function clearRaavareBatchTable(){
 	$("#raavareBatchTable tbody").empty();
-};
+}

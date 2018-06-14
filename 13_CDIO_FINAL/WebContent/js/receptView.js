@@ -1,4 +1,4 @@
-var id,id2,value,rolle;
+var id,id2,value;
 
 $(document).ready(function() {
 	showLoader();
@@ -16,7 +16,7 @@ $(document).ready(function() {
 	
 
 });
-function clickUpdateKompHandler(){
+function clickUpdateKompHandler(){ //Tilfoejer funktion til at bekraefte opdateringen af et recept komponent, via en modal.
 	$(".btn-primaryUpdateKomp").click(function(){
 		put('rest/recept/komponent',
 			JSON.stringify({
@@ -37,7 +37,7 @@ function clickUpdateKompHandler(){
 			});
 	});
 }
-function clickDeleteKompHandler(){
+function clickDeleteKompHandler() { //Tilfoejer funktion til at bekraefte delete af et recept komponent, via en modal.
 	$(".btn-primaryDeleteKomp").click(function(){
 		Delete('rest/recept/komponent/'+id2.split("_")[0]+"/"+id2.split("_")[1],
 				function(data){
@@ -51,8 +51,9 @@ function clickDeleteKompHandler(){
 					loadReceptKomps();
 				});
 	});
-};
-function clickAddKompHandler(){
+}
+
+function clickAddKompHandler() { //Funktion til at tilfoeje den indtastede information når et recept komponent tilfoejes.
 	$('#addKompModal').on('shown.bs.modal', function(){
 		$("#inputReceptIDKomp")["0"].value = id;
 	});
@@ -81,7 +82,7 @@ function clickShowMoreHandler(){
 		loadReceptKomps();
 	});
 };
-function generateClickForSubTable(){
+function generateClickForSubTable(){ //Funktion til at vise modal for opdatering eller slet, baseret på hvilken knap trykkes.
 	$(".sletKomp").click(function(e){
 		id2 = e.target.id;
 		$('#deleteKompModal').modal('show');
@@ -108,7 +109,7 @@ function loadReceptKomps(){
 		$.notify(data.responseText, "error");
 	});
 }
-function clickUpdateHandler(){
+function clickUpdateHandler(){ //Funktion til at haandtere opdatering af en recept.
 	$(".btn-primaryUpdate").click(function(){	
 		put('rest/recept',
 			JSON.stringify({
@@ -127,7 +128,7 @@ function clickUpdateHandler(){
 			});
 	})
 };
-function addEnterHandler(){
+function addEnterHandler(){ //Tilfoejer funktionalitet til at aabne update modal for den recept der er markeret, naar 'Enter' trykkes.
 	$(document).keypress(function(e) {
 		if(e.which == enterkey) {
 			id = e.target.id;
@@ -142,12 +143,12 @@ function addEnterHandler(){
 
 	});
 }
-function clickDismissDeleteHandler(){
+function clickDismissDeleteHandler(){ //Haandterer hvis man ikke vil slette alligevel.
 	$(".btn-secondaryDelete").click(function(){
 		$('#deleteModal').modal('hide');
 	});
 };
-function clickDeleteHandler(){
+function clickDeleteHandler(){ //Tilfoejer funktion til at slette en recept naar slet bekraeftes.
 	$(".btn-primaryDelete").click(function(){
 		Delete('rest/recept/'+id.split("_")[0],
 		function(data){
@@ -162,7 +163,7 @@ function clickDeleteHandler(){
 		});
 	});
 };
-function clickAddHandler(){
+function clickAddHandler(){ //Tilfoejer funktion til at tilfoeje en recept, naar tilfoej knappen trykkes.
 	$(".btn-primaryAdd").click(function(){
 		post('rest/recept',
 		JSON.stringify({
@@ -187,7 +188,7 @@ function appendToTable(data){
 
 	});
 };
-function generateClickForTable(){
+function generateClickForTable(){ //Funktion til at vise den tilsvareende modal for den knap der trykkes paa.
 	$(".slet").click(function(e){
 		id = e.target.id;
 		$('#deleteModal').modal('show');
@@ -230,7 +231,7 @@ function generateReceptHTML(recept) {
 	'<td><input type="text" id = "'+recept.receptId +"_Name"+'" class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
 	'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary vis"><i class="fas fa-folder-open" id = "'+recept.receptId+'"></i></button>'+'</td>' +
 	'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+recept.receptId+'"></i></button>'+'</td>' +
-	'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary slet"><i class="far fa-trash-alt" id = "'+recept.receptId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary slet"><i class="fas fa-trash-alt" id = "'+recept.receptId+'"></i></button>'+'</td>' +
 	'</td></tr>';
 };
 
@@ -240,7 +241,7 @@ function generateReceptKompHTML(receptKomp) {
 	'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_netto"+'" class="form-control-plaintext" value="' + receptKomp.nomNetto + '"></td></td>' +
 	'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_tolerance"+'" class="form-control-plaintext" value="' + receptKomp.tolerance + '"></td></td>' +
 	'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary updateKomp"><i class="fas fa-save" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
-	'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary sletKomp"><i class="far fa-trash-alt" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary sletKomp"><i class="fas fa-trash-alt" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
 	'</td></tr>';
 };
 

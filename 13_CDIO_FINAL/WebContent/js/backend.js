@@ -11,7 +11,7 @@ function getEnum(url, successfunc, errorfunc){
 			errorfunc();
 		}
 	});
-};
+}
 
 function get(url, successfunc, errorfunc){
 	$.ajax({ //Indleder et asynkront ajax kald
@@ -24,7 +24,7 @@ function get(url, successfunc, errorfunc){
 			errorfunc(data);
 		}
 	});
-};
+}
 
 function post(url, data, successfunc, errorfunc){
 	$.ajax({ //Indleder et asynkront ajax kald
