@@ -805,3 +805,901 @@
 [INFO] 2018-06-13 16:05:57,206 ase.AseController validerOperatoer - Hent operatør.
 [INFO] 2018-06-13 16:05:57,206 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
 [INFO] 2018-06-13 16:05:57,956 ase.WeightSocket rm20 - Server: RM20 B
+[ERROR] 2018-06-14 09:14:17,483 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 09:14:17,486 ase.WeightSocket connect - Connection refused: connect
+[ERROR] 2018-06-14 09:14:54,397 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 09:14:54,410 ase.WeightSocket connect - Connection timed out: connect
+[ERROR] 2018-06-14 09:15:08,708 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 09:15:08,709 ase.WeightSocket connect - Connection refused: connect
+[INFO] 2018-06-14 09:16:03,883 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 09:16:03,883 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 09:16:03,883 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 09:16:04,443 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:17:00,801 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 09:17:01,645 ase.WeightSocket rm20 - Client: RM20 8 "TT" "" "Confirm" \n
+[INFO] 2018-06-14 09:17:02,263 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:17:05,222 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:17:05,223 ase.WeightSocket rm20 - Client: RM20 8 "Input batch ID" "1-9999999" "" \n
+[INFO] 2018-06-14 09:17:05,919 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:17:08,008 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 09:17:08,124 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "" "Confirm" \n
+[INFO] 2018-06-14 09:17:08,730 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:17:09,355 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:17:09,645 ase.WeightSocket rm20 - Client: RM20 8 "Toem vaegt" "" "" \n
+[INFO] 2018-06-14 09:17:10,305 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:17:10,703 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:17:10,703 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 09:17:11,034 ase.WeightSocket readWeight - Server: S S     0.0000 kg
+[INFO] 2018-06-14 09:17:11,137 ase.WeightSocket rm20 - Client: RM20 8 "3; tomat" "" "" \n
+[INFO] 2018-06-14 09:17:11,766 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:17:12,080 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:17:12,082 ase.WeightSocket rm20 - Client: RM20 8 "Placer tara." "" "" \n
+[INFO] 2018-06-14 09:17:12,707 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:17:13,115 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:17:13,126 ase.WeightSocket tarer - Client: T
+[INFO] 2018-06-14 09:17:15,840 ase.WeightSocket tarer - Server: T S     0.0000 kg
+[INFO] 2018-06-14 09:17:15,842 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "" "" \n
+[INFO] 2018-06-14 09:17:16,461 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:17:18,764 ase.WeightSocket rm20 - Server: RM20 A "3"
+[INFO] 2018-06-14 09:17:18,812 ase.WeightSocket rm20 - Client: RM20 8 "Current RB: 288.2244kg." "" "2.0kg." \n
+[INFO] 2018-06-14 09:17:19,495 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:17:20,594 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:17:20,604 ase.WeightSocket rm20 - Client: RM20 8 "Se vaegt." "" "" \n
+[INFO] 2018-06-14 09:17:21,166 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:17:22,266 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:17:22,267 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 09:17:22,628 ase.WeightSocket readWeight - Server: S S     0.0000 kg
+[INFO] 2018-06-14 09:17:22,629 ase.WeightSocket rm20 - Client: RM20 8 "Vaegt ok?" "" "0.0kg." \n
+[INFO] 2018-06-14 09:17:23,255 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:17:29,825 ase.WeightSocket rm20 - Server: RM20 A ""
+[ERROR] 2018-06-14 09:18:11,779 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 09:18:11,788 ase.WeightSocket connect - Connection refused: connect
+[ERROR] 2018-06-14 09:18:24,639 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 09:18:24,650 ase.WeightSocket connect - Connection refused: connect
+[ERROR] 2018-06-14 09:18:30,571 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 09:18:30,573 ase.WeightSocket connect - Connection refused: connect
+[ERROR] 2018-06-14 09:18:38,880 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 09:18:38,882 ase.WeightSocket connect - Connection refused: connect
+[ERROR] 2018-06-14 09:18:56,802 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 09:18:56,812 ase.WeightSocket connect - Connection refused: connect
+[ERROR] 2018-06-14 09:19:14,453 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 09:19:14,453 ase.WeightSocket connect - Connection refused: connect
+[ERROR] 2018-06-14 09:19:22,629 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 09:19:22,632 ase.WeightSocket connect - Connection refused: connect
+[ERROR] 2018-06-14 09:19:46,901 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 09:19:46,913 ase.WeightSocket connect - Connection refused: connect
+[INFO] 2018-06-14 09:19:58,136 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 09:19:58,136 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 09:19:58,136 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 09:19:58,765 ase.WeightSocket rm20 - Server: RM20 I
+[INFO] 2018-06-14 09:20:00,017 ase.WeightSocket rm20 - Server: 
+[INFO] 2018-06-14 09:20:00,018 ase.WeightSocket rm20 - Server: I4 A "3154308"
+[INFO] 2018-06-14 09:20:03,296 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 09:20:03,298 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 09:20:03,308 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 09:20:03,987 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:20:17,982 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 09:20:18,786 ase.WeightSocket rm20 - Client: RM20 8 "TT" "" "Confirm" \n
+[INFO] 2018-06-14 09:20:19,348 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:20:37,514 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:20:37,537 ase.WeightSocket rm20 - Client: RM20 8 "Input batch ID" "1-9999999" "" \n
+[INFO] 2018-06-14 09:20:38,245 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:20:43,362 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 09:20:43,467 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "" "Confirm" \n
+[INFO] 2018-06-14 09:20:44,093 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:20:46,495 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:20:46,815 ase.WeightSocket rm20 - Client: RM20 8 "Toem vaegt" "" "" \n
+[INFO] 2018-06-14 09:20:47,435 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:20:50,569 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:20:50,570 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 09:20:51,300 ase.WeightSocket readWeight - Server: S S     0.0000 kg
+[INFO] 2018-06-14 09:20:51,367 ase.WeightSocket rm20 - Client: RM20 8 "3; tomat" "" "" \n
+[INFO] 2018-06-14 09:20:51,916 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:20:54,015 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:20:54,016 ase.WeightSocket rm20 - Client: RM20 8 "Placer tara." "" "" \n
+[INFO] 2018-06-14 09:20:54,642 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:20:55,686 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:20:55,686 ase.WeightSocket tarer - Client: T
+[INFO] 2018-06-14 09:21:02,779 ase.WeightSocket tarer - Server: T S     0.0000 kg
+[INFO] 2018-06-14 09:21:02,779 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "" "" \n
+[INFO] 2018-06-14 09:21:03,519 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:21:07,071 ase.WeightSocket rm20 - Server: RM20 A "3"
+[INFO] 2018-06-14 09:21:07,127 ase.WeightSocket rm20 - Client: RM20 8 "Current RB: 288.2244kg." "" "2.0kg." \n
+[INFO] 2018-06-14 09:21:07,798 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:21:11,144 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:21:11,146 ase.WeightSocket rm20 - Client: RM20 8 "Se vaegt." "" "" \n
+[INFO] 2018-06-14 09:21:11,771 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:21:12,596 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:21:12,608 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 09:21:16,576 ase.WeightSocket readWeight - Server: S S     1.8868 kg
+[INFO] 2018-06-14 09:21:16,577 ase.WeightSocket rm20 - Client: RM20 8 "Vaegt ok?" "" "1.8868k" \n
+[INFO] 2018-06-14 09:21:17,128 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:21:19,996 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:22:06,186 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 09:22:06,186 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 09:22:06,202 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 09:22:06,812 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:22:47,753 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 09:22:48,408 ase.WeightSocket rm20 - Client: RM20 8 "TT" "" "Confirm" \n
+[INFO] 2018-06-14 09:22:49,007 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:22:51,121 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:22:51,147 ase.WeightSocket rm20 - Client: RM20 8 "Input batch ID" "1-9999999" "" \n
+[INFO] 2018-06-14 09:22:51,828 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:22:55,474 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 09:22:55,583 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "" "Confirm" \n
+[INFO] 2018-06-14 09:22:56,177 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:22:56,841 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:22:57,138 ase.WeightSocket rm20 - Client: RM20 8 "Toem vaegt" "" "" \n
+[INFO] 2018-06-14 09:22:57,780 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:22:58,407 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:22:58,408 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 09:22:58,710 ase.WeightSocket readWeight - Server: S S     0.0000 kg
+[INFO] 2018-06-14 09:22:58,775 ase.WeightSocket rm20 - Client: RM20 8 "3; tomat" "" "" \n
+[INFO] 2018-06-14 09:22:59,452 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:23:00,074 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:23:00,079 ase.WeightSocket rm20 - Client: RM20 8 "Placer tara." "" "" \n
+[INFO] 2018-06-14 09:23:00,676 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:23:01,542 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:23:01,544 ase.WeightSocket tarer - Client: T
+[INFO] 2018-06-14 09:23:02,481 ase.WeightSocket tarer - Server: T S     0.0000 kg
+[INFO] 2018-06-14 09:23:02,482 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "" "" \n
+[INFO] 2018-06-14 09:23:03,212 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:23:06,659 ase.WeightSocket rm20 - Server: RM20 A "3"
+[INFO] 2018-06-14 09:23:06,706 ase.WeightSocket rm20 - Client: RM20 8 "Current RB: 288.2244kg." "" "2.0kg." \n
+[INFO] 2018-06-14 09:23:07,391 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:23:13,343 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:23:13,344 ase.WeightSocket rm20 - Client: RM20 8 "Se vaegt." "" "" \n
+[INFO] 2018-06-14 09:23:13,970 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:23:15,327 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 09:23:15,328 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 09:23:15,640 ase.WeightSocket readWeight - Server: S S     1.8914 kg
+[INFO] 2018-06-14 09:23:15,640 ase.WeightSocket rm20 - Client: RM20 8 "Vaegt ok?" "" "1.8914k" \n
+[INFO] 2018-06-14 09:23:16,255 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 09:23:18,461 ase.WeightSocket rm20 - Server: RM20 A ""
+[ERROR] 2018-06-14 10:48:10,621 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 10:48:10,632 ase.WeightSocket connect - Connection refused: connect
+[INFO] 2018-06-14 10:48:39,690 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 10:48:39,692 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 10:48:39,701 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 10:48:39,809 ase.WeightSocket rm20 - Server: I4 A "3154307"
+[INFO] 2018-06-14 10:48:40,377 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:48:46,957 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 10:48:47,589 ase.WeightSocket rm20 - Client: RM20 8 "TT" "" "Confirm" \n
+[INFO] 2018-06-14 10:48:48,211 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:48:48,928 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:48:48,960 ase.WeightSocket rm20 - Client: RM20 8 "Input batch ID" "1-9999999" "" \n
+[INFO] 2018-06-14 10:48:49,673 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:48:52,597 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 10:48:52,719 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "" "Confirm" \n
+[INFO] 2018-06-14 10:48:53,433 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:48:54,373 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:48:54,711 ase.WeightSocket rm20 - Client: RM20 8 "Toem vaegt" "" "" \n
+[INFO] 2018-06-14 10:48:55,299 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:48:56,671 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:48:56,672 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 10:48:56,976 ase.WeightSocket readWeight - Server: S S     -0.034 kg
+[INFO] 2018-06-14 10:48:57,056 ase.WeightSocket rm20 - Client: RM20 8 "3; tomat" "" "" \n
+[INFO] 2018-06-14 10:48:57,715 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:48:58,553 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:48:58,554 ase.WeightSocket rm20 - Client: RM20 8 "Placer tara." "" "" \n
+[INFO] 2018-06-14 10:48:59,176 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:49:01,895 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:49:01,896 ase.WeightSocket tarer - Client: T
+[INFO] 2018-06-14 10:49:02,938 ase.WeightSocket tarer - Server: T S      0.000 kg
+[INFO] 2018-06-14 10:49:02,939 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "" "" \n
+[INFO] 2018-06-14 10:49:03,564 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:49:06,907 ase.WeightSocket rm20 - Server: RM20 A "7"
+[INFO] 2018-06-14 10:49:06,959 ase.WeightSocket rm20 - Client: RM20 8 "Current RB: 1.0kg." "" "2.0kg." \n
+[INFO] 2018-06-14 10:49:07,639 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:49:11,078 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:49:11,079 ase.WeightSocket rm20 - Client: RM20 8 "Se vaegt." "" "" \n
+[INFO] 2018-06-14 10:49:11,711 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:49:12,755 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:49:12,756 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 10:49:13,068 ase.WeightSocket readWeight - Server: S S      0.194 kg
+[INFO] 2018-06-14 10:49:13,069 ase.WeightSocket rm20 - Client: RM20 8 "Vaegt ok?" "" "0.194kg" \n
+[INFO] 2018-06-14 10:49:13,698 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:49:14,743 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:49:14,744 ase.AseController afvejning - 3 7 0.806
+[WARN] 2018-06-14 10:49:14,810 ase.AseController afvejning - DTOProduktBatchKomp(pbId=2, rbId=7, tara=0.0, netto=0.194, oprId=1)
+[INFO] 2018-06-14 10:49:14,861 ase.WeightSocket rm20 - Client: RM20 8 "7 afvejet, mangler: 1.80" "" "" \n
+[INFO] 2018-06-14 10:49:15,576 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:49:48,795 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 10:49:48,795 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 10:49:48,795 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "" "" \n
+[INFO] 2018-06-14 10:49:49,410 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:58:06,212 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 10:58:06,215 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 10:58:06,223 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 10:58:06,341 ase.WeightSocket rm20 - Server: I4 A "3154307"
+[INFO] 2018-06-14 10:58:06,899 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:58:15,035 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 10:58:15,038 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 10:58:15,045 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 10:58:15,303 ase.WeightSocket rm20 - Server: RM20 I
+[INFO] 2018-06-14 10:58:23,718 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 10:58:24,373 ase.WeightSocket rm20 - Client: RM20 8 "TT" "" "Confirm" \n
+[INFO] 2018-06-14 10:58:25,076 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:58:26,217 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:58:26,236 ase.WeightSocket rm20 - Client: RM20 8 "Input batch ID" "1-9999999" "" \n
+[INFO] 2018-06-14 10:58:26,851 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:58:30,501 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 10:58:30,614 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "" "Confirm" \n
+[INFO] 2018-06-14 10:58:31,343 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:58:31,963 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:58:32,276 ase.WeightSocket rm20 - Client: RM20 8 "Toem vaegt" "" "" \n
+[INFO] 2018-06-14 10:58:32,911 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:58:33,631 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:58:33,631 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 10:58:33,955 ase.WeightSocket readWeight - Server: S S      0.000 kg
+[INFO] 2018-06-14 10:58:34,025 ase.WeightSocket rm20 - Client: RM20 8 "3; tomat" "" "" \n
+[INFO] 2018-06-14 10:58:34,680 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:58:35,417 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:58:35,418 ase.WeightSocket rm20 - Client: RM20 8 "Placer tara." "" "" \n
+[INFO] 2018-06-14 10:58:36,148 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:58:36,879 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:58:36,880 ase.WeightSocket tarer - Client: T
+[INFO] 2018-06-14 10:58:37,192 ase.WeightSocket tarer - Server: T S      0.000 kg
+[INFO] 2018-06-14 10:58:37,193 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "" "" \n
+[INFO] 2018-06-14 10:58:37,816 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:58:42,296 ase.WeightSocket rm20 - Server: RM20 A "7"
+[INFO] 2018-06-14 10:58:42,354 ase.WeightSocket rm20 - Client: RM20 8 "Current RB: 2.0kg." "" "2.0kg." \n
+[INFO] 2018-06-14 10:58:42,954 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:58:46,488 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:58:46,489 ase.WeightSocket rm20 - Client: RM20 8 "Se vaegt." "" "" \n
+[INFO] 2018-06-14 10:58:47,115 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:58:51,292 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:58:51,292 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 10:58:52,338 ase.WeightSocket readWeight - Server: S S      0.192 kg
+[INFO] 2018-06-14 10:58:52,339 ase.WeightSocket rm20 - Client: RM20 8 "Vaegt ok?" "" "0.192kg" \n
+[INFO] 2018-06-14 10:58:52,964 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 10:58:54,112 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 10:58:54,116 ase.AseController afvejning - 3 7 1.808
+[WARN] 2018-06-14 10:58:54,175 ase.AseController afvejning - DTOProduktBatchKomp(pbId=2, rbId=7, tara=0.0, netto=0.192, oprId=1)
+[INFO] 2018-06-14 11:00:32,022 ase.WeightSocket rm20 - Client: RM20 8 "7 afvejet, mangler: 1.80" "" "" \n
+[INFO] 2018-06-14 11:00:32,698 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:02:54,870 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:02:54,873 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:02:54,884 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:02:54,987 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 11:02:54,989 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 11:02:54,989 ase.AseController run - Cancel: operatør.
+[INFO] 2018-06-14 11:02:55,594 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:02:55,594 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:02:55,594 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:02:55,708 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:02:55,874 ase.WeightSocket rm20 - Server: RM20 I
+[INFO] 2018-06-14 11:02:58,410 ase.WeightSocket rm20 - Server: RM20 A "ID"
+[WARN] 2018-06-14 11:02:58,410 ase.AseController validerOperatoer - Ikke gyldigt ID
+[INFO] 2018-06-14 11:02:58,418 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt ID" "" \n
+[INFO] 2018-06-14 11:02:59,043 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:00,714 ase.WeightSocket rm20 - Server: RM20 A "Ikke gyldigt ID"
+[INFO] 2018-06-14 11:03:00,722 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:03:01,340 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:03,011 ase.WeightSocket rm20 - Server: RM20 A "ID"
+[WARN] 2018-06-14 11:03:03,011 ase.AseController validerOperatoer - Ikke gyldigt ID
+[INFO] 2018-06-14 11:03:03,012 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt ID" "" \n
+[INFO] 2018-06-14 11:03:03,627 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:07,293 ase.WeightSocket rm20 - Server: RM20 A "Ikke gyldigt ID"
+[INFO] 2018-06-14 11:03:07,294 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:03:07,912 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:13,143 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 11:03:13,932 ase.WeightSocket rm20 - Client: RM20 8 "TT" "" "Confirm" \n
+[INFO] 2018-06-14 11:03:14,605 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:15,023 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:03:15,045 ase.WeightSocket rm20 - Client: RM20 8 "Input batch ID" "1-9999999" "" \n
+[INFO] 2018-06-14 11:03:15,754 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:22,231 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 11:03:22,355 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "" "Confirm" \n
+[INFO] 2018-06-14 11:03:22,963 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:23,797 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:03:24,121 ase.WeightSocket rm20 - Client: RM20 8 "Toem vaegt" "" "" \n
+[INFO] 2018-06-14 11:03:24,738 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:25,469 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:03:25,469 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 11:03:25,774 ase.WeightSocket readWeight - Server: S S      0.000 kg
+[INFO] 2018-06-14 11:03:25,852 ase.WeightSocket rm20 - Client: RM20 8 "3; tomat" "" "" \n
+[INFO] 2018-06-14 11:03:26,513 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:27,766 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:03:27,767 ase.WeightSocket rm20 - Client: RM20 8 "Placer tara." "" "" \n
+[INFO] 2018-06-14 11:03:28,393 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:29,960 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:03:29,961 ase.WeightSocket tarer - Client: T
+[INFO] 2018-06-14 11:03:30,690 ase.WeightSocket tarer - Server: T S      0.028 kg
+[INFO] 2018-06-14 11:03:30,692 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "" "" \n
+[INFO] 2018-06-14 11:03:31,278 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:31,941 ase.WeightSocket rm20 - Server: RM20 A ""
+[WARN] 2018-06-14 11:03:31,945 ase.AseController afvejning - Ikke gyldig vægt
+[INFO] 2018-06-14 11:03:31,946 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "" "" \n
+[INFO] 2018-06-14 11:03:32,572 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:32,989 ase.WeightSocket rm20 - Server: RM20 A ""
+[WARN] 2018-06-14 11:03:32,989 ase.AseController afvejning - Ikke gyldig vægt
+[INFO] 2018-06-14 11:03:32,989 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "" "" \n
+[INFO] 2018-06-14 11:03:33,616 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:35,809 ase.WeightSocket rm20 - Server: RM20 A "7"
+[INFO] 2018-06-14 11:03:35,865 ase.WeightSocket rm20 - Client: RM20 8 "Current RB: 1.808kg." "" "2.0kg." \n
+[INFO] 2018-06-14 11:03:36,540 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:38,106 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:03:38,107 ase.WeightSocket rm20 - Client: RM20 8 "Se vaegt." "" "" \n
+[INFO] 2018-06-14 11:03:38,942 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:40,300 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:03:40,301 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 11:03:41,122 ase.WeightSocket readWeight - Server: S S      0.192 kg
+[INFO] 2018-06-14 11:03:41,122 ase.WeightSocket rm20 - Client: RM20 8 "Vaegt ok?" "" "0.192kg" \n
+[INFO] 2018-06-14 11:03:41,743 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:42,806 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:03:42,810 ase.AseController afvejning - 3 7 1.616
+[WARN] 2018-06-14 11:03:42,876 ase.AseController afvejning - DTOProduktBatchKomp(pbId=2, rbId=7, tara=0.028, netto=0.192, oprId=1)
+[INFO] 2018-06-14 11:03:48,028 ase.WeightSocket rm20 - Client: RM20 8 "afvejet 7 mangler: 1.808" "" "" \n
+[INFO] 2018-06-14 11:03:48,656 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:03:54,817 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:04:46,482 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "" "" \n
+[INFO] 2018-06-14 11:04:51,231 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:04:51,234 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:04:51,243 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:04:51,847 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:04:58,428 ase.WeightSocket rm20 - Server: RM20 A "ID"
+[WARN] 2018-06-14 11:04:58,430 ase.AseController validerOperatoer - Ikke gyldigt ID
+[INFO] 2018-06-14 11:04:58,430 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt ID" "" \n
+[INFO] 2018-06-14 11:04:59,046 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:04:59,471 ase.WeightSocket rm20 - Server: RM20 A "Ikke gyldigt ID"
+[INFO] 2018-06-14 11:04:59,473 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:05:00,094 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:05:01,463 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 11:05:02,230 ase.WeightSocket rm20 - Client: RM20 8 "TT" "" "Confirm" \n
+[INFO] 2018-06-14 11:05:02,753 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:05:03,728 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:05:03,755 ase.WeightSocket rm20 - Client: RM20 8 "Input batch ID" "1-9999999" "" \n
+[INFO] 2018-06-14 11:05:04,486 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:05:06,367 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 11:05:06,486 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "" "Confirm" \n
+[INFO] 2018-06-14 11:05:07,409 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:05:07,492 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:05:07,838 ase.WeightSocket rm20 - Client: RM20 8 "Toem vaegt" "" "" \n
+[INFO] 2018-06-14 11:05:08,445 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:05:08,768 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:05:08,769 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 11:05:09,080 ase.WeightSocket readWeight - Server: S S      0.000 kg
+[INFO] 2018-06-14 11:05:09,155 ase.WeightSocket rm20 - Client: RM20 8 "3; tomat" "" "" \n
+[INFO] 2018-06-14 11:05:09,812 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:05:10,230 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:05:10,231 ase.WeightSocket rm20 - Client: RM20 8 "Placer tara." "" "" \n
+[INFO] 2018-06-14 11:05:10,858 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:05:12,006 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:05:12,007 ase.WeightSocket tarer - Client: T
+[INFO] 2018-06-14 11:05:13,985 ase.WeightSocket tarer - Server: T S      0.028 kg
+[INFO] 2018-06-14 11:05:13,991 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "" "" \n
+[INFO] 2018-06-14 11:05:14,569 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:05:22,595 ase.WeightSocket rm20 - Server: RM20 A "7"
+[INFO] 2018-06-14 11:05:22,649 ase.WeightSocket rm20 - Client: RM20 8 "Current RB: 1.616kg." "" "2.0kg." \n
+[INFO] 2018-06-14 11:05:23,390 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:05:24,853 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:05:24,854 ase.WeightSocket rm20 - Client: RM20 8 "Se vaegt." "" "" \n
+[INFO] 2018-06-14 11:05:25,479 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:05:26,726 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:05:26,735 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 11:05:28,508 ase.WeightSocket readWeight - Server: S S      0.192 kg
+[INFO] 2018-06-14 11:05:28,508 ase.WeightSocket rm20 - Client: RM20 8 "Vaegt ok?" "" "0.192kg" \n
+[INFO] 2018-06-14 11:05:29,243 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:05:30,178 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:05:30,186 ase.AseController afvejning - 3 7 1.424
+[WARN] 2018-06-14 11:05:30,376 ase.AseController afvejning - DTOProduktBatchKomp(pbId=2, rbId=7, tara=0.028, netto=0.192, oprId=1)
+[INFO] 2018-06-14 11:05:33,761 ase.WeightSocket rm20 - Client: RM20 8 "afvejet: 7" "Mangler: 1.808kg" "" \n
+[INFO] 2018-06-14 11:05:34,462 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:05:42,505 ase.WeightSocket rm20 - Server: RM20 A "Mangler: 1.808kg"
+[INFO] 2018-06-14 11:06:30,882 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "" "" \n
+[INFO] 2018-06-14 11:06:34,563 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:06:34,563 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:06:34,574 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:06:35,250 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:09:47,532 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:09:47,534 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:09:47,543 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:09:47,829 ase.WeightSocket rm20 - Server: RM20 I
+[INFO] 2018-06-14 11:09:54,644 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 11:09:55,302 ase.WeightSocket rm20 - Client: RM20 8 "TT" "" "Confirm" \n
+[INFO] 2018-06-14 11:09:56,000 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:09:56,941 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:09:56,958 ase.WeightSocket rm20 - Client: RM20 8 "Input batch ID" "ID" "" \n
+[INFO] 2018-06-14 11:09:57,568 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:10:22,131 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 11:10:22,232 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "" "Confirm" \n
+[INFO] 2018-06-14 11:10:23,054 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:10:23,677 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:10:24,001 ase.WeightSocket rm20 - Client: RM20 8 "Toem vaegt" "ok?" "" \n
+[INFO] 2018-06-14 11:10:24,619 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:10:25,977 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 11:10:25,978 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 11:10:26,290 ase.WeightSocket readWeight - Server: S S     -0.028 kg
+[INFO] 2018-06-14 11:10:26,351 ase.WeightSocket rm20 - Client: RM20 8 "3; tomat" "" "" \n
+[INFO] 2018-06-14 11:10:26,918 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:10:28,484 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:10:28,485 ase.WeightSocket rm20 - Client: RM20 8 "Placer tara." "ok?" "" \n
+[INFO] 2018-06-14 11:10:29,110 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:10:29,934 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 11:10:29,934 ase.WeightSocket tarer - Client: T
+[INFO] 2018-06-14 11:10:30,364 ase.WeightSocket tarer - Server: T S      0.000 kg
+[INFO] 2018-06-14 11:10:30,366 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "ID" "" \n
+[INFO] 2018-06-14 11:10:30,992 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:12:21,145 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:12:21,146 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:12:21,146 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:12:21,446 ase.WeightSocket rm20 - Server: RM20 I
+[INFO] 2018-06-14 11:12:29,644 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 11:12:29,645 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 11:12:29,646 ase.AseController run - Cancel: operatør.
+[INFO] 2018-06-14 11:12:30,252 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:12:30,261 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:12:30,262 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:12:30,888 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:12:33,300 ase.WeightSocket rm20 - Server: RM20 A "ID"
+[WARN] 2018-06-14 11:12:33,301 ase.AseController validerOperatoer - Ikke gyldigt ID
+[INFO] 2018-06-14 11:12:33,302 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt ID" "" \n
+[INFO] 2018-06-14 11:12:33,900 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:12:34,950 ase.WeightSocket rm20 - Server: RM20 A "Ikke gyldigt ID"
+[INFO] 2018-06-14 11:12:34,951 ase.WeightSocket rm20 - Client: RM20 8 "Input operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:12:35,597 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:12:38,313 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 11:12:39,086 ase.WeightSocket rm20 - Client: RM20 8 "TT" "" "Confirm" \n
+[INFO] 2018-06-14 11:12:39,671 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:12:40,301 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:12:40,303 ase.WeightSocket rm20 - Client: RM20 8 "Input batch ID" "ID" "" \n
+[INFO] 2018-06-14 11:12:40,925 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:12:44,371 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 11:12:44,483 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "" "Confirm" \n
+[INFO] 2018-06-14 11:12:45,102 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:12:46,773 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:12:47,133 ase.WeightSocket rm20 - Client: RM20 8 "Toem vaegt" "ok?" "" \n
+[INFO] 2018-06-14 11:12:47,685 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:12:48,549 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 11:12:48,550 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 11:12:48,862 ase.WeightSocket readWeight - Server: S S      0.000 kg
+[INFO] 2018-06-14 11:12:48,921 ase.WeightSocket rm20 - Client: RM20 8 "3; tomat" "" "" \n
+[INFO] 2018-06-14 11:12:49,594 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:16:07,877 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:16:07,883 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:16:07,893 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:16:08,159 ase.WeightSocket rm20 - Server: RM20 I
+[INFO] 2018-06-14 11:16:17,342 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 11:16:17,343 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 11:16:17,343 ase.AseController run - Cancel: operatør.
+[INFO] 2018-06-14 11:16:17,927 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:16:17,941 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:16:17,943 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:16:18,594 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:16:23,295 ase.WeightSocket rm20 - Server: RM20 A "ID"
+[WARN] 2018-06-14 11:16:23,296 ase.AseController validerOperatoer - Ikke gyldigt ID
+[INFO] 2018-06-14 11:16:23,296 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt ID" "" \n
+[INFO] 2018-06-14 11:16:23,921 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:16:24,861 ase.WeightSocket rm20 - Server: RM20 A "Ikke gyldigt ID"
+[INFO] 2018-06-14 11:16:24,866 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:16:25,488 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:16:26,950 ase.WeightSocket rm20 - Server: RM20 A "ID"
+[WARN] 2018-06-14 11:16:26,951 ase.AseController validerOperatoer - Ikke gyldigt ID
+[INFO] 2018-06-14 11:16:26,952 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt ID" "" \n
+[INFO] 2018-06-14 11:16:27,577 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:16:28,257 ase.WeightSocket rm20 - Server: RM20 A "Ikke gyldigt ID"
+[INFO] 2018-06-14 11:16:28,257 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:16:28,935 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:16:30,654 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 11:16:31,552 ase.WeightSocket rm20 - Client: RM20 8 "TT" "" "Bekraef" \n
+[INFO] 2018-06-14 11:16:32,173 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:12,809 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:17:12,812 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:17:12,820 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:17:13,080 ase.WeightSocket rm20 - Server: RM20 I
+[INFO] 2018-06-14 11:17:16,667 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 11:17:16,668 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 11:17:16,669 ase.AseController run - Cancel: operatør.
+[INFO] 2018-06-14 11:17:17,280 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:17:17,281 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:17:17,282 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:17:17,915 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:20,011 ase.WeightSocket rm20 - Server: RM20 A "ID"
+[WARN] 2018-06-14 11:17:20,012 ase.AseController validerOperatoer - Ikke gyldigt ID
+[INFO] 2018-06-14 11:17:20,013 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt ID" "" \n
+[INFO] 2018-06-14 11:17:20,637 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:21,147 ase.WeightSocket rm20 - Server: RM20 A "Ikke gyldigt ID"
+[INFO] 2018-06-14 11:17:21,157 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:17:21,788 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:23,453 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 11:17:24,047 ase.WeightSocket rm20 - Client: RM20 8 "TT" "Bekraeft." "" \n
+[INFO] 2018-06-14 11:17:24,697 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:31,081 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft."
+[INFO] 2018-06-14 11:17:31,086 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 11:17:31,708 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:32,544 ase.WeightSocket rm20 - Server: RM20 A "ID"
+[INFO] 2018-06-14 11:17:32,545 ase.AseController getProduktbatch - Ikke gyldigt PB ID.
+[INFO] 2018-06-14 11:17:32,546 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt PB ID." "" \n
+[INFO] 2018-06-14 11:17:33,171 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:33,546 ase.WeightSocket rm20 - Server: RM20 A "Ikke gyldigt PB ID."
+[INFO] 2018-06-14 11:17:33,546 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 11:17:34,216 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:36,617 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 11:17:36,726 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "Bekraeft." "" \n
+[INFO] 2018-06-14 11:17:37,348 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:38,184 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft."
+[INFO] 2018-06-14 11:17:38,532 ase.WeightSocket rm20 - Client: RM20 8 "Toem vaegt" "ok?" "" \n
+[INFO] 2018-06-14 11:17:39,123 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:40,900 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 11:17:40,902 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 11:17:41,127 ase.WeightSocket readWeight - Server: S S      0.000 kg
+[INFO] 2018-06-14 11:17:41,206 ase.WeightSocket rm20 - Client: RM20 8 "3; tomat" "Bekraeft!" "" \n
+[INFO] 2018-06-14 11:17:41,839 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:43,716 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 11:17:43,722 ase.WeightSocket rm20 - Client: RM20 8 "Placer tara." "ok?" "" \n
+[INFO] 2018-06-14 11:17:44,348 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:46,017 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 11:17:46,017 ase.WeightSocket tarer - Client: T
+[INFO] 2018-06-14 11:17:46,436 ase.WeightSocket tarer - Server: T S      0.000 kg
+[INFO] 2018-06-14 11:17:46,437 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "ID" "" \n
+[INFO] 2018-06-14 11:17:47,166 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:17:49,987 ase.WeightSocket rm20 - Server: RM20 A "7"
+[INFO] 2018-06-14 11:17:50,042 ase.WeightSocket rm20 - Client: RM20 8 "Current RB: 1.424kg." "" "2.0kg." \n
+[INFO] 2018-06-14 11:17:50,660 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:18:00,957 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:18:00,972 ase.WeightSocket rm20 - Client: RM20 8 "Se vaegt." "ok?" "" \n
+[INFO] 2018-06-14 11:18:01,580 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:18:02,521 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 11:18:02,522 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 11:18:02,825 ase.WeightSocket readWeight - Server: S S      0.000 kg
+[INFO] 2018-06-14 11:18:02,825 ase.WeightSocket rm20 - Client: RM20 8 "Vaegt ok?" "" "0.0kg." \n
+[INFO] 2018-06-14 11:18:03,461 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:18:05,132 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:18:05,133 ase.AseController afvejning - 3 7 1.424
+[WARN] 2018-06-14 11:18:05,183 ase.AseController afvejning - DTOProduktBatchKomp(pbId=2, rbId=7, tara=0.0, netto=0.0, oprId=1)
+[INFO] 2018-06-14 11:18:05,257 ase.WeightSocket rm20 - Client: RM20 8 "Afvejet: 7" "Mangler: 2.0kg" "" \n
+[INFO] 2018-06-14 11:18:05,863 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:18:43,190 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:18:43,191 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:18:43,202 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:18:43,488 ase.WeightSocket rm20 - Server: RM20 I
+[INFO] 2018-06-14 11:18:57,983 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 11:18:57,984 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 11:18:57,985 ase.AseController run - Cancel: operatør.
+[INFO] 2018-06-14 11:18:58,575 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:18:58,580 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:18:58,582 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:18:59,235 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:19:01,637 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 11:19:02,204 ase.WeightSocket rm20 - Client: RM20 8 "TT" "Bekraeft!" "" \n
+[INFO] 2018-06-14 11:19:02,891 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:19:03,936 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 11:19:03,953 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 11:19:04,668 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:19:40,284 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 11:19:40,394 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "Bekraeft!" "" \n
+[INFO] 2018-06-14 11:19:41,014 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:19:42,060 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 11:19:42,365 ase.WeightSocket rm20 - Client: RM20 8 "Toem vaegt" "ok?" "" \n
+[INFO] 2018-06-14 11:19:43,000 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:19:43,836 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 11:19:43,837 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 11:19:44,150 ase.WeightSocket readWeight - Server: S S      0.000 kg
+[INFO] 2018-06-14 11:19:44,203 ase.WeightSocket rm20 - Client: RM20 8 "3; tomat" "Bekraeft!" "" \n
+[INFO] 2018-06-14 11:19:44,879 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:19:45,611 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 11:19:45,612 ase.WeightSocket rm20 - Client: RM20 8 "Placer tara." "ok?" "" \n
+[INFO] 2018-06-14 11:19:46,238 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:19:46,969 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 11:19:46,970 ase.WeightSocket tarer - Client: T
+[INFO] 2018-06-14 11:19:47,387 ase.WeightSocket tarer - Server: T S      0.000 kg
+[INFO] 2018-06-14 11:19:47,388 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "ID" "" \n
+[INFO] 2018-06-14 11:19:48,016 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:19:51,042 ase.WeightSocket rm20 - Server: RM20 A "7"
+[INFO] 2018-06-14 11:19:51,095 ase.WeightSocket rm20 - Client: RM20 8 "RB vaegt: 1.424kg." "" "2.0kg." \n
+[INFO] 2018-06-14 11:19:51,774 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:20:54,388 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:20:54,393 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:20:54,399 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:20:54,699 ase.WeightSocket rm20 - Server: RM20 I
+[INFO] 2018-06-14 11:21:04,887 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 11:21:04,888 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 11:21:04,888 ase.AseController run - Cancel: operatør.
+[INFO] 2018-06-14 11:21:05,490 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 11:21:05,490 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 11:21:05,490 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 11:21:06,141 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:21:09,036 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 11:21:09,831 ase.WeightSocket rm20 - Client: RM20 8 "TT" "Bekraeft!" "" \n
+[INFO] 2018-06-14 11:21:10,527 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:21:10,946 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 11:21:10,948 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 11:21:11,677 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:21:14,601 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 11:21:14,707 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "Bekraeft!" "" \n
+[INFO] 2018-06-14 11:21:15,332 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:21:16,481 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 11:21:16,796 ase.WeightSocket rm20 - Client: RM20 8 "Toem vaegt" "ok?" "" \n
+[INFO] 2018-06-14 11:21:17,388 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:21:18,772 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 11:21:18,781 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 11:21:19,049 ase.WeightSocket readWeight - Server: S S      0.000 kg
+[INFO] 2018-06-14 11:21:19,117 ase.WeightSocket rm20 - Client: RM20 8 "3; tomat" "Bekraeft!" "" \n
+[INFO] 2018-06-14 11:21:19,823 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:21:21,704 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 11:21:21,705 ase.WeightSocket rm20 - Client: RM20 8 "Placer tara." "ok?" "" \n
+[INFO] 2018-06-14 11:21:22,376 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:21:22,908 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 11:21:22,908 ase.WeightSocket tarer - Client: T
+[INFO] 2018-06-14 11:21:23,375 ase.WeightSocket tarer - Server: T S      0.000 kg
+[INFO] 2018-06-14 11:21:23,376 ase.WeightSocket rm20 - Client: RM20 8 "Angiv raavarebatch ID" "ID" "" \n
+[INFO] 2018-06-14 11:21:24,106 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:21:27,239 ase.WeightSocket rm20 - Server: RM20 A "7"
+[INFO] 2018-06-14 11:21:27,289 ase.WeightSocket rm20 - Client: RM20 8 "RB vaegt: 1.424kg." "Mangler: 2.0kg." "" \n
+[INFO] 2018-06-14 11:21:27,970 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:21:47,921 ase.WeightSocket rm20 - Server: RM20 A "Mangler: 2.0kg."
+[INFO] 2018-06-14 11:21:47,921 ase.WeightSocket rm20 - Client: RM20 8 "Se vaegt." "ok?" "" \n
+[INFO] 2018-06-14 11:21:48,529 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:21:54,292 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 11:21:54,293 ase.WeightSocket readWeight - Client: S\n
+[INFO] 2018-06-14 11:21:54,544 ase.WeightSocket readWeight - Server: S S      0.000 kg
+[INFO] 2018-06-14 11:21:54,557 ase.WeightSocket rm20 - Client: RM20 8 "Vaegt ok?" "" "0.0kg." \n
+[INFO] 2018-06-14 11:21:55,231 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:21:55,754 ase.WeightSocket rm20 - Server: RM20 A ""
+[INFO] 2018-06-14 11:21:55,755 ase.AseController afvejning - 3 7 1.424
+[WARN] 2018-06-14 11:21:55,797 ase.AseController afvejning - DTOProduktBatchKomp(pbId=2, rbId=7, tara=0.0, netto=0.0, oprId=1)
+[INFO] 2018-06-14 11:21:55,926 ase.WeightSocket rm20 - Client: RM20 8 "Database fejl." "ok?" "" \n
+[INFO] 2018-06-14 11:21:56,591 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 11:21:56,903 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[ERROR] 2018-06-14 11:21:56,904 ase.AseController abort - Databasefejl.
+[ERROR] 2018-06-14 11:21:56,904 ase.AseController abort - System afsluttes.
+[ERROR] 2018-06-14 11:21:56,905 ase.AseController abort - com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '2-7' for key 'PRIMARY'
+[ERROR] 2018-06-14 13:05:16,561 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 13:05:16,567 ase.WeightSocket connect - Connection refused: connect
+[ERROR] 2018-06-14 13:05:45,071 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 13:05:45,081 ase.WeightSocket connect - Connection refused: connect
+[ERROR] 2018-06-14 13:05:57,050 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 13:05:57,052 ase.WeightSocket connect - Connection refused: connect
+[ERROR] 2018-06-14 13:06:06,902 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 13:06:06,909 ase.WeightSocket connect - Connection refused: connect
+[INFO] 2018-06-14 13:06:24,370 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 13:06:24,372 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 13:06:24,380 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:06:24,481 ase.WeightSocket rm20 - Server: I4 A "3154308"
+[INFO] 2018-06-14 13:06:25,001 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:06:46,152 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 13:06:46,794 ase.WeightSocket rm20 - Client: RM20 8 "TT" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:06:47,382 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:06:53,636 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:06:53,640 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 13:06:54,257 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:07:03,853 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 13:07:03,963 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:07:04,497 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:07:10,447 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:07:10,621 ase.WeightSocket rm20 - Client: RM20 8 "Ikke nok materiale." "ok?" "" \n
+[INFO] 2018-06-14 13:07:11,246 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:07:27,281 ase.WeightSocket rm20 - Server: RM20 A "J"
+[INFO] 2018-06-14 13:07:27,281 ase.WeightSocket rm20 - Client: RM20 8 "System afsluttes." "ok?" "" \n
+[INFO] 2018-06-14 13:07:27,922 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:07:29,819 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:07:29,820 ase.WeightSocket rm20 - Server: RM20 C
+[ERROR] 2018-06-14 13:07:29,821 ase.AseController getReceptkompliste - Ikke nok materiale.
+[INFO] 2018-06-14 13:07:29,821 ase.AseController run - Cancel: Get recept komponent
+[INFO] 2018-06-14 13:07:30,411 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 13:07:30,412 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 13:07:30,412 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:07:31,052 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:07:43,062 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 13:07:43,112 ase.WeightSocket rm20 - Client: RM20 8 "TT" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:07:43,662 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:07:45,277 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:07:45,293 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 13:07:45,848 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:07:53,014 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 13:07:53,112 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:07:53,664 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:07:55,928 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:07:55,928 ase.WeightSocket rm20 - Client: RM20 8 "Status: ikke klar." "ok?" "" \n
+[INFO] 2018-06-14 13:07:56,497 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:08:01,938 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 13:08:01,939 ase.AseController run - Cancel: Opdater produktbatch.
+[INFO] 2018-06-14 13:08:02,529 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 13:08:02,529 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 13:08:02,529 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:08:03,081 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:08:06,159 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:08:06,160 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:08:06,161 ase.AseController run - Cancel: operatør.
+[INFO] 2018-06-14 13:08:06,751 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 13:08:06,752 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 13:08:06,753 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:08:07,329 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:08:08,152 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:08:08,152 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:08:08,152 ase.AseController run - Cancel: operatør.
+[INFO] 2018-06-14 13:08:08,774 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 13:08:08,774 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 13:08:08,774 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:08:09,371 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:08:42,614 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 13:08:42,674 ase.WeightSocket rm20 - Client: RM20 8 "TT" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:08:43,253 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:08:46,185 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 13:08:46,185 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 13:08:46,744 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:08:55,413 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 13:08:55,518 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:08:56,128 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:08:57,377 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:08:57,543 ase.WeightSocket rm20 - Client: RM20 8 "Ikke nok materiale." "ok?" "" \n
+[INFO] 2018-06-14 13:08:58,170 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:09:03,969 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:09:03,969 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:09:03,969 ase.WeightSocket rm20 - Client: RM20 8 "System afsluttes." "ok?" "" \n
+[INFO] 2018-06-14 13:09:04,552 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:09:06,011 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[ERROR] 2018-06-14 13:09:06,011 ase.AseController getReceptkompliste - Ikke nok materiale.
+[INFO] 2018-06-14 13:09:06,011 ase.AseController run - Cancel: Get recept komponent
+[INFO] 2018-06-14 13:09:06,609 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 13:09:06,609 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 13:09:06,611 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:09:07,251 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:09:19,963 ase.WeightSocket rm20 - Server: RM20 A "A"
+[WARN] 2018-06-14 13:09:19,963 ase.AseController validerOperatoer - Ikke gyldigt ID
+[INFO] 2018-06-14 13:09:19,963 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt ID" "" \n
+[INFO] 2018-06-14 13:09:20,517 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:09:22,983 ase.WeightSocket rm20 - Server: RM20 A "Ikke gyldigt ID"
+[INFO] 2018-06-14 13:09:22,983 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:09:23,552 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:09:26,458 ase.WeightSocket rm20 - Server: RM20 A "-"
+[WARN] 2018-06-14 13:09:26,459 ase.AseController validerOperatoer - Ikke gyldigt ID
+[INFO] 2018-06-14 13:09:26,459 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt ID" "" \n
+[INFO] 2018-06-14 13:09:27,012 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:09:28,213 ase.WeightSocket rm20 - Server: RM20 A "Ikke gyldigt ID"
+[INFO] 2018-06-14 13:09:28,214 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:09:28,851 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:09:42,713 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 13:09:42,776 ase.WeightSocket rm20 - Client: RM20 8 "TT" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:09:43,345 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:09:44,345 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:09:44,345 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 13:09:44,928 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:09:52,697 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 13:09:52,821 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:09:53,421 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:09:54,527 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:09:54,696 ase.WeightSocket rm20 - Client: RM20 8 "Ikke nok materiale." "ok?" "" \n
+[INFO] 2018-06-14 13:09:55,272 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:10:02,974 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:10:02,974 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:10:02,974 ase.WeightSocket rm20 - Client: RM20 8 "System afsluttes." "ok?" "" \n
+[INFO] 2018-06-14 13:10:03,543 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:10:04,659 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[ERROR] 2018-06-14 13:10:04,660 ase.AseController getReceptkompliste - Ikke nok materiale.
+[INFO] 2018-06-14 13:10:04,660 ase.AseController run - Cancel: Get recept komponent
+[INFO] 2018-06-14 13:10:05,259 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 13:10:05,259 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 13:10:05,259 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:10:05,902 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:10:11,168 ase.WeightSocket rm20 - Server: RM20 A "8"
+[INFO] 2018-06-14 13:10:11,223 ase.WeightSocket rm20 - Client: RM20 8 "Operatoeren 8 findes ikk" "" "Fejl" \n
+[INFO] 2018-06-14 13:10:11,832 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:10:19,549 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:10:19,549 ase.WeightSocket rm20 - Server: RM20 C
+[WARN] 2018-06-14 13:10:19,550 ase.AseController validerOperatoer - Operatoeren 8 findes ikke.
+[INFO] 2018-06-14 13:10:19,551 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:10:20,121 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:10:26,668 ase.WeightSocket rm20 - Server: RM20 A "99"
+[INFO] 2018-06-14 13:10:26,720 ase.WeightSocket rm20 - Client: RM20 8 "Operatoeren 99 findes ik" "" "Fejl" \n
+[INFO] 2018-06-14 13:10:27,321 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:10:35,248 ase.WeightSocket rm20 - Server: RM20 A ""
+[WARN] 2018-06-14 13:10:35,249 ase.AseController validerOperatoer - Operatoeren 99 findes ikke.
+[INFO] 2018-06-14 13:10:35,250 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:10:35,900 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:10:42,998 ase.WeightSocket rm20 - Server: RM20 A "5555555555555"
+[WARN] 2018-06-14 13:10:43,000 ase.AseController validerOperatoer - Ikke gyldigt ID
+[INFO] 2018-06-14 13:10:43,000 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt ID" "" \n
+[INFO] 2018-06-14 13:10:43,598 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:10:48,988 ase.WeightSocket rm20 - Server: RM20 A "Ikke gyldigt ID"
+[INFO] 2018-06-14 13:10:48,988 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:10:49,562 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:00,262 ase.WeightSocket rm20 - Server: RM20 A "LADMAD"
+[WARN] 2018-06-14 13:11:00,263 ase.AseController validerOperatoer - Ikke gyldigt ID
+[INFO] 2018-06-14 13:11:00,263 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt ID" "" \n
+[INFO] 2018-06-14 13:11:00,831 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:02,459 ase.WeightSocket rm20 - Server: RM20 A "Ikke gyldigt ID"
+[INFO] 2018-06-14 13:11:02,460 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:11:03,082 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:11,718 ase.WeightSocket rm20 - Server: RM20 A "1246555555555555555555"
+[WARN] 2018-06-14 13:11:11,719 ase.AseController validerOperatoer - Ikke gyldigt ID
+[INFO] 2018-06-14 13:11:11,720 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt ID" "" \n
+[INFO] 2018-06-14 13:11:12,321 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:19,383 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:11:19,383 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:11:19,383 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:11:20,022 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:25,162 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 13:11:25,215 ase.WeightSocket rm20 - Client: RM20 8 "TA" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:11:25,782 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:27,967 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:11:27,967 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:11:27,967 ase.AseController run - Cancel: operatør.
+[INFO] 2018-06-14 13:11:28,551 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 13:11:28,551 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 13:11:28,551 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:11:29,141 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:32,242 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 13:11:32,295 ase.WeightSocket rm20 - Client: RM20 8 "TA" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:11:32,889 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:34,498 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:11:34,499 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 13:11:35,122 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:37,566 ase.WeightSocket rm20 - Server: RM20 A "J"
+[INFO] 2018-06-14 13:11:37,566 ase.AseController getProduktbatch - Ikke gyldigt PB ID.
+[INFO] 2018-06-14 13:11:37,566 ase.WeightSocket rm20 - Client: RM20 8 "" "Ikke gyldigt PB ID." "" \n
+[INFO] 2018-06-14 13:11:38,122 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:40,898 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:11:40,899 ase.WeightSocket rm20 - Server: RM20 C
+[INFO] 2018-06-14 13:11:40,900 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 13:11:41,462 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:45,582 ase.WeightSocket rm20 - Server: RM20 A "46"
+[WARN] 2018-06-14 13:11:45,651 ase.AseController getProduktbatch - Produktbatchet 46 findes ikke
+[INFO] 2018-06-14 13:11:45,652 ase.WeightSocket rm20 - Client: RM20 8 "" "PB findes ikke." "" \n
+[INFO] 2018-06-14 13:11:46,222 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:47,839 ase.WeightSocket rm20 - Server: RM20 A "PB findes ikke."
+[INFO] 2018-06-14 13:11:47,840 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 13:11:48,462 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:55,333 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 13:11:55,449 ase.WeightSocket rm20 - Client: RM20 8 "margherita" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:11:56,053 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:11:58,032 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:11:58,033 ase.WeightSocket rm20 - Client: RM20 8 "Status: ikke klar." "ok?" "" \n
+[INFO] 2018-06-14 13:11:58,671 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:12:01,737 ase.WeightSocket rm20 - Server: RM20 A "ok?"
+[INFO] 2018-06-14 13:12:01,737 ase.AseController run - Cancel: Opdater produktbatch.
+[INFO] 2018-06-14 13:12:02,332 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 13:12:02,332 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 13:12:02,332 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:12:02,891 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:12:16,863 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 13:12:16,866 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 13:12:16,876 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:12:17,481 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:12:22,601 ase.WeightSocket rm20 - Server: RM20 A "3"
+[INFO] 2018-06-14 13:12:23,078 ase.WeightSocket rm20 - Client: RM20 8 "Operatoeren 3 findes ikk" "" "Fejl" \n
+[INFO] 2018-06-14 13:12:23,722 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:12:26,041 ase.WeightSocket rm20 - Server: RM20 A ""
+[WARN] 2018-06-14 13:12:26,041 ase.AseController validerOperatoer - Operatoeren 3 findes ikke.
+[INFO] 2018-06-14 13:12:26,041 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:12:26,662 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:12:31,298 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 13:12:31,368 ase.WeightSocket rm20 - Client: RM20 8 "TA" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:12:31,911 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:12:32,682 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:12:32,701 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 13:12:33,311 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:12:37,622 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 13:12:37,723 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:12:38,341 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:12:39,131 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:14:51,937 ase.WeightSocket rm20 - Client: RM20 8 "Ikke nok materiale." "ok?" "" \n
+[INFO] 2018-06-14 13:14:58,197 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 13:14:58,214 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 13:14:58,224 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:14:58,853 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:15:20,074 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 13:15:20,660 ase.WeightSocket rm20 - Client: RM20 8 "TT" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:15:21,230 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:15:21,940 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:15:21,956 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 13:15:22,581 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:15:25,718 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 13:15:25,820 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:15:26,421 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:15:27,170 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:17:02,921 ase.WeightSocket flushInput - Flush inputstream.
+[INFO] 2018-06-14 13:17:02,936 ase.AseController validerOperatoer - Hent operatør.
+[INFO] 2018-06-14 13:17:02,952 ase.WeightSocket rm20 - Client: RM20 8 "Indtast operator ID" "ID" "" \n
+[INFO] 2018-06-14 13:17:03,547 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:17:05,725 ase.WeightSocket rm20 - Server: RM20 A "1"
+[INFO] 2018-06-14 13:17:06,342 ase.WeightSocket rm20 - Client: RM20 8 "TT" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:17:06,948 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:17:07,978 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[INFO] 2018-06-14 13:17:08,007 ase.WeightSocket rm20 - Client: RM20 8 "Indtast batch ID" "ID" "" \n
+[INFO] 2018-06-14 13:17:08,604 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:17:11,514 ase.WeightSocket rm20 - Server: RM20 A "2"
+[INFO] 2018-06-14 13:17:11,607 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "Bekraeft!" "" \n
+[INFO] 2018-06-14 13:17:12,236 ase.WeightSocket rm20 - Server: RM20 B
+[INFO] 2018-06-14 13:17:13,127 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"

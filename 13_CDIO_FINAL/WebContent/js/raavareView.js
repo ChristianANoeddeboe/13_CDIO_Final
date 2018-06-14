@@ -12,6 +12,7 @@ $(document).ready(function() {
 	clickAddKompHandler();
 	clickDeleteKompHandler();
 	clickUpdateKompHandler();
+	enableTooltips();
 });
 
 function clickUpdateKompHandler(){ //Tilfoejer funktion til at bekraefte opdateringen af et raavare batch, via en modal.
@@ -238,13 +239,19 @@ function hideLoader(){
 	$("#raavareAdminTable").show();
 }
 
+function enableTooltips() {
+	$('body').tooltip({
+	    selector: '[tooltip-toggle="tooltip"]'
+	});
+}
+
 function generateRaavareHTML(raavare) {
 	return 	'<tr><th scope ="row">' + raavare.raavareId + '</th>' +
 	'<td><input type="text" id = "'+raavare.raavareId +"_navn"+'" class="form-control-plaintext" value="' + raavare.raavareNavn + '"></td></td>' +
 	'<td><input type="text" id = "'+raavare.raavareId +"_leverandør"+'" class="form-control-plaintext" value="' + raavare.leverandoer + '"></td></td>' +
-	'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary vis"><i class="fas fa-folder-open" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
-    '<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
-	'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary slet"><i class="fas fa-trash-alt" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary vis" tooltip-toggle="tooltip" data-placement="top"  title="Åben råvarebatch"><i class="fas fa-folder-open" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
+    '<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary update" tooltip-toggle="tooltip" data-placement="top"  title="Gem"><i class="fas fa-save" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id = "'+raavare.raavareId+'" class="btn btn-primary slet" tooltip-toggle="tooltip" data-placement="top"  title="Slet"><i class="fas fa-trash-alt" id = "'+raavare.raavareId+'"></i></button>'+'</td>' +
 	'</td></tr>';
 }
 
@@ -252,8 +259,8 @@ function generateRaavareBatchKompHTML(raavareBatch) {
 	return 	'<tr><th scope ="row">' + raavareBatch.rbId + '</th>' +
 	'<th scope = "row">'+raavareBatch.raavareId + '</th>' +
 	'<td><input type="text" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+"_mængde"+'" class="form-control-plaintext" value="' + raavareBatch.maengde + '"></td></td>' +
-    '<td><button type="button" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'" class="btn btn-primary updateKomp"><i class="fas fa-save" id = "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'"></i></button>'+'</td>' +
-	'<td><button type="button" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'" class="btn btn-primary sletKomp"><i class="fas fa-trash-alt" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'"></i></button>'+'</td>' +
+    '<td><button type="button" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'" class="btn btn-primary updateKomp" tooltip-toggle="tooltip" data-placement="top"  title="Gem"><i class="fas fa-save" id = "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'" class="btn btn-primary sletKomp" tooltip-toggle="tooltip" data-placement="top"  title="Slet"><i class="fas fa-trash-alt" id =  "'+raavareBatch.raavareId+"_"+raavareBatch.rbId+'"></i></button>'+'</td>' +
 	'</td></tr>';
 }
 

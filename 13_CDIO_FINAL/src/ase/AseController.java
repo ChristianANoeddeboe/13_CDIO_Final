@@ -36,15 +36,6 @@ public class AseController {
 
         socket.connect();
 
-//        try {
-//            MySQLConnector.getInstance().setAutoCommit(false);
-//        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-//            socket.rm20("Kontakt administrator", "", "Error.");
-//            log.error(e.getMessage());
-//            socket.disconnect();
-//            System.exit(0);
-//        }
-
         try {
             socket.flushInput();
         } catch (IOException e) {
@@ -104,12 +95,12 @@ public class AseController {
 
         while (true) {
             try {
-                str = socket.rm20("Input operator ID", "ID", "");
+                str = socket.rm20("Indtast operator ID", "ID", "");
                 if (str.contains("C") || str.contains("exit")) return null;
 
                 operatorId = Integer.parseInt(str);
                 operatoer = controller.getBruger(operatorId);
-                str = socket.rm20(operatoer.initials(operatoer.getFornavn() + " " + operatoer.getEfternavn()), "", "Confirm.");
+                str = socket.rm20(operatoer.initials(operatoer.getFornavn() + " " + operatoer.getEfternavn()), "Bekraeft!", "");
                 if (str.contains("C") || str.contains("exit")) return null;
                 break;
             } catch (NumberFormatException  | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
@@ -130,7 +121,7 @@ public class AseController {
         String str = null;
         while (true) {
             try {
-                String batchID = socket.rm20("Input batch ID", "1-9999999", "");
+                String batchID = socket.rm20("Indtast batch ID", "ID", "");
                 if (batchID.contains("RM20 C") || batchID.contains("exit")) return null;
                 produktbatch = pbcontroller.getProduktBatch(Integer.parseInt(batchID));
             } catch (NumberFormatException e) {
@@ -146,7 +137,7 @@ public class AseController {
             // Henter det recept, produktbatched tilhører, for at faa navnet paa vores produktbatch.
             try {
                 DTORecept recept = rcontroller.getRecept(produktbatch.getReceptId());
-                str = socket.rm20(recept.getReceptNavn(), "", "Confirm.");
+                str = socket.rm20(recept.getReceptNavn(), "Bekraeft!", "");
                 if (str.contains("RM20 C")) continue;
                 if (str.equals("exit")) return null;
                 break;
@@ -160,7 +151,7 @@ public class AseController {
 
     private boolean opdaterPbStatus(DTOProduktBatch pb) {
         if (pb.getStatus() != Status.Klar) {
-            socket.rm20("Status: ikke klar.", "", "");
+            socket.rm20("Status: ikke klar.", "ok?", "");
             return false;
         }else {
             pb.setStatus(Status.Igang);
@@ -183,17 +174,16 @@ public class AseController {
         try {
             list = controller.getReceptKompList(pb.getReceptId());
         } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-            socket.rm20("receptkomp ikke fudnet.", "", "");
-            socket.rm20("System afsluttes.", "", "");
+            socket.rm20("receptkomp ikke fundet.", "ok?", "");
+            socket.rm20("System afsluttes.", "ok?", "");
             log.error(e.getMessage());
             return null;
         }
 
         for (DTOReceptKomp rk : list) {
-            netto = rk.getNomNetto() * (1 + (rk.getTolerance() / 100));
-            if (netto > getRaavareMaengde(rk.getRaavareId())) {
-                socket.rm20("Ikke nok materiale.", "", "");
-                socket.rm20("System afsluttes.", "", "");
+            if (rk.getNomNetto() >= getRaavareMaengde(rk.getRaavareId())) {
+                socket.rm20("Ikke nok materiale.", "ok?", "");
+                socket.rm20("System afsluttes.", "ok?", "");
                 log.error("Ikke nok materiale.");
                 return null;
             }
@@ -210,8 +200,8 @@ public class AseController {
                 maengde += rb.getMaengde();
             }
         } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-            socket.rm20("Raavarebatch ikke fundet", "", "");
-            socket.rm20("System afsluttes", "", "");
+            socket.rm20("Raavarebatch ikke fundet", "ok?", "");
+            socket.rm20("System afsluttes", "ok?", "");
             abort("Raavarebatch ikke fundet.", e);
         }
         return maengde;
@@ -239,19 +229,19 @@ public class AseController {
 
             do {
                 try {
-                    str = socket.rm20("Angiv raavarebatch ID", "", "");
-                    if (str.contains("RM20 C") || str.contains("exit")) socket.rm20("Not allowed", "", "");
+                    str = socket.rm20("Angiv raavarebatch ID", "ID", "");
+                    if (str.contains("RM20 C") || str.contains("exit")) socket.rm20("Not allowed", "ok?", "");
                     tempRB = rbController.getRaavareBatch(Integer.parseInt(str));
                     if (tempRB.getRaavareId() != raavare.getRaavareId()) continue;
                 } catch (NumberFormatException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                     log.warn("Ikke gyldig vægt");
                     continue;
                 } catch (DALException e) {
-                    socket.rm20("Databasefejl.", "", "");
+                    socket.rm20("Databasefejl.", "ok?", "");
                     abort("Databasefejl.", e);
                 }
 
-                socket.rm20("Current RB: " + tempRB.getMaengde() + "kg.", "", (receptKomp.getNomNetto() - weight) + "kg.");
+                socket.rm20("RB vaegt: " + tempRB.getMaengde() + "kg.", "Mangler: "+ (receptKomp.getNomNetto() - weight) + "kg.", "");
                 try {
 
                     tempweight = afvej();
@@ -259,34 +249,31 @@ public class AseController {
                         log.info("Afvejet mængde overstiger mængden i råvarebatch.");
                         socket.rm20("Afvejet overstiger RB.", "", "Fejl.");
                         tempweight = afvej();
-                        continue;
                     }
 
                     while (upperbound < tempweight) {
                         log.info("Afvejet mængde overstiger nomnetto.");
                         socket.rm20("Afvejet>nomnetto.", "", "Fejl.");
                         tempweight = afvej();
-                        continue;
                     }
 
                     weight = tempweight;
                     diffWeight = weight - diffWeight;
-
-                    tempRB.setMangde(tempRB.getMaengde() - diffWeight);
+                    tempRB.setMaengde(tempRB.getMaengde() - diffWeight);
                     log.info(tempRB.getRaavareId() + " " + tempRB.getRbId() + " " + tempRB.getMaengde());
                     rbController.updateRaavareBatch(tempRB);
 
                     tempPBK = new DTOProduktBatchKomp(produktbatch.getPbId(), tempRB.getRbId(), tara, diffWeight, operatoer.getOprId());
                     log.warn(tempPBK.toString());
                     pbkController.createProdBatchKomp(tempPBK);
-
+                    double testDouble = receptKomp.getNomNetto() - weight;
                     if (lowerbound > weight || upperbound < weight) {
-                        socket.rm20(tempRB.getRbId() + " afvejet, mangler: " + (receptKomp.getNomNetto() - weight) + "kg.", "", "");
+                        socket.rm20("Afvejet: "+tempRB.getRbId(), "Mangler: " + testDouble+"kg", "");
                     }
                 } catch (IOException e) {
                     abort("IOException.", e);
                 } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-                    socket.rm20("Database fejl.", "", "");
+                    socket.rm20("Database fejl.", "ok?", "");
                     abort("Databasefejl.", e);
                 }
             } while (lowerbound > weight || upperbound < weight);
@@ -302,7 +289,7 @@ public class AseController {
     private void emptyWeight() {
         try {
             do {
-                socket.rm20("Toem vaegt", "", "");
+                socket.rm20("Toem vaegt", "ok?", "");
             } while (socket.readWeight() >= 0.0001);
         } catch (IOException e) {
             abort("IOException", e);
@@ -314,16 +301,16 @@ public class AseController {
         DTORaavare raavare = null;
         try {
             raavare = rController.getRaavare(raavareID);
-            socket.rm20(raavare.getRaavareId() + "; " + raavare.getRaavareNavn(), "", "");
+            socket.rm20(raavare.getRaavareId() + "; " + raavare.getRaavareNavn(), "Bekraeft!", "");
         } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-            socket.rm20("Database fejl.", "", "");
+            socket.rm20("Database fejl.", "ok?", "");
             abort("Database fejl", e);
         }
         return raavare;
     }
 
     private double retreiveTara() {
-        socket.rm20("Placer tara.", "", "");
+        socket.rm20("Placer tara.", "ok?", "");
         try {
             return socket.tarer();
         } catch (IOException e) {
@@ -336,7 +323,7 @@ public class AseController {
         double tempweight = 0;
         String str;
         do {
-            socket.rm20("Se vaegt.", "", "");
+            socket.rm20("Se vaegt.", "ok?", "");
             tempweight = socket.readWeight();
             str = socket.rm20("Vaegt ok?", "", tempweight + "kg.");
         } while (str.contains("RM20 C"));
@@ -348,7 +335,7 @@ public class AseController {
         double afvejning = 0;
 
         do {
-            socket.rm20("Toem vaegt.", "", "");
+            socket.rm20("Toem vaegt.", "ok?", "");
 
             try {
                 afvejning = socket.readWeight() * -1;
@@ -358,7 +345,7 @@ public class AseController {
 
             if (Math.abs(afvejning - tara) < 0.00001) {
                 passedControl = true;
-                socket.rm20("Bruttokontrol godkendt.", "", "");
+                socket.rm20("Bruttokontrol godkendt.", "ok?", "");
             } else {
                 passedControl = false;
                 socket.rm20("", "Bruttokontrol fejlet.", "");
