@@ -30,7 +30,7 @@ public class BrugerService implements IBrugerService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getBrugerList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public Response getBrugerList() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		List<DTOBruger> result = null;
 		try {
 			result = controller.getBrugerList();
@@ -43,7 +43,7 @@ public class BrugerService implements IBrugerService {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createBruger(DTOBruger bruger) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public Response createBruger(DTOBruger bruger) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		try {
 			controller.createBruger(bruger);
 		} catch(DALException e) {
@@ -55,7 +55,7 @@ public class BrugerService implements IBrugerService {
 
 	@Override
 	@PUT
-	public Response updateBruger(DTOBruger bruger) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public Response updateBruger(DTOBruger bruger) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		try {
 			controller.updateBruger(bruger);
 		} catch(DALException e) {
@@ -68,7 +68,7 @@ public class BrugerService implements IBrugerService {
 	@Override
 	@DELETE
 	@Path("{id}")
-	public Response deleteBruger(@PathParam("id") int bruger_id) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public Response deleteBruger(@PathParam("id") int bruger_id) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		try {
 			controller.deleteBruger(bruger_id);
 		} catch(DALException e) {

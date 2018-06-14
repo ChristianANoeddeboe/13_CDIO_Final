@@ -207,8 +207,8 @@ function enableTooltips() {
 
 function appendToTable(data){
 	$.each(data, function (i, element) {
-		$('#produktAdminTable').children().append(generateProduktHTML(data[i]));
-	});
+        $('#produktAdminTable').children().append(generateProduktHTML(data[i]));
+    });
 }
 
 function appendToSubTable(data){

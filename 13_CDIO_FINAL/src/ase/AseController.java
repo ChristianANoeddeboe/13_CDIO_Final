@@ -36,15 +36,6 @@ public class AseController {
 
         socket.connect();
 
-//        try {
-//            MySQLConnector.getInstance().setAutoCommit(false);
-//        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-//            socket.rm20("Kontakt administrator", "", "Error.");
-//            log.error(e.getMessage());
-//            socket.disconnect();
-//            System.exit(0);
-//        }
-
         try {
             socket.flushInput();
         } catch (IOException e) {
@@ -183,15 +174,14 @@ public class AseController {
         try {
             list = controller.getReceptKompList(pb.getReceptId());
         } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-            socket.rm20("receptkomp ikke fudnet.", "ok?", "");
+            socket.rm20("receptkomp ikke fundet.", "ok?", "");
             socket.rm20("System afsluttes.", "ok?", "");
             log.error(e.getMessage());
             return null;
         }
 
         for (DTOReceptKomp rk : list) {
-            netto = rk.getNomNetto() * (1 + (rk.getTolerance() / 100));
-            if (netto > getRaavareMaengde(rk.getRaavareId())) {
+            if (rk.getNomNetto() >= getRaavareMaengde(rk.getRaavareId())) {
                 socket.rm20("Ikke nok materiale.", "ok?", "");
                 socket.rm20("System afsluttes.", "ok?", "");
                 log.error("Ikke nok materiale.");
@@ -259,14 +249,12 @@ public class AseController {
                         log.info("Afvejet mængde overstiger mængden i råvarebatch.");
                         socket.rm20("Afvejet overstiger RB.", "", "Fejl.");
                         tempweight = afvej();
-                        continue;
                     }
 
                     while (upperbound < tempweight) {
                         log.info("Afvejet mængde overstiger nomnetto.");
                         socket.rm20("Afvejet>nomnetto.", "", "Fejl.");
                         tempweight = afvej();
-                        continue;
                     }
 
                     weight = tempweight;
