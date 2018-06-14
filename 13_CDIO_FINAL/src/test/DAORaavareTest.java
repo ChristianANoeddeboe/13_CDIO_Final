@@ -2,7 +2,7 @@ package test;
 
 import connector.MySQLConnector;
 import controller.RaavareController;
-
+import dto.DTORaavare;
 import exception.DALException;
 import interfaces.IRaavareController;
 import org.junit.jupiter.api.BeforeAll;

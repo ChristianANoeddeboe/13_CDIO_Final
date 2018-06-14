@@ -5,7 +5,8 @@ import dto.DTORaavare;
 import exception.DALException;
 import interfaces.IDAORaavare;
 import interfaces.IRaavareController;
-
+import java.util.List;
+import java.util.logging.Logger;
 public class RaavareController implements IRaavareController {
     private static final Logger log = Logger.getLogger(RaavareController.class.getName());
     private static IDAORaavare dao;
