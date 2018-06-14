@@ -19,10 +19,15 @@ public class DTORaavareBatch {
         this.maengde = maengde;
     }
     
-    public void setMaengde(double m) {
-    	String str = null;
-    	DecimalFormat df = new DecimalFormat("#.####");
-    	str = df.format(m);
-    	maengde = Double.parseDouble(str);
+    public void setMaengde(double maengdeInput) {
+    	String str = maengdeInput + "";
+        DecimalFormat df;
+        if(str.contains(",")){
+            df = new DecimalFormat("#,####");
+        }else{
+            df = new DecimalFormat("#.####");
+        }
+    	str = df.format(maengdeInput);
+    	this.maengde = Double.parseDouble(str);
     }
 }
