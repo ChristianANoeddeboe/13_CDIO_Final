@@ -20,14 +20,17 @@ public class DTORaavareBatch {
     }
     
     public void setMaengde(double maengdeInput) {
-    	String str = maengdeInput + "";
-        DecimalFormat df;
-        if(str.contains(",")){
-            df = new DecimalFormat("#,####");
-        }else{
-            df = new DecimalFormat("#.####");
+        DecimalFormat df = new DecimalFormat("#.0000");
+        String str = df.format(maengdeInput);
+
+        String[] strArr = str.split("");
+        String strOut = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ',') {
+                strArr[i] = ".";
+            }
+            strOut += strArr[i];
         }
-    	str = df.format(maengdeInput);
-    	this.maengde = Double.parseDouble(str);
+        this.maengde = Double.parseDouble(strOut);
     }
 }
