@@ -264,8 +264,7 @@ public class AseController {
 
                     weight = tempweight;
                     diffWeight = weight - diffWeight;
-
-                    tempRB.setMangde(tempRB.getMaengde() - diffWeight);
+                    tempRB.setMaengde(tempRB.getMaengde() - diffWeight);
                     log.info(tempRB.getRaavareId() + " " + tempRB.getRbId() + " " + tempRB.getMaengde());
                     rbController.updateRaavareBatch(tempRB);
 

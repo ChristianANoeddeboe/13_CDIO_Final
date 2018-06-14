@@ -19,8 +19,10 @@ public class DTORaavareBatch {
         this.maengde = maengde;
     }
     
-    public void setMangde(double m) {
-    	DecimalFormat df = new DecimalFormat("#,####");
-    	maengde = Double.parseDouble(df.format(m));
+    public void setMaengde(double m) {
+    	String str = null;
+    	DecimalFormat df = new DecimalFormat("#.####");
+    	str = df.format(m);
+    	maengde = Double.parseDouble(str);
     }
 }
