@@ -25,6 +25,7 @@ public class AseController {
     public void run() {
         List<DTOReceptKomp> receptkompList = null;
         DTOProduktBatch pb = null;
+        ProduktBatchController pbController;
 
         socket.connect();
 
@@ -74,6 +75,15 @@ public class AseController {
         }
 
         afvejning(receptkompList, pb, operatoer);
+        pbController = ProduktBatchController.getInstance();
+        pb.setStatus(Status.Afsluttet);
+        try {
+			pbController.updateProduktBatch(pb);
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | DALException e) {
+			//TODO opdater produktbatch exception, skal vi bare prøve at opdatere igen eller hvordan?
+			socket.rm20(e.getMessage(), "", "Fejl");
+			log.error(e.getMessage());
+		}
         socket.rm20("Afvejning godkendt.", "", "");
         socket.disconnect();
     }

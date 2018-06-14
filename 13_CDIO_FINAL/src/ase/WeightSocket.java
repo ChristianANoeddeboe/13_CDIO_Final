@@ -99,7 +99,7 @@ public class WeightSocket {
 	public double readWeight() throws IOException{
 		double weight = 0;
 		String str = null;
-		
+
 		do {
 			write("S\n");
 			log.info("Client: S\\n");
@@ -107,21 +107,11 @@ public class WeightSocket {
 			log.info("Server: "+str);			
 		} while(str.equals("S I"));
 
-		try{
-			if(str.contains("-")) {
-				String[] strArr = str.split(" ");
-				weight = Double.parseDouble(strArr[5]);
-			}
-			else {
-				String[] strArr = str.split(" ");
-				weight = Double.parseDouble(strArr[6]);
-			}
-
-		} catch(ArrayIndexOutOfBoundsException e){
-			rm20("Fejl.", "", "");
-			log.error(e.getMessage()+ "\n" + str);
-			disconnect();
-			System.exit(0);
+		if(str.contains("-")) {
+			weight = Double.parseDouble(str.substring(7, str.length()-2));
+		}
+		else {
+			weight = Double.parseDouble(str.substring(7, str.length()-2));
 		}
 		return weight;
 	}
@@ -151,7 +141,7 @@ public class WeightSocket {
 			//wait until we actually get the return msg.
 			while (!(str = read()).contains("RM20 A")) {
 				log.info("Server: "+str);
-				
+
 				if(str.contains("RM20 C")) {
 					log.info("Server: "+str);
 					return "RM20 C";
@@ -179,15 +169,14 @@ public class WeightSocket {
 		}
 		return strArr[1];
 	}
-	
+
 	public double tarer() throws IOException {
 		String str;
 		write("T\n");
 		log.info("Client: T");
 		str = read();
 		log.info("Server: "+str);
-		String[] strArr = str.split(" ");
-		return Double.parseDouble(strArr[6]);
+		return Double.parseDouble(str.substring(7, str.length()-2));
 	}
 
 	/**
