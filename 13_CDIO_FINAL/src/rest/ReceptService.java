@@ -1,6 +1,5 @@
 package rest;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -13,7 +12,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import connector.MySQLConnector;
 import controller.ReceptController;
 import controller.ReceptKompController;
 import dto.DTORecept;

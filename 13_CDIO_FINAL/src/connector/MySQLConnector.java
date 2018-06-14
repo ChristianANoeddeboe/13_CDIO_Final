@@ -45,10 +45,6 @@ public class MySQLConnector {
 		stm = conn.createStatement();
 	}
 
-	private static Connection getConn() {
-		return conn;
-	}
-
 	private MySQLConnector() throws InstantiationException, IllegalAccessException,
 	ClassNotFoundException, SQLException {
 		this(Constant.server, Constant.port, Constant.database,

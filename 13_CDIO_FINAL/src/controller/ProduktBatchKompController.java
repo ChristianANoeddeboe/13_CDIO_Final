@@ -2,13 +2,11 @@ package controller;
 
 import java.util.List;
 
-import dao.DAOProduktBatch;
 import dao.DAOProduktBatchKomp;
 import dto.DTOProduktBatchKomp;
 import exception.DALException;
 import interfaces.IDAOProduktBatchKomp;
 import interfaces.IProduktBatchKompController;
-import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log

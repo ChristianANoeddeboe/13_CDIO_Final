@@ -1,14 +1,9 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.sql.SQLException;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import connector.MySQLConnector;
 import dao.DAORecept;
 import exception.DALException;
 import dto.DTORecept;

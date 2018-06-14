@@ -9,7 +9,11 @@ import javax.ws.rs.core.Response;
 
 @Path("enum")
 @Produces(MediaType.APPLICATION_JSON)
-
+/**
+ * 
+ * Used to tranfer enums for dynamic generation of dropdowns
+ *
+ */
 public class EnumServices {
 
 

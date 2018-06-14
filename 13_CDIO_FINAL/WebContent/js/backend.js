@@ -1,4 +1,6 @@
+//This file contains all the functions which communicate with our backend
 const enterkey = 13;
+//Below function is for transfering the enums
 function getEnum(url, successfunc, errorfunc){
 	$.ajax({ //Indleder et asynkront ajax kald
 		url: url, //specificerer endpointet

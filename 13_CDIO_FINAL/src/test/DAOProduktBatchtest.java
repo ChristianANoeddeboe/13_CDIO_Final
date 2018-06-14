@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
 import controller.ProduktBatchController;
-import dao.DAOProduktBatch;
 import exception.DALException;
 import interfaces.IProduktBatchController;
 import dto.DTOProduktBatch;

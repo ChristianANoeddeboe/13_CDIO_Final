@@ -14,11 +14,8 @@ import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-import connector.MySQLConnector;
 import controller.RaavareBatchController;
 import controller.RaavareController;
-import dao.DAORaavare;
-import dao.DAORaavareBatch;
 import dto.DTORaavare;
 import dto.DTORaavareBatch;
 import exception.DALException;

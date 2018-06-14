@@ -1,6 +1,5 @@
 package controller;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 import java.util.List;

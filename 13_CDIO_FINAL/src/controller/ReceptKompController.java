@@ -7,7 +7,6 @@ import dto.DTOReceptKomp;
 import exception.DALException;
 import interfaces.IDAOReceptKomp;
 import interfaces.IReceptKompController;
-import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
