@@ -50,7 +50,7 @@ function clickAddHandler(){
 			fornavn : $("#inputFornavn")["0"].value,
 			efternavn : $("#inputEfternavn")["0"].value,
 			cpr : $("#inputCPR")["0"].value,
-			roles : "Administrator"
+			roles : $("input:checked").val()
 		}),
 		function(){
 			$('#addModal').modal('hide');
