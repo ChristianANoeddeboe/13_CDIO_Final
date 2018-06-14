@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import connector.MySQLConnector;
 import controller.BrugerController;
-import dao.DAOBruger;
 import dto.DTOBruger;
 import dto.Aktiv;
 import exception.DALException;

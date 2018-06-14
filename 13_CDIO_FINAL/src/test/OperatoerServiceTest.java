@@ -18,7 +18,6 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 
 import connector.MySQLConnector;
 import controller.BrugerController;
-import dao.DAOBruger;
 import dto.Aktiv;
 import dto.DTOBruger;
 import dto.Roller;

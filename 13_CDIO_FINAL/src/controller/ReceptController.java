@@ -4,12 +4,8 @@ import dto.DTORecept;
 import exception.DALException;
 import interfaces.IDAORecept;
 import interfaces.IReceptController;
-import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-
 import java.util.List;
-
-import dao.DAORaavare;
 import dao.DAORecept;
 
 @Log

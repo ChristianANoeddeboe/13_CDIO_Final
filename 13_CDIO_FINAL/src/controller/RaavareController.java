@@ -4,13 +4,9 @@ import dto.DTORaavare;
 import exception.DALException;
 import interfaces.IDAORaavare;
 import interfaces.IRaavareController;
-import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-
 import java.util.List;
-
 import dao.DAORaavare;
-import dao.DAORaavareBatch;
 
 @Log
 public class RaavareController implements IRaavareController {

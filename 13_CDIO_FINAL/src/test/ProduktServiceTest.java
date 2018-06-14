@@ -13,12 +13,8 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-
-import connector.MySQLConnector;
 import controller.ProduktBatchController;
 import controller.ProduktBatchKompController;
-import dao.DAOProduktBatch;
-import dao.DAOProduktBatchKomp;
 import dto.DTOProduktBatch;
 import dto.DTOProduktBatchKomp;
 import dto.Status;

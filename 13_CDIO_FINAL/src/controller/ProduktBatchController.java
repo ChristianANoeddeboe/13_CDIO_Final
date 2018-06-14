@@ -4,12 +4,8 @@ import dto.DTOProduktBatch;
 import exception.DALException;
 import interfaces.IDAOProduktBatch;
 import interfaces.IProduktBatchController;
-import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-
 import java.util.List;
-
-import dao.DAOBruger;
 import dao.DAOProduktBatch;
 
 @Log

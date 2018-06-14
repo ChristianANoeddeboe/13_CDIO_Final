@@ -11,13 +11,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import connector.MySQLConnector;
 import controller.RaavareController;
 import controller.RaavareBatchController;
 import dto.DTORaavare;
 import dto.DTORaavareBatch;
 
-import java.sql.SQLException;
 import java.util.List;
 import exception.DALException;
 import interfaces.IRaavareBatchController;
