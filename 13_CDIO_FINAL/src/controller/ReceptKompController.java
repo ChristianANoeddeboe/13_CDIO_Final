@@ -6,16 +6,17 @@ import dao.DAOReceptKomp;
 import dto.DTOReceptKomp;
 import exception.DALException;
 import interfaces.IDAOReceptKomp;
+import interfaces.IReceptKompController;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
-@AllArgsConstructor
-public class ReceptKompController {
+public class ReceptKompController implements IReceptKompController {
 	private static IDAOReceptKomp dao;
-	private static ReceptKompController instance;
-
-	public static ReceptKompController getInstance() {
+	private static IReceptKompController instance;
+	private ReceptKompController() {
+	}
+	public static IReceptKompController getInstance() {
 		if(instance == null) {
 			dao = new DAOReceptKomp();
 			instance =  new ReceptKompController();
@@ -23,29 +24,29 @@ public class ReceptKompController {
 		}
 		return instance;
 	}
-	public DTOReceptKomp getReceptKomp(int receptID, int raavarID) throws  DALException{
+	public DTOReceptKomp getReceptKomp(int receptID, int raavarID) throws  DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		return  dao.getReceptKomp(receptID, raavarID);
 	}
 
-	public List<DTOReceptKomp> getReceptKompList(int receptID) throws  DALException{
+	public List<DTOReceptKomp> getReceptKompList(int receptID) throws  DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		return  dao.getReceptKompList(receptID);
 	}
 
-	public  List<DTOReceptKomp> getReceptKompList() throws  DALException{
+	public  List<DTOReceptKomp> getReceptKompList() throws  DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		return  dao.getReceptKompList();
 	}
 
-	public void createReceptKomp(DTOReceptKomp receptKompDTO) throws  DALException{
+	public void createReceptKomp(DTOReceptKomp receptKompDTO) throws  DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		validateData(receptKompDTO);
 		dao.createReceptKomp(receptKompDTO);
 	}
 
-	public  void updateReceptKomp(DTOReceptKomp receptKompDTO) throws  DALException{
+	public  void updateReceptKomp(DTOReceptKomp receptKompDTO) throws  DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		validateData(receptKompDTO);
 		dao.updateReceptKomp(receptKompDTO);
 	}
 
-	public void deleteReceptKomp(int receptKompID, int raavareID) throws DALException{
+	public void deleteReceptKomp(int receptKompID, int raavareID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		dao.deleteReceptKomp(receptKompID, raavareID);
 	}
 

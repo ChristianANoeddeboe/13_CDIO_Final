@@ -3,6 +3,7 @@ package controller;
 import dto.DTORecept;
 import exception.DALException;
 import interfaces.IDAORecept;
+import interfaces.IReceptController;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
@@ -12,12 +13,12 @@ import dao.DAORaavare;
 import dao.DAORecept;
 
 @Log
-@AllArgsConstructor
-public class ReceptController {
+public class ReceptController implements IReceptController {
     private static IDAORecept dao;
-    private static ReceptController instance;
-
-	public static ReceptController getInstance() {
+    private static IReceptController instance;
+    private ReceptController() {
+	}
+	public static IReceptController getInstance() {
 		if(instance == null) {
 			dao = new DAORecept();
 			instance =  new ReceptController();
@@ -25,25 +26,25 @@ public class ReceptController {
 		}
 		return instance;
 	}
-    public DTORecept getRecept(int receptID) throws DALException {
+    public DTORecept getRecept(int receptID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         return dao.getRecept(receptID);
     }
 
-    public List<DTORecept> getReceptList() throws DALException {
+    public List<DTORecept> getReceptList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         return dao.getReceptList();
     }
 
-    public void createRecept(DTORecept recept) throws DALException {
+    public void createRecept(DTORecept recept) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         validateData(recept);
         dao.createRecept(recept);
     }
 
-    public void updateRecept(DTORecept recept) throws DALException {
+    public void updateRecept(DTORecept recept) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         validateData(recept);
         dao.updateRecept(recept);
     }
 
-    public void deleteRecept(int receptID) throws DALException{
+    public void deleteRecept(int receptID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
         dao.deleteRecept(receptID);
     }
 

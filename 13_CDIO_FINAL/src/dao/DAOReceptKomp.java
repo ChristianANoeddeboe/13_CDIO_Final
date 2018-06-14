@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DAOReceptKomp implements IDAOReceptKomp {
 
     @Override
-    public DTOReceptKomp getReceptKomp(int receptId, int raavareId) throws DALException {
+    public DTOReceptKomp getReceptKomp(int receptId, int raavareId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM receptKompView WHERE recept_id=" + receptId +
                 " AND raavare_id=" + raavareId);
         try {
@@ -31,7 +31,7 @@ public class DAOReceptKomp implements IDAOReceptKomp {
     }
 
     @Override
-    public List<DTOReceptKomp> getReceptKompList(int receptId) throws DALException {
+    public List<DTOReceptKomp> getReceptKompList(int receptId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         List<DTOReceptKomp> list = new ArrayList<DTOReceptKomp>();
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM receptKompView WHERE recept_id=" + receptId);
 
@@ -44,11 +44,10 @@ public class DAOReceptKomp implements IDAOReceptKomp {
             log.warn(e.toString());
             throw new DALException(e);
         }
-
     }
 
     @Override
-    public List<DTOReceptKomp> getReceptKompList() throws DALException {
+    public List<DTOReceptKomp> getReceptKompList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         List<DTOReceptKomp> list = new ArrayList<DTOReceptKomp>();
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM receptKompView WHERE recept_id");
 
@@ -64,7 +63,7 @@ public class DAOReceptKomp implements IDAOReceptKomp {
     }
 
     @Override
-    public void createReceptKomp(DTOReceptKomp receptkomponent) throws DALException {
+    public void createReceptKomp(DTOReceptKomp receptkomponent) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (receptkomponent.getNomNetto() <= 0 || receptkomponent.getTolerance() <= 0) {
             log.warn("Netto or tolerance was less than or equal to 0");
             throw new DALException("Netto or tolerance was less than or equal to 0");
@@ -74,11 +73,10 @@ public class DAOReceptKomp implements IDAOReceptKomp {
             log.warn(errMsg);
             throw new DALException(errMsg);
         }
-
     }
 
     @Override
-    public void updateReceptKomp(DTOReceptKomp receptkomponent) throws DALException {
+    public void updateReceptKomp(DTOReceptKomp receptkomponent) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (MySQLConnector.doUpdate("CALL updateReceptkomponent(" + receptkomponent.getReceptId() + ", " + receptkomponent.getRaavareId() + ", " + receptkomponent.getNomNetto() + ", " + receptkomponent.getTolerance() + ");") == 0) {
             String errMsg = "No rows updated in \"Recept komponent\".";
             log.warn(errMsg);
@@ -87,7 +85,7 @@ public class DAOReceptKomp implements IDAOReceptKomp {
     }
 
     @Override
-    public void deleteReceptKomp(int recept_id, int raavare_id) throws DALException {
+    public void deleteReceptKomp(int recept_id, int raavare_id) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (MySQLConnector.doUpdate("CALL deleteReceptKomp(" + recept_id + ", " + raavare_id + ");") == 0) {
             String errMsg = "No rows updated in \"Recept komponent\".";
             log.warn(errMsg);

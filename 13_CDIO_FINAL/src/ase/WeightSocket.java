@@ -27,8 +27,6 @@ public class WeightSocket {
 
 	/**
 	 * Sets up the socket and readers/writers
-	 * @throws IOException
-	 * @throws UnknownHostException
 	 */
 	public void connect(){
 		try {
@@ -52,7 +50,6 @@ public class WeightSocket {
 
 	/**
 	 * Closes connections properly
-	 * @throws IOException
 	 */
 	public void disconnect() {
 		try {
@@ -102,7 +99,7 @@ public class WeightSocket {
 	public double readWeight() throws IOException{
 		double weight = 0;
 		String str = null;
-		
+
 		do {
 			write("S\n");
 			log.info("Client: S\\n");
@@ -110,21 +107,11 @@ public class WeightSocket {
 			log.info("Server: "+str);			
 		} while(str.equals("S I"));
 
-		try{
-			if(str.contains("-")) {
-				String[] strArr = str.split(" ");
-				weight = Double.parseDouble(strArr[5]);
-			}
-			else {
-				String[] strArr = str.split(" ");
-				weight = Double.parseDouble(strArr[6]);
-			}
-
-		} catch(ArrayIndexOutOfBoundsException e){
-			rm20("Fejl.", "", "");
-			log.error(e.getMessage()+ "\n" + str);
-			disconnect();
-			System.exit(0);
+		if(str.contains("-")) {
+			weight = Double.parseDouble(str.substring(7, str.length()-2));
+		}
+		else {
+			weight = Double.parseDouble(str.substring(7, str.length()-2));
 		}
 		return weight;
 	}
@@ -132,10 +119,6 @@ public class WeightSocket {
 	/**
 	 * Used to send rm20 messages to the weight.
 	 * These require some sort of user input.
-	 * @param string1
-	 * @param string2
-	 * @param string3
-	 * @return
 	 */
 	public String rm20(String string1, String string2, String string3) {
 		//Format string to the weight format.
@@ -146,12 +129,11 @@ public class WeightSocket {
 		String str = null;
 		log.info("Client: "+msg.replace("\n", "\\n"));
 
-		/*Der skal sleepes f�r den vil vise beskeden for some reason.*/
+		/*Der skal sleepes foer den vil vise beskeden for some reason.*/
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("InterruptedException", e);
 		}
 
 		try {
@@ -159,7 +141,7 @@ public class WeightSocket {
 			//wait until we actually get the return msg.
 			while (!(str = read()).contains("RM20 A")) {
 				log.info("Server: "+str);
-				
+
 				if(str.contains("RM20 C")) {
 					log.info("Server: "+str);
 					return "RM20 C";
@@ -187,17 +169,19 @@ public class WeightSocket {
 		}
 		return strArr[1];
 	}
-	
+
 	public double tarer() throws IOException {
 		String str;
 		write("T\n");
 		log.info("Client: T");
 		str = read();
 		log.info("Server: "+str);
-		String[] strArr = str.split(" ");
-		return Double.parseDouble(strArr[6]);
+		return Double.parseDouble(str.substring(7, str.length()-2));
 	}
-	
+
+	/**
+	 * Rydder input stream, da gammel data kan gemme sig i det.
+	 */
 	public void flushInput() throws IOException {
 		log.info("Flush inputstream.");
 		while(input.ready()) {

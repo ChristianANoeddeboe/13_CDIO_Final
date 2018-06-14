@@ -3,6 +3,7 @@ package controller;
 import dto.DTORaavare;
 import exception.DALException;
 import interfaces.IDAORaavare;
+import interfaces.IRaavareController;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
@@ -12,12 +13,12 @@ import dao.DAORaavare;
 import dao.DAORaavareBatch;
 
 @Log
-@AllArgsConstructor
-public class RaavareController {
+public class RaavareController implements IRaavareController {
 	private static IDAORaavare dao;
-	private static RaavareController instance;
-
-	public static RaavareController getInstance() {
+	private static IRaavareController instance;
+	private RaavareController() {
+	}
+	public static IRaavareController getInstance() {
 		if(instance == null) {
 			dao = new DAORaavare();
 			instance =  new RaavareController();
@@ -25,25 +26,25 @@ public class RaavareController {
 		}
 		return instance;
 	}
-	public DTORaavare getRaavare(int raavareID) throws DALException {
+	public DTORaavare getRaavare(int raavareID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		return dao.getRaavare(raavareID);
 	}
 
-	public List<DTORaavare> getRaavreList() throws DALException {
+	public List<DTORaavare> getRaavreList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		return dao.getRaavareList();
 	}
 
-	public void createRaavare(DTORaavare raavare) throws DALException {
+	public void createRaavare(DTORaavare raavare) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		validateData(raavare);
 		dao.createRaavare(raavare);
 	}
 
-	public void updateRaavare(DTORaavare raavare) throws DALException{
+	public void updateRaavare(DTORaavare raavare) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		validateData(raavare);
 		dao.updateRaavare(raavare);
 	}
 
-	public void deleteRaavare(int raavareID) throws DALException{
+	public void deleteRaavare(int raavareID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		dao.deleteRaavare(raavareID);
 	}
 

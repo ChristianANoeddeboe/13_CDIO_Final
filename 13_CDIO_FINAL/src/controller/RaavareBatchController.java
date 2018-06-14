@@ -3,6 +3,7 @@ package controller;
 import dto.DTORaavareBatch;
 import exception.DALException;
 import interfaces.IDAORaavareBatch;
+import interfaces.IRaavareBatchController;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
@@ -12,12 +13,12 @@ import dao.DAOProduktBatchKomp;
 import dao.DAORaavareBatch;
 
 @Log
-@AllArgsConstructor
-public class RaavareBatchController {
+public class RaavareBatchController implements IRaavareBatchController {
     private static IDAORaavareBatch dao;
-    private static RaavareBatchController instance;
-	
-	public static RaavareBatchController getInstance() {
+    private static IRaavareBatchController instance;
+	private RaavareBatchController() {
+	}
+	public static IRaavareBatchController getInstance() {
 		if(instance == null) {
 			dao = new DAORaavareBatch();
 			instance =  new RaavareBatchController();
@@ -25,25 +26,25 @@ public class RaavareBatchController {
 		}
 		return instance;
 	}
-    public DTORaavareBatch getRaavareBatch(int rbID) throws DALException {
+    public DTORaavareBatch getRaavareBatch(int rbID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         return dao.getRaavareBatch(rbID);
     }
 
-    public List<DTORaavareBatch> getRaavareBatchList() throws DALException{
+    public List<DTORaavareBatch> getRaavareBatchList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
         return dao.getRaavareBatchList();
     }
 
-    public void createRaavsareBatch(DTORaavareBatch raavareBatch) throws DALException{
+    public void createRaavareBatch(DTORaavareBatch raavareBatch) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
         validateData(raavareBatch);
         dao.createRaavareBatch(raavareBatch);
     }
 
-    public void updateRaavareBatch(DTORaavareBatch raavareBatch) throws  DALException{
+    public void updateRaavareBatch(DTORaavareBatch raavareBatch) throws  DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
         validateData(raavareBatch);
         dao.updateRaavareBatch(raavareBatch);
     }
 
-    public void deleteRaavareBatch(int raavareBatchID) throws DALException{
+    public void deleteRaavareBatch(int raavareBatchID) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
         dao.deleteRaavareBatch(raavareBatchID);
     }
 
@@ -64,7 +65,7 @@ public class RaavareBatchController {
         }
     }
     
-    public List<DTORaavareBatch> getRaavareBatchList(int raavareId) throws DALException{
+    public List<DTORaavareBatch> getRaavareBatchList(int raavareId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
     	return dao.getRaavareBatchList(raavareId);
     }
 }

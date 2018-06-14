@@ -7,16 +7,18 @@ import dao.DAOProduktBatchKomp;
 import dto.DTOProduktBatchKomp;
 import exception.DALException;
 import interfaces.IDAOProduktBatchKomp;
+import interfaces.IProduktBatchKompController;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
-@AllArgsConstructor
-public class ProduktBatchKompController {
+
+public class ProduktBatchKompController implements IProduktBatchKompController {
 	private static IDAOProduktBatchKomp dao;
-	private static ProduktBatchKompController instance;
-	
-	public static ProduktBatchKompController getInstance() {
+	private static IProduktBatchKompController instance;
+	private ProduktBatchKompController() {
+	}
+	public static IProduktBatchKompController getInstance() {
 		if(instance == null) {
 			dao = new DAOProduktBatchKomp();
 			instance =  new ProduktBatchKompController();
@@ -25,29 +27,29 @@ public class ProduktBatchKompController {
 		return instance;
 	}
 	
-	public DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException{
+	public DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		return dao.getProduktBatchKomp(pbId, rbId);
 	}
 	
-	public List<DTOProduktBatchKomp> getProduktBatchKomponentList(int pbId) throws DALException{
+	public List<DTOProduktBatchKomp> getProduktBatchKomponentList(int pbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		return dao.getProduktBatchKompList(pbId);
 	}
 	
-	public List<DTOProduktBatchKomp> getProduktBatchKomponentList() throws DALException{
+	public List<DTOProduktBatchKomp> getProduktBatchKomponentList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		return dao.getProduktBatchKompList();
 	}
 	
-	public void createProdBatchKomp(DTOProduktBatchKomp prodBatchKomp) throws DALException{
+	public void createProdBatchKomp(DTOProduktBatchKomp prodBatchKomp) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		validateData(prodBatchKomp);
 		dao.createProduktBatchKomp(prodBatchKomp);
 	}
 	
-	public void updateProdBatchKomp(DTOProduktBatchKomp prodBatchKomp) throws DALException{
+	public void updateProdBatchKomp(DTOProduktBatchKomp prodBatchKomp) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		validateData(prodBatchKomp);
 		dao.updateProduktBatchKomp(prodBatchKomp);
 	}
 	
-	public void deleteProdBatchKomp(int pbId, int rbId) throws DALException{
+	public void deleteProdBatchKomp(int pbId, int rbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		dao.deleteProduktBatchKomp(pbId, rbId);
 	}
 	

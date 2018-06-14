@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-	DAOOperatoerTest.class,
+	DAOBrugerTest.class,
 	DAOProduktBatchKomponentTest.class,
 	DAOProduktBatchtest.class,
 	DAORaavareTest.class,

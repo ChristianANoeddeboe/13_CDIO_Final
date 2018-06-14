@@ -85,9 +85,12 @@ body {
 
 select {
     border: none;
-    border-bottom: 1px #c51137;
     background-color: transparent;
     outline: none;
+}
+
+select:hover, input:hover {
+    border-bottom: 1px solid #c51137;
 }
 
 .modal-dialog { /* Width */

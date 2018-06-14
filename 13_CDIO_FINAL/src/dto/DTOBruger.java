@@ -1,46 +1,20 @@
 package dto;
 
-
 import lombok.*;
 
-
-/**
- * Operatoer Data Access Objekt
- *
- * @author mn/tb
- * @version 1.2
- */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DTOOperatoer {
-    /**
-     * Operatoer-identifikationsnummer (opr_id) i omraadet 1-99999999. Vaelges af brugerne
-     */
+public class DTOBruger {
     private int oprId;
-    /**
-     * Operatoernavn (opr_navn) min. 2 max. 20 karakterer
-     */
     private String fornavn;
-    /**
-     * Operatoer-initialer min. 2 max. 3 karakterer
-     */
     private String efternavn;
-    /**
-     * Operatoer cpr-nr 10 karakterer
-     */
     private String cpr;
-    /**
-     * Operatoer rolle
-     */
     private Roller roles;
-    /**
-     * Operatoer aktiv
-     */
     private Aktiv aktiv;
 
-    public DTOOperatoer(String fornavn, String efternavn, String cpr, Roller roles, Aktiv aktiv) {
+    public DTOBruger(String fornavn, String efternavn, String cpr, Roller roles, Aktiv aktiv) {
         this.fornavn = fornavn;
         this.efternavn = efternavn;
         this.cpr = cpr;
@@ -57,29 +31,21 @@ public class DTOOperatoer {
         String[] name_array = name.split(" ");
         String ini = "";
         for (int i = 0; i < name_array.length; i++) {
-            if (name_array[i].equals("")) {
-                //Do nothing
-            } else {
+            if (!name_array[i].equals("")) {
                 ini = ini + name_array[i].charAt(0) + "";
             }
         }
-        ini = ini.toUpperCase();
-        return ini;
-    }
-    
-    public String getFornavn() {
-    	return trimmer(fornavn);
-    }
-    
-    public String getEfternavn() {
-    	return trimmer(efternavn);
+        return ini.toUpperCase();
     }
 
-    /**
-     * Removes additional spaces from the input string.
-     * @param str
-     * @return String
-     */
+    public String getFornavn() {
+        return trimmer(fornavn);
+    }
+
+    public String getEfternavn() {
+        return trimmer(efternavn);
+    }
+
     private String trimmer(String str) {
         String[] str_array = str.split(" ");
         String trimmed = null;
@@ -94,9 +60,4 @@ public class DTOOperatoer {
         }
         return trimmed;
     }
-
-    protected boolean canEqual(Object other) {
-        return other instanceof DTOOperatoer;
-    }
-
 }

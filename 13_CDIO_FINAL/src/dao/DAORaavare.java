@@ -17,7 +17,7 @@ import java.util.List;
 public class DAORaavare implements IDAORaavare {
 
     @Override
-    public DTORaavare getRaavare(int raavareId) throws DALException {
+    public DTORaavare getRaavare(int raavareId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM raavareview WHERE raavare_id = " + raavareId);
         try {
             if (!rs.first()) throw new DALException("Raavaren " + raavareId + " findes ikke.");
@@ -29,7 +29,7 @@ public class DAORaavare implements IDAORaavare {
     }
 
     @Override
-    public List<DTORaavare> getRaavareList() throws DALException {
+    public List<DTORaavare> getRaavareList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         List<DTORaavare> list = new ArrayList<>();
         ResultSet rs = MySQLConnector.doQuery("SELECT * FROM raavareview");
         try
@@ -47,7 +47,7 @@ public class DAORaavare implements IDAORaavare {
     }
 
     @Override
-    public void createRaavare(DTORaavare raavare) throws DALException {
+    public void createRaavare(DTORaavare raavare) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if(MySQLConnector.doUpdate("call createRaavare('"+raavare.getRaavareNavn()+"','"+raavare.getLeverandoer()+"','"+raavare.getRaavareId()+"')")==0) {
         	String errMsg = "Couldn't add tuple to \"Raavare\".";
         	log.warn(errMsg);
@@ -56,7 +56,7 @@ public class DAORaavare implements IDAORaavare {
     }
 
     @Override
-    public void updateRaavare(DTORaavare raavare) throws DALException {
+    public void updateRaavare(DTORaavare raavare) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if(MySQLConnector.doUpdate("call updateRaavare('"+raavare.getRaavareId()+"','"+raavare.getRaavareNavn()+"','"+raavare.getLeverandoer()+"')")==0) {
         	String errMsg = "No rows updated in \"Raavare\".";
         	log.warn(errMsg);
@@ -65,7 +65,7 @@ public class DAORaavare implements IDAORaavare {
     }
 
 	@Override
-	public void deleteRaavare(int raavare_id) throws DALException {
+	public void deleteRaavare(int raavare_id) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		if(MySQLConnector.doUpdate("call deleteRaavare('"+raavare_id+"')")==0) {
         	String errMsg = "No rows updated in \"Raavare\".";
         	log.warn(errMsg);

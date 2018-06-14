@@ -8,13 +8,13 @@ import exception.DALException;
 
 public interface IReceptService {
 	//Recept
-	Response getReceptList() throws DALException;
-	Response createRecept(DTORecept recept) throws DALException;
-	Response updateRecept(DTORecept recept) throws DALException;
-	Response deleteRecept(int input_id) throws DALException;
+	Response getReceptList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	Response createRecept(DTORecept recept) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	Response updateRecept(DTORecept recept) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	Response deleteRecept(int input_id) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
 	//Recept komponent
-	Response getReceptKompList(int receptId) throws DALException;
-	Response createReceptKomp(DTOReceptKomp receptkomponent) throws DALException;
-	Response updateReceptKomp(DTOReceptKomp receptkomponent) throws DALException;
-	Response deleteReceptKomp(int recept_id, int raavare_id) throws DALException;
+	Response getReceptKompList(int receptId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	Response createReceptKomp(DTOReceptKomp receptkomponent) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	Response updateReceptKomp(DTOReceptKomp receptkomponent) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	Response deleteReceptKomp(int recept_id, int raavare_id) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
 }

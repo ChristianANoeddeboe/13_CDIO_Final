@@ -9,6 +9,13 @@ import controller.*;
 import dao.*;
 import dto.*;
 import exception.DALException;
+import interfaces.IBrugerController;
+import interfaces.IProduktBatchController;
+import interfaces.IProduktBatchKompController;
+import interfaces.IRaavareBatchController;
+import interfaces.IRaavareController;
+import interfaces.IReceptController;
+import interfaces.IReceptKompController;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -19,21 +26,24 @@ public class AseController {
         socket = new WeightSocket(ip, port);
     }
 
+    /**
+     * Opretter forbindelse mellem vaegt, system og database, samt paabegynder afvejningsprocessen.
+     */
     public void run() {
         List<DTOReceptKomp> receptkompList = null;
         DTOProduktBatch pb = null;
+        IProduktBatchController pbController;
 
         socket.connect();
 
-        try {
-            new MySQLConnector();
-            MySQLConnector.getConn().setAutoCommit(false);
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-            socket.rm20("Kontakt administrator", "", "Error.");
-            log.error(e.getMessage());
-            socket.disconnect();
-            System.exit(0);
-        }
+//        try {
+//            MySQLConnector.getInstance().setAutoCommit(false);
+//        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+//            socket.rm20("Kontakt administrator", "", "Error.");
+//            log.error(e.getMessage());
+//            socket.disconnect();
+//            System.exit(0);
+//        }
 
         try {
             socket.flushInput();
@@ -44,7 +54,7 @@ public class AseController {
             System.exit(0);
         }
 
-        DTOOperatoer operatoer = validerOperatoer();
+        DTOBruger operatoer = validerOperatoer();
         if (operatoer == null) {
             log.info("Cancel: operatør.");
             socket.disconnect();
@@ -65,21 +75,31 @@ public class AseController {
         }
 
         receptkompList = getReceptkompliste(pb);
-        if(receptkompList == null){
+        if (receptkompList == null) {
             log.info("Cancel: Get recept komponent");
             socket.disconnect();
             return;
         }
+
         afvejning(receptkompList, pb, operatoer);
+        pbController = ProduktBatchController.getInstance();
+        pb.setStatus(Status.Afsluttet);
+        try {
+			pbController.updateProduktBatch(pb);
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | DALException e) {
+			//TODO opdater produktbatch exception, skal vi bare prøve at opdatere igen eller hvordan?
+			socket.rm20(e.getMessage(), "", "Fejl");
+			log.error(e.getMessage());
+		}
         socket.rm20("Afvejning godkendt.", "", "");
         socket.disconnect();
     }
 
-    private DTOOperatoer validerOperatoer() {
+    private DTOBruger validerOperatoer() {
         log.info("Hent operatør.");
-        OperatoerController controller = OperatoerController.getInstance();
+        IBrugerController controller = BrugerController.getInstance();
         int operatorId;
-        DTOOperatoer operatoer = null;
+        DTOBruger operatoer = null;
         String str = null;
 
         while (true) {
@@ -88,11 +108,11 @@ public class AseController {
                 if (str.contains("C") || str.contains("exit")) return null;
 
                 operatorId = Integer.parseInt(str);
-                operatoer = controller.getOperatoer(operatorId);
+                operatoer = controller.getBruger(operatorId);
                 str = socket.rm20(operatoer.initials(operatoer.getFornavn() + " " + operatoer.getEfternavn()), "", "Confirm.");
                 if (str.contains("C") || str.contains("exit")) return null;
                 break;
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException  | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                 log.warn("Ikke gyldigt ID");
                 socket.rm20("", "Ikke gyldigt ID", "");
             } catch (DALException e) {
@@ -105,8 +125,8 @@ public class AseController {
 
     private DTOProduktBatch getProduktbatch() {
         DTOProduktBatch produktbatch = null;
-        ProduktBatchController pbcontroller =  ProduktBatchController.getInstance();
-        ReceptController rcontroller = ReceptController.getInstance();
+        IProduktBatchController pbcontroller = ProduktBatchController.getInstance();
+        IReceptController rcontroller = ReceptController.getInstance();
         String str = null;
         while (true) {
             try {
@@ -117,19 +137,20 @@ public class AseController {
                 log.info("Ikke gyldigt PB ID.");
                 socket.rm20("", "Ikke gyldigt PB ID.", "");
                 continue;
-            } catch (DALException e) {
+            } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                 log.warn(e.getMessage());
                 socket.rm20("", "PB findes ikke.", "");
                 continue;
             }
 
+            // Henter det recept, produktbatched tilhører, for at faa navnet paa vores produktbatch.
             try {
                 DTORecept recept = rcontroller.getRecept(produktbatch.getReceptId());
                 str = socket.rm20(recept.getReceptNavn(), "", "Confirm.");
                 if (str.contains("RM20 C")) continue;
                 if (str.equals("exit")) return null;
                 break;
-            } catch (DALException e) {
+            } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                 log.warn(e.getMessage());
                 socket.rm20("", e.getMessage(), "");
             }
@@ -141,12 +162,12 @@ public class AseController {
         if (pb.getStatus() != Status.Klar) {
             socket.rm20("Status: ikke klar.", "", "");
             return false;
-        } else {
+        }else {
             pb.setStatus(Status.Igang);
-            ProduktBatchController pbcontroller = ProduktBatchController.getInstance();
+            IProduktBatchController pbcontroller = ProduktBatchController.getInstance();
             try {
                 pbcontroller.updateProduktBatch(pb);
-            } catch (DALException e) {
+            } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                 socket.rm20(e.getMessage(), "", "");
                 log.error(e.getMessage());
                 return false;
@@ -156,12 +177,12 @@ public class AseController {
     }
 
     private List<DTOReceptKomp> getReceptkompliste(DTOProduktBatch pb) {
-        ReceptKompController controller = ReceptKompController.getInstance();
+        IReceptKompController controller = ReceptKompController.getInstance();
         double netto;
         List<DTOReceptKomp> list = null;
         try {
             list = controller.getReceptKompList(pb.getReceptId());
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             socket.rm20("receptkomp ikke fudnet.", "", "");
             socket.rm20("System afsluttes.", "", "");
             log.error(e.getMessage());
@@ -181,14 +202,14 @@ public class AseController {
     }
 
     private double getRaavareMaengde(int raavareId) {
-        RaavareBatchController controller = RaavareBatchController.getInstance();
+        IRaavareBatchController controller = RaavareBatchController.getInstance();
         double maengde = 0;
         try {
             List<DTORaavareBatch> raavareBatches = controller.getRaavareBatchList(raavareId);
             for (DTORaavareBatch rb : raavareBatches) {
                 maengde += rb.getMaengde();
             }
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             socket.rm20("Raavarebatch ikke fundet", "", "");
             socket.rm20("System afsluttes", "", "");
             abort("Raavarebatch ikke fundet.", e);
@@ -196,32 +217,33 @@ public class AseController {
         return maengde;
     }
 
-    private void afvejning(List<DTOReceptKomp> receptkompList, DTOProduktBatch produktbatch, DTOOperatoer operatoer) {
+    private void afvejning(List<DTOReceptKomp> receptkompList, DTOProduktBatch produktbatch, DTOBruger operatoer) {
         double lowerbound, upperbound, weight = 0, tara = 0, diffWeight = 0, tempweight = 0;
         DTORaavare raavare = null;
         DTOProduktBatchKomp tempPBK = null;
         DTORaavareBatch tempRB = null;
-        ProduktBatchKompController pbkController = ProduktBatchKompController.getInstance();
-        RaavareBatchController rbController = RaavareBatchController.getInstance();
+        IProduktBatchKompController pbkController = ProduktBatchKompController.getInstance();
+        IRaavareBatchController rbController = RaavareBatchController.getInstance();
         List<DTORaavareBatch> raavareBatches = null;
         String str = null;
 
         for (DTOReceptKomp receptKomp : receptkompList) {
 
             emptyWeight();
-            retreiveRaavare(receptKomp.getRaavareId());
+            raavare = retreiveRaavare(receptKomp.getRaavareId());
             tara = retreiveTara();
 
+            // Specificerer den tolerence vi tillader, i form af 2 vaerdier til senere tjek.
             lowerbound = receptKomp.getNomNetto() * (1 - (receptKomp.getTolerance() / 100));
             upperbound = receptKomp.getNomNetto() * (1 + (receptKomp.getTolerance() / 100));
 
             do {
                 try {
                     str = socket.rm20("Angiv raavarebatch ID", "", "");
-                    if (str.contains("RM20 C") || str.contains("exit")) socket.rm20("What to do...", "", "");
+                    if (str.contains("RM20 C") || str.contains("exit")) socket.rm20("Not allowed", "", "");
                     tempRB = rbController.getRaavareBatch(Integer.parseInt(str));
                     if (tempRB.getRaavareId() != raavare.getRaavareId()) continue;
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                     log.warn("Ikke gyldig vægt");
                     continue;
                 } catch (DALException e) {
@@ -263,7 +285,7 @@ public class AseController {
                     }
                 } catch (IOException e) {
                     abort("IOException.", e);
-                } catch (DALException e) {
+                } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                     socket.rm20("Database fejl.", "", "");
                     abort("Databasefejl.", e);
                 }
@@ -288,12 +310,12 @@ public class AseController {
     }
 
     private DTORaavare retreiveRaavare(int raavareID) {
-        RaavareController rController = RaavareController.getInstance();
+        IRaavareController rController = RaavareController.getInstance();
         DTORaavare raavare = null;
         try {
             raavare = rController.getRaavare(raavareID);
             socket.rm20(raavare.getRaavareId() + "; " + raavare.getRaavareNavn(), "", "");
-        } catch (DALException e) {
+        } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             socket.rm20("Database fejl.", "", "");
             abort("Database fejl", e);
         }
@@ -351,7 +373,7 @@ public class AseController {
         }
     }
 
-    private void abort(String msg, Exception e){
+    private void abort(String msg, Exception e) {
         log.error(msg);
         log.error("System afsluttes.");
         log.error(e.getMessage());

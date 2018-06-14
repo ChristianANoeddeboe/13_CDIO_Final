@@ -6,9 +6,9 @@ import exception.DALException;
 import dto.DTORaavare;
 
 public interface IDAORaavare {
-	DTORaavare getRaavare(int raavareId) throws DALException;
-	List<DTORaavare> getRaavareList() throws DALException;
-	void createRaavare(DTORaavare raavare) throws DALException;
-	void updateRaavare(DTORaavare raavare) throws DALException;
-	void deleteRaavare(int recept_id) throws DALException;
+	DTORaavare getRaavare(int raavareId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	List<DTORaavare> getRaavareList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	void createRaavare(DTORaavare raavare) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	void updateRaavare(DTORaavare raavare) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
+	void deleteRaavare(int recept_id) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;
 }
