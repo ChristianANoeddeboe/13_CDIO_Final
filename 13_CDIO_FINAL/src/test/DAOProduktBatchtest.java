@@ -12,11 +12,12 @@ import connector.MySQLConnector;
 import controller.ProduktBatchController;
 import dao.DAOProduktBatch;
 import exception.DALException;
+import interfaces.IProduktBatchController;
 import dto.DTOProduktBatch;
 import dto.Status;
 
 class DAOProduktBatchtest {
-    static ProduktBatchController prodBatch;
+    static IProduktBatchController prodBatch;
     static DTOProduktBatch initialProdBatch;
 
     /**

@@ -14,10 +14,11 @@ import controller.ProduktBatchController;
 import controller.ProduktBatchKompController;
 import dao.DAOProduktBatchKomp;
 import exception.DALException;
+import interfaces.IProduktBatchKompController;
 import dto.DTOProduktBatchKomp;
 
 class DAOProduktBatchKomponentTest {
-    static ProduktBatchKompController testOperatoerController;
+    static IProduktBatchKompController testOperatoerController;
     static DTOProduktBatchKomp initialProdBatchKomp;
 
     @BeforeAll

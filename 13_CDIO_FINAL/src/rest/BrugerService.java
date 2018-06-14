@@ -13,26 +13,27 @@ import javax.ws.rs.core.Response;
 
 import connector.MySQLConnector;
 import controller.*;
-import dto.DTOOperatoer;
+import dto.DTOBruger;
 
 import java.sql.SQLException;
 import java.util.List;
 import exception.DALException;
-import interfaces.IOperatoerService;
+import interfaces.IBrugerController;
+import interfaces.IBrugerService;
 
-@Path("operatoer")
+@Path("bruger")
 @Produces(MediaType.APPLICATION_JSON)
 
-public class OperatoerService implements IOperatoerService {
+public class BrugerService implements IBrugerService {
 
-	OperatoerController controller = OperatoerController.getInstance();
+	IBrugerController controller = BrugerController.getInstance();
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getOperatoerList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		List<DTOOperatoer> result = null;
+	public Response getBrugerList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		List<DTOBruger> result = null;
 		try {
-			result = controller.getOperatoerList();
+			result = controller.getBrugerList();
 		} catch(DALException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("DALException: "+e.getMessage()).build();
 		}
@@ -42,9 +43,9 @@ public class OperatoerService implements IOperatoerService {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createOperatoer(DTOOperatoer opr) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public Response createBruger(DTOBruger bruger) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		try {
-			controller.createOperatoer(opr);
+			controller.createBruger(bruger);
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
@@ -54,9 +55,9 @@ public class OperatoerService implements IOperatoerService {
 
 	@Override
 	@PUT
-	public Response updateOperatoer(DTOOperatoer opr) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public Response updateBruger(DTOBruger bruger) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		try {
-			controller.updateOperatoer(opr);
+			controller.updateBruger(bruger);
 		} catch(DALException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("DALException: "+e.getMessage()).build();
 		}
@@ -67,9 +68,9 @@ public class OperatoerService implements IOperatoerService {
 	@Override
 	@DELETE
 	@Path("{id}")
-	public Response deleteOperatoer(@PathParam("id") int opr_id) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public Response deleteBruger(@PathParam("id") int bruger_id) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		try {
-			controller.deleteOperatoer(opr_id);
+			controller.deleteBruger(bruger_id);
 		} catch(DALException e) {
 			return Response.status(Response.Status.OK).entity("DALException: "+e.getMessage()).build();
 		}

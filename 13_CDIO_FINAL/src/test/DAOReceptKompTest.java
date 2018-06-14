@@ -8,6 +8,8 @@ import dto.DTORecept;
 import exception.DALException;
 import dto.DTOReceptKomp;
 import interfaces.IDAORecept;
+import interfaces.IReceptKompController;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DAOReceptKompTest {
 
-    ReceptKompController receptKompController;
+    IReceptKompController receptKompController;
     DTOReceptKomp receptKompDTO;
 
     @BeforeEach

@@ -19,14 +19,16 @@ import controller.ReceptKompController;
 import dto.DTORecept;
 import dto.DTOReceptKomp;
 import exception.DALException;
+import interfaces.IReceptController;
+import interfaces.IReceptKompController;
 import interfaces.IReceptService;
 
 @Path("recept")
 @Produces(MediaType.APPLICATION_JSON)
 public class ReceptService implements IReceptService {
 	
-	ReceptController controller = ReceptController.getInstance();
-	ReceptKompController kompController = ReceptKompController.getInstance();
+	IReceptController controller = ReceptController.getInstance();
+	IReceptKompController kompController = ReceptKompController.getInstance();
 	
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)

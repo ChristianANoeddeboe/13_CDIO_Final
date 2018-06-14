@@ -6,16 +6,17 @@ import dao.DAOReceptKomp;
 import dto.DTOReceptKomp;
 import exception.DALException;
 import interfaces.IDAOReceptKomp;
+import interfaces.IReceptKompController;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
-public class ReceptKompController {
+public class ReceptKompController implements IReceptKompController {
 	private static IDAOReceptKomp dao;
-	private static ReceptKompController instance;
+	private static IReceptKompController instance;
 	private ReceptKompController() {
 	}
-	public static ReceptKompController getInstance() {
+	public static IReceptKompController getInstance() {
 		if(instance == null) {
 			dao = new DAOReceptKomp();
 			instance =  new ReceptKompController();

@@ -20,14 +20,16 @@ import controller.ProduktBatchKompController;
 import dto.DTOProduktBatch;
 import dto.DTOProduktBatchKomp;
 import exception.DALException;
+import interfaces.IProduktBatchController;
+import interfaces.IProduktBatchKompController;
 import interfaces.IProduktService;
 
 @Path("produktbatch")
 @Produces(MediaType.APPLICATION_JSON)
 
 public class ProduktService implements IProduktService {
-	ProduktBatchController controller = ProduktBatchController.getInstance();
-	ProduktBatchKompController kompController = ProduktBatchKompController.getInstance();
+	IProduktBatchController controller = ProduktBatchController.getInstance();
+	IProduktBatchKompController kompController = ProduktBatchKompController.getInstance();
 
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -3,6 +3,7 @@ package test;
 import connector.MySQLConnector;
 import controller.RaavareBatchController;
 import exception.DALException;
+import interfaces.IRaavareBatchController;
 import dto.DTORaavareBatch;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DAORaavareBatchTest {
 
-    private RaavareBatchController testRaavareBatchController;
+    private IRaavareBatchController testRaavareBatchController;
     private DTORaavareBatch testRaavareBatchDTO;
 
     @BeforeEach

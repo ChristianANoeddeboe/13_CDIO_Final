@@ -20,13 +20,15 @@ import dto.DTORaavareBatch;
 import java.sql.SQLException;
 import java.util.List;
 import exception.DALException;
+import interfaces.IRaavareBatchController;
+import interfaces.IRaavareController;
 import interfaces.IRaavareService;
 
 @Path("raavare")
 @Produces(MediaType.APPLICATION_JSON)
 public class RaavareService implements IRaavareService {
-	RaavareController rController = RaavareController.getInstance();
-	RaavareBatchController rbController = RaavareBatchController.getInstance();
+	IRaavareController rController = RaavareController.getInstance();
+	IRaavareBatchController rbController = RaavareBatchController.getInstance();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
