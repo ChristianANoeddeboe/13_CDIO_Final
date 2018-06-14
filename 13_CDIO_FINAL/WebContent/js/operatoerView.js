@@ -1,4 +1,4 @@
-var id, statuss;
+var id, statuss, temp;
 $(document).ready(function() {
 	showLoader();
 	loadOperators();
@@ -26,7 +26,7 @@ function clickUpdateHandler(){ // Tilfoejer funktion til at aabne confirmation m
 			fornavn : $(("#"+id.split("_")[0]+"_fornavn"))["0"].value,
 			efternavn : $(("#"+id.split("_")[0]+"_efternavn"))["0"].value,
 			cpr : $(("#"+id.split("_")[0]+"_cpr"))["0"].textContent,
-			roles : "Administrator",
+			roles : $(("#"+id.split("_")[0]+"_roles"))["0"].value,
 			aktiv : $(("#"+id.split("_")[0]+"_status"))["0"].value
 		}),
 		function(data){
@@ -62,23 +62,26 @@ function clickAddHandler(){
 			$.notify("Fejl ved oprettelse af operatoeren", "error");
 			loadOperators();
 		});
-		addOperators();
 	});
 }
 
 // Indlaeser data for operatoererne og genindlaeser tabellen.
 function loadOperators(){
 	getEnum('rest/enum/status_operatoer',function(){
-		get('rest/bruger',function(data){
-			clearOperatoerTable();
-			appendToTable(data);
-			generateClickForTable();
-			hideLoader();
+		temp = statuss;
+		getEnum('rest/enum/roller', function(){
+			get('rest/bruger',function(data){
+				clearOperatoerTable();
+				appendToTable(data);
+				generateClickForTable();
+				hideLoader();
+			}, function(data){
+				$.notify(data.responseText, "error");
+			});
 		}, function(data){
-			$.notify(data.responseText, "error");
-
+			$.notify(data.responseText, "error");			
 		});
-	}, function(){
+	}, function(data){
 		$.notify(data.responseText, "error");
 	});
 }
@@ -116,16 +119,25 @@ function generateOperatoerHTML(operatoer) { //Tilfoejer indholder i tabellen.
 	var status = new Array();
 	status.push(operatoer.aktiv);
 
-	if(statuss[0] === status[0]){
-		status[1] = statuss[1];
+	if(temp[0] === status[0]){
+		status[1] = temp[1];
 	}else{
-		status[1] = statuss[0];
+		status[1] = temp[0];
 	}
+	
+	var roller = new Array();
+	roller.push(operatoer.roles);
+	statuss.forEach(function(st) {
+		if (st !== roller[0]) {
+			roller.push(st);
+		}
+	});
 
 	return 	'<tr><th scope ="row">' + operatoer.oprId + '</th>' +
 	'<td><input type="text" id = "'+operatoer.oprId+"_fornavn"+'" class="form-control-plaintext" value="' + operatoer.fornavn + '"></td></td>' +
 	'<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'" class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
 	'<th scope = "row"><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></th></td>' +
+	'<td><select class="" name="' + operatoer.oprId + '_roles" id="' + operatoer.oprId + '_roles"><option value="' + roller[0] + '">' + roller[0]  + '</option><option value="' + roller[1] + '">' + roller[1] +'</option><option value="' + roller[2] + '">' + roller[2]  + '</option><option value="' + roller[3] + '">' + roller[3]  + '</option>></select></td></td>' +
 	'<td><select class="" name="' + operatoer.oprId + '_aktiv" id="' + operatoer.oprId + '_status"><option value="' + status[0] + '">' + status[0]  + '</option><option value="' + status[1] + '">' + status[1] + '</option>></select></td></td>' +
 	'<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update" tooltip-toggle="tooltip" data-placement="top"  title="Gem"><i class="fas fa-save" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
 	'</td></tr>';
