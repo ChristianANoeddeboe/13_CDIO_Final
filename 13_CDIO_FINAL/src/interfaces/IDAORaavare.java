@@ -1,9 +1,9 @@
 package interfaces;
 
-import java.util.List;
-
-import exception.DALException;
 import dto.DTORaavare;
+import exception.DALException;
+
+import java.util.List;
 
 public interface IDAORaavare {
 	DTORaavare getRaavare(int raavareId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;

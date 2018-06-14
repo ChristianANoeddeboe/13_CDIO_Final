@@ -1,9 +1,9 @@
 package interfaces;
 
-import java.util.List;
-
-import exception.DALException;
 import dto.DTOReceptKomp;
+import exception.DALException;
+
+import java.util.List;
 
 public interface IDAOReceptKomp {
 	DTOReceptKomp getReceptKomp(int receptId, int raavareId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;

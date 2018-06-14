@@ -1,9 +1,9 @@
 package interfaces;
 
-import java.util.List;
-
 import dto.DTORecept;
 import exception.DALException;
+
+import java.util.List;
 
 public interface IReceptController {
 

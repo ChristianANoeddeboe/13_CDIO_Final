@@ -1,21 +1,10 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-
 import connector.MySQLConnector;
 import controller.BrugerController;
 import dto.Aktiv;
@@ -23,6 +12,15 @@ import dto.DTOBruger;
 import dto.Roller;
 import exception.DALException;
 import interfaces.IBrugerController;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class OperatoerServiceTest {
 	IBrugerController controller = BrugerController.getInstance();

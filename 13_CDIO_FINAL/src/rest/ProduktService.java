@@ -23,6 +23,12 @@ import interfaces.IProduktBatchController;
 import interfaces.IProduktBatchKompController;
 import interfaces.IProduktService;
 
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.sql.SQLException;
+import java.util.List;
+
 @Path("produktbatch")
 @Produces(MediaType.APPLICATION_JSON)
 

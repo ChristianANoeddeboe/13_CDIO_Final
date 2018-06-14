@@ -1,20 +1,22 @@
 package dao;
 
+import connector.MySQLConnector;
+import dto.DTORecept;
+import exception.DALException;
+import interfaces.IDAORecept;
+import org.slf4j.Logger;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import connector.MySQLConnector;
-import exception.DALException;
-import interfaces.IDAORecept;
-import dto.DTORecept;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@NoArgsConstructor
 public class DAORecept implements IDAORecept {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(DAORecept.class);
+
+    public DAORecept() {
+    }
 
     @Override
     public DTORecept getRecept(int receptId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {
