@@ -13,7 +13,7 @@ $(document).ready(function() {
 	clickAddKompHandler();
 	clickDeleteKompHandler();
 	clickUpdateKompHandler();
-	
+	enableTooltips();
 
 });
 function clickUpdateKompHandler(){ //Tilfoejer funktion til at bekraefte opdateringen af et recept komponent, via en modal.
@@ -226,12 +226,19 @@ function showLoader(){
 	$("#receptAdminTable").hide();
 	$(".loader").show();
 };
+
+function enableTooltips() {
+	$('body').tooltip({
+	    selector: '[tooltip-toggle="tooltip"]'
+	});
+}
+
 function generateReceptHTML(recept) {
 	return 	'<tr><th scope ="row">' + recept.receptId + '</th>' +
 	'<td><input type="text" id = "'+recept.receptId +"_Name"+'" class="form-control-plaintext" value="' + recept.receptNavn + '"></td></td>' +
-	'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary vis"><i class="fas fa-folder-open" id = "'+recept.receptId+'"></i></button>'+'</td>' +
-	'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+recept.receptId+'"></i></button>'+'</td>' +
-	'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary slet"><i class="fas fa-trash-alt" id = "'+recept.receptId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary vis" tooltip-toggle="tooltip" data-placement="top"  title="Åben recept"><i class="fas fa-folder-open" id = "'+recept.receptId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary update" tooltip-toggle="tooltip" data-placement="top"  title="Gem"><i class="fas fa-save" id = "'+recept.receptId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id = "'+recept.receptId+'" class="btn btn-primary slet" tooltip-toggle="tooltip" data-placement="top"  title="Slet"><i class="fas fa-trash-alt" id = "'+recept.receptId+'"></i></button>'+'</td>' +
 	'</td></tr>';
 };
 
@@ -240,8 +247,8 @@ function generateReceptKompHTML(receptKomp) {
 	'<td scope = "row">'+receptKomp.raavareId + '</td>' +
 	'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_netto"+'" class="form-control-plaintext" value="' + receptKomp.nomNetto + '"></td></td>' +
 	'<td><input type="text" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+"_tolerance"+'" class="form-control-plaintext" value="' + receptKomp.tolerance + '"></td></td>' +
-	'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary updateKomp"><i class="fas fa-save" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
-	'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary sletKomp"><i class="fas fa-trash-alt" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary updateKomp"  tooltip-toggle="tooltip" data-placement="top"  title="Gem"><i class="fas fa-save" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'" class="btn btn-primary sletKomp"  tooltip-toggle="tooltip" data-placement="top"  title="Slet"><i class="fas fa-trash-alt" id = "'+receptKomp.receptId+"_"+receptKomp.raavareId+'"></i></button>'+'</td>' +
 	'</td></tr>';
 };
 
