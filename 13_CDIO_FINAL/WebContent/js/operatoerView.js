@@ -6,9 +6,8 @@ $(document).ready(function() {
 	clickAddHandler();
 	clickUpdateHandler();
 	addEnterHandler();
-	
+	enableTooltips();
 });
-
 
 function addEnterHandler(){
 	$(document).keypress(function(e) { //show modal on enter.
@@ -107,6 +106,12 @@ function generateClickForTable(){ // Tilfoejer funktion til at aabne update moda
 	});	
 }
 
+function enableTooltips() {
+	$('body').tooltip({
+	    selector: '[tooltip-toggle="tooltip"]'
+	});
+}
+
 function generateOperatoerHTML(operatoer) { //Tilfoejer indholder i tabellen.
 	var status = new Array();
 	status.push(operatoer.aktiv);
@@ -122,7 +127,7 @@ function generateOperatoerHTML(operatoer) { //Tilfoejer indholder i tabellen.
 	'<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'" class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
 	'<th scope = "row"><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></th></td>' +
 	'<td><select class="" name="' + operatoer.oprId + '_aktiv" id="' + operatoer.oprId + '_status"><option value="' + status[0] + '">' + status[0]  + '</option><option value="' + status[1] + '">' + status[1] + '</option>></select></td></td>' +
-	'<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update"><i class="fas fa-save" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
+	'<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update" tooltip-toggle="tooltip" data-placement="top"  title="Gem"><i class="fas fa-save" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
 	'</td></tr>';
 }
 
