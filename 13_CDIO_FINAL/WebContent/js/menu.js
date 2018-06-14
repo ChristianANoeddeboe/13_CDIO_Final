@@ -9,7 +9,7 @@ function loadMenu(id,callbackfunc){
 		if (rolle === "Farmaceut") {
 			$("#operatoerAdmin").hide();
 		}
-		if(id == 1){
+		if(id === 1) {
 			callbackfunc(rolle)
 		}
 	});
