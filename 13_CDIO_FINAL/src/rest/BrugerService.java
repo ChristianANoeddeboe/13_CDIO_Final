@@ -12,13 +12,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import controller.*;
-import dto.DTOBruger;
+import controller.BrugerController;
 
-import java.sql.SQLException;
-import java.util.List;
+import dto.DTOBruger;
 import exception.DALException;
 import interfaces.IBrugerController;
 import interfaces.IBrugerService;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("bruger")
 @Produces(MediaType.APPLICATION_JSON)

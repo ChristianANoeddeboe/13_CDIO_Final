@@ -1,20 +1,22 @@
 package dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
-
 import connector.MySQLConnector;
+import dto.DTOBruger;
 import exception.DALException;
 import interfaces.IDAOOperatoer;
-import dto.DTOBruger;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-@Slf4j
-@NoArgsConstructor
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class DAOBruger implements IDAOOperatoer {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(DAOBruger.class);
+
+    public DAOBruger() {
+    }
 
     //Get operator with specific ID
     public DTOBruger getOperatoer(int oprId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {

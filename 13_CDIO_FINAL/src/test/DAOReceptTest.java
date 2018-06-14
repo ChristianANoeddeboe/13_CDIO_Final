@@ -1,12 +1,16 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import java.util.List;
+
+import dao.DAORecept;
+import dto.DTORecept;
+import exception.DALException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import dao.DAORecept;
-import exception.DALException;
-import dto.DTORecept;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class DAOReceptTest {
     DAORecept receptDAO = new DAORecept();

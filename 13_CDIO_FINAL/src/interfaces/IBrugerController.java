@@ -1,9 +1,9 @@
 package interfaces;
 
-import java.util.List;
-
 import dto.DTOBruger;
 import exception.DALException;
+
+import java.util.List;
 
 public interface IBrugerController {
 

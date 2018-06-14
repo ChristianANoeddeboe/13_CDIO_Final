@@ -1,5 +1,7 @@
 package ase;
 
+import org.slf4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -7,12 +9,10 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class WeightSocket {
 	final static int MSGLENGTH = 24;
 	final static int UNITLENGTH = 7;
+	private static final Logger log = org.slf4j.LoggerFactory.getLogger(WeightSocket.class);
 
 	private final int PORT;
 	private String ip;

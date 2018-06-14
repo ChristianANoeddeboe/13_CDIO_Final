@@ -12,15 +12,20 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import controller.RaavareController;
+
 import controller.RaavareBatchController;
+import controller.RaavareController;
 import dto.DTORaavare;
 import dto.DTORaavareBatch;
-
-import java.util.List;
 import exception.DALException;
 import interfaces.IRaavareBatchController;
 import interfaces.IRaavareController;
 import interfaces.IRaavareService;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("raavare")
 @Produces(MediaType.APPLICATION_JSON)
