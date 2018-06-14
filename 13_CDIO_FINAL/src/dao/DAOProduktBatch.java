@@ -1,21 +1,23 @@
 package dao;
 
+import connector.MySQLConnector;
+import dto.DTOProduktBatch;
+import dto.Status;
+import exception.DALException;
+import interfaces.IDAOProduktBatch;
+import org.slf4j.Logger;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import connector.MySQLConnector;
-import exception.DALException;
-import interfaces.IDAOProduktBatch;
-import dto.DTOProduktBatch;
-import dto.Status;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@NoArgsConstructor
 public class DAOProduktBatch implements IDAOProduktBatch {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(DAOProduktBatch.class);
+
+    public DAOProduktBatch() {
+    }
 
     @Override
     public DTOProduktBatch getProduktBatch(int pbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {

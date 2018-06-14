@@ -1,10 +1,10 @@
 package interfaces;
 
-import javax.ws.rs.core.Response;
-
 import dto.DTORecept;
 import dto.DTOReceptKomp;
 import exception.DALException;
+
+import javax.ws.rs.core.Response;
 
 public interface IReceptService {
 	//Recept

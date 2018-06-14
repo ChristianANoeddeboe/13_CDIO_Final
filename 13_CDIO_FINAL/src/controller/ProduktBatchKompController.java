@@ -1,20 +1,17 @@
 package controller;
 
-import java.util.List;
-
-import dao.DAOProduktBatch;
 import dao.DAOProduktBatchKomp;
 import dto.DTOProduktBatchKomp;
 import exception.DALException;
 import interfaces.IDAOProduktBatchKomp;
 import interfaces.IProduktBatchKompController;
-import lombok.AllArgsConstructor;
-import lombok.extern.java.Log;
 
-@Log
+import java.util.List;
+import java.util.logging.Logger;
 
 public class ProduktBatchKompController implements IProduktBatchKompController {
-	private static IDAOProduktBatchKomp dao;
+    private static final Logger log = Logger.getLogger(ProduktBatchKompController.class.getName());
+    private static IDAOProduktBatchKomp dao;
 	private static IProduktBatchKompController instance;
 	private ProduktBatchKompController() {
 	}

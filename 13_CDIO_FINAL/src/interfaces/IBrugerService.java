@@ -1,11 +1,10 @@
 package interfaces;
 
-import java.sql.SQLException;
-
-import javax.ws.rs.core.Response;
-
 import dto.DTOBruger;
 import exception.DALException;
+
+import javax.ws.rs.core.Response;
+import java.sql.SQLException;
 
 public interface IBrugerService {
 	Response getBrugerList() throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException;

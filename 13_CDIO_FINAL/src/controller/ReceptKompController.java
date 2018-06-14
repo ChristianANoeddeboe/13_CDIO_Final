@@ -1,18 +1,17 @@
 package controller;
 
-import java.util.List;
-
 import dao.DAOReceptKomp;
 import dto.DTOReceptKomp;
 import exception.DALException;
 import interfaces.IDAOReceptKomp;
 import interfaces.IReceptKompController;
-import lombok.AllArgsConstructor;
-import lombok.extern.java.Log;
 
-@Log
+import java.util.List;
+import java.util.logging.Logger;
+
 public class ReceptKompController implements IReceptKompController {
-	private static IDAOReceptKomp dao;
+    private static final Logger log = Logger.getLogger(ReceptKompController.class.getName());
+    private static IDAOReceptKomp dao;
 	private static IReceptKompController instance;
 	private ReceptKompController() {
 	}

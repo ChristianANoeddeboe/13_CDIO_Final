@@ -1703,3 +1703,5 @@
 [INFO] 2018-06-14 13:17:11,607 ase.WeightSocket rm20 - Client: RM20 8 "prosciuta" "Bekraeft!" "" \n
 [INFO] 2018-06-14 13:17:12,236 ase.WeightSocket rm20 - Server: RM20 B
 [INFO] 2018-06-14 13:17:13,127 ase.WeightSocket rm20 - Server: RM20 A "Bekraeft!"
+[ERROR] 2018-06-14 13:56:06,601 ase.WeightSocket connect - Fejl: IO exception. Kontakt system administrator.
+[ERROR] 2018-06-14 13:56:06,601 ase.WeightSocket connect - Connection refused: connect

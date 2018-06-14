@@ -1,9 +1,9 @@
 package interfaces;
 
-import java.util.List;
-
 import dto.DTORaavareBatch;
 import exception.DALException;
+
+import java.util.List;
 
 public interface IRaavareBatchController {
 

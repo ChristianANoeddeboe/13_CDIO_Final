@@ -3,17 +3,13 @@ package test;
 import connector.MySQLConnector;
 import controller.ReceptKompController;
 import dao.DAORecept;
-import dao.DAOReceptKomp;
 import dto.DTORecept;
-import exception.DALException;
 import dto.DTOReceptKomp;
+import exception.DALException;
 import interfaces.IDAORecept;
 import interfaces.IReceptKompController;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 

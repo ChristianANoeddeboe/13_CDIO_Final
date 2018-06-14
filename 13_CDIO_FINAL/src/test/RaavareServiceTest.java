@@ -1,29 +1,24 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.IOException;
-import java.util.List;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-
-import connector.MySQLConnector;
 import controller.RaavareBatchController;
 import controller.RaavareController;
-import dao.DAORaavare;
-import dao.DAORaavareBatch;
 import dto.DTORaavare;
 import dto.DTORaavareBatch;
 import exception.DALException;
 import interfaces.IRaavareBatchController;
 import interfaces.IRaavareController;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 class RaavareServiceTest {
 

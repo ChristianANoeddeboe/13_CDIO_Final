@@ -1,19 +1,17 @@
 package controller;
 
-import lombok.AllArgsConstructor;
-import lombok.extern.java.Log;
-
-import java.util.List;
-
 import dao.DAOBruger;
 import dto.DTOBruger;
 import exception.DALException;
 import interfaces.IBrugerController;
 import interfaces.IDAOOperatoer;
 
-@Log
+import java.util.List;
+import java.util.logging.Logger;
+
 public class BrugerController implements IBrugerController {
-	private static IDAOOperatoer dao;
+    private static final Logger log = Logger.getLogger(BrugerController.class.getName());
+    private static IDAOOperatoer dao;
 	private static IBrugerController instance;
 	private BrugerController() {
 	}
