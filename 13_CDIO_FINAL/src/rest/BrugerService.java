@@ -14,7 +14,6 @@ import javax.ws.rs.core.Response;
 import controller.*;
 import dto.DTOBruger;
 
-import java.sql.SQLException;
 import java.util.List;
 import exception.DALException;
 import interfaces.IBrugerController;

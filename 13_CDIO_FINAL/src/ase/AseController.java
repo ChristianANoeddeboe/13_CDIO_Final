@@ -1,12 +1,9 @@
 package ase;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
-import connector.MySQLConnector;
 import controller.*;
-import dao.*;
 import dto.*;
 import exception.DALException;
 import interfaces.IBrugerController;
