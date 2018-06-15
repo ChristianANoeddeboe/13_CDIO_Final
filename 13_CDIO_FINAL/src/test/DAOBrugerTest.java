@@ -1,19 +1,18 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.List;
-
+import connector.MySQLConnector;
+import controller.BrugerController;
+import dto.Aktiv;
+import dto.DTOBruger;
 import dto.Roller;
+import exception.DALException;
+import interfaces.IBrugerController;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import connector.MySQLConnector;
-import controller.BrugerController;
-import dto.DTOBruger;
-import dto.Aktiv;
-import exception.DALException;
-import interfaces.IBrugerController;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class DAOBrugerTest {
 	static IBrugerController testBrugerController;

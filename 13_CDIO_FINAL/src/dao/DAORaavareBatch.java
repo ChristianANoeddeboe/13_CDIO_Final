@@ -1,20 +1,22 @@
 package dao;
 
 import connector.MySQLConnector;
+import dto.DTORaavareBatch;
 import exception.DALException;
 import interfaces.IDAORaavareBatch;
-import dto.DTORaavareBatch;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
-@NoArgsConstructor
 public class DAORaavareBatch implements IDAORaavareBatch {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(DAORaavareBatch.class);
+
+    public DAORaavareBatch() {
+    }
 
     @Override
     public DTORaavareBatch getRaavareBatch(int rbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException {

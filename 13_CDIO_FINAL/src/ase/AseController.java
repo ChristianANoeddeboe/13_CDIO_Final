@@ -1,22 +1,16 @@
 package ase;
 
-import java.io.IOException;
-import java.util.List;
-
 import controller.*;
 import dto.*;
 import exception.DALException;
-import interfaces.IBrugerController;
-import interfaces.IProduktBatchController;
-import interfaces.IProduktBatchKompController;
-import interfaces.IRaavareBatchController;
-import interfaces.IRaavareController;
-import interfaces.IReceptController;
-import interfaces.IReceptKompController;
-import lombok.extern.slf4j.Slf4j;
+import interfaces.*;
+import org.slf4j.Logger;
 
-@Slf4j
+import java.io.IOException;
+import java.util.List;
+
 public class AseController {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(AseController.class);
     private WeightSocket socket;
 
     public AseController(String ip, int port) {

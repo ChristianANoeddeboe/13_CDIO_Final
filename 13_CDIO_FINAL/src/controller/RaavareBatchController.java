@@ -1,15 +1,16 @@
 package controller;
 
+import dao.DAORaavareBatch;
 import dto.DTORaavareBatch;
 import exception.DALException;
 import interfaces.IDAORaavareBatch;
 import interfaces.IRaavareBatchController;
-import lombok.extern.java.Log;
-import java.util.List;
-import dao.DAORaavareBatch;
 
-@Log
+import java.util.List;
+import java.util.logging.Logger;
+
 public class RaavareBatchController implements IRaavareBatchController {
+    private static final Logger log = Logger.getLogger(RaavareBatchController.class.getName());
     private static IDAORaavareBatch dao;
     private static IRaavareBatchController instance;
 	private RaavareBatchController() {

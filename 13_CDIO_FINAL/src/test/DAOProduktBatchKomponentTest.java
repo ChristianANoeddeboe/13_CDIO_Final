@@ -1,18 +1,17 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.List;
-
+import connector.MySQLConnector;
+import controller.ProduktBatchKompController;
+import dto.DTOProduktBatchKomp;
+import exception.DALException;
+import interfaces.IProduktBatchKompController;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import connector.MySQLConnector;
-import controller.ProduktBatchKompController;
-import exception.DALException;
-import interfaces.IProduktBatchKompController;
-import dto.DTOProduktBatchKomp;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class DAOProduktBatchKomponentTest {
     static IProduktBatchKompController testOperatoerController;

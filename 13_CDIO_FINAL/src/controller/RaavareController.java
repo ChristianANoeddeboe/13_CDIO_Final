@@ -1,16 +1,17 @@
 package controller;
 
+import dao.DAORaavare;
 import dto.DTORaavare;
 import exception.DALException;
 import interfaces.IDAORaavare;
 import interfaces.IRaavareController;
-import lombok.extern.java.Log;
-import java.util.List;
-import dao.DAORaavare;
 
-@Log
+import java.util.List;
+import java.util.logging.Logger;
+
 public class RaavareController implements IRaavareController {
-	private static IDAORaavare dao;
+    private static final Logger log = Logger.getLogger(RaavareController.class.getName());
+    private static IDAORaavare dao;
 	private static IRaavareController instance;
 	private RaavareController() {
 	}

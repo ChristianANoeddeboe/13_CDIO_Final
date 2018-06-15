@@ -1,9 +1,9 @@
 package interfaces;
 
-import java.util.List;
-
-import exception.DALException;
 import dto.DTORaavareBatch;
+import exception.DALException;
+
+import java.util.List;
 
 public interface IDAORaavareBatch {
 	DTORaavareBatch getRaavareBatch(int rbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException;

@@ -1,11 +1,10 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import controller.ErrorChecking;
 import dto.Status;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 public class ErrorCheckingTest {

@@ -1,26 +1,18 @@
 package rest;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
-import controller.RaavareController;
 import controller.RaavareBatchController;
+import controller.RaavareController;
 import dto.DTORaavare;
 import dto.DTORaavareBatch;
-
-import java.util.List;
 import exception.DALException;
 import interfaces.IRaavareBatchController;
 import interfaces.IRaavareController;
 import interfaces.IRaavareService;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("raavare")
 @Produces(MediaType.APPLICATION_JSON)

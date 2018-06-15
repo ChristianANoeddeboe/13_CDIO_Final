@@ -1,9 +1,9 @@
 package interfaces;
 
-import java.util.List;
-
-import exception.DALException;
 import dto.DTOProduktBatchKomp;
+import exception.DALException;
+
+import java.util.List;
 
 public interface IDAOProduktBatchKomp {
 	DTOProduktBatchKomp getProduktBatchKomp(int pbId, int rbId) throws DALException, InstantiationException, IllegalAccessException, ClassNotFoundException; // Retuner et produkt batch komponent

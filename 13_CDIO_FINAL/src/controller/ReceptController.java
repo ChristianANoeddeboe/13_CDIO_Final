@@ -1,15 +1,16 @@
 package controller;
 
+import dao.DAORecept;
 import dto.DTORecept;
 import exception.DALException;
 import interfaces.IDAORecept;
 import interfaces.IReceptController;
-import lombok.extern.java.Log;
-import java.util.List;
-import dao.DAORecept;
 
-@Log
+import java.util.List;
+import java.util.logging.Logger;
+
 public class ReceptController implements IReceptController {
+    private static final Logger log = Logger.getLogger(ReceptController.class.getName());
     private static IDAORecept dao;
     private static IReceptController instance;
     private ReceptController() {

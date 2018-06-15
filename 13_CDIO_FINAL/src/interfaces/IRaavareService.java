@@ -1,10 +1,10 @@
 package interfaces;
 
-import javax.ws.rs.core.Response;
-
 import dto.DTORaavare;
 import dto.DTORaavareBatch;
 import exception.DALException;
+
+import javax.ws.rs.core.Response;
 
 public interface IRaavareService {
 	//Råvare

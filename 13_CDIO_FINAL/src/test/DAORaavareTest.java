@@ -2,11 +2,12 @@ package test;
 
 import connector.MySQLConnector;
 import controller.RaavareController;
+import dto.DTORaavare;
 import exception.DALException;
 import interfaces.IRaavareController;
-import dto.DTORaavare;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DAORaavareTest {
