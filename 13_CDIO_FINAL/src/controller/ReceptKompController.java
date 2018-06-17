@@ -13,8 +13,10 @@ import lombok.extern.java.Log;
 public class ReceptKompController implements IReceptKompController {
 	private static IDAOReceptKomp dao;
 	private static IReceptKompController instance;
+	
 	private ReceptKompController() {
 	}
+	
 	public static IReceptKompController getInstance() {
 		if(instance == null) {
 			dao = new DAOReceptKomp();

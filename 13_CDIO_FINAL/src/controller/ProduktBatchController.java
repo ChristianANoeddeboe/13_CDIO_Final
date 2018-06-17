@@ -12,9 +12,11 @@ import dao.DAOProduktBatch;
 public class ProduktBatchController implements IProduktBatchController {
     private static IDAOProduktBatch dao;
     private static IProduktBatchController instance;
-	private ProduktBatchController() {
+	
+    private ProduktBatchController() {
 		
 	}
+    
 	public static IProduktBatchController getInstance() {
 		if(instance == null) {
 			dao = new DAOProduktBatch();

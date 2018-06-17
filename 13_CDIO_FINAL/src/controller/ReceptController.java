@@ -12,8 +12,10 @@ import dao.DAORecept;
 public class ReceptController implements IReceptController {
     private static IDAORecept dao;
     private static IReceptController instance;
+  
     private ReceptController() {
 	}
+    
 	public static IReceptController getInstance() {
 		if(instance == null) {
 			dao = new DAORecept();

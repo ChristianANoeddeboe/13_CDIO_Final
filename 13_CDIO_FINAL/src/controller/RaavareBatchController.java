@@ -12,8 +12,10 @@ import dao.DAORaavareBatch;
 public class RaavareBatchController implements IRaavareBatchController {
     private static IDAORaavareBatch dao;
     private static IRaavareBatchController instance;
-	private RaavareBatchController() {
+	
+    private RaavareBatchController() {
 	}
+    
 	public static IRaavareBatchController getInstance() {
 		if(instance == null) {
 			dao = new DAORaavareBatch();

@@ -14,8 +14,10 @@ import lombok.extern.java.Log;
 public class ProduktBatchKompController implements IProduktBatchKompController {
 	private static IDAOProduktBatchKomp dao;
 	private static IProduktBatchKompController instance;
+	
 	private ProduktBatchKompController() {
 	}
+	
 	public static IProduktBatchKompController getInstance() {
 		if(instance == null) {
 			dao = new DAOProduktBatchKomp();

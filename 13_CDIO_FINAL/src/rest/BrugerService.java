@@ -23,8 +23,8 @@ import interfaces.IBrugerService;
 @Produces(MediaType.APPLICATION_JSON)
 
 public class BrugerService implements IBrugerService {
-
 	IBrugerController controller = BrugerController.getInstance();
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)

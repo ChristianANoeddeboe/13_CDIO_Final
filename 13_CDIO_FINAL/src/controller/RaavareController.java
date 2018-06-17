@@ -12,8 +12,10 @@ import dao.DAORaavare;
 public class RaavareController implements IRaavareController {
 	private static IDAORaavare dao;
 	private static IRaavareController instance;
+	
 	private RaavareController() {
 	}
+	
 	public static IRaavareController getInstance() {
 		if(instance == null) {
 			dao = new DAORaavare();
