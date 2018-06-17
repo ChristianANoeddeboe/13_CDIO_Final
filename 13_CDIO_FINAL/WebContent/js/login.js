@@ -12,8 +12,5 @@ jQuery(document).ready(function() {
             $("#loginbtn").click();
         }
     });
-
-
-	
 });
 

@@ -14,8 +14,10 @@ import interfaces.IDAOOperatoer;
 public class BrugerController implements IBrugerController {
 	private static IDAOOperatoer dao;
 	private static IBrugerController instance;
+	
 	private BrugerController() {
 	}
+	
 	public static IBrugerController getInstance() {
 		if(instance == null) {
 			dao = new DAOBruger();
