@@ -199,7 +199,7 @@ public class AseController {
     }
 
     private void afvejning(List<DTOReceptKomp> receptkompList, DTOProduktBatch produktbatch, DTOBruger operatoer) {
-        double lowerbound, upperbound, weight = 0, tara = 0, diffWeight = 0, tempweight = 0;
+        double lowerbound, upperbound, approvedWeight = 0, tara = 0, diffWeight = 0, currentWeight = 0;
         DTORaavare raavare = null;
         DTOProduktBatchKomp tempPBK = null;
         DTORaavareBatch tempRB = null;
@@ -232,33 +232,33 @@ public class AseController {
                     abort("Databasefejl.", e);
                 }
 
-                socket.rm20("RB vaegt: " + tempRB.getMaengde() + "kg.", "Mangler: "+ (receptKomp.getNomNetto() - weight) + "kg.", "");
+                socket.rm20("RB vaegt: " + tempRB.getMaengde() + "kg.", "Mangler: "+ (receptKomp.getNomNetto() - approvedWeight) + "kg.", "");
                 try {
                 	//Temp weight -> Current weighed, weight -> total weighed so far
-                    tempweight = afvej(); // Weigh something
-                    while (tempweight - weight > tempRB.getMaengde()) { //  ???
+                    currentWeight = afvej(); // Weigh something
+                    while (currentWeight - approvedWeight > tempRB.getMaengde()) { //  Weights current batch
                         log.info("Afvejet mængde overstiger mængden i råvarebatch.");
                         socket.rm20("Afvejet overstiger RB.", "", "Fejl.");
-                        tempweight = afvej();
+                        currentWeight = afvej();
                     }
 
-                    while (upperbound < tempweight) { // Check if weighed amount is greater than what we need
+                    while (upperbound < currentWeight) { // Check if weighed amount is greater than what we need
                         log.info("Afvejet mængde overstiger nomnetto.");
                         socket.rm20("Afvejet>nomnetto.", "", "Fejl.");
-                        tempweight = afvej();
+                        currentWeight = afvej();
                     }
 
-                    weight = tempweight;
-                    diffWeight = weight - diffWeight; // ??
-                    tempRB.setMaengde(tempRB.getMaengde() - diffWeight); //??
+                    approvedWeight = currentWeight;
+                    diffWeight = approvedWeight - diffWeight; //What is weighed in current iteration
+                    tempRB.setMaengde(tempRB.getMaengde() - diffWeight); 
                     log.info(tempRB.getRaavareId() + " " + tempRB.getRbId() + " " + tempRB.getMaengde());
                     rbController.updateRaavareBatch(tempRB);
 
                     tempPBK = new DTOProduktBatchKomp(produktbatch.getPbId(), tempRB.getRbId(), tara, diffWeight, operatoer.getOprId()); //?
                     log.warn(tempPBK.toString());
                     pbkController.createProdBatchKomp(tempPBK);
-                    double testDouble = receptKomp.getNomNetto() - weight;
-                    if (lowerbound > weight || upperbound < weight) {
+                    double testDouble = receptKomp.getNomNetto() - approvedWeight;
+                    if (lowerbound > approvedWeight || upperbound < approvedWeight) {
                         socket.rm20("Afvejet: "+tempRB.getRbId(), "Mangler: " + testDouble+"kg", "");
                     }
                 } catch (IOException e) {
@@ -267,11 +267,11 @@ public class AseController {
                     socket.rm20("Database fejl.", "ok?", "");
                     abort("Databasefejl.", e);
                 }
-            } while (lowerbound > weight || upperbound < weight); // While lower bound greater than weight or upper bound lower than weight
+            } while (lowerbound > approvedWeight || upperbound < approvedWeight); // While lower bound greater than weight or upper bound lower than weight
 
             bruttokontrol(tara);
-            weight = 0;
-            tempweight = 0;
+            approvedWeight = 0;
+            currentWeight = 0;
             diffWeight = 0;
             str = null;
         }
