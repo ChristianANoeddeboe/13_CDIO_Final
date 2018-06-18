@@ -27,7 +27,7 @@ function clickUpdateHandler(){ // Tilfoejer funktion til at aabne confirmation m
 			efternavn : $(("#"+id.split("_")[0]+"_efternavn"))["0"].value,
 			cpr : $(("#"+id.split("_")[0]+"_cpr"))["0"].textContent,
 			roles : $(("#"+id.split("_")[0]+"_roles"))["0"].value,
-			aktiv : $(("#"+id.split("_")[0]+"_status"))["0"].value
+			aktiv : $(("#"+id.split("_")[0]+"_aktiv"))["0"].value
 		}),
 		function(data){
 			$('#updateModal').modal('hide');
@@ -138,7 +138,7 @@ function generateOperatoerHTML(operatoer) { //Tilfoejer indholder i tabellen.
 	'<td><input type="text" id = "'+operatoer.oprId+"_efternavn"+'" class="form-control-plaintext" value="' + operatoer.efternavn + '"></td></td>' +
 	'<th scope = "row"><span id = "'+operatoer.oprId+"_cpr"+'">'+operatoer.cpr+'</span></th></td>' +
 	'<td><select class="" name="' + operatoer.oprId + '_roles" id="' + operatoer.oprId + '_roles"><option value="' + roller[0] + '">' + roller[0]  + '</option><option value="' + roller[1] + '">' + roller[1] +'</option><option value="' + roller[2] + '">' + roller[2]  + '</option><option value="' + roller[3] + '">' + roller[3]  + '</option>></select></td></td>' +
-	'<td><select class="" name="' + operatoer.oprId + '_aktiv" id="' + operatoer.oprId + '_status"><option value="' + status[0] + '">' + status[0]  + '</option><option value="' + status[1] + '">' + status[1] + '</option>></select></td></td>' +
+	'<td><select class="" name="' + operatoer.oprId + '_aktiv" id="' + operatoer.oprId + '_aktiv"><option value="' + status[0] + '">' + status[0]  + '</option><option value="' + status[1] + '">' + status[1] + '</option>></select></td></td>' +
 	'<td><button type="button" id = "'+operatoer.oprId+'" class="btn btn-primary update" tooltip-toggle="tooltip" data-placement="top"  title="Gem"><i class="fas fa-save" id = "'+operatoer.oprId+'"></i></button>'+'</td>' +
 	'</td></tr>';
 }

@@ -36,21 +36,21 @@ public class AseController {
             System.exit(0);
         }
 
-        DTOBruger operatoer = validerOperatoer();
+        DTOBruger operatoer = validerOperatoer(); // Get operator
         if (operatoer == null) {
             log.info("Cancel: operatør.");
             socket.disconnect();
             return;
         }
 
-        pb = getProduktbatch();
+        pb = getProduktbatch(); // Get product batch and confirm with recept name
         if (pb == null) {
             log.info("Cancel: Produktbatch.");
             socket.disconnect();
             return;
         }
 
-        if (!opdaterPbStatus(pb)) {
+        if (!opdaterPbStatus(pb)) { // Check status and update
             log.info("Cancel: Opdater produktbatch.");
             socket.disconnect();
             return;
@@ -163,16 +163,16 @@ public class AseController {
         double netto;
         List<DTOReceptKomp> list = null;
         try {
-            list = controller.getReceptKompList(pb.getReceptId());
+            list = controller.getReceptKompList(pb.getReceptId()); // Get list of recept comps for matching recept id
         } catch (DALException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             socket.rm20("receptkomp ikke fundet.", "ok?", "");
             socket.rm20("System afsluttes.", "ok?", "");
             log.error(e.getMessage());
             return null;
         }
-
+        
         for (DTOReceptKomp rk : list) {
-            if (rk.getNomNetto() >= getRaavareMaengde(rk.getRaavareId())) {
+            if (rk.getNomNetto() >= getRaavareMaengde(rk.getRaavareId())) { // Check if required(nom netto) is greater than or equal to what we have on stock
                 socket.rm20("Ikke nok materiale.", "ok?", "");
                 socket.rm20("System afsluttes.", "ok?", "");
                 log.error("Ikke nok materiale.");
@@ -208,22 +208,22 @@ public class AseController {
         List<DTORaavareBatch> raavareBatches = null;
         String str = null;
 
-        for (DTOReceptKomp receptKomp : receptkompList) {
+        for (DTOReceptKomp receptKomp : receptkompList) { // For all recept components
 
-            emptyWeight();
-            raavare = retreiveRaavare(receptKomp.getRaavareId());
-            tara = retreiveTara();
+            emptyWeight(); // Request weight to be emptied
+            raavare = retreiveRaavare(receptKomp.getRaavareId()); // Retrive the raavare(specified in recept component) and confirm with user
+            tara = retreiveTara(); // Request the user to tara weight
 
             // Specificerer den tolerence vi tillader, i form af 2 vaerdier til senere tjek.
-            lowerbound = receptKomp.getNomNetto() * (1 - (receptKomp.getTolerance() / 100));
-            upperbound = receptKomp.getNomNetto() * (1 + (receptKomp.getTolerance() / 100));
+            lowerbound = receptKomp.getNomNetto() * (1 - (receptKomp.getTolerance() / 100));// Calculate lower bound
+            upperbound = receptKomp.getNomNetto() * (1 + (receptKomp.getTolerance() / 100));// Calculate upper bound
 
             do {
                 try {
-                    str = socket.rm20("Angiv raavarebatch ID", "ID", "");
+                    str = socket.rm20("Angiv raavarebatch ID", "ID", ""); // Request user to specify which raavarebatchID
                     if (str.contains("RM20 C") || str.contains("exit")) socket.rm20("Not allowed", "ok?", "");
-                    tempRB = rbController.getRaavareBatch(Integer.parseInt(str));
-                    if (tempRB.getRaavareId() != raavare.getRaavareId()) continue;
+                    tempRB = rbController.getRaavareBatch(Integer.parseInt(str));//Save raavarebatchID here
+                    if (tempRB.getRaavareId() != raavare.getRaavareId()) continue; // Check if the raavare id of the inputted raavarebatch id matches what the recepie requires
                 } catch (NumberFormatException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                     log.warn("Ikke gyldig vægt");
                     continue;
@@ -234,27 +234,27 @@ public class AseController {
 
                 socket.rm20("RB vaegt: " + tempRB.getMaengde() + "kg.", "Mangler: "+ (receptKomp.getNomNetto() - weight) + "kg.", "");
                 try {
-
-                    tempweight = afvej();
-                    while (tempweight - weight > tempRB.getMaengde()) {
+                	//Temp weight -> Current weighed, weight -> total weighed so far
+                    tempweight = afvej(); // Weigh something
+                    while (tempweight - weight > tempRB.getMaengde()) { //  ???
                         log.info("Afvejet mængde overstiger mængden i råvarebatch.");
                         socket.rm20("Afvejet overstiger RB.", "", "Fejl.");
                         tempweight = afvej();
                     }
 
-                    while (upperbound < tempweight) {
+                    while (upperbound < tempweight) { // Check if weighed amount is greater than what we need
                         log.info("Afvejet mængde overstiger nomnetto.");
                         socket.rm20("Afvejet>nomnetto.", "", "Fejl.");
                         tempweight = afvej();
                     }
 
                     weight = tempweight;
-                    diffWeight = weight - diffWeight;
-                    tempRB.setMaengde(tempRB.getMaengde() - diffWeight);
+                    diffWeight = weight - diffWeight; // ??
+                    tempRB.setMaengde(tempRB.getMaengde() - diffWeight); //??
                     log.info(tempRB.getRaavareId() + " " + tempRB.getRbId() + " " + tempRB.getMaengde());
                     rbController.updateRaavareBatch(tempRB);
 
-                    tempPBK = new DTOProduktBatchKomp(produktbatch.getPbId(), tempRB.getRbId(), tara, diffWeight, operatoer.getOprId());
+                    tempPBK = new DTOProduktBatchKomp(produktbatch.getPbId(), tempRB.getRbId(), tara, diffWeight, operatoer.getOprId()); //?
                     log.warn(tempPBK.toString());
                     pbkController.createProdBatchKomp(tempPBK);
                     double testDouble = receptKomp.getNomNetto() - weight;
@@ -267,7 +267,7 @@ public class AseController {
                     socket.rm20("Database fejl.", "ok?", "");
                     abort("Databasefejl.", e);
                 }
-            } while (lowerbound > weight || upperbound < weight);
+            } while (lowerbound > weight || upperbound < weight); // While lower bound greater than weight or upper bound lower than weight
 
             bruttokontrol(tara);
             weight = 0;
