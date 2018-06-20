@@ -12,7 +12,6 @@ public class DTORaavareBatch {
         this.maengde = maengde;
     }
 
-    @java.beans.ConstructorProperties({"rbId", "raavareId", "maengde"})
     public DTORaavareBatch(int rbId, int raavareId, double maengde) {
         this.rbId = rbId;
         this.raavareId = raavareId;
@@ -57,31 +56,7 @@ public class DTORaavareBatch {
         this.raavareId = raavareId;
     }
 
-    public boolean equals(Object o) {
-        if (o == this) return true;
-        if (!(o instanceof DTORaavareBatch)) return false;
-        final DTORaavareBatch other = (DTORaavareBatch) o;
-        if (!other.canEqual((Object) this)) return false;
-        if (this.getRbId() != other.getRbId()) return false;
-        if (this.getRaavareId() != other.getRaavareId()) return false;
-        if (Double.compare(this.getMaengde(), other.getMaengde()) != 0) return false;
-        return true;
-    }
-
-    public int hashCode() {
-        final int PRIME = 59;
-        int result = 1;
-        result = result * PRIME + this.getRbId();
-        result = result * PRIME + this.getRaavareId();
-        final long $maengde = Double.doubleToLongBits(this.getMaengde());
-        result = result * PRIME + (int) ($maengde >>> 32 ^ $maengde);
-        return result;
-    }
-
-    protected boolean canEqual(Object other) {
-        return other instanceof DTORaavareBatch;
-    }
-
+   
     public String toString() {
         return "DTORaavareBatch(rbId=" + this.getRbId() + ", raavareId=" + this.getRaavareId() + ", maengde=" + this.getMaengde() + ")";
     }
