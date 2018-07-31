@@ -1,24 +1,10 @@
-# Projektplan
+# Fullstack web application
+A fullstack web application used to manage stock and recepies at a pharmacy. The application is connected to a real weight, used to weigh the recepies.
 
-## Milestones:
-1. 4/6
-2. 16/6
+## Built With
 
-## Delprojektoer
-- ASE (vægt) -> 5/6
-- Database -> 5/6
-- Web -> 9/6
-- Test  -> 
-- Rapport  -> 
-
-### Database
-- Fiks id nummer #Issue ID
-- Ryd op i testdata
-- Flere leverandører på en råvare
-
-### ASE
-- DTO
-- DAO
-- Exception handling. Type safety
-- Kommunikerer med DB
-- Kommunikerer med vægt (Fysik og simulatoren)
+* [MySQL] - DB Storage used
+* [Jersey/Java] - Backend
+* [Bootstrap/JQuery] - Frontend
+* [Notify.js] - Frontend notifications
+* [Unirest] - Tests of rest services.
